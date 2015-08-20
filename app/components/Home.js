@@ -3,10 +3,41 @@ import React from 'react';
 class Home extends React.Component {
   render() {
     return (
-      <div>
-       <section>
-    	<div class="row-fluid hidden-phone">
-        <div class="content-wrapper">
+    <div>    
+    <div className="jumbotron">
+        <hrgroup>
+        <h1>Helping band programs in Appalachia</h1>
+        
+        </hrgroup>
+        <p className="lead">Marching Mountains' goal is to create a network to supply public school band programs in distressed counties in Appalachia with donated new and used musical instruments.</p>
+        <p><a className="btn btn-lg btn-success" title="Donate a musical instrument" href="/donate-a-musical-instrument" role="button">Donate a musical instrument today</a></p>
+      </div>
+
+      <div className="row marketing">
+        <div className="col-lg-6">
+          <h4>Vision</h4>
+          <p><a href="/project">Learn more about Marching Mountains' vison</a> and mission.</p>
+
+          <h4>Donate a Musical Instrument</h4>
+          <p>Do you have an instrument at home not being used? Learn how to <a href="/donate-a-musical-instrument">donate a musical instrument</a> and change a child's life. (Marching Mountains is a 501(c)(3), tax-deductible organization.)</p>
+
+          <h4>Donate Money</h4>
+          <p>Each instrument costs $25 - $50 to ship to schools. Please <a href="http://www.justgive.org/nonprofits/donate.jsp?ein=26-3799835">donate money</a> to help. (Marching Mountains is a 501(c)(3), tax-deductible organization.)</p>
+        </div>
+
+        <div className="col-lg-6">
+          <h4>Watch Videos</h4>
+          <p>Learn more about what Marching Mountains does with instrument donations by watching <a href="video">videos</a></p>
+
+          <h4>Volunteer</h4>
+          <p>Do you want to help? Put your heart into something meaningful by <a href="/volunteer">volunteering</a></p>
+
+          <h4>Our Annual Reports</h4>
+          <p>Each year we release an <a href="/annual-reports">annual report</a> to update those interested in the project.</p>
+        </div>
+      </div>
+     
+        <div className="content-wrapper">
             <h2>Donating Musical Instruments Changes Children’s Lives for the Better</h2>
             <p><img src="/img/quote.gif" />Recently, I was at the airport getting ready to leave town for a while to take a vacation. While at the gate, I checked my voice mail one last time before being cut off from technology for several days. I was surprised to get a message from a woman in Connecticut, who wanted to donate a flute to the organization. I only had a few minutes before boarding, so I quickly returned her phone call, leaving a message in a bit of a panic; I wanted to give her enough information but felt rushed as I would be boarding the plane at any moment. </p>
             <p>After I hung up, I resigned myself to the fact that I had lost that donation. In my mind, I must have sounded anxious and scattered, not really the type of message I typically leave for someone who is generously handing over an instrument to a stranger, an instrument that was likely prized by them or someone close to them.</p>
@@ -30,70 +61,43 @@ class Home extends React.Component {
                 </i>
             </p>
         </div>
-    </div>
-</section>
-<section>
-    <div>
-        <h3>Interview With Mr. Sean Coughlin About Musical Instrument Donation</h3>
-        <iframe width="595" height="360" src="http://www.youtube.com/embed/DZpJ4KHC_HU" frameborder="0" allowfullscreen></iframe>
-        <p>
-            In September 2011, Marching Mountains distributed 25 instruments to 14 schools in
-            distressed counties of Appalachia. The video displays an interview between Mr. Sean Coughlin, Band Director of Sheldon
-            Clark High School in Inez, Kentucky, and Ian Felton, founder of Marching Mountains. Mr. Coughlin emphasizes the importance of <a href="@Url.Action(MM.DonateMusicalInstrument.Index())" title="donate a musical instrument">donating musical instruments</a> and the benefit to the children who receive
-            them.
-        </p>
-    </div>
-</section>
-
-    <div>
-        <h2>Donate Musical Instruments to Marching Mountains</h2>
-        <h3>Musical instruments we need</h3>
-        <div>
-            <fieldset>
-                <ul>
-                    <li>Trumpets</li>
-                    <li>Saxophones</li>
-                    <li>Trombones</li>
-                    <li>Flutes</li>
-                    <li>Clarinets</li>
-                    <li>Snare Drums</li>
-                    <li>French Horns</li>
-                    <li>Tubas</li>
-                    <li>Percussion</li>
-                </ul>
-            </fieldset>
-        </div>
-        <p>
-            <strong>*Sadly, we cannot accept pianos, organs or drum kits. We do not have the means to pick-up, ship or store these.</strong>
-        </p>
-        <p>
-            This list isnt exclusive so please <a href="/organization/contact" title="Contact Marching Mountains">contact us</a> if you have any question about the
-            instrument you want to donate.
-        </p>
-        <h3>Drop-Off Information</h3>
-        <p>
-            In the Twin Cities, please drop-off instruments in good-working condition:
-        </p>
-        <p>
-            <a href="http://www.mmimports.com/">Midwest Musical Imports</a><br />
-            2021 E. Hennepin Ave. Suite 374<br />
-            Minneapolis, MN 55413
-        </p>
-        <p>
-            Local:&nbsp;(612) 331-4717<br />
-            Toll Free:&nbsp;(800) 926-5587<br />
-            Fax: (612) 331-4718
-        </p>
-        <p>Hours: 9am-5pm Monday-Friday – 10am-2pm Saturday</p>
-        <h3>Shipping Information</h3>
-        <p>
-            Please ship instruments, musical supplies and donations to:<br />
-            <strong>Marching Mountains</strong><br />
-            1449 Andmore Ave.<br />
-            Morgantown, WV 26505
-        </p>
-    </div>
-      </div>
+        <div className="content-wrapper">
+            <h2>Read a Letter From a Band Director About the Effects of Donating Musical Instruments to Marching Mountains</h2>
+            <p><img src="/img/quote.gif" />
+            Dear Marching Mountains,</p>
+ 
+<p>I just wanted you to know...  I am (students' names redacted)'s band director in West Virginia. I had never heard of your organization until this morning. (student) started band with her elementary director and so I didn't know what she was talking about when she said she had received an instrument "from a place that gives kids instruments".</p>
+ 
+<p>When (student) said her trumpet was coming in the mail to me, I assumed it was the same program. When I read your letter though... I sat at my desk and cried for a good half hour.</p>
+ 
+<p>I had no idea such a thing even existed. My school is in a fairly poor area as you can imagine. It's not the worst... but it's not the best either. I grew up here. I actually didn't do band all through school because I knew my parents would never be able to afford an instrument. Instead I took piano lessons from a lady a town over who gave lessons for $2 an hour. I ended up falling in love with music and went to college on a full ride scholarship.</p>
+ 
+<p>When I got this band job I had no idea what I was going to do with it. I walked into a mouse infested outbuilding that was my classroom... with instruments that a former principal had bought at an army surplus auction trying to help the previous band director out. He literally loaded up a dump truck with every instrument he could buy and dumped them out in front of her classroom for her to sort.</p>
+ 
+<p>When I got the job, there were still cases that hadn't been opened because there were no keys.</p>
+ 
+<p>Long story short, I have a lot of instruments... but most of them are in need of major overhauls or were so smashed and broken that I had to throw them out or use them for parts. I had one poor mellophone that was nearly smashed completely flat...</p>
+ 
+<p>But! My band program continues to grow despite all this. We did finally get a new school this past year. My classroom is wonderful and I was so glad to finally get a clean space that had... well... SPACE.</p>
+ 
+<p>This year my 7th and 8th grade band is up to 47 and my beginning 6th grade band has 26. I have over half of our middle school students as band members.</p>
+ 
+<p>I was doing instrument rentals this week... and I kept opening cases and seeing instruments that are going to need to go back to the shop or that I forgot I was keeping for parts... So the last two days I've been trying to figure out what to do about getting some new instruments. Last year I literally had Bandland piece a clarinet together for me out of the parts of 3 instruments so one of my kids could have a working instrument.</p>
+ 
+<p>When I got your letter this morning, it was like hope had dawned... lol I hate to sound so dramatic, but you have no idea how much I've prayed over the last two days for God to show me how to manage this. (Because our 20 something year old uniforms are in desperate need of replacing as well...)</p>
+ 
+<p>I know it might be a slow process to get everything I would LIKE to have... but I was so happy to see that there's a way to do it without putting my kids and their families under more financial strain with fundraisers...</p>
+ 
+<p>I just wanted to thank you for the organization and let you know that you've made two little girls and one band director extremely happy today. :) (Alexis has been asking every day if her instrument had come... she came in first thing this morning to see if it was here... and today it was... :)</p>
+ 
+<p>Thank you very much. I hope I haven't taken up too much of your time. I just wanted to share this with you.</p>
+ 
+<p>Sincerely,</p>
+ 
+<p>(band director's name redacted)
+           <img src="/img/unquote.gif" /></p>
+            </div>
+         </div>
     );
   }
 }

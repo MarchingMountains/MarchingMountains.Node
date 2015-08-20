@@ -99,7 +99,7 @@ gulp.task('browserify-watch', ['browserify-vendor'], function() {
  |--------------------------------------------------------------------------
  */
 gulp.task('styles', function() {
-  return gulp.src('app/stylesheets/main.less')
+  return gulp.src('bower_components/bootstrap/less/bootstrap.less')
     .pipe(plumber())
     .pipe(less())
     .pipe(autoprefixer())
@@ -108,7 +108,7 @@ gulp.task('styles', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('app/stylesheets/**/*.less', ['styles']);
+  gulp.watch('bower_components/bootstrap/less/*.less', ['styles']);
 });
 
 gulp.task('default', ['styles', 'vendor', 'browserify-watch', 'watch']);

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router';
 import HeaderStore from '../stores/HeaderStore'
 import HeaderActions from '../actions/HeaderActions';
 
@@ -18,24 +17,26 @@ class Header extends React.Component {
     HeaderStore.unlisten(this.onChange);
   }
 
-  onChange(state) {
+  onChange(state) { 
     this.setState(state);
   }
 
   render() {
-    return (       
-  <div>
-      <div>
-          <ul>
-              <li><a href="/">HOME</a></li>
-              <li><a href="/project">ABOUT</a></li>
+    return (   
+ 
+      <div className="header clearfix">
+        <nav>
+          <ul className="nav nav-pills pull-right">
+            <li role="presentation"><a href="/" title="home">Home</a></li>
+            <li role="presentation"><a href="/project" title="about">About</a></li>
+            <li role="presentation"><a href="/faq" title="Frequently asked questions">FAQ</a></li>
+            <li role="presentation"><a href="/donate-a-musical-instrument" title="Donate a musical instrument">Donate a musical instrument</a></li>
+            <li role="presentation"><a href="http://www.justgive.org/nonprofits/donate.jsp?ein=26-3799835" title="Donate money to Marching Mountains">Donate money</a></li>
+            <li role="presentation"><a href="/contact" title="Contact Marching Mountains">Contact</a></li>
           </ul>
+        </nav>
+        <img src="/img/MarchingMountainsLogo.png" alt="Marching Mountains Logo" />
       </div>
-      <section id="login">
-      </section>
-    <header>        
-    </header>
-    </div>
     );
   }
 }
