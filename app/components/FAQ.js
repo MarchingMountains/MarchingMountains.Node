@@ -11,7 +11,7 @@ class FAQ extends React.Component {
             <br />
             <b>A:</b>Currently, there isn't a way to select a specific school to donate to.
         However, this may be an option in the future. </li>
-        <li><b>Q:</b><i>Is it possible to <a href="/donate-a-musical-instrument" title="donate a musical instrument">donate musical instruments</a>as well as funds? </i>
+        <li><b>Q:</b><i>Is it possible to <a href="/donate-a-musical-instrument" title="donate a musical instrument">donate musical instruments</a> as well as funds? </i>
             <br />
             <b>A:</b>Yes! We are mainly looking for <a href="/donate-a-musical-instrument" title="donate a musical instrument">musical instrument donations</a> as well as donations of music-related supplies
         and resources. Monetary donations are also accepted of course with the goal of getting
@@ -48,7 +48,7 @@ class FAQ extends React.Component {
             <br />
             <b>A:</b>Checks are accepted and can be addressed and written out to:<br />
             Marching Mountains<br />
-            700 Douglas Ave. #602<br />
+            700 Douglas Ave. #1007<br />
             Minneapolis, MN 55403<br />
         </li>
     </ul>

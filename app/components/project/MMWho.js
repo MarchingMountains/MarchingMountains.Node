@@ -18,9 +18,6 @@ class MMWho extends React.Component {
     instrument or funds to the project.
 </a></li>
         <li>Talk to people about Marching Mountains. Tell them about the web site.</li>
-        <li>If you are on good terms with a business owner, ask them to put a donation jar on
-        the counter. Stop by once or twice a month and collect the donations. You can donate
-        the money using the web site by sending an angel to someone.</li>
         <li>If you know journalists, ask them to write about the project.</li>
     </ul>
     <h2>Key participants</h2>

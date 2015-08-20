@@ -21,6 +21,8 @@ class Home extends React.Component {
           <h4>Donate a Musical Instrument</h4>
           <p>Do you have an instrument at home not being used? Learn how to <a href="/donate-a-musical-instrument">donate a musical instrument</a> and change a child's life. (Marching Mountains is a 501(c)(3), tax-deductible organization.)</p>
 
+          <h4>Success Stories</h4>
+          <p><a href="/instrument-donation-success-stories">Read success stories from donating musical instruments.</a></p>
           <h4>Donate Money</h4>
           <p>Each instrument costs $25 - $50 to ship to schools. Please <a href="http://www.justgive.org/nonprofits/donate.jsp?ein=26-3799835">donate money</a> to help. (Marching Mountains is a 501(c)(3), tax-deductible organization.)</p>
         </div>
@@ -62,7 +64,7 @@ class Home extends React.Component {
             </p>
         </div>
         <div className="content-wrapper">
-            <h2>Read a Letter From a Band Director About the Effects of Donating Musical Instruments to Marching Mountains</h2>
+            <h2>A letter From a Band Director About the Effects of Donating Musical Instruments to Marching Mountains</h2>
             <p><img src="/img/quote.gif" />
             Dear Marching Mountains,</p>
  

@@ -11,7 +11,7 @@ class DonateInstrument extends React.Component {
         The Marching Mountains network needs musical instruments in good working condition.
         Watch a <a href="/video" title="Appalachia documentary">video
             of musical instrument donations going to band programs in Appalachia</a> to learn more.
-        You can also <a href="">read success stories from donating musical instruments.</a>
+        You can also <a href="/instrument-donation-success-stories">read success stories from donating musical instruments.</a>
         </p>
         <h2>Donating an instrument is easy and tax deductible</h2>
         <p>
@@ -19,7 +19,7 @@ class DonateInstrument extends React.Component {
         donating your musical instrument to a worthy cause.
         </p>
         <p>
-            Check out the <a href="/projects/faq">FAQ!</a>It has many answers to <a href="/projects/faq">questions about donating musical instruments</a>.
+            Check out the <a href="/faq">FAQ!</a> It has many answers to <a href="/faq">questions about donating musical instruments</a>.
         </p>
         <h2>Examples of musical instruments we are looking for</h2>
         <p>
