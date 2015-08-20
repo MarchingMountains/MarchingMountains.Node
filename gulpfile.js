@@ -113,4 +113,3 @@ gulp.task('watch', function() {
 
 gulp.task('default', ['styles', 'vendor', 'browserify-watch', 'watch']);
 gulp.task('build', ['styles', 'vendor', 'browserify']);
-gulp.task('heroku:production', ['styles', 'vendor', 'browserify']);

@@ -8,10 +8,9 @@
   },
   "main": "server.js",
   "scripts": {
-    "build": "gulp",
     "start": "babel-node server.js",
     "watch": "nodemon --exec babel-node -- server.js",
-    "postinstall" : "gulp"
+    "postinstall" : "bower install && gulp build"
   },
   "dependencies": {
     "alt": "^0.17.1",
