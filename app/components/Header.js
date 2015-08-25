@@ -35,7 +35,7 @@ class Header extends React.Component {
             <li role="presentation"><a href="/contact" title="Contact Marching Mountains">Contact</a></li>
           </ul>
         </nav>
-        <img src="/img/MarchingMountainsLogo.png" alt="Marching Mountains Logo" />
+        <a href="/" title="home"><img src="/img/MarchingMountainsLogo.png" alt="Marching Mountains Logo" /></a>
       </div>
     );
   }
