@@ -16,6 +16,7 @@ import Volunteer from './components/Volunteer';
 import N20131 from './components/news/N20131';
 import N20101 from './components/news/N20101';
 import AnnualReports from './components/AnnualReports';
+import Login from './components/Login';
 
 export default (
   <Route handler={App}>
@@ -34,5 +35,6 @@ export default (
     <Route path='/news/2013/Donating-Musical-Instruments-Changes-Childrens-Lives' handler={N20131} />
     <Route path='/news/2010/donated-instrument-distribution' handler={N20101} />
     <Route path='/annual-reports' handler={AnnualReports} />
+    <Route path='/Login' handler={Login} />
   </Route>
 );
