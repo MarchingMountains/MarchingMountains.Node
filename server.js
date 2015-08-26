@@ -1,23 +1,27 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
-var swig  = require('swig');
-var React = require('react');
-var Router = require('react-router');
-var routes = require('./app/routes');
-var passport = require('passport');
-var mongoose = require('mongoose');
-var cookieParser = require('cookie-parser');
-var LocalStrategy = require('passport-local').Strategy;
-var route = require('./routes/index');
-var users = require('./routes/users');
-var app = express();
+var express     = require('express'),
+ path           = require('path'),
+ logger         = require('morgan'),
+ bodyParser     = require('body-parser'),
+ swig           = require('swig'),
+ React          = require('react'),
+ Router         = require('react-router'),
+ routes         = require('./app/routes'),
+ passport       = require('passport'),
+ mongoose       = require('mongoose'),
+ cookieParser   = require('cookie-parser'),
+ LocalStrategy  = require('passport-local').Strategy,
+ route          = require('./routes/index'),
+ users          = require('./routes/users');
 
-app.set('port', process.env.PORT || 3001);
+ var app = express();
+
+app.set('port', process.env.PORT || 3000);
+
 app.use(logger('dev'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cookieParser());
@@ -32,7 +36,9 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/user', route); 
+//Routes
+app.use('/', route);  
+app.use('/users', users);
 
 app.use(function(req, res) {
   Router.run(routes, req.path, function(Handler) {
