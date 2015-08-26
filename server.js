@@ -10,10 +10,8 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var LocalStrategy = require('passport-local').Strategy;
-
 var route = require('./routes/index');
 var users = require('./routes/users');
-
 var app = express();
 
 app.set('port', process.env.PORT || 3001);
@@ -23,14 +21,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cookieParser());
-app.use(require('express-session')({
-    secret: 'keyboard cat',
+app.use(require('express-session')({ 
+	key:'mm',
+    secret: 'jumbledmess',
     resave: false,
     saveUninitialized: false
 }));
 
-// Initialize Passport and restore authentication state, if any, from the
-// session.
+// Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
 app.use(passport.session());
 
