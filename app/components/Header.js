@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import HeaderStore from '../stores/HeaderStore'
 import HeaderActions from '../actions/HeaderActions';
 
-class Header extends React.Component {
+class Header extends Component {
   constructor(props) {
     super(props);
     this.state = HeaderStore.getState();
@@ -11,6 +11,7 @@ class Header extends React.Component {
 
   componentDidMount() {
     HeaderStore.listen(this.onChange);
+    HeaderActions.isLoggedIn();
   }
 
   componentWillUnmount() {
@@ -22,8 +23,7 @@ class Header extends React.Component {
   }
 
   render() {
-    return (   
- 
+    return (    
       <div className="header clearfix">
         <nav>
           <ul className="nav nav-pills pull-right">
