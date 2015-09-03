@@ -22,7 +22,7 @@ export default class Login extends Component {
 
 	render() {
 		return (
-            <div className="row">
+            <div className="row"> 
             <h1>Log-in</h1>
 			<div className="col-md-6">
 				<form className="form-horizontal" action="/login" method="post">

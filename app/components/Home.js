@@ -6,10 +6,10 @@ class Home extends React.Component {
     <div>    
     <div className="jumbotron">
         <hrgroup>
-        <h1>Helping band programs in Appalachia</h1>
+        <h1>Helping band programs in Appalachia and Minnesota</h1>
         
         </hrgroup>
-        <p className="lead">Marching Mountains' goal is to create a network to supply public school band programs in distressed counties in Appalachia with donated new and used musical instruments.</p>
+        <p className="lead">Marching Mountains' goal is to create a network to supply public school band programs in distressed counties in Appalachia and Minnesota with donated new and used musical instruments.</p>
         <p><a className="btn btn-lg btn-success" title="Donate a musical instrument" href="/donate-a-musical-instrument" role="button">Donate a musical instrument today</a></p>
       </div>
 
@@ -64,11 +64,11 @@ class Home extends React.Component {
             </p>
         </div>
         <div className="content-wrapper">
-            <h2>A letter From a Band Director About the Effects of Donating Musical Instruments to Marching Mountains</h2>
+            <h2>Letter from a Band Director About the Effects of Donating Musical Instruments to Marching Mountains</h2>
             <p><img src="/img/quote.gif" />
             Dear Marching Mountains,</p>
  
-<p>I just wanted you to know...  I am (students' names redacted)'s band director in West Virginia. I had never heard of your organization until this morning. (student) started band with her elementary director and so I didn't know what she was talking about when she said she had received an instrument "from a place that gives kids instruments".</p>
+<p>I just wanted you to know...  I am (student's) band director in West Virginia. I had never heard of your organization until this morning. (student) started band with her elementary director and so I didn't know what she was talking about when she said she had received an instrument "from a place that gives kids instruments".</p>
  
 <p>When (student) said her trumpet was coming in the mail to me, I assumed it was the same program. When I read your letter though... I sat at my desk and cried for a good half hour.</p>
  
@@ -96,7 +96,7 @@ class Home extends React.Component {
  
 <p>Sincerely,</p>
  
-<p>(band director's name redacted)
+<p>(Band Director of a middle school in West Virginia)
            <img src="/img/unquote.gif" /></p>
             </div>
          </div>

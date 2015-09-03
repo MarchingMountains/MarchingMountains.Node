@@ -18,6 +18,7 @@ import N20101 from './components/news/N20101';
 import AnnualReports from './components/AnnualReports';
 import Login from './components/Login';
 import Register from './components/Register';
+import BandDirectors from './components/BandDirectors'; 
 
 export default (
   <Route handler={App}>
@@ -38,5 +39,6 @@ export default (
     <Route path='/annual-reports' handler={AnnualReports} />
     <Route path='/Login' handler={Login} />
     <Route path='/Register' handler={Register} />
+    <Route path='/band-directors' handler={BandDirectors} />
   </Route>
 );
