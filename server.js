@@ -10,7 +10,7 @@ var express     = require('express'),
  mongoose       = require('mongoose'),
  cookieParser   = require('cookie-parser'),
  LocalStrategy  = require('passport-local').Strategy,
- route          = require('./routes/index'),
+ //route          = require('./routes/index'),
  users          = require('./routes/users');
 
  var app = express();
@@ -24,21 +24,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(cookieParser());
+/*app.use(cookieParser());
 app.use(require('express-session')({ 
 	key:'mm',
     secret: 'jumbledmess',
     resave: false,
     saveUninitialized: false
-}));
+}));*/
 
 // Initialize Passport and restore authentication state, if any, from the session.
-app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.initialize());
+//app.use(passport.session());
 
 //Routes
-app.use('/', route);  
-app.use('/users', users);
+//app.use('/', route);  
+//app.use('/users', users);
 
 app.use(function(req, res) {
   Router.run(routes, req.path, function(Handler) {
@@ -50,13 +50,13 @@ app.use(function(req, res) {
 
 
 // passport config
-var Account = require('./models/account');
-passport.use(new LocalStrategy(Account.authenticate()));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
+//var Account = require('./models/account');
+//passport.use(new LocalStrategy(Account.authenticate()));
+//passport.serializeUser(Account.serializeUser());
+//passport.deserializeUser(Account.deserializeUser());
 
 // mongoose
-mongoose.connect('mongodb://localhost/passport_local_mongoose_express4');
+//mongoose.connect('mongodb://localhost/passport_local_mongoose_express4');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
