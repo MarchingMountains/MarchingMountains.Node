@@ -13,28 +13,34 @@ class Home extends React.Component {
         <p><a className="btn btn-lg btn-success" title="Donate a musical instrument" href="/donate-a-musical-instrument" role="button">Donate a musical instrument today</a></p>
       </div>
 
-      <div className="row marketing">
+      <div className="row marketing"> 
         <div className="col-lg-6">
-          <h4>Vision</h4>
-          <p><a href="/project">Learn more about Marching Mountains' vison</a> and mission.</p>
+          
 
-          <h4>Donate a Musical Instrument</h4>
+          <h2>Donate a Musical Instrument</h2>
           <p>Do you have an instrument at home not being used? Learn how to <a href="/donate-a-musical-instrument">donate a musical instrument</a> and change a child's life. (Marching Mountains is a 501(c)(3), tax-deductible organization.)</p>
-
-          <h4>Success Stories</h4>
-          <p><a href="/instrument-donation-success-stories">Read success stories from donating musical instruments.</a></p>
-          <h4>Donate Money</h4>
+          
+          <h2>Donate Money</h2>
           <p>Each instrument costs $25 - $50 to ship to schools. Please <a href="http://www.justgive.org/nonprofits/donate.jsp?ein=26-3799835">donate money</a> to help. (Marching Mountains is a 501(c)(3), tax-deductible organization.)</p>
+
+          <h2>Success Stories</h2>
+          <p><a href="/instrument-donation-success-stories">Read success stories about people donating musical instruments.</a></p>
+          
+          <h2>Vision</h2>
+          <p><a href="/project">Learn more about Marching Mountains' vison</a> and mission.</p>
         </div>
 
         <div className="col-lg-6">
-          <h4>Watch Videos</h4>
+          <h2>Band Directors</h2>
+          <p>We have provided over 500 years of band to students. If you are a band director of a public school band program in Appalachia or Minnesota, <a href="/band-directors">be a part of Marching Mountains.</a></p>
+
+          <h2>Watch Videos</h2>
           <p>Learn more about what Marching Mountains does with instrument donations by watching <a href="video">videos</a></p>
 
-          <h4>Volunteer</h4>
+          <h2>Volunteer</h2>
           <p>Do you want to help? Put your heart into something meaningful by <a href="/volunteer">volunteering</a></p>
 
-          <h4>Our Annual Reports</h4>
+          <h2>Our Annual Reports</h2>
           <p>Each year we release an <a href="/annual-reports">annual report</a> to update those interested in the project.</p>
         </div>
       </div>
