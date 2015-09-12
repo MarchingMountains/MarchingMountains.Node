@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import HeaderStore from '../stores/HeaderStore'
 import HeaderActions from '../actions/HeaderActions';
 
-class Header extends React.Component {
+class Header extends Component {
   constructor(props) {
     super(props);
     this.state = HeaderStore.getState();
@@ -11,6 +11,7 @@ class Header extends React.Component {
 
   componentDidMount() {
     HeaderStore.listen(this.onChange);
+    HeaderActions.isLoggedIn();
   }
 
   componentWillUnmount() {
@@ -22,8 +23,8 @@ class Header extends React.Component {
   }
 
   render() {
-    return (   
- 
+    
+    return (    
       <div className="header clearfix">
         <nav>
           <ul className="nav nav-pills pull-right">
@@ -33,6 +34,7 @@ class Header extends React.Component {
             <li role="presentation"><a href="/donate-a-musical-instrument" title="Donate a musical instrument">Donate a musical instrument</a></li>
             <li role="presentation"><a href="http://www.justgive.org/nonprofits/donate.jsp?ein=26-3799835" title="Donate money to Marching Mountains">Donate money</a></li>
             <li role="presentation"><a href="/contact" title="Contact Marching Mountains">Contact</a></li>
+            <li role="presentation"><a href="/band-directors" title="For Band Directors">Band Directors</a></li>
           </ul>
         </nav>
         <a href="/" title="home"><img src="/img/MarchingMountainsLogo.png" alt="Marching Mountains Logo" /></a>

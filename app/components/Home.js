@@ -6,35 +6,41 @@ class Home extends React.Component {
     <div>    
     <div className="jumbotron">
         <hrgroup>
-        <h1>Helping band programs in Appalachia</h1>
+        <h1>Helping band programs in Appalachia and Minnesota</h1>
         
         </hrgroup>
-        <p className="lead">Marching Mountains' goal is to create a network to supply public school band programs in distressed counties in Appalachia with donated new and used musical instruments.</p>
+        <p className="lead">Marching Mountains' goal is to create a network to supply public school band programs in distressed counties in Appalachia and Minnesota with donated new and used musical instruments.</p>
         <p><a className="btn btn-lg btn-success" title="Donate a musical instrument" href="/donate-a-musical-instrument" role="button">Donate a musical instrument today</a></p>
       </div>
 
-      <div className="row marketing">
+      <div className="row marketing"> 
         <div className="col-lg-6">
-          <h4>Vision</h4>
-          <p><a href="/project">Learn more about Marching Mountains' vison</a> and mission.</p>
+          
 
-          <h4>Donate a Musical Instrument</h4>
+          <h2>Donate a Musical Instrument</h2>
           <p>Do you have an instrument at home not being used? Learn how to <a href="/donate-a-musical-instrument">donate a musical instrument</a> and change a child's life. (Marching Mountains is a 501(c)(3), tax-deductible organization.)</p>
-
-          <h4>Success Stories</h4>
-          <p><a href="/instrument-donation-success-stories">Read success stories from donating musical instruments.</a></p>
-          <h4>Donate Money</h4>
+          
+          <h2>Donate Money</h2>
           <p>Each instrument costs $25 - $50 to ship to schools. Please <a href="http://www.justgive.org/nonprofits/donate.jsp?ein=26-3799835">donate money</a> to help. (Marching Mountains is a 501(c)(3), tax-deductible organization.)</p>
+
+          <h2>Success Stories</h2>
+          <p><a href="/instrument-donation-success-stories">Read success stories about people donating musical instruments.</a></p>
+          
+          <h2>Vision</h2>
+          <p><a href="/project">Learn more about Marching Mountains' vison</a> and mission.</p>
         </div>
 
         <div className="col-lg-6">
-          <h4>Watch Videos</h4>
+          <h2>Band Directors</h2>
+          <p>We have provided over 500 years of band to students. If you are a band director of a public school band program in Appalachia or Minnesota, <a href="/band-directors">be a part of Marching Mountains.</a></p>
+
+          <h2>Watch Videos</h2>
           <p>Learn more about what Marching Mountains does with instrument donations by watching <a href="video">videos</a></p>
 
-          <h4>Volunteer</h4>
+          <h2>Volunteer</h2>
           <p>Do you want to help? Put your heart into something meaningful by <a href="/volunteer">volunteering</a></p>
 
-          <h4>Our Annual Reports</h4>
+          <h2>Our Annual Reports</h2>
           <p>Each year we release an <a href="/annual-reports">annual report</a> to update those interested in the project.</p>
         </div>
       </div>
@@ -64,11 +70,11 @@ class Home extends React.Component {
             </p>
         </div>
         <div className="content-wrapper">
-            <h2>A letter From a Band Director About the Effects of Donating Musical Instruments to Marching Mountains</h2>
+            <h2>Letter from a Band Director About the Effects of Donating Musical Instruments to Marching Mountains</h2>
             <p><img src="/img/quote.gif" />
             Dear Marching Mountains,</p>
  
-<p>I just wanted you to know...  I am (students' names redacted)'s band director in West Virginia. I had never heard of your organization until this morning. (student) started band with her elementary director and so I didn't know what she was talking about when she said she had received an instrument "from a place that gives kids instruments".</p>
+<p>I just wanted you to know...  I am (student's) band director in West Virginia. I had never heard of your organization until this morning. (student) started band with her elementary director and so I didn't know what she was talking about when she said she had received an instrument "from a place that gives kids instruments".</p>
  
 <p>When (student) said her trumpet was coming in the mail to me, I assumed it was the same program. When I read your letter though... I sat at my desk and cried for a good half hour.</p>
  
@@ -96,7 +102,7 @@ class Home extends React.Component {
  
 <p>Sincerely,</p>
  
-<p>(band director's name redacted)
+<p>(Band Director of a middle school in West Virginia)
            <img src="/img/unquote.gif" /></p>
             </div>
          </div>
