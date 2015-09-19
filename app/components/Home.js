@@ -10,7 +10,7 @@ class Home extends React.Component {
         
         </hrgroup>
         <p className="lead">Marching Mountains' goal is to create a network to supply public school band programs in distressed areas of Appalachia and Minnesota with donated new and used musical instruments.</p>
-        <p><a className="btn btn-lg btn-success" title="Donate a musical instrument" href="/donate-a-musical-instrument" role="button">Donate a musical instrument today</a></p>
+        <p><a className="btn btn-lg btn-success" title="Donate a musical instrument" href="/donate-a-musical-instrument" role="button">Donate a musical instrument</a></p>
       </div>
 
       <div className="row marketing"> 
