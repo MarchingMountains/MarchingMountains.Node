@@ -5,11 +5,7 @@ var express = require('express'),
 	swig  = require('swig'),
 	React = require('react'),
 	Router = require('react-router'),
-	routes = require('./app/routes'),
-	cookieParser = require('cookie-parser'),
-	methodOverride = require('method-override'),
-    mongoose       = require('mongoose'),
-	session = require('express-session');
+	routes = require('./app/routes');
 
 
 //===============EXPRESS================
@@ -20,10 +16,6 @@ app.set('port', process.env.PORT || 3000);
 app.use(logger('dev'));
 
 app.use(bodyParser.json());
-app.use(methodOverride('X-HTTP-Method-Override'));
-
-app.use(require('cookie-parser')());
-app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -37,7 +29,6 @@ app.use(function(req, res) {
 }); 
 
 // mongoose
-//mongoose.connect('mongodb://localhost/passport_local_mongoose_express4');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
