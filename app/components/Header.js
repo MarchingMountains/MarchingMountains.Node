@@ -36,7 +36,7 @@ class Header extends Component {
             <li role="presentation"><a href="/donate-a-musical-instrument" title="Donate a musical instrument">Donate a musical instrument</a></li>
             <li role="presentation"><a href="/contact" title="Contact Marching Mountains">Contact</a></li>
             <li role="presentation"><a href="/band-directors" title="For Band Directors">Band Directors</a></li>
-            <li role="presentation"><a href="https://givemn.org/fundraiser/help-marching-mountains-get-kids-musical-instruments55fc9b4d8c022" target="_blank"><img src="/img/donate.PNG" alt="Help Marching Mountains - Get Kids Musical Instruments | GiveMN" /></a></li>
+            <li role="presentation"><a href="https://givemn.org/fundraiser/help-marching-mountains-get-kids-musical-instruments55fc9b4d8c022" target="_blank"><img src="/img/donate.png" alt="Help Marching Mountains - Get Kids Musical Instruments | GiveMN" /></a></li>
           </ul>
         </nav>
        </div>
