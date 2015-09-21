@@ -15,7 +15,7 @@ class Header extends Component {
   }
 
   componentWillUnmount() {
-    HeaderStore.unlisten(this.onChange);
+    HeaderStore.unlisten(this.onChange); 
   }
 
   onChange(state) { 
