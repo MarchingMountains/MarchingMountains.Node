@@ -8,6 +8,22 @@ var	path = require('path'),
 var koa = require('koa');
 var app = koa();
 
+
+app.use(function* (next){
+    var start = Date;
+    yield next;
+    var ms = new Date - start;
+    this.set('X-Resonse-Time', ms + 'ms');
+});
+
+app.use(function* (next){
+    var start = new Date;
+    yield next;
+    var ms = new Date - start;
+    console.log('TIME: %s %s - %s', this.method, this.url, ms);
+})
+
+
 app.use(logger());
 
 // Serve static files
@@ -21,6 +37,10 @@ app.use(function* () {
     });
   });
 }); 
+
+app.on('error', function(err, ctx){
+    logger.error('server error', err, ctx);
+})
 
 app.listen( 3000, function() {
 	console.log('Koa server listening on port ' +  3000); 
