@@ -1,5 +1,5 @@
 import alt from '../alt';
-import FooterActions from '../actions/FooterActions';
+import FooterActions from '../actions/footer-actions';
 
 class FooterStore {
   constructor() {

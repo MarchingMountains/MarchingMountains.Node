@@ -1,5 +1,5 @@
 import alt from '../alt';
-import HeaderActions from '../actions/HeaderActions';
+import HeaderActions from '../actions/header-actions';
 
 class HeaderStore {
   constructor() {

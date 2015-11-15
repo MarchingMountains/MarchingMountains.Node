@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import HeaderStore from '../stores/HeaderStore'
-import HeaderActions from '../actions/HeaderActions';
+import HeaderStore from '../stores/header-store'
+import HeaderActions from '../actions/header-actions';
 
 class Header extends Component {
   constructor(props) {
