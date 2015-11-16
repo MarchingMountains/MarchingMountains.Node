@@ -1,0 +1,13 @@
+{
+  "src_folders": ["specs"],
+  "output_folder": "reports",
+  "selenium": {
+    "start_process": true,
+    "server_path": "./bin/selenium-server-standalone-2.48.2.jar"
+  },
+  "test_runner" : "mocha",
+  "test_settings": {
+    "default": {
+    }
+  }
+}

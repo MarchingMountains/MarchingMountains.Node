@@ -1,3 +1,5 @@
+'use strict';
+
 var	path = require('path'),
 	logger = require('koa-logger'),
     serve = require('koa-static'),
@@ -6,7 +8,7 @@ var	path = require('path'),
 	router = require('react-router'),
 	routes = require('./app/routes');
 var koa = require('koa');
-var app = koa();
+var app = module.exports = koa();
 
 
 app.use(function* (next){
@@ -42,6 +44,10 @@ app.on('error', function(err, ctx){
     logger.error('server error', err, ctx);
 })
 
-app.listen( 3000, function() {
-	console.log('Koa server listening on port ' +  3000); 
-});
+// Compress
+app.use(compress());
+
+if (!module.parent) {
+  app.listen(3000);
+  console.log('listening on port 3000');
+}
