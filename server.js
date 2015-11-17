@@ -46,9 +46,6 @@ app.on('error', function(err, ctx){
 })
 
 // Compress
-app.use(compress());
+//app.use(compress());
 
-if (!module.parent) {
-  app.listen(port);
-  console.log('listening on port 3000');
-}
+app.listen(port);
