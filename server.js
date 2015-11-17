@@ -10,6 +10,7 @@ var	path = require('path'),
 var koa = require('koa');
 var app = module.exports = koa();
 
+var port = process.env.PORT || 3000;
 
 app.use(function* (next){
     var start = Date;
@@ -48,6 +49,6 @@ app.on('error', function(err, ctx){
 app.use(compress());
 
 if (!module.parent) {
-  app.listen(3000);
+  app.listen(port);
   console.log('listening on port 3000');
 }
