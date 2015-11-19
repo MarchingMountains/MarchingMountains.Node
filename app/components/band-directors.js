@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class BandDirectors extends Component {
+class BandDirectors extends React.Component {
 	render () {
 		return (
 				<div>
@@ -11,3 +11,4 @@ export default class BandDirectors extends Component {
 			);
 	}
 }
+module.exports = BandDirectors;

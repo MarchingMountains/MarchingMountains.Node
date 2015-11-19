@@ -60,4 +60,4 @@ class FAQ extends React.Component {
 			);
 	}
 }
-export default FAQ;
+module.exports =FAQ;

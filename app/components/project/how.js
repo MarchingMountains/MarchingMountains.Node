@@ -39,4 +39,4 @@ class MMWho extends React.Component {
 	}
 }
 
-export default MMWho;
+module.exports = MMWho;

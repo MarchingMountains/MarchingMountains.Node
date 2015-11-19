@@ -35,4 +35,4 @@ class AnnualReports extends React.Component {
 	}
 }
 
-export default AnnualReports;
+module.exports = AnnualReports;

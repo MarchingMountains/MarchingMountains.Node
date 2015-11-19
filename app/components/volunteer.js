@@ -68,4 +68,4 @@ class Volunteer extends React.Component {
 	}
 }
 
-export default Volunteer;
+module.exports = Volunteer;

@@ -97,4 +97,4 @@ class DonateInstrument extends React.Component {
 	}
 }
 
-export default DonateInstrument;
+module.exports = DonateInstrument;

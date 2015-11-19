@@ -56,5 +56,4 @@ class MMWhat extends React.Component {
 			);
 	}
 }
-
-export default MMWhat;
+module.exports = MMWhat;

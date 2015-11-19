@@ -49,4 +49,4 @@ class SuccessStories extends React.Component {
 	}
 }
 
-export default SuccessStories;
+module.exports = SuccessStories;

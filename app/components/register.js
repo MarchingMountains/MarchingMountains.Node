@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Register extends Component {
+class Register extends React.Component {
 	render() {
 		return (
 			<div>
@@ -13,3 +13,4 @@ export default class Register extends Component {
 			);
 	}
 }
+module.exports = Register;

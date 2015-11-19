@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import HeaderStore from '../stores/header-store'
 import HeaderActions from '../actions/header-actions';
 
-class Header extends Component {
+class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = HeaderStore.getState();
@@ -51,4 +51,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+module.exports = Header;

@@ -38,4 +38,4 @@ class MMAreas extends React.Component {
 	}
 }
 
-export default MMAreas;
+module.exports = MMAreas;

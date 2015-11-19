@@ -26,4 +26,4 @@ class N20131 extends React.Component {
 			);
 	}
 }
-export default N20131;
+module.exports = N20131;

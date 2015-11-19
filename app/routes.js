@@ -20,7 +20,7 @@ import Login from './components/login';
 import Register from './components/register';
 import BandDirectors from './components/band-directors'; 
 
-export default (
+module.exports= (
   <Route handler={App}>
     <Route path='/' handler={Home} />
     <Route path='/project' handler={Project} />

@@ -1,5 +1,5 @@
 {
-  "src_folders": ["specs"],
+  "src_folders": ["uat"],
   "output_folder": "reports",
   "selenium": {
     "start_process": true,
@@ -8,6 +8,10 @@
   "test_runner" : "mocha",
   "test_settings": {
     "default": {
+      "launch_url": "http://localhost:3000"
+    },
+    "prod": {
+      "launch_url": "http://www.marchingmountains.org"
     }
   }
 }
