@@ -7,7 +7,7 @@
     "url": "https://github.com/IanFelton/MarchingMountains.Node.git"
   },
   "main": "server.js",
-  "engine": "node 4.1.1",
+  "engines": "node 4.1.1",
   "scripts": {
     "start": "babel-node server.js",
     "watch": "nodemon --exec babel-node -- server.js",
