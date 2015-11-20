@@ -3,7 +3,7 @@
 [![Build status](https://travis-ci.org/IanFelton/MarchingMountains.Node.svg?style=flat-square&branch=master)](https://travis-ci.org/IanFelton/MarchingMountains.Node.svg)
 
 ##Marching Mountains' goal 
-Our is to create a network to supply public school band programs in distressed areas of Appalachia and Minnesota with donated new and used musical instruments.
+Our goal is to create a network to supply public school band programs in distressed areas of Appalachia and Minnesota with donated new and used musical instruments.
 
 ##What this project is about
 This project is designed to accomplish several things.
