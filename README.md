@@ -1,12 +1,14 @@
 #Marching Mountains Node.js app
 
+[![Build status](https://img.shields.io/travis/IanFelton/MarchingMountains.Node.svg?style=flat-square)](https://img.shields.io/travis/IanFelton/MarchingMountains.Node)
+
 ##Marching Mountains' goal 
 Our is to create a network to supply public school band programs in distressed areas of Appalachia and Minnesota with donated new and used musical instruments.
 
 ##What this project is about
 This project is designed to accomplish several things.
-  1. Get as many instruments for as many kids that don't have one to play as possible.
-  2. Give developers a chance to contribute their time to something they care about and sharpen their skills at the same time. It feels awesome putting your time into something that is simply for the benefit of helping a kid you will never meet, to have a better life.
+  1. Get as many instruments as possible for the kids that don't have one to play.
+  2. Give developers a chance to contribute their time to something they care about and sharpen their skills at the same time. It feels awesome putting your time into something that is simply for the benefit of helping a kid you will never meet, to have a better life while using awesome technology.
   3. Prove that we all have more time than we realize to make the world a better place.
 
 ##What we've already accomplished
