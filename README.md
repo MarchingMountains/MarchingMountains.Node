@@ -1,6 +1,6 @@
 #Marching Mountains Node.js app
 
-[![Build status](https://img.shields.io/travis/IanFelton/MarchingMountains.Node.svg?style=flat-square)](https://img.shields.io/travis/IanFelton/MarchingMountains.Node)
+[![Build status](https://travis-ci.org/IanFelton/MarchingMountains.Node.svg?style=flat-square)](https://travis-ci.org/IanFelton/MarchingMountains.Node.svg)
 
 ##Marching Mountains' goal 
 Our is to create a network to supply public school band programs in distressed areas of Appalachia and Minnesota with donated new and used musical instruments.
