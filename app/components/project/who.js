@@ -49,8 +49,14 @@ class MMWho extends React.Component {
     to your band directors. If your parents don't know about it, suggest it to them
     so that they may discuss it with your teacher.
     </p>
+    <h2>Marching Mountains Board of Directors</h2>
+    <p>Ian Felton - Founder, Executive Director
+    </p>
     <p>
-        &nbsp;
+    Jennifer Buege - Senior Editor, MSP Communications
+    </p>
+    <p>
+    Mary Graham - RN (retired)
     </p>
     <a href="/project">Project Home</a> <a href="/what-does-marching-mountains-do">Previous</a> <a href="/helps-children-in-poverty-in-appalachia">Next</a>
 </div>
