@@ -1,51 +1,41 @@
 'use strict';
 
 var	path = require('path'),
-	logger = require('koa-logger'),
-    serve = require('koa-static'),
+	logger = require('morgan'),
 	swig  = require('swig'),
-	react = require('react'),
-	router = require('react-router'),
+	React = require('react'),
+	Router = require('react-router'),
 	routes = require('./app/routes');
-var koa = require('koa');
-var app = module.exports = koa();
+var compression = require('compression');
+var bodyParser = require('body-parser');
+var favicon = require('serve-favicon');
+var ReactDOM = require('react-dom/server');
+var express = require('express');
+var app = express();
 
 var port = process.env.PORT || 3000;
-
-app.use(function* (next){
-    var start = Date;
-    yield next;
-    var ms = new Date - start;
-    this.set('X-Resonse-Time', ms + 'ms');
-});
-
-app.use(function* (next){
-    var start = new Date;
-    yield next;
-    var ms = new Date - start;
-    console.log('TIME: %s %s - %s', this.method, this.url, ms);
-})
-
-
-app.use(logger());
+app.use(compression());
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
 
 // Serve static files
-app.use(serve(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function* () {
-    this.body = yield new Promise(resolve => {
-        router.run(routes, this.req.url, function(handler) {
-        var html = react.renderToString(react.createElement(handler));
-        resolve(swig.renderFile('views/index.html', { html: html }));
-    });
-  });
-}); 
+app.use(function(req, res) {
+ Router.run(routes, req.path, function(Handler) {
+    var html = React.renderToString(React.createElement(Handler));
+    var page = swig.renderFile('views/index.html', {html: html });
+    res.send(page);
+ });
+});
 
-app.on('error', function(err, ctx){
-    logger.error('server error', err, ctx);
-})
-
-// Compress
-//app.use(compress());
+app.use(function(err, req, res, next) {
+  console.log(err.stack.red);
+  res.status(err.status || 500);
+  res.send({ message: err.message });
+});
 
 app.listen(port);
