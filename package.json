@@ -15,29 +15,8 @@
     "start": "babel-node server.js",
     "watch": "nodemon --exec babel-node -- server.js",
     "postinstall": "bower install && gulp build",
-    "test": "jest --coverage",
     "uat": "nightwatch",
     "uat_prod": "nightwatch -e prod"
-  },
-  "jest": {
-    "testDirectoryName": "specs",
-    "testFileExtensions": [
-      "spec.js"
-    ],
-    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/react-dom",
-      "<rootDir>/node_modules/react-addons-test-utils",
-      "<rootDir>/node_modules/fbjs",
-      "<rootDir>/node_modules/bluebird",
-      "<rootDir>/node_modules/request-promise",
-      "<rootDir>/node_modules/alt",
-      "<rootDir>/app/"
-    ],
-    "modulePathIgnorePatterns": [
-      "<rootDir>/node_modules/"
-    ]
   },
   "dependencies": {
     "alt": "^0.17.1",
@@ -64,13 +43,12 @@
     "gulp-cssmin": "^0.1.7",
     "gulp-if": "^1.2.5",
     "gulp-less": "^3.0.3",
+    "gulp-ng-annotate": "2.0.0",
     "gulp-plumber": "^1.0.1",
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",
     "history": "1.13.1",
-    "jest": "0.1.40",
-    "jest-cli": "0.7.1",
     "method-override": "^2.2.0",
     "mocha": "2.3.4",
     "morgan": "1.7.0",

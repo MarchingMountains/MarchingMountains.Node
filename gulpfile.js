@@ -12,13 +12,9 @@ var babelify = require('babelify');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var uglify = require('gulp-uglify');
-
+var ngAnnotate = require('gulp-ng-annotate');
 var production = process.env.NODE_ENV === 'production';
-
 var dependencies = [
-  'alt',
-  'react',
-  'react-router',
   'underscore'
 ];
 
@@ -31,10 +27,10 @@ gulp.task('vendor', function() {
   return gulp.src([
     'bower_components/jquery/dist/jquery.js',
     'bower_components/bootstrap/dist/js/bootstrap.js',
-    'bower_components/magnific-popup/dist/jquery.magnific-popup.js',
-    'bower_components/toastr/toastr.js'
+    'bower_components/angular/angular.js',
+    'bower_components/angular-ui-router/release/angular-ui-router.js'
   ]).pipe(concat('vendor.js'))
-    .pipe(gulpif(production, uglify({ mangle: false })))
+    // .pipe(gulpif(production, uglify({ mangle: false })))
     .pipe(gulp.dest('public/js'));
 });
 
@@ -58,11 +54,12 @@ gulp.task('browserify-vendor', function() {
  |--------------------------------------------------------------------------
  */
 gulp.task('browserify', ['browserify-vendor'], function() {
-  return browserify('app/main.js')
+  return browserify('src/client/app/main.js')
     .external(dependencies)
     .transform(babelify)
     .bundle()
     .pipe(source('bundle.js'))
+    .pipe(ngAnnotate())
     .pipe(gulpif(production, streamify(uglify({ mangle: false }))))
     .pipe(gulp.dest('public/js'));
 });
@@ -73,7 +70,7 @@ gulp.task('browserify', ['browserify-vendor'], function() {
  |--------------------------------------------------------------------------
  */
 gulp.task('browserify-watch', ['browserify-vendor'], function() {
-  var bundler = watchify(browserify('app/main.js', watchify.args));
+  var bundler = watchify(browserify('src/client/app/main.js', watchify.args));
   bundler.external(dependencies);
   bundler.transform(babelify);
   bundler.on('update', rebundle);
@@ -89,6 +86,7 @@ gulp.task('browserify-watch', ['browserify-vendor'], function() {
         gutil.log(gutil.colors.green('Finished rebundling in', (Date.now() - start) + 'ms.'));
       })
       .pipe(source('bundle.js'))
+      .pipe(ngAnnotate())
       .pipe(gulp.dest('public/js/'));
   }
 });
