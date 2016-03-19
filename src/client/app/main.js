@@ -2,7 +2,8 @@ require('angular');
 var MainController = require('./controllers/MainController');
 
 var app = angular.module('MarchingMountains', ['ui.router'])
-		.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+			$locationProvider.html5Mode(true);
 			$urlRouterProvider.otherwise('/');
 
         $stateProvider

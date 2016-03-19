@@ -30,7 +30,7 @@ gulp.task('vendor', function() {
     'bower_components/angular/angular.js',
     'bower_components/angular-ui-router/release/angular-ui-router.js'
   ]).pipe(concat('vendor.js'))
-    // .pipe(gulpif(production, uglify({ mangle: false })))
+    .pipe(gulpif(production, uglify({ mangle: false })))
     .pipe(gulp.dest('public/js'));
 });
 
