@@ -1,9 +1,9 @@
 {
-  "src_folders": ["uat"],
+  "src_folders": ["tests/uat"],
   "output_folder": "reports",
   "selenium": {
     "start_process": true,
-    "server_path": "./bin/selenium-server-standalone-2.48.2.jar"
+    "server_path": "./tests/uat/bin/selenium-server-standalone-2.48.2.jar"
   },
   "test_runner" : "mocha",
   "test_settings": {

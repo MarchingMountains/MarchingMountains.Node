@@ -1,11 +1,11 @@
 'use strict';
 
-var	path = require('path'),
-	logger = require('morgan'),
-	swig  = require('swig'),
-	React = require('react'),
-	Router = require('react-router'),
-	routes = require('./routes');
+var	path = require('path');
+var logger = require('morgan');
+var swig  = require('swig');
+var React = require('react');
+var Router = require('react-router');
+var	routes = require('./routes');
 var compression = require('compression');
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
