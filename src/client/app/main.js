@@ -1,5 +1,5 @@
 require('angular');
-var MainController = require('./controllers/MainController');
+var MainController = require('./layout/controllers/MainController');
 
 var app = angular.module('MarchingMountains', ['ui.router', 'ui.router.title'])
 		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -176,6 +176,5 @@ var app = angular.module('MarchingMountains', ['ui.router', 'ui.router.title'])
 		      $title: function() { return 'Contact'; }
 		    }
         });     
-    }]);
-
-app.controller('MainController', ['$scope', MainController]);
+    }])
+.controller('MainController', ['$scope', MainController]);

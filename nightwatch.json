@@ -1,5 +1,6 @@
 {
-  "src_folders": ["tests/uat"],
+  "src_folders": ["tests/uat/e2e"],
+  "page_objects_path" : "tests/uat/page_objects",
   "output_folder": "reports",
   "selenium": {
     "start_process": true,
