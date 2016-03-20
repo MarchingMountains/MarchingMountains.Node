@@ -3,7 +3,8 @@
   "dependencies": {
     "jquery": "^2.1.4",
     "bootstrap": "^3.3.5",
-    "angular" : "^1.5.2",
-    "angular-ui-router": "^0.2.18"
+    "angular": "^1.5.2",
+    "angular-ui-router": "^0.2.18",
+    "angular-ui-router-title": "^0.0.4"
   }
 }

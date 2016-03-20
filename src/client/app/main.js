@@ -1,7 +1,7 @@
 require('angular');
 var MainController = require('./controllers/MainController');
 
-var app = angular.module('MarchingMountains', ['ui.router'])
+var app = angular.module('MarchingMountains', ['ui.router', 'ui.router.title'])
 		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
 			$locationProvider.html5Mode(true);
 			$urlRouterProvider.otherwise('/');
@@ -27,7 +27,10 @@ var app = angular.module('MarchingMountains', ['ui.router'])
             'content@': {
                 templateUrl: 'public/html/donate-instrument.html'
             }
-        }
+        },
+        resolve: {
+		      $title: function() { return 'Donate a musical instrument'; }
+		    }
         })
         .state('app.banddirectors', {
           url: 'band-directors',
@@ -35,7 +38,10 @@ var app = angular.module('MarchingMountains', ['ui.router'])
             'content@': {
                 templateUrl: 'public/html/band-directors.html'
             }
-        }
+        },
+        resolve: {
+		      $title: function() { return 'Band Directors'; }
+		    }
         })
         .state('app.project', {
           url: 'project',
@@ -43,7 +49,10 @@ var app = angular.module('MarchingMountains', ['ui.router'])
             'content@': {
                 templateUrl: 'public/html/project/index.html'
             }
-        }
+        },
+        resolve: {
+		      $title: function() { return 'About the organization'; }
+		    }
         })
         .state('app.project.who', {
           url: '/who',
@@ -83,7 +92,10 @@ var app = angular.module('MarchingMountains', ['ui.router'])
             'content@': {
                 templateUrl: 'public/html/faq.html'
             }
-        }
+        },
+        resolve: {
+		      $title: function() { return 'Frequently Asked Questions'; }
+		    }
         })
         .state('app.video', {
           url: 'video',
@@ -91,7 +103,10 @@ var app = angular.module('MarchingMountains', ['ui.router'])
             'content@': {
                 templateUrl: 'public/html/video.html'
             }
-        }
+        },
+        resolve: {
+		      $title: function() { return 'Videos'; }
+		    }
         })
         .state('app.volunteer', {
           url: 'volunteer',
@@ -99,7 +114,10 @@ var app = angular.module('MarchingMountains', ['ui.router'])
             'content@': {
                 templateUrl: 'public/html/volunteer.html'
             }
-        }
+        },
+        resolve: {
+		      $title: function() { return 'Volunteer'; }
+		    }
         })
         .state('app.success', {
           url: 'instrument-donation-success-stories',
@@ -107,7 +125,10 @@ var app = angular.module('MarchingMountains', ['ui.router'])
             'content@': {
                 templateUrl: 'public/html/success-stories.html'
             }
-        }
+        },
+        resolve: {
+		      $title: function() { return 'Success Stories'; }
+		    }
         })
         .state('app.reports', {
           url: 'annual-reports',
@@ -115,7 +136,10 @@ var app = angular.module('MarchingMountains', ['ui.router'])
             'content@': {
                 templateUrl: 'public/html/annual-reports.html'
             }
-        }
+        },
+        resolve: {
+		      $title: function() { return 'Annual Reports'; }
+		    }
         })
         .state('app.news', {
           url: 'news',
@@ -147,7 +171,10 @@ var app = angular.module('MarchingMountains', ['ui.router'])
             'content@': {
                 templateUrl: 'public/html/contact.html'
             }
-        }
+        },
+        resolve: {
+		      $title: function() { return 'Contact'; }
+		    }
         });     
     }]);
 

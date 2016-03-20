@@ -28,7 +28,8 @@ gulp.task('vendor', function() {
     'bower_components/jquery/dist/jquery.js',
     'bower_components/bootstrap/dist/js/bootstrap.js',
     'bower_components/angular/angular.js',
-    'bower_components/angular-ui-router/release/angular-ui-router.js'
+    'bower_components/angular-ui-router/release/angular-ui-router.js',
+    'bower_components/angular-ui-router-title/angular-ui-router-title.js'
   ]).pipe(concat('vendor.js'))
     .pipe(gulpif(production, uglify({ mangle: false })))
     .pipe(gulp.dest('public/js'));
