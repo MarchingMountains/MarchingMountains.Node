@@ -28,6 +28,7 @@ describe('Marching Mountains homepage test', function() {
 	it('Test 2 - As a user, I can go to the pages in the header', function (browser) {
        browser
        .page.home().setBase(browser.launch_url)
+       .page.home().goHome()
        .page.home().goDonate()
        .page.home().goFaq()
        .page.home().goDirectors()
