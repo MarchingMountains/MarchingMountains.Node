@@ -15,6 +15,7 @@
     "start": "babel-node server.js",
     "watch": "nodemon --exec babel-node -- server.js",
     "postinstall": "bower install && gulp build",
+    "test": "gulp clean test",
     "uat": "nightwatch",
     "uat_prod": "nightwatch -e prod"
   },
