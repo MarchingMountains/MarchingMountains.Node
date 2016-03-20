@@ -11,5 +11,8 @@
     "angular": "^1.5.2",
     "angular-ui-router": "^0.2.18",
     "angular-ui-router-title": "^0.0.4"
+  },
+  "resolutions" : {
+    "angular"  : "1.5.2"
   }
 }
