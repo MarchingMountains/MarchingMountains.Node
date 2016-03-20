@@ -1,12 +1,13 @@
-require('angular');
-var MainController = require('./layout/controllers/MainController');
+	(function () {
+  'use strict';
 
-var app = angular.module('MarchingMountains', ['ui.router', 'ui.router.title'])
-		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
-			$locationProvider.html5Mode(true);
+	angular
+		.module('app.core')
+    .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+		
+      $locationProvider.html5Mode(true);
 			$urlRouterProvider.otherwise('/');
-
-        $stateProvider
+      $stateProvider
         .state('app', {
         	 url: '/',
           views: {
@@ -175,6 +176,6 @@ var app = angular.module('MarchingMountains', ['ui.router', 'ui.router.title'])
         resolve: {
 		      $title: function() { return 'Contact'; }
 		    }
-        });     
-    }])
-.controller('MainController', ['$scope', MainController]);
+    });
+	}]);
+})();

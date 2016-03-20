@@ -4,6 +4,7 @@ var gulpif = require('gulp-if');
 var streamify = require('gulp-streamify');
 var autoprefixer = require('gulp-autoprefixer');
 var cssmin = require('gulp-cssmin');
+var jshint = require('gulp-jshint');
 var less = require('gulp-less');
 var concat = require('gulp-concat');
 var plumber = require('gulp-plumber');
@@ -17,6 +18,8 @@ var production = process.env.NODE_ENV === 'production';
 var dependencies = [
   'underscore'
 ];
+
+var appPath = 'src/client/app/**/*.js';
 
 /*
  |--------------------------------------------------------------------------
@@ -49,48 +52,24 @@ gulp.task('browserify-vendor', function() {
     .pipe(gulp.dest('public/js'));
 });
 
-/*
- |--------------------------------------------------------------------------
- | Compile only project files, excluding all third-party dependencies.
- |--------------------------------------------------------------------------
- */
-gulp.task('browserify', ['browserify-vendor'], function() {
-  return browserify('src/client/app/main.js')
-    .external(dependencies)
-    .transform(babelify)
-    .bundle()
-    .pipe(source('bundle.js'))
+
+
+// JSHint task
+gulp.task('lint', function() {
+  gulp.src(appPath)
+  .pipe(jshint())
+  // You can look into pretty reporters as well, but that's another story
+  .pipe(jshint.reporter('default'));
+});
+
+
+gulp.task('browserify', ['browserify-vendor'], function () {
+  gulp.src(['./src/client/app/app.module.js', './src/client/app/core/core.module.js', './src/client/app/**/*.js'])
+    .pipe(concat('bundle.js'))
     .pipe(ngAnnotate())
-    .pipe(gulpif(production, streamify(uglify({ mangle: false }))))
-    .pipe(gulp.dest('public/js'));
-});
-
-/*
- |--------------------------------------------------------------------------
- | Same as browserify task, but will also watch for changes and re-compile.
- |--------------------------------------------------------------------------
- */
-gulp.task('browserify-watch', ['browserify-vendor'], function() {
-  var bundler = watchify(browserify('src/client/app/main.js', watchify.args));
-  bundler.external(dependencies);
-  bundler.transform(babelify);
-  bundler.on('update', rebundle);
-  return rebundle();
-
-  function rebundle() {
-    var start = Date.now();
-    return bundler.bundle()
-      .on('error', function(err) {
-        gutil.log(gutil.colors.red(err.toString()));
-      })
-      .on('end', function() {
-        gutil.log(gutil.colors.green('Finished rebundling in', (Date.now() - start) + 'ms.'));
-      })
-      .pipe(source('bundle.js'))
-      .pipe(ngAnnotate())
-      .pipe(gulp.dest('public/js/'));
-  }
-});
+    .pipe(uglify())
+    .pipe(gulp.dest('public/js'))
+})
 
 /*
  |--------------------------------------------------------------------------
@@ -108,7 +87,8 @@ gulp.task('styles', function() {
 
 gulp.task('watch', function() {
   gulp.watch('bower_components/bootstrap/less/*.less', ['styles']);
+  gulp.watch(appPath, ['browserify']);
 });
 
 gulp.task('default', ['styles', 'vendor', 'browserify-watch', 'watch']);
-gulp.task('build', ['styles', 'vendor', 'browserify']);
+gulp.task('build', ['lint', 'styles', 'vendor', 'browserify']);
