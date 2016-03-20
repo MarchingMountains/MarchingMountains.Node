@@ -1,5 +1,10 @@
 {
   "name": "marchingmountains",
+  "devDependencies": {
+    "angular-mocks": "1.4.9",
+    "bardjs": "0.1.8",
+    "sinon": "1.17.2"
+  },
   "dependencies": {
     "jquery": "^2.1.4",
     "bootstrap": "^3.3.5",

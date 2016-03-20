@@ -23,7 +23,7 @@ app.use(express.static('./src/client/'));
 app.use(express.static('./'));
 app.use('/*', express.static('./src/client/index.html'));
 
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   console.log(err.stack.red);
   res.status(err.status || 500);
   res.send({ message: err.message });

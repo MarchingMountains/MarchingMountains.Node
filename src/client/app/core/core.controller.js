@@ -6,6 +6,5 @@
 		.controller('CoreController', CoreController);
 
 	function CoreController() {
-		var vm = this;
 	}
 })();
