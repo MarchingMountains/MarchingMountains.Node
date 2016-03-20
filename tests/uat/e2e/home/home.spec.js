@@ -19,11 +19,17 @@ describe('Marching Mountains homepage test', function() {
       done();
     });
 
-    it('Test 1 - As a user, I can go to the home page', function (browser) {
+    it('Test 1 - As a user, I can go to the home page and the pages in the main section', function (browser) {
        browser
        .page.home().setBase(browser.launch_url)
        .page.home().goHome()
-       .end();
+       .page.home().goSuccessStories()
+       .page.home().goHome()
+       .page.home().goHome()
+       .page.home().goAnnualReports()
+       .page.home().goHome()
+       .page.home().goVolunteer()
+
   	});
 	it('Test 2 - As a user, I can go to the pages in the header', function (browser) {
        browser
@@ -36,5 +42,13 @@ describe('Marching Mountains homepage test', function() {
        .page.home().goContact()
        .end();
   	});
+  it('Test 3 - As a user, I can go to the pages in the footer', function (browser) {
+       browser
+       .page.home().setBase(browser.launch_url)
+       .page.home().goHome()
+       .page.home().goNewsOne()
+       .page.home().goNewsTwo()
+       .end();
+    });
   });
 });
