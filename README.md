@@ -4,9 +4,17 @@
 [![Coverage Status](https://coveralls.io/repos/github/MarchingMountains/MarchingMountains.Node/badge.svg?branch=master)](https://coveralls.io/github/MarchingMountains/MarchingMountains.Node?branch=master)
 
 ##Install
-Install Java (nneded for selenium)
+Install Java (nneded for selenium tests)
+Install Firefox (needed for selenium tests)
 'npm install
 'npm install -g bower nightwatch babel-cli gulp
+
+##Tests
+Run End-to-end tests
+'npm run uat
+
+Run unit tests
+'npm test
 
 ##Marching Mountains' Goal
 
