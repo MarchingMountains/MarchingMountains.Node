@@ -62,7 +62,7 @@ gulp.task('lint', function() {
 
 
 gulp.task('browserify', ['browserify-vendor'], function () {
-  gulp.src(['./src/client/app/app.module.js', './src/client/app/core/core.module.js', './src/client/app/**/*.js'])
+  gulp.src(['./src/client/app/app.module.js', './src/client/app/core/core.module.js',  '!./src/client/app/**/*spec.js', './src/client/app/**/*.js'])
     .pipe(concat('bundle.js'))
     .pipe(ngAnnotate())
     .pipe(uglify())

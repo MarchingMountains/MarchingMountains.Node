@@ -2,6 +2,12 @@
 
 [![Build Status](https://travis-ci.org/MarchingMountains/MarchingMountains.Node.svg?branch=master)](https://travis-ci.org/MarchingMountains/MarchingMountains.Node)
 [![Coverage Status](https://coveralls.io/repos/github/MarchingMountains/MarchingMountains.Node/badge.svg?branch=master)](https://coveralls.io/github/MarchingMountains/MarchingMountains.Node?branch=master)
+
+##Install
+Install Java (nneded for selenium)
+'npm install
+'npm install -g bower nightwatch babel-cli gulp
+
 ##Marching Mountains' Goal
 
 The organization's goal is to create a network to supply public school band programs in distressed areas of Appalachia and Minnesota with donated new and used musical instruments.
