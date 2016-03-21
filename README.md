@@ -7,8 +7,10 @@
 ###External Dependencies
 1. Java (needed for selenium tests)
 2. Firefox (needed for selenium tests)
-```npm install
-```npm install -g bower nightwatch babel-cli gulp
+```
+npm install
+npm install -g bower nightwatch babel-cli gulp
+```
 
 ##Running the app
 ```
