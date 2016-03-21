@@ -3,18 +3,22 @@
 [![Build Status](https://travis-ci.org/MarchingMountains/MarchingMountains.Node.svg?branch=master)](https://travis-ci.org/MarchingMountains/MarchingMountains.Node)
 [![Coverage Status](https://coveralls.io/repos/github/MarchingMountains/MarchingMountains.Node/badge.svg?branch=master)](https://coveralls.io/github/MarchingMountains/MarchingMountains.Node?branch=master)
 
-##Install
-Install Java (needed for selenium tests)
-Install Firefox (needed for selenium tests)
-'npm install
-'npm install -g bower nightwatch babel-cli gulp
+##Installation
+###External Dependencies
+1. Java (needed for selenium tests)
+2. Firefox (needed for selenium tests)
+```npm install
+```npm install -g bower nightwatch babel-cli gulp
+
+##Running the app
+```npm start
 
 ##Tests
 Run End-to-end tests
-''npm run uat
+```npm run uat```
 
 Run unit tests
-''npm test
+```npm test```
 
 ##Marching Mountains' Goal
 
