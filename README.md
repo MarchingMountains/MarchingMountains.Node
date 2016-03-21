@@ -11,14 +11,20 @@
 ```npm install -g bower nightwatch babel-cli gulp
 
 ##Running the app
-```npm start
+```
+npm start
+```
 
 ##Tests
-Run End-to-end tests
-```npm run uat```
+Run End-to-end tests (app must be running)
+```
+npm run uat
+```
 
 Run unit tests
-```npm test```
+```
+npm test
+```
 
 ##Marching Mountains' Goal
 
