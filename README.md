@@ -1,6 +1,6 @@
 #Marching Mountains Node.js app
 
-[![Build status](https://travis-ci.org/MarchingMountains/MarchingMountains.Node.svg?style=flat-square&branch=master)](https://travis-ci.org/MarchingMountains/MarchingMountains.Node.svg)
+[![Build Status](https://travis-ci.org/MarchingMountains/MarchingMountains.Node.svg?branch=master)](https://travis-ci.org/MarchingMountains/MarchingMountains.Node)
 
 ##Marching Mountains' Goal
 
