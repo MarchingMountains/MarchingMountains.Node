@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var gulpif = require('gulp-if');
 var streamify = require('gulp-streamify');
+var coveralls = require('gulp-coveralls');
 var autoprefixer = require('gulp-autoprefixer');
 var cssmin = require('gulp-cssmin');
 var jshint = require('gulp-jshint');
@@ -86,6 +87,11 @@ gulp.task('clean', function () {
   */
 gulp.task('test', ['vet'], function (done) {
   startTests(true /*singleRun*/, done);
+});
+
+gulp.task('coveralls', function () {  
+  return gulp.src('./report/coverage/report-lcov/lcov.info')
+    .pipe(coveralls());
 });
 
 /**
