@@ -21,7 +21,7 @@ npm start
 ```
 
 ##Tests
-Run End-to-end tests (app must be running)
+Run end-to-end tests (app must be running)
 ```
 npm run uat
 ```
