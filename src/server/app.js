@@ -9,7 +9,7 @@ var express = require('express');
 var app = express();
 
 var port = process.env.PORT || 3000;
-app.use(require('prerender-node'));
+
 app.use(compression());
 app.use(logger('dev'));
 app.use(bodyParser.json());
