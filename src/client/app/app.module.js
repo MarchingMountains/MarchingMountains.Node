@@ -2,7 +2,8 @@
 	'use strict';
 
 	angular.module('MarchingMountains', [
-		'app.core'
+		'app.core',
+		'app.account'
 	]);
 
 })();
