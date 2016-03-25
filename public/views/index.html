@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+      <meta charset="utf-8">
+      <!-- <title ng-bind="($title || 'Home') + ' - Marching Mountains'"></title> -->
+      <title>Marching Mountains</title>
+      <meta name="og:title" content="Marching Mountains" />
+      <meta name="fb:admins" content="100001106692168" />
+      <meta name="og:image" content="http://marchingmountains.org/images/MarchingMountainsNoBG.png" />
+      <meta name="og:type" content="non_profit" />
+      <meta name="og:url" content="http://marchingmountains.org" />
+      <meta name="og:site_name" content="Marching Mountains" />
+      <meta name="og:locality" content="Minneapolis" />
+      <meta name="og:region" content="MN" />
+      <meta name="og:postal-code" content="55403" />
+      <meta name="og:country-name" content="USA" />
+      <meta name="og:email" content="donate@marchingmountains.org" />
+      <meta name="og:phone_number" content="+1-612-232-9677" />
+      <meta name="google-site-verification" content="AeQ55zViroT-PDCy0NXhRIxCL8htQdhNG3n7tZgyy5Q" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <script type="text/javascript" src="/vendors/angular.min.js"></script>
+      <script type="text/javascript" src="/vendors/angular-route.min.js"></script>
+      <script type="text/javascript" src="/vendors/angular-animate.min.js"></script>
+      <script type="text/javascript" src="/vendors/angular-aria.min.js"></script>
+      <script type="text/javascript" src="/vendors/angular-messages.min.js"></script>
+      <script type="text/javascript" src="/vendors/angular-material.min.js"></script>
+      <script type="text/javascript" src="../app.js"></script>
+
+      <link rel="stylesheet" type="text/css" href="/vendors/bootstrap.min.css"/>
+
+      <!-- <link rel="stylesheet" type="text/css" href="/css/normalize.css"/>
+      <link rel="stylesheet" type="text/css" href="/css/skeleton.min.css"/> -->
+      <!-- <link rel="stylesheet" type="text/css" href="/css/angular-material.min.css"/> -->
+  </head>
+  <body>
+    <header class="container-fluid row" ng-include="'/templates/header.html'"></header>
+
+    <main ng-view class="container"></main>
+
+    <footer class="footer" ng-include="'/templates/footer.html'"></footer>
+  </body>
+</html>
