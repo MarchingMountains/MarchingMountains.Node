@@ -15,6 +15,15 @@ myApp.config(['$routeProvider', function($routeProvider) {
     .when('/donate-instrument', {
       templateUrl: '/views/templates/donate-instrument.html',
     })
+    .when('/school-search', {
+      templateUrl: '/views/templates/school-search.html',
+    })
+    .when('/contact', {
+      templateUrl: '/views/templates/contact.html',
+    })
+    .when('/band-directors', {
+      templateUrl: '/views/templates/band-directors.html',
+    })
     .otherwise({
       redirectTo: '/home'
     });
