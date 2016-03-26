@@ -1,5 +1,5 @@
 myApp.controller('SearchSchoolController', ['$scope', '$http', '$mdDialog',
-  function($scope, $http, $mdDialog, $timeout, $q, $log) {
+  function($scope, $http, $mdDialog) {
 
   console.log("SchoolSearchController is loaded");
 

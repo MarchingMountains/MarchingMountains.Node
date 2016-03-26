@@ -2,8 +2,18 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
+var pg = require('pg');
+var connectionString = '';
+if(process.env.DATABASE_URL !== undefined) {
+  connectionString = process.env.DATABASE_URL + 'ssl';
+} else {
+  connectionString = 'postgres://localhost:5432/marchingmountains';
+}
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+app.get
 
 app.use(express.static('public'));
 app.use(express.static('public/views'));
