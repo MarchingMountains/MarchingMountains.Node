@@ -1,5 +1,5 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages']);
 
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'angAccordion']);
 myApp.config(['$routeProvider', function($routeProvider) {
 
   $routeProvider
@@ -24,6 +24,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
     })
     .when('/band-directors', {
       templateUrl: '/views/templates/band-directors.html',
+    })
+    .when('/my-schools', {
+      templateUrl: '/views/templates/my-schools.html',
+      controller: 'my-schools-controller'
     })
     .otherwise({
       redirectTo: '/home'
