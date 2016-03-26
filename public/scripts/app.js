@@ -27,10 +27,17 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/templates/band-directors.html',
     })
     .when('/school-info', {
-      templateUrl: '/views/templates/school-info.html',
-      controller: 'SchoolInfoController',
+        templateUrl: '/views/templates/school-info.html',
+        controller: 'SchoolInfoController'
+    })
+    .when('/login', {
+      templateUrl: '/views/templates/login.html',
+    })
+    .when('/register', {
+      templateUrl: '/views/templates/register.html',
     })
     .otherwise({
       redirectTo: '/home'
     });
+
 }]);

@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node server/app.js"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,9 @@
     "bcrypt": "^0.8.5",
     "body-parser": "^1.15.0",
     "bootstrap": "^3.3.6",
+    "connect-flash": "^0.1.1",
     "express": "^4.13.4",
+    "express-jwt": "^3.3.0",
     "express-session": "^1.13.0",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.3",
