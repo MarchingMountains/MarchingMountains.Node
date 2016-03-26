@@ -6,12 +6,12 @@ var bodyParser = require('body-parser');
 var schools = require('./server/routes/schools');
 var instruments = require('./server/routes/instruments');
 
-var index = require('./routes/index');
-var user = require('./routes/user');
-var register = require('./routes/register');
-// var connection = require('./server/modules/connection');
+var index = require('./server/routes/index');
+var user = require('./server/routes/user');
+var register = require('./server/routes/register');
 
-var passport = require('./strategies/user_sql.js');
+
+var passport = require('./server/strategies/user_sql.js');
 var session = require('express-session');
 
 app.use(bodyParser.json());
