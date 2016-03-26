@@ -17,6 +17,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
     })
     .when('/school-search', {
       templateUrl: '/views/templates/school-search.html',
+      controller: 'SearchSchoolController',
     })
     .when('/contact', {
       templateUrl: '/views/templates/contact.html',
