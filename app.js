@@ -4,8 +4,6 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var schools = require('./server/routes/schools');
 var instruments = require('./server/routes/instruments');
-// var connection = require('./server/modules/connection');
-// var pg = require('pg');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
