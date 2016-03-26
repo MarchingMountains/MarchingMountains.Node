@@ -35,5 +35,6 @@
     "karma-threshold-reporter": "^0.1.15",
     "nightwatch": "^0.8.18",
     "skeleton-css": "^2.0.4"
-  }
+  },
+  "devDependencies": {}
 }
