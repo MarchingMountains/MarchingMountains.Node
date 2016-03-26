@@ -1,19 +1,17 @@
 var express = require('express');
 var app = express();
+var path = require('path');
 var bodyParser = require('body-parser');
-
-var pg = require('pg');
-var connectionString = '';
-if(process.env.DATABASE_URL !== undefined) {
-  connectionString = process.env.DATABASE_URL + 'ssl';
-} else {
-  connectionString = 'postgres://localhost:5432/marchingmountains';
-}
+var schools = require('./server/routes/schools');
+var instruments = require('./server/routes/instruments');
+// var connection = require('./server/modules/connection');
+// var pg = require('pg');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get
+app.use('/schools', schools);
+app.use('/instruments', instruments);
 
 app.use(express.static('public'));
 app.use(express.static('public/views'));
