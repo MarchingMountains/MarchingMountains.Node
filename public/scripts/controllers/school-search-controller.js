@@ -1,20 +1,31 @@
-myApp.controller('SearchSchoolController', ['$scope', '$http', '$mdDialog',
-'InstrumentsFactory', 'SchoolsFactory', function($scope, $http, $mdDialog, InstrumentsFactory, SchoolsFactory) {
+myApp.controller('SearchSchoolController', ['$scope', '$http', '$location', '$mdDialog',
+'InstrumentsFactory', 'SchoolsFactory', '$timeout', function($scope, $http, $location, $mdDialog,
+  InstrumentsFactory, SchoolsFactory, $timeout) {
 
   console.log("SchoolSearchController is loaded");
 
   $scope.InstrumentsFactory = InstrumentsFactory;
   $scope.SchoolsFactory = SchoolsFactory;
 
+  $scope.schools = $scope.SchoolsFactory.schools.list;
+  $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrumentName.list;
+
   $scope.InstrumentsFactory.factoryGetInstrumentsList().then(function() {
     $scope.instruments = $scope.InstrumentsFactory.instruments.list;
-    console.log('instruments from controller: ', $scope.instruments);
   });
 
-  $scope.searchSchool = function(selectedInstrument) {
-    console.log(selectedInstrument);
-    $scope.SchoolsFactory.factoryGetSchoolsList(selectedInstrument).then(function() {
-      console.log('schools form controller');
+  $scope.indexSearchSchool = function(selectedInstrumentName, selectedInstrumentId) {
+    $scope.SchoolsFactory.factoryGetSchoolsList(selectedInstrumentName, selectedInstrumentId).then(function() {
+      $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrumentName.list;
+      $scope.schools = $scope.SchoolsFactory.schools.list;
+      $location.url('/school-search');
+    });
+  };
+
+  $scope.searchSchool = function(selectedInstrumentName, selectedInstrumentId) {
+    $scope.SchoolsFactory.factoryGetSchoolsList(selectedInstrumentName, selectedInstrumentId).then(function() {
+      $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrumentName.list;
+      $scope.schools = $scope.SchoolsFactory.schools.list;
     });
   };
 

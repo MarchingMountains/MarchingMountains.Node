@@ -1,10 +1,11 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'angAccordion']);
 
 myApp.config(['$routeProvider', function($routeProvider) {
 
   $routeProvider
     .when('/home', {
       templateUrl: '/views/templates/home.html',
+      controller: 'SearchSchoolController',
     })
     .when('/about', {
       templateUrl: '/views/templates/about.html',
