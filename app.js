@@ -2,8 +2,16 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
+// Route includes
+var account = require('./server/routes/account');
+var states = require('./server/routes/states');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+// Routes
+app.use('/account', account);
+app.use('/states', states);
 
 app.use(express.static('public'));
 app.use(express.static('public/views'));

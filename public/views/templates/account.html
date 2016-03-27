@@ -1,0 +1,46 @@
+<h3>Edit Account Information</h3>
+
+<p ng-show="editAccount.email.$invalid && !editAccount.email.$pristine && submitted">Please enter a valid email.</p>
+
+<div ng-show="showForm">
+    <!--<form name="edit-account" novalidate>-->
+    <form name="editAccount" novalidate ng-submit="submitForm(editAccount.$valid)">
+
+    <p><label for="email">Email:</label><br />
+            <input type="text" ng-model="user.email" id="email" name="email" required /> *required</p>
+
+        <!--<span ng-show="edit-account.email.$error.required">Please enter something!</span>-->
+        <p><label for="password">Password:</label><br />
+            <input type="password" ng-model="user.password" id="password" /></p>
+
+        <p><label for="first_name">Name: </label><br />
+            <input type="text" ng-model="user.first_name" id="first_name" /><input type="text" ng-model="user.last_name" id="last_name" /></p>
+
+        <p><label for="address_line1">Address:</label><br />
+            <input type="text" ng-model="user.address_line1" id="address_line1" /><br />
+            <input type="text" ng-model="user.address_line2" id="address_line2" /><br />
+            <input type="text" ng-model="user.city" id="city" />
+            <select id="state" ng-model="user.state" ng-options="state.state_id as state.state for state in states"></select>
+            <input type="text" ng-model="user.zip" id="zip" size="5"/></p>
+
+        <p><label for="phone">Phone:</label><br />
+            <input type="text" ng-model="user.phone" id="phone" /></p>
+
+        <p><button type="submit">Edit Account Information</button></p>
+        <!--<p ng-show="editAccount.email.$invalid && !editAccount.email.$pristine && submitted">Please enter a valid email.</p>-->
+        <!--<p><button type="submit" ng-click="editAccount(1)" class="button">Edit Account Information</button></p>-->
+    </form>
+</div>
+
+<div ng-show="showList">
+    <p>
+        Name: {{user.first_name}} {{user.last_name}}<br />
+        Email: {{user.email}}<br />
+        Address: {{user.address_line1}}<br />
+        <span ng-show="user.address_line2 != null">{{user.address_line2}}<br /></span>
+        {{user.city}}, {{user.state}} {{user.zip}}<br />
+        Phone: {{user.phone}}<br />
+        <p ng-show="edited">Edited account information!</p>
+        <a href="" ng-click="accountToForm()">Edit Account</a>
+    </p>
+</div>

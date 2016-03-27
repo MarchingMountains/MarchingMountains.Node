@@ -34,6 +34,7 @@
     "karma-firefox-launcher": "^0.1.7",
     "karma-threshold-reporter": "^0.1.15",
     "nightwatch": "^0.8.18",
+    "pg": "^4.5.1",
     "skeleton-css": "^2.0.4"
   },
   "devDependencies": {}
