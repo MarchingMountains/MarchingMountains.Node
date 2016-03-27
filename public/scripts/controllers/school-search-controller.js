@@ -7,7 +7,7 @@ myApp.controller('SearchSchoolController', ['$scope', '$http', '$location', '$md
   $scope.InstrumentsFactory = InstrumentsFactory;
   $scope.SchoolsFactory = SchoolsFactory;
 
-  $scope.schools = $scope.SchoolsFactory.schools.list;
+  $scope.schoolSearchResults = $scope.SchoolsFactory.schoolSearchResults.list;
   $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrumentName.list;
 
   $scope.InstrumentsFactory.factoryGetInstrumentsList().then(function() {
@@ -17,7 +17,7 @@ myApp.controller('SearchSchoolController', ['$scope', '$http', '$location', '$md
   $scope.indexSearchSchool = function(selectedInstrumentName, selectedInstrumentId) {
     $scope.SchoolsFactory.factoryGetSchoolsList(selectedInstrumentName, selectedInstrumentId).then(function() {
       $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrumentName.list;
-      $scope.schools = $scope.SchoolsFactory.schools.list;
+      $scope.schoolSearchResults = $scope.SchoolsFactory.schoolSearchResults.list;
       $location.url('/school-search');
     });
   };
@@ -25,8 +25,12 @@ myApp.controller('SearchSchoolController', ['$scope', '$http', '$location', '$md
   $scope.searchSchool = function(selectedInstrumentName, selectedInstrumentId) {
     $scope.SchoolsFactory.factoryGetSchoolsList(selectedInstrumentName, selectedInstrumentId).then(function() {
       $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrumentName.list;
-      $scope.schools = $scope.SchoolsFactory.schools.list;
+      $scope.schoolSearchResults = $scope.SchoolsFactory.schoolSearchResults.list;
     });
+  };
+
+  $scope.goToSchoolPage = function(selectedSchoolId) {
+
   };
 
 }]);

@@ -23,7 +23,7 @@
   </div>
   <div>
     <h4 ng-show="instruments">Schools in need of a {{selectedInstrument}}</h4>
-    <ang-accordion one-at-a-time="true" ng-repeat="school in schools">
+    <ang-accordion one-at-a-time="true" ng-repeat="school in schoolSearchResults">
       <collapsible-item item-title="{{school.school_name}}">
         <div>
           <ul>
@@ -32,6 +32,10 @@
             </li>
             <li>
               Website: {{school.website}}
+            </li>
+            <li>
+              <md-button ng-click="goToSchoolPage(school._id)">More Info</md-button>
+              <md-button ng-click="donateNowModal(school._id)">Donate Now</md-button>
             </li>
           </ul>
         </div>
