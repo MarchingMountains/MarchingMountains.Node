@@ -5,7 +5,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/home', {
       templateUrl: '/views/templates/home.html',
-      controller: 'SearchSchoolController',
+      controller: 'SchoolSearchController',
     })
     .when('/about', {
       templateUrl: '/views/templates/about.html',
@@ -18,13 +18,17 @@ myApp.config(['$routeProvider', function($routeProvider) {
     })
     .when('/school-search', {
       templateUrl: '/views/templates/school-search.html',
-      controller: 'SearchSchoolController',
+      controller: 'SchoolSearchController',
     })
     .when('/contact', {
       templateUrl: '/views/templates/contact.html',
     })
     .when('/band-directors', {
       templateUrl: '/views/templates/band-directors.html',
+    })
+    .when('/school-info', {
+      templateUrl: '/views/templates/school-info.html',
+      controller: 'SchoolInfoController',
     })
     .otherwise({
       redirectTo: '/home'

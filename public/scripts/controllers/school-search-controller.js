@@ -1,6 +1,6 @@
-myApp.controller('SearchSchoolController', ['$scope', '$http', '$location', '$mdDialog',
-'InstrumentsFactory', 'SchoolsFactory', '$timeout', function($scope, $http, $location, $mdDialog,
-  InstrumentsFactory, SchoolsFactory, $timeout) {
+myApp.controller('SchoolSearchController', ['$scope', '$http', '$location', '$mdDialog',
+'InstrumentsFactory', 'SchoolsFactory', function($scope, $http, $location, $mdDialog,
+  InstrumentsFactory, SchoolsFactory) {
 
   console.log("SchoolSearchController is loaded");
 
@@ -29,8 +29,9 @@ myApp.controller('SearchSchoolController', ['$scope', '$http', '$location', '$md
     });
   };
 
-  $scope.goToSchoolPage = function(selectedSchoolId) {
-
+  $scope.goToSchoolPage = function(selectedSchool) {
+    $scope.SchoolsFactory.factorySetSelectedSchoolInfo(selectedSchool);
+    $location.url('/school-info');
   };
 
 }]);
