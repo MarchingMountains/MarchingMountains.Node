@@ -3,20 +3,20 @@ var app = express();
 var path = require('path');
 var expressJwt = require('express-jwt');
 var bodyParser = require('body-parser');
-var flash = require("connect-flash");
+var connection = require('./modules/connection');
+//var flash = require("connect-flash");
 
 var schools = require('./server/routes/schools');
 var instruments = require('./server/routes/instruments');
 var index = require('./server/routes/index');
 var user = require('./server/routes/user');
 var register = require('./server/routes/register');
-
 var passport = require('./strategies/user_sql.js');
 var session = require('express-session');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(flash());
+
 
 app.use(session({
   secret: 'secret',

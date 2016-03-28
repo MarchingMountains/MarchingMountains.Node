@@ -6,16 +6,19 @@ var connection = require('../modules/connection');
 var pg = require('pg');
 
 passport.serializeUser(function(user, done) {
+
+    console.log('serializeUser()');
     done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-    console.log('called deserializeUser');
+//TODO SQL query
+    console.log('deserializeUser()');
     pg.connect(connection, function (err, client) {
 
         var user = {};
         console.log('called deserializeUser - pg');
-        var query = client.query("SELECT * FROM users WHERE id = $1", [id]);
+        var query = client.query("SELECT * FROM users WHERE user_id = $1", [id]);
 
         query.on('row', function (row) {
             console.log('User row', row);
@@ -38,12 +41,14 @@ passport.deserializeUser(function(id, done) {
 // Does actual work of logging in
 passport.use('local', new localStrategy({
         passReqToCallback: true,
-        usernameField: 'username'
-    }, function(req, username, password, done){
+        emailField: 'email'
+    }, function(req, email, password, done){
+
+        console.log('In passport local strategy - email=' + email);
         pg.connect(connection, function (err, client) {
             console.log('called local - pg');
             var user = {};
-            var query = client.query("SELECT * FROM users WHERE username = $1", [username]);
+            var query = client.query("SELECT * FROM users WHERE email = $1", [email]);
 
             query.on('row', function (row) {
                 console.log('User obj', row);
@@ -74,4 +79,4 @@ passport.use('local', new localStrategy({
     }
 ));
 
-module.exports = passport;
+//module.exports = passport;

@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div ng-controller="UserController" class="col-md-4">
   <a href="/" title="home"><img src="/img/MarchingMountainsLogo.png" alt="Marching Mountains Logo" /></a>
 </div>
 <div class="col-md-8">
@@ -11,8 +11,10 @@
       <li role="presentation"><a href="#school-search" title="School Search">School Search</a></li>
       <li role="presentation"><a href="#contact" title="Contact Marching Mountains">Contact</a></li>
       <li role="presentation"><a href="#band-directors" title="For Band Directors">Band Directors</a></li>
+      <li ng-hide="username" role="presentation"><a href="#login" title="Logging In">LogIn</a></li>
+      <li ng-show="username" role="presentation">{{username}}</li>
       <li role="presentation"><a href="https://givemn.org/organization/Marching-Mountains" target="_blank"><img src="/img/donate.png" alt="Help Marching Mountains - Get Kids Musical Instruments | GiveMN" /></a></li>
-      <li role="presentation"><a href="#login" title="Logging In">LogIn</a></li>
+
     </ul>
   </nav>
 </div>
