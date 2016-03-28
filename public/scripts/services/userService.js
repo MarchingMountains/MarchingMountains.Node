@@ -1,31 +1,38 @@
-myApp.factory('UserService', ['$http', function($http) {
+myApp.factory('UserService', ['$http', '$rootScope', function($http, $rootScope) {
 
-    var isLogged = false;
-    var factoryUserName = '';
+    var CurrentUser = {
+        isLogged: false,
+        factoryUserName: '',
+        factoryFirstName: '',
+        factoryUserId: ''
+    };
 
-    function returnIsLogged() {
-        return isLogged;
+    function returnCurrentUser() {
+        return CurrentUser;
     }
 
-    function returnFactoryUserName() {
-        return factoryUserName;
+
+    function login(user) {
+        console.log(user);
+        var promise = $http.post('/', user).then(function(response) {
+            console.log(response.data);
+            CurrentUser = {
+                isLogged: true,
+                factoryUserName: response.data.email,
+                factoryFirstName: response.data.first_name,
+                factoryUserId: response.data.user_id
+             };
+            console.log(CurrentUser);
+        });
+
     }
-
-    $http.get('/user').then(function(response) {
-        if(response.data) {
-            isLogged = true;
-            factoryUserName = response.data.username;
-            console.log('User Data: ', factoryUser.userName);
-
-        } else {
-            isLogged = false;
-
-        }
-    });
 
     return {
-        isLogged: returnIsLogged,
-        factoryUserName: returnFactoryUserName
+        askForCurrentUser: returnCurrentUser,
+        postLogin: login,
+        CurrentUser: function(data) {
+                $rootScope.$broadcast(CurrentUser);
+            }
     }
 
 

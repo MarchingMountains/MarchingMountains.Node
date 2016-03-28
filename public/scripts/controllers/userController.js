@@ -4,16 +4,16 @@ myApp.controller('UserController', ['$scope', '$window', 'UserService', function
 
     $scope.userName;
 
-    $scope.$watch($scope.UserService.isLogged, function(newVal, oldVal) {
-        console.log("first stop inside watch:", $scope.UserService.returnIsLogged());
-        if ($scope.UserService.returnIsLogged() == 0) {
-            $scope.username = '';
-            $window.location.href = '/index.html';
-        }
-        else if ($scope.UserService.returnIsLogged() == 1) {
-            $scope.userName = $scope.UserService.factoryUserName;
-        }
-    },true);
+    //$scope.$watch($scope.UserService.isLogged(), function(newVal, oldVal) {
+    //    console.log("first stop inside watch:", $scope.UserService.isLogged());
+    //    if ($scope.UserService.returnIsLogged() == 0) {
+    //        $scope.username = '';
+    //        $window.location.href = '/index.html';
+    //    }
+    //    else if ($scope.UserService.returnIsLogged() == 1) {
+    //        $scope.userName = $scope.UserService.factoryUserName;
+    //    }
+    //},true);
 
 
 

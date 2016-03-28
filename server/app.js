@@ -26,6 +26,10 @@ app.use(session({
   cookie: {maxage: 60000, secure: false}
 }));
 
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 //incoming routes
 app.use('/schools', schools);
 app.use('/instruments', instruments);
