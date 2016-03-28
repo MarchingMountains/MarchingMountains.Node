@@ -3,15 +3,11 @@
 <p ng-show="editAccount.email.$invalid && !editAccount.email.$pristine && submitted">Please enter a valid email.</p>
 
 <div ng-show="showForm">
-    <!--<form name="edit-account" novalidate>-->
-    <form name="editAccount" novalidate ng-submit="submitForm(editAccount.$valid)">
 
-    <p><label for="email">Email:</label><br />
-            <input type="text" ng-model="user.email" id="email" name="email" required /> *required</p>
+    <form name="editAccount" novalidate ng-submit="submitAccountForm(editAccount.$valid)">
 
-        <!--<span ng-show="edit-account.email.$error.required">Please enter something!</span>-->
-        <p><label for="password">Password:</label><br />
-            <input type="password" ng-model="user.password" id="password" /></p>
+        <p><label for="email">Email:</label><br />
+        <input type="text" ng-model="user.email" id="email" name="email" required /> *required</p>
 
         <p><label for="first_name">Name: </label><br />
             <input type="text" ng-model="user.first_name" id="first_name" /><input type="text" ng-model="user.last_name" id="last_name" /></p>
@@ -20,16 +16,43 @@
             <input type="text" ng-model="user.address_line1" id="address_line1" /><br />
             <input type="text" ng-model="user.address_line2" id="address_line2" /><br />
             <input type="text" ng-model="user.city" id="city" />
-            <select id="state" ng-model="user.state" ng-options="state.state_id as state.state for state in states"></select>
+            <select id="state" ng-model="selectedState" ng-options="state.state_id as state.state for state in states"></select>
             <input type="text" ng-model="user.zip" id="zip" size="5"/></p>
 
         <p><label for="phone">Phone:</label><br />
             <input type="text" ng-model="user.phone" id="phone" /></p>
 
-        <p><button type="submit">Edit Account Information</button></p>
-        <!--<p ng-show="editAccount.email.$invalid && !editAccount.email.$pristine && submitted">Please enter a valid email.</p>-->
-        <!--<p><button type="submit" ng-click="editAccount(1)" class="button">Edit Account Information</button></p>-->
+        <p><button type="submit">Edit Account Information</button> <a href="" ng-click="changePassword()">Change Password</a></p>
+
     </form>
+</div>
+
+<div ng-show="showChangePassword">
+
+    <form name="editPassword" autocomplete="off" novalidate="" ng-submit="submitPasswordForm(editPassword.$valid)">
+        <fieldset>
+            <label for="newPassword">New Password</label>
+            <input type="password" name="newPassword" ng-model="password" id="newPassword" required=""/>
+            <div class="clearfix">
+                <div ng-messages="editPassword.newPassword.$error" ng-if="editPassword.$submitted || editPassword.newPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                    <div ng-message="required" class="message slide-left">You did not enter a field name</div>
+                    <div ng-message="passwordMatch" class="message slide-left">Your passwords did not match.</div>
+                </div>
+            </div>
+            <label for="confirmPassword">Re-Type New Password</label>
+            <input type="password" name="confirmPassword" ng-model="passwordConfirm" match-password="newPassword" id="confirmPassword" required=""/>
+            <div class="clearfix">
+                <div ng-messages="editPassword.confirmPassword.$error" ng-if="editPassword.$submitted || editPassword.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                    <div ng-message="required" class="message slide-left">You did not enter a field name</div>
+                    <div ng-message="passwordMatch" class="message slide-left">Your passwords did not match</div>
+                </div>
+            </div>
+        </fieldset>
+        <button>Submit</button>
+
+        <p ng-show="editedPassword">Your password has been updated. <a href="">Back to Account Information</a></p>
+    </form>
+
 </div>
 
 <div ng-show="showList">

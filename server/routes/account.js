@@ -40,6 +40,33 @@ router.get('/*', function(req, res) {
     });
 });
 
+router.put('/password/*', function(req, res) {
+
+    // hard coding in id for now, until connected with login/register page
+    //var id = req.params[0];
+    var id = 1;
+    var results = [];
+
+    pg.connect(connection, function (err, client, done) {
+        client.query('UPDATE users ' +
+            'SET password = $1 ' +
+            'WHERE user_id = $2;',
+            [req.body.password, id],
+
+            function (err, result) {
+                done();
+
+                if (err) {
+                    console.log("Error inserting data: ", err);
+                    res.send(false);
+                } else {
+                    res.send(results);
+                }
+
+            });
+    });
+});
+
 router.put('/*', function(req, res) {
 
     // hard coding in id for now, until connected with login/register page

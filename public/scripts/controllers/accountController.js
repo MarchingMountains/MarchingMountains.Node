@@ -1,10 +1,13 @@
-myApp.controller('AccountController', ['$scope', '$http', '$window', '$location', '$routeParams', function($scope, $http, $window, $location, $routeParams) {
+myApp.controller('AccountController', ['$scope', '$http', '$window', '$routeParams', function($scope, $http, $window, $routeParams) {
 
     // $scope.userID = $routeParams.id;
     $scope.userID = 1;
     $scope.showForm = true;
     $scope.showList = false;
+    $scope.showChangePassword = false;
+    $scope.editedPassword = false;
     $scope.states = [];
+    $scope.selectedState = '';
 
     // hard coding this for now
     // retrieveUser($scope.userID);
@@ -19,10 +22,8 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', '$location'
                 console.log('failed to get state route');
                 $window.location.href = '/';
             }
-        }, function(response) {
-            //$location.path('/unauthorized');
-        });
-    };
+        })
+    }
 
     function retrieveUser(id) {
         $http.get('/account/' + id).then(function(response) {
@@ -37,11 +38,10 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', '$location'
         });
     }
 
-    $scope.submitForm = function(isValid) {
+    $scope.submitAccountForm = function(isValid) {
         $scope.submitted = true;
         if (isValid) {
 
-            console.log('our form is amazing');
             $scope.edited = false;
             $scope.showForm = true;
             var id = $scope.userID;
@@ -54,7 +54,7 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', '$location'
                 address_line1: $scope.user.address_line1,
                 address_line2: $scope.user.address_line2,
                 city: $scope.user.city,
-                state: $scope.user.state_id,
+                state: $scope.selectedState,
                 zip: $scope.user.zip,
                 phone: $scope.user.phone
             };
@@ -68,39 +68,27 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', '$location'
         }
     };
 
-    //$scope.editAccount = function(id) {
-    //
-    //
-    //    //if($scope.user.email === null) {
-    //    //    console.log('email blank');
-    //    //    alert("please fill out email field");
-    //    //} else {
-    //
-    //        $scope.edited = false;
-    //        $scope.showForm = true;
-    //        var data = {
-    //            email: $scope.user.email,
-    //            password: $scope.user.password,
-    //            first_name: $scope.user.first_name,
-    //            last_name: $scope.user.last_name,
-    //            address_line1: $scope.user.address_line1,
-    //            address_line2: $scope.user.address_line2,
-    //            city: $scope.user.city,
-    //            state: $scope.user.state_id,
-    //            zip: $scope.user.zip,
-    //            phone: $scope.user.phone
-    //        };
-    //
-    //        $http.put('/account/' + id, data).then(function(response){
-    //            $scope.edited = true;
-    //            $scope.showList = true;
-    //            $scope.showForm = false;
-    //            retrieveUser($scope.userID);
-    //        });
-    //
-    //    //}
-    //
-    //};
+    $scope.changePassword = function() {
+        $scope.showChangePassword = true;
+        $scope.showForm = false;
+        $scope.showList = false;
+    };
+
+    $scope.submitPasswordForm = function(isValid) {
+
+        if(isValid) {
+
+            var id = $scope.userID;
+
+            var data = {
+                password: $scope.password
+            };
+
+            $http.put('/account/password/' + id, data).then(function(response){
+                $scope.editedPassword = true;
+            });
+        }
+    };
 
     $scope.accountToForm = function() {
         $scope.edited = false;
