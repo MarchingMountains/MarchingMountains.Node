@@ -27,7 +27,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
     })
     .when('/my-schools', {
       templateUrl: '/views/templates/my-schools.html',
-      controller: 'my-schools-controller'
+      controller: 'MySchoolsController'
     })
     .otherwise({
       redirectTo: '/home'
