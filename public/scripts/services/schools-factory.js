@@ -1,5 +1,6 @@
 myApp.factory('SchoolsFactory', ['$http', function($http) {
     var userID = 1;
+    var factorySchoolsList = undefined;
 
     //var getUserInfo = function() {
     //    var promise = $http.get('/user').then(function(response) {
@@ -20,14 +21,15 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
 
     var factoryGetDirectorSchools = function() {
         var promise = $http.get('/schools/' + userID).then(function(response) {
-            console.log('response: ', response);
+            //console.log('response: ', response);
+            factorySchoolsList = response.data;
         });
         return promise;
     };
 
     var factoryPostDirectorSchools = function(school) {
         var promise = $http.post('/schools/' + userID, school).then(function(response) {
-            console.log('response: ', response);
+            //console.log('response: ', response);
         });
         return promise;
     };
@@ -41,6 +43,9 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
         },
         postDirectorSchool: function(school) {
             return factoryPostDirectorSchools(school);
+        },
+        schoolsList: function() {
+            return factorySchoolsList;
         }
     };
 

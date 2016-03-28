@@ -1,9 +1,13 @@
 myApp.controller('MySchoolsController', ['$scope', '$mdDialog', '$mdMedia', 'SchoolsFactory', function($scope, $mdDialog, $mdMedia, SchoolsFactory, AddSchoolController) {
-	console.log('Hello World');
-	var schools = {};
+	$scope.schools = [];
+
+	var getSchools = function () {
+		SchoolsFactory.getDirectorSchools().then(function() {
+			$scope.schools = SchoolsFactory.schoolsList();
+		});
+	};
 
 	$scope.addSchool = function(ev) {
-		console.log('Schools');
 		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 		$mdDialog.show({
 			templateUrl: '../views/modals/add-school.html',
@@ -15,14 +19,17 @@ myApp.controller('MySchoolsController', ['$scope', '$mdDialog', '$mdMedia', 'Sch
 		});
 	};
 
-	var getSchools = function () {
-		SchoolsFactory.getDirectorSchools().then(function() {
-			console.log('schools received');
-			//$scope.schools = dataFactory.schoolsList();
-		});
-	};
+	//$scope.editSchool = function(ev) {
+	//	var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+	//	$mdDialog.show({
+	//		templateUrl: '../views/modals/add-school.html',
+	//		controller: 'AddSchoolController',
+	//		parent: angular.element(document.body),
+	//		targetEvent: ev,
+	//		clickOutsideToClose: true,
+	//		fullscreen: useFullScreen
+	//	});
+	//};
 
 	getSchools();
-	//$scope.directorSchools = SchoolsFactory.getDirectorSchools(directorID);
-	//});
 }]);

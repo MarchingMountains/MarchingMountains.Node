@@ -42,9 +42,12 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory',
             console.log('school: ', school);
 
             SchoolsFactory.postDirectorSchool(school).then(function() {
-                //$scope.directorSchools = SchoolsFactory.getDirectorSchools();
                 clearForm();
                 $mdDialog.hide();
+                SchoolsFactory.getDirectorSchools().then(function() {
+                    $scope.schools = SchoolsFactory.schoolsList();
+                    console.log($scope.schools);
+                });
             });
         };
     }]);
