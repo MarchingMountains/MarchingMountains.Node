@@ -6,11 +6,11 @@ var bodyParser = require('body-parser');
 var connection = require('./modules/connection');
 //var flash = require("connect-flash");
 
-var schools = require('./server/routes/schools');
-var instruments = require('./server/routes/instruments');
-var index = require('./server/routes/index');
-var user = require('./server/routes/user');
-var register = require('./server/routes/register');
+var schools = require('./routes/schools');
+var instruments = require('./routes/instruments');
+var index = require('./routes/index');
+var user = require('./routes/user');
+var register = require('./routes/register');
 var passport = require('./strategies/user_sql.js');
 var session = require('express-session');
 
