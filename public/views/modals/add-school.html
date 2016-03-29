@@ -1,39 +1,34 @@
-<div class="addSchool" ng-controller="AddSchoolController">
+<div class="addSchool">
     <md-content>
         <form>
             <md-input-container class="md-block">
-                <input type="text" ng-model="name" placeholder="School Name" />
+                <input type="text" ng-model="name" placeholder="School Name" value="name" />
             </md-input-container>
             <md-input-container class="md-block">
-                <input type="text" ng-model="website" placeholder="School Website" />
+                <input type="text" ng-model="website" placeholder="School Website" value="website" />
             </md-input-container>
             <md-input-container class="md-block">
-                <input type="text" ng-model="address_line1" placeholder="Address Line 1" />
+                <input type="text" ng-model="address_line1" placeholder="Address Line 1" value="address_line1" />
             </md-input-container>
             <md-input-container class="md-block">
-                <input type="text" ng-model="address_line2" placeholder="Address Line 2" />
+                <input type="text" ng-model="address_line2" placeholder="Address Line 2" value="address_line2" />
             </md-input-container>
             <md-input-container class="md-block">
-                <input type="text" ng-model="city" placeholder="City" />
+                <input type="text" ng-model="city" placeholder="City" value="city" />
             </md-input-container>
-            <md-input-container class="md-block">
-                <!--<select id="states" ng-model="state" ng-options="item.name for item in states">-->
-                    <!--<option value="">State</option>-->
-                <!--</select>-->
-                <md-autocomplete
-                        md-selected-item="selectedItem"
-                        md-search-text-change="searchTextChange(searchText)"
-                        md-search-text="searchText"
-                        md-selected-item-change="selectedItemChange(item)"
-                        md-items="item in states | filter:searchText"
-                        md-item-text="item.name"
-                        md-min-length="0"
-                        md-floating-label="State">
-                    <md-item-template>
-                        <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.name}}</span>
-                    </md-item-template>
-                </md-autocomplete>
-            </md-input-container>
+            <md-autocomplete
+                    md-selected-item="selectedItem"
+                    md-search-text-change="searchTextChange(searchText)"
+                    md-search-text="searchText"
+                    md-selected-item-change="selectedItemChange(item)"
+                    md-items="item in states | filter:searchText"
+                    md-item-text="item.name"
+                    md-min-length="0"
+                    md-floating-label="State">
+                <md-item-template>
+                    <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.name}}</span>
+                </md-item-template>
+            </md-autocomplete>
             <md-input-container class="md-block">
                 <input type="number" ng-model="zip" placeholder="Zip" />
             </md-input-container>
@@ -42,8 +37,9 @@
             </md-input-container>
             <md-input-container class="md-block">
                 <textarea ng-model="instructions" placeholder="Additional Shipping Instructions"></textarea>
-                <md-button ng-click="saveSchool(selectedItem)">Save School</md-button>
             </md-input-container>
+            <md-button ng-if="currentSchool != true" ng-click="saveSchool(selectedItem)">Save School</md-button>
+            <md-button ng-if="currentSchool == true" ng-click="updateSchool(selectedItem)">Update School</md-button>
         </form>
     </md-content>
 </div>

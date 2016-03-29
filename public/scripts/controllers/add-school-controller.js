@@ -1,29 +1,25 @@
 myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory',
     '$mdDialog', '$mdMedia', function($scope, SchoolsFactory, $mdDialog, $mdMedia) {
         $scope.states = [{name: 'Minnesota', id: 1}, {name: 'Florida', id: 2}];
+        $scope.schools = SchoolsFactory.allSchools;
+        $scope.currentSchool = false;
+        var factoryCurrentSchool = SchoolsFactory.currentSchool.school_name;
+        console.log(factoryCurrentSchool);
 
-        $scope.name = '';
-        $scope.website = '';
-        $scope.address_line1 = '';
-        $scope.address_line2 = '';
-        $scope.city = '';
-        $scope.state_id = '';
-        $scope.zip = '';
-        $scope.phone = '';
-        $scope.instructions = '';
-        $scope.user_id = '';
-
-        var clearForm = function() {
-            $scope.name = '';
-            $scope.website = '';
-            $scope.address_line1 = '';
-            $scope.address_line2 = '';
-            $scope.city = '';
-            $scope.state_id = '';
-            $scope.zip = '';
-            $scope.phone = '';
-            $scope.instructions = '';
-        };
+        if(factoryCurrentSchool != undefined) {
+            $scope.currentSchool = true;
+            $scope.name = SchoolsFactory.currentSchool.school_name;
+            $scope.website = SchoolsFactory.currentSchool.website;
+            $scope.address_line1 = SchoolsFactory.currentSchool.address_line1;
+            $scope.address_line2 = SchoolsFactory.currentSchool.address_line2;
+            $scope.city = SchoolsFactory.currentSchool.city;
+            $scope.state_id = SchoolsFactory.currentSchool.state_id;
+            $scope.zip = SchoolsFactory.currentSchool.zip;
+            $scope.phone = SchoolsFactory.currentSchool.phone;
+            $scope.instructions = SchoolsFactory.currentSchool.instructions;
+        } else if(factoryCurrentSchool == undefined) {
+            $scope.currentSchool = false;
+        }
 
         $scope.saveSchool = function(state) {
 
@@ -39,15 +35,32 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory',
                 instructions: $scope.instructions
             };
 
-            console.log('school: ', school);
-
             SchoolsFactory.postDirectorSchool(school).then(function() {
-                clearForm();
-                $mdDialog.hide();
-                SchoolsFactory.getDirectorSchools().then(function() {
-                    $scope.schools = SchoolsFactory.schoolsList();
-                    console.log($scope.schools);
-                });
+                $scope.schools = SchoolsFactory.schoolsList();
             });
+            $mdDialog.hide();
         };
-    }]);
+
+        $scope.updateSchool = function(state) {
+
+            var school = {
+                school_id: SchoolsFactory.currentSchool.school_id,
+                user_id: SchoolsFactory.currentSchool.user_id,
+                name: $scope.name,
+                website: $scope.website,
+                address_line1: $scope.address_line1,
+                address_line2: $scope.address_line2,
+                city: $scope.city,
+                state_id: state.id,
+                zip: $scope.zip,
+                phone: $scope.phone,
+                instructions: $scope.instructions
+            };
+
+            SchoolsFactory.putDirectorSchool(school).then(function() {
+                $scope.schools = SchoolsFactory.schoolsList();
+            });
+            $mdDialog.hide();
+        };
+    }
+]);
