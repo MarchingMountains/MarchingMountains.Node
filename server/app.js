@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 var connection = require('./modules/connection');
 //var flash = require("connect-flash");
 
+var account = require('./routes/account');
+var states = require('./routes/states');
 var schools = require('./routes/schools');
 var instruments = require('./routes/instruments');
 var donations = require('./routes/donations');
@@ -32,6 +34,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //incoming routes
+app.use('/account', account);
+app.use('/states', states);
 app.use('/schools', schools);
 app.use('/instruments', instruments);
 app.use('/donations', donations);
@@ -48,7 +52,7 @@ app.use(express.static('public/scripts/factories'));
 app.use(express.static('public/styles'));
 app.use(express.static('public/vendors'));
 
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), function() {
   console.log('Listening on port: ', app.get('port'));
 

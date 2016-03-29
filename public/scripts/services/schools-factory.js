@@ -1,5 +1,4 @@
 myApp.factory('SchoolsFactory', ['$http', function($http) {
-<<<<<<< HEAD
     var userID = 5;
     //var factorySchoolsList = [];
     var factorySchoolsList = {};
