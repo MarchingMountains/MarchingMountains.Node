@@ -1,0 +1,23 @@
+.donateModal {
+  margin:2em;
+}
+
+.donateModal h2 {
+  text-align: center;
+  margin: 0 0 1em 0;
+}
+
+.donorNote {
+  width: 25em;
+  margin: 3em 0 0 0;
+}
+
+.modalButtons {
+  text-align: center
+}
+
+.schoolSearch {
+  margin: 2em 0 2em 0;
+  height: 3em;
+  overflow-y: hidden;
+}

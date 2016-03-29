@@ -1,0 +1,17 @@
+<md-content>
+  <div class="donateModal">
+    <h2>{{selectedSchoolInfo.school_name}}</h2>
+
+    <h5>Instructions: {{selectedSchoolInfo.instructions}}</h5>
+
+    <md-input-container class="md-block donorNote">
+      <label>Donor note...</label>
+      <textarea rows="5" name="donorNote" ng-model="donorNote"></textarea>
+    </md-input-container>
+    <div class="modalButtons">
+      <md-button ng-click="donateNow(selectedSchoolInfo, currentUserInfo)">Donate Now</md-button>
+      <md-button ng-click="cancelDonation()">Cancel</md-button>
+    </div>
+  </div>
+
+</md-content>

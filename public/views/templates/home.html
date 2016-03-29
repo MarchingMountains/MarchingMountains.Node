@@ -3,7 +3,30 @@
     <h1>Helping band programs in Appalachia and Minnesota</h1>
   </hrgroup>
   <p class="lead">Marching Mountains' goal is to create a network to supply public school band programs in distressed areas of Appalachia and Minnesota with donated new and used musical instruments.</p>
-  <p><a class="btn btn-lg btn-success" title="Donate a musical instrument" data-ui-sref="app.donate" role="button">Donate a musical instrument</a></p>
+  <!-- <p><a class="btn btn-lg btn-success" title="Donate a musical instrument" data-ui-sref="app.donate" role="button">Donate a musical instrument</a></p> -->
+
+  <h3>What type of instrument would you like to donate?</h3>
+  <div class="autocompletedemoBasicUsage">
+    <md-content class="md-padding">
+      <form ng-submit="$event.preventDefault()">
+        <md-autocomplete
+          md-selected-item="selectedItem"
+          md-search-text-change="searchTextChange(searchText)"
+          md-search-text="searchText"
+          md-selected-item-change="selectedItemChange(item.instrument)"
+          md-items="item in instruments | filter:searchText"
+          md-item-text="item.instrument"
+          md-min-length="0"
+          placeholder="Choose an instrument to donate">
+          <md-item-template>
+            <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.instrument}}</span>
+          </md-item-template>
+        </md-autocomplete>
+        <md-button ng-click="indexSearchSchool(selectedItem.instrument, selectedItem.instrument_id)">Search for schools</md-button>
+      </form>
+    </md-content>
+  </div>
+
 </div>
 <div class="row marketing">
   <div class="col-md-6">
