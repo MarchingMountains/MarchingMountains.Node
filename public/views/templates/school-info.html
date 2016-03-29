@@ -19,21 +19,22 @@
       Number: {{selectedSchoolInfo.phone | tel}}
     </li>
     <li>
-      Website: <a href="selectedSchoolInfo.website">{{selectedSchoolInfo.website}}</a>
+      Website: <a href="{{selectedSchoolInfo.website}}">{{selectedSchoolInfo.website}}</a>
     </li>
   </ul>
   <md-divider></md-divider>
   <h4>Received Donations</h4>
   <!-- Ul shows only if a donation is present. ngRepeat = Placeholder for donations -->
-  <ul ng-show="selectedSchoolInfo.donations" ng-repeat="donation in donations">
+  <!-- <ul ng-show="!selectedSchoolInfo.donation_received" ng-repeat="donation in selectedSchoolInfo.list"> -->
+  <ul>
     <li>
-      <!-- Put donation info here -->
+      <!-- {{selectedSchoolInfo.instrument_id}} - {{selectedSchoolInfo.date}} -->
     </li>
   </ul>
   <!-- Shows only if no donation and hides if donation is there for school -->
-  <p ng-hide="selectedSchoolInfo.donations">
+  <!-- <p ng-hide="selectedSchoolInfo.donation_received">
     No donations at this time
-  </p>
+  </p> -->
   <md-divider></md-divider>
   <md-button ng-click="returnToSearchResults()">Return to search results</md-button>
   <md-button ng-click="donateNowModal($event)">Donate Now</md-button>

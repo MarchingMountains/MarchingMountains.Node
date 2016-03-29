@@ -25,16 +25,16 @@
   </div>
   <div>
     <h4 ng-show="selectedInstrument">Schools in need of a {{selectedInstrument}}</h4>
-    <!-- <h4 ng-show="selectedInstrument && !school.school_name">No schools are in need of a {{selectedInstrument}} at this time</h4> -->
-    <ang-accordion one-at-a-time="true" ng-repeat="school in schoolSearchResults">
+    <h5 ng-show="selectedInstrument && !schoolSearchResults[0].school_id">No schools are in need of a {{selectedInstrument}} at this time</h5>
+    <ang-accordion one-at-a-time="true" ng-repeat="school in schoolSearchResultsc">
       <collapsible-item item-title="{{school.school_name}}">
         <div>
           <ul>
             <li>
-              City: {{school.city}}
+              Location: {{school.city}}, {{school.state}}
             </li>
             <li>
-              Website: {{school.website}}
+              Website: <a href="{{school.website}}">{{school.website}}</a>
             </li>
             <li>
               <md-button ng-click="goToSchoolPage(school)">More Info</md-button>
