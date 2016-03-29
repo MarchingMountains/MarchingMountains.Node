@@ -1,6 +1,7 @@
 myApp.controller('SchoolSearchController', ['$scope', '$http', '$location',
 '$mdDialog', '$mdMedia', 'InstrumentsFactory', 'SchoolsFactory', function($scope,
-  $http, $location, $mdDialog, $mdMedia, InstrumentsFactory, SchoolsFactory, DonateNowController) {
+  $http, $location, $mdDialog, $mdMedia, InstrumentsFactory, SchoolsFactory,
+  DonateNowController) {
 
   console.log("SchoolSearchController is loaded");
 

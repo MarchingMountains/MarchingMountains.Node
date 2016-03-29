@@ -4,6 +4,7 @@
 
 .donateModal {
   margin:2em;
+  max-width: 25em;
 }
 
 .donateModal h2 {
