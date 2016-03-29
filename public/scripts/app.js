@@ -1,37 +1,44 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'angAccordion']);
-
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'angAccordion', 'ngPassword']);
 myApp.config(['$routeProvider', function($routeProvider) {
 
   $routeProvider
     .when('/home', {
       templateUrl: '/views/templates/home.html',
-      controller: 'SchoolSearchController',
+      controller: 'SchoolSearchController'
     })
     .when('/about', {
-      templateUrl: '/views/templates/about.html',
+      templateUrl: '/views/templates/about.html'
     })
     .when('/faq', {
-      templateUrl: '/views/templates/faq.html',
+      templateUrl: '/views/templates/faq.html'
     })
     .when('/donate-instrument', {
-      templateUrl: '/views/templates/donate-instrument.html',
+      templateUrl: '/views/templates/donate-instrument.html'
     })
     .when('/school-search', {
       templateUrl: '/views/templates/school-search.html',
-      controller: 'SchoolSearchController',
+      controller: 'SchoolSearchController'
     })
     .when('/contact', {
-      templateUrl: '/views/templates/contact.html',
+      templateUrl: '/views/templates/contact.html'
     })
     .when('/band-directors', {
-      templateUrl: '/views/templates/band-directors.html',
+      templateUrl: '/views/templates/band-directors.html'
+    })
+    .when('/account', {
+      templateUrl: '/views/templates/account.html',
+      controller: 'AccountController'
+    })
+    .when('/my-schools', {
+      templateUrl: '/views/templates/my-schools.html',
+      controller: 'MySchoolsController'
     })
     .when('/school-info', {
         templateUrl: '/views/templates/school-info.html',
         controller: 'SchoolInfoController'
     })
     .when('/login', {
-      templateUrl: '/views/login.html',
+      templateUrl: '/views/templates/login.html',
       controller: 'LoginController'
     })
     .when('/register', {

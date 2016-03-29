@@ -24,6 +24,7 @@
     "angular-material": "^1.0.6",
     "angular-messages": "^1.5.3",
     "angular-mocks": "^1.5.3",
+    "angular-password": "^1.0.1",
     "angular-route": "^1.5.3",
     "bcrypt": "^0.8.5",
     "body-parser": "^1.15.0",
@@ -42,5 +43,6 @@
     "passport-local": "^1.0.0",
     "pg": "^4.5.1",
     "skeleton-css": "^2.0.4"
-  }
+  },
+  "devDependencies": {}
 }

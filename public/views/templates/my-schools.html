@@ -1,0 +1,16 @@
+<h1>Your Schools</h1>
+<md-button ng-click="addSchool($event)">Add a New School</md-button>
+<ang-accordion one-at-a-time="true">
+    <collapsible-item ng-repeat="school in schools.list" item-title="{{school.school_name}}">
+        <div>
+            <p>{{school.address_line1}}</p>
+            <p>{{school.address_line2}}</p>
+            <p>{{school.city}}, {{school.state_id}} {{school.zip}}</p>
+            <p>{{school.phone}}</p>
+            <p>{{school.website}}</p>
+            <p>{{school.instructions}}</p>
+            <md-button ng-click="editSchool($event, school)">Edit School</md-button>
+        </div>
+    </collapsible-item>
+</ang-accordion>
+<!--<p ng-repeat="school in schools.list">{{school.school_name}}</p>-->
