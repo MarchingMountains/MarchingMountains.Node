@@ -1,0 +1,79 @@
+<h3>Edit Account Information</h3>
+
+<div ng-show="showForm">
+
+    <form name="editAccount" novalidate ng-submit="submitAccountForm(editAccount.$valid)">
+
+        <p><label for="first_name">Name: </label><br />
+            <input type="text" ng-model="user.first_name" id="first_name" /><input type="text" ng-model="user.last_name" id="last_name" />
+        </p>
+
+        <p><label for="email">Email:</label><br />
+            <input type="email" ng-model="user.email" id="email" name="email" required="" /> *required
+
+            <span ng-messages="editAccount.email.$error" ng-if="editAccount.$submitted">
+                <span ng-message="required" class="message">Please enter your email address</span>
+                <span ng-message="email" class="message">You did not enter your email address correctly</span>
+            </span>
+        </p>
+
+        <p><label for="address_line1">Address:</label><br />
+            <input type="text" ng-model="user.address_line1" id="address_line1" /><br />
+            <input type="text" ng-model="user.address_line2" id="address_line2" /><br />
+            <input type="text" ng-model="user.city" id="city" />
+            <select id="state" ng-model="selectedState" ng-options="state.state_id as state.state for state in states"></select>
+            <input type="text" ng-model="user.zip" id="zip" size="5"/>
+        </p>
+
+        <p><label for="phone">Phone:</label><br />
+            <input type="text" ng-model="user.phone" id="phone" />
+        </p>
+
+        <p><button type="submit">Edit Account Information</button> <a href="" ng-click="changePassword()">Change Password</a></p>
+
+    </form>
+</div>
+
+<div ng-show="showChangePassword">
+
+    <form name="editPassword" autocomplete="off" novalidate="" ng-submit="submitPasswordForm(editPassword.$valid)">
+
+        <p>
+            <label for="newPassword">New Password:</label><br />
+            <input type="password" name="newPassword" ng-model="password" id="newPassword" required=""/>
+
+            <span ng-messages="editPassword.newPassword.$error" ng-if="editPassword.$submitted || editPassword.newPassword.$dirty" class="message">
+                <span ng-message="required" class="message"> Please enter your password</span>
+                <span ng-message="passwordMatch" class="message"> Your passwords did not match</span>
+            </span>
+        </p>
+
+        <p>
+            <label for="confirmPassword">Re-Type New Password:</label><br />
+            <input type="password" name="confirmPassword" ng-model="passwordConfirm" match-password="newPassword" id="confirmPassword" required=""/>
+
+            <span ng-messages="editPassword.confirmPassword.$error" ng-if="editPassword.$submitted || editPassword.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                <span ng-message="required" class="message"> You did not enter a field name</span>
+                <span ng-message="passwordMatch" class="message"> Your passwords did not match</span>
+            </span>
+        </p>
+
+        <p><button>Submit</button></p>
+
+        <p ng-show="editedPassword" class="message">Your password has been updated. <a href="" ng-click="accountList()">Back to Account Information</a></p>
+    </form>
+
+</div>
+
+<div ng-show="showList">
+    <p ng-show="edited" class="message">Edited account information!</p>
+    <p>
+        Name: {{user.first_name}} {{user.last_name}}<br />
+        Email: {{user.email}}<br />
+        Address: {{user.address_line1}}<br />
+        <span ng-show="user.address_line2 != null">{{user.address_line2}}<br /></span>
+        {{user.city}}, {{user.state}} {{user.zip}}<br />
+        Phone: {{user.phone}}<br />
+        <a href="" ng-click="accountToForm()">Edit Account</a>
+    </p>
+</div>
