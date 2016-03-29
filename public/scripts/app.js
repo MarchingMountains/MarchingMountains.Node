@@ -1,10 +1,10 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngPassword']);
-
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'angAccordion', 'ngPassword']);
 myApp.config(['$routeProvider', function($routeProvider) {
 
   $routeProvider
     .when('/home', {
-      templateUrl: '/views/templates/home.html'
+      templateUrl: '/views/templates/home.html',
+      controller: 'SchoolSearchController'
     })
     .when('/about', {
       templateUrl: '/views/templates/about.html'
@@ -16,7 +16,8 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/templates/donate-instrument.html'
     })
     .when('/school-search', {
-      templateUrl: '/views/templates/school-search.html'
+      templateUrl: '/views/templates/school-search.html',
+      controller: 'SchoolSearchController'
     })
     .when('/contact', {
       templateUrl: '/views/templates/contact.html'
@@ -28,7 +29,23 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/templates/account.html',
       controller: 'AccountController'
     })
+    .when('/my-schools', {
+      templateUrl: '/views/templates/my-schools.html',
+      controller: 'MySchoolsController'
+    })
+    .when('/school-info', {
+        templateUrl: '/views/templates/school-info.html',
+        controller: 'SchoolInfoController'
+    })
+    .when('/login', {
+      templateUrl: '/views/login.html',
+      controller: 'LoginController'
+    })
+    .when('/register', {
+      templateUrl: '/views/templates/register.html',
+    })
     .otherwise({
       redirectTo: '/home'
     });
+
 }]);

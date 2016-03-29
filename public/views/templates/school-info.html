@@ -1,0 +1,32 @@
+<div class="content-wrapper">
+  <h2>{{selectedSchoolInfo.school_name}}</h2>
+  <ul>
+    <li>
+      Address:
+    </li>
+    <li>
+      Number:
+    </li>
+    <li>
+      Website:
+    </li>
+    <li>
+      Instructions:
+    </li>
+  </ul>
+  <md-divider></md-divider>
+  <h4>Received Donations</h4>
+  <!-- Ul shows only if a donation is present. ngRepeat = Placeholder for donations -->
+  <ul ng-show="selectedSchoolInfo.donations" ng-repeat="donation in donations">
+    <li>
+      <!-- Put donation info here -->
+    </li>
+  </ul>
+  <!-- Shows only if no donation and hides if donation is there for school -->
+  <p ng-hide="selectedSchoolInfo.donations">
+    No donations at this time
+  </p>
+  <md-divider></md-divider>
+  <md-button ng-click="returnToSearchResults()">Return to search results</md-button>
+  <md-button ng-click="donateNowModal($event)">Donate Now</md-button>
+</div>
