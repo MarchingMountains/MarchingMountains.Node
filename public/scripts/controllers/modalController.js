@@ -9,11 +9,8 @@ myApp.controller('ModalController', ['$scope','$location',
                 templateUrl: '../views/templates/login.html',
                 controller: 'LoginController',
                 controllerAs: 'lc',
-                parent: angular.element(document.body),
                 targetEvent: ev,
-                clickOutsideToClose: true,
-                fullscreen: useFullScreen
-
+                clickOutsideToClose: true
                 });
             }
 
