@@ -3,15 +3,23 @@
   <ul>
     <li>
       Address:
+      <ul>
+        <li>
+          {{selectedSchoolInfo.address_line1}}
+        </li>
+        <li ng-show="selectedSchoolInfo.address_line2">
+          {{selectedSchoolInfo.address_line2}}
+        </li>
+        <li>
+          {{selectedSchoolInfo.city}}, {{selectedSchoolInfo.state_id}} {{selectedSchoolInfo.zip}}
+        </li>
+      </ul>
     </li>
     <li>
-      Number:
+      Number: {{selectedSchoolInfo.phone | tel}}
     </li>
     <li>
-      Website:
-    </li>
-    <li>
-      Instructions:
+      Website: <a href="selectedSchoolInfo.website">{{selectedSchoolInfo.website}}</a>
     </li>
   </ul>
   <md-divider></md-divider>

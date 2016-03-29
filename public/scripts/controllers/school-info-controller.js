@@ -1,6 +1,6 @@
 myApp.controller('SchoolInfoController', ['$scope', '$http', '$location', '$mdDialog',
   '$mdMedia', 'SchoolsFactory', function($scope, $http, $location, $mdDialog, $mdMedia,
-    SchoolsFactory, DonateNowController) {
+    SchoolsFactory, DonateNowController, tel) {
 
     console.log('SchoolInfoController loaded');
 
