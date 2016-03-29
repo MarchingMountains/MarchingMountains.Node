@@ -1,7 +1,7 @@
 myApp.controller('SchoolSearchController', ['$scope', '$http', '$location',
 '$mdDialog', '$mdMedia', 'InstrumentsFactory', 'SchoolsFactory', function($scope,
   $http, $location, $mdDialog, $mdMedia, InstrumentsFactory, SchoolsFactory,
-  DonateNowController, unique) {
+  DonateNowController) {
 
   console.log("SchoolSearchController is loaded");
 
@@ -27,7 +27,6 @@ myApp.controller('SchoolSearchController', ['$scope', '$http', '$location',
     $scope.SchoolsFactory.factoryGetSchoolsList(selectedInstrumentName, selectedInstrumentId).then(function() {
       $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrumentName.list;
       $scope.schoolSearchResults = $scope.SchoolsFactory.schoolSearchResults.list;
-      console.log($scope.schoolSearchResults);
     });
   };
 

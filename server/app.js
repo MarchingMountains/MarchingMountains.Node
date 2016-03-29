@@ -8,6 +8,7 @@ var connection = require('./modules/connection');
 
 var schools = require('./routes/schools');
 var instruments = require('./routes/instruments');
+var donations = require('./routes/donations');
 var index = require('./routes/index');
 var user = require('./routes/user');
 var register = require('./routes/register');
@@ -33,6 +34,7 @@ app.use(passport.session());
 //incoming routes
 app.use('/schools', schools);
 app.use('/instruments', instruments);
+app.use('/donations', donations);
 app.use('/register', register);
 app.use('/user', user);
 app.use('/', index);

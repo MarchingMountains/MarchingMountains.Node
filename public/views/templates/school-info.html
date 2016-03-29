@@ -11,7 +11,7 @@
           {{selectedSchoolInfo.address_line2}}
         </li>
         <li>
-          {{selectedSchoolInfo.city}}, {{selectedSchoolInfo.state_id}} {{selectedSchoolInfo.zip}}
+          {{selectedSchoolInfo.city}}, {{selectedSchoolInfo.state_name}} {{selectedSchoolInfo.zip}}
         </li>
       </ul>
     </li>
@@ -19,22 +19,20 @@
       Number: {{selectedSchoolInfo.phone | tel}}
     </li>
     <li>
-      Website: <a href="{{selectedSchoolInfo.website}}">{{selectedSchoolInfo.website}}</a>
+      Website: <a href="{{selectedSchoolInfo.website}}" target="_blank">{{selectedSchoolInfo.website}}</a>
     </li>
   </ul>
   <md-divider></md-divider>
   <h4>Received Donations</h4>
-  <!-- Ul shows only if a donation is present. ngRepeat = Placeholder for donations -->
-  <!-- <ul ng-show="!selectedSchoolInfo.donation_received" ng-repeat="donation in selectedSchoolInfo.list"> -->
-  <ul>
-    <li>
-      <!-- {{selectedSchoolInfo.instrument_id}} - {{selectedSchoolInfo.date}} -->
+  <ul ng-repeat="donation in selectedSchoolDonations">
+    <li ng-show="donation.donation_received">
+      {{donation.instrument}} - {{donation.date | date:'M/d/yyyy'}}
     </li>
   </ul>
   <!-- Shows only if no donation and hides if donation is there for school -->
-  <!-- <p ng-hide="selectedSchoolInfo.donation_received">
-    No donations at this time
-  </p> -->
+  <p ng-show="!selectedSchoolDonations[0]">
+    This school has not donations at this time.
+  </p>
   <md-divider></md-divider>
   <md-button ng-click="returnToSearchResults()">Return to search results</md-button>
   <md-button ng-click="donateNowModal($event)">Donate Now</md-button>

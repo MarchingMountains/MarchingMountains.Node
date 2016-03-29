@@ -1,13 +1,15 @@
 myApp.controller('SchoolInfoController', ['$scope', '$http', '$location', '$mdDialog',
-  '$mdMedia', 'SchoolsFactory', function($scope, $http, $location, $mdDialog, $mdMedia,
-    SchoolsFactory, DonateNowController, tel) {
+  '$mdMedia', 'SchoolsFactory', 'DonationsFactory', function($scope, $http, $location,
+    $mdDialog, $mdMedia, SchoolsFactory, DonationsFactory, DonateNowController, tel) {
 
-    console.log('SchoolInfoController loaded');
-
-  // $scope.InstrumentsFactory = InstrumentsFactory;
   $scope.SchoolsFactory = SchoolsFactory;
+  $scope.DonationsFactory = DonationsFactory;
 
   $scope.selectedSchoolInfo = $scope.SchoolsFactory.selectedSchoolInfo.list;
+
+  $scope.DonationsFactory.factoryGetSelectedSchoolDonations($scope.selectedSchoolInfo.school_id).then(function() {
+    $scope.selectedSchoolDonations = $scope.DonationsFactory.selectedSchoolDonations.list;
+  });
 
   $scope.returnToSearchResults = function() {
     $location.url('/school-search');
@@ -26,5 +28,4 @@ myApp.controller('SchoolInfoController', ['$scope', '$http', '$location', '$mdDi
       fullscreen: useFullScreen,
     });
   };
-
 }]);
