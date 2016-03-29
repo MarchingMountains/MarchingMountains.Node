@@ -4,15 +4,16 @@ myApp.factory('InstrumentsFactory', ['$http', function($http) {
 
   var getInstrumentsList = function() {
     var promise = $http.get('/instruments').then(function(response) {
-      console.log('response: ', response);
-      // instruments.list = response.data;
+      instruments.list = response.data;
     });
+    return promise;
   };
 
   var publicFunctions = {
     factoryGetInstrumentsList: function() {
       return getInstrumentsList();
-    }
+    },
+    instruments: instruments
   };
 
   return publicFunctions;

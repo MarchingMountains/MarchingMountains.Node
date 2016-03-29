@@ -2,23 +2,22 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
     var userID = 5;
     //var factorySchoolsList = [];
     var factorySchoolsList = {};
+    var schoolSearchResults = {};
+    var selectedInstrumentName = {};
+    var selectedSchoolInfo = {};
 
-    //var getUserInfo = function() {
-    //    var promise = $http.get('/user').then(function(response) {
-            //if(response.data) {
-            //    userInfo = {
-            //        userName: response.data.username,
-            //        userParks: response.data.parks
-            //    };
-            //    publicApi.userID = response.data._id;
-            //    publicApi.loggedIn = true;
-            //
-            //} else {
-            //    $window.location.href = '/#/login';
-            //}
-    //    });
-    //    return promise;
-    //};
+    var getSchoolList = function(name, id) {
+        var promise = $http.get('/schools/instruments/' + id).then(function(response) {
+            schoolSearchResults.list = response.data;
+            selectedInstrumentName.list = name;
+        });
+        return promise;
+    };
+
+    var setSelectedSchoolInfo = function(school) {
+        selectedSchoolInfo.list = school;
+        console.log('selectedSchoolInfo in factory: ', selectedSchoolInfo);
+    };
 
     var factoryGetDirectorSchools = function() {
         var promise = $http.get('/schools/' + userID).then(function(response) {
@@ -48,9 +47,6 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
     };
 
     var publicFunctions = {
-        //getUser: function() {
-        //    return getUserInfo();
-        //},
         getDirectorSchools: function() {
             return factoryGetDirectorSchools();
         },
@@ -63,11 +59,19 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
         schoolsList: function() {
             return factorySchoolsList.list;
         },
+        factoryGetSchoolsList: function(name, id) {
+            return getSchoolList(name, id);
+        },
+        factorySetSelectedSchoolInfo: function(school) {
+            return setSelectedSchoolInfo(school);
+        },
+        schoolSearchResults: schoolSearchResults,
+        selectedInstrumentName: selectedInstrumentName,
+        selectedSchoolInfo: selectedSchoolInfo,
         allSchools: factorySchoolsList,
         currentSchool: {}
         //schoolsList: factorySchoolsList
     };
 
     return publicFunctions;
-
 }]);
