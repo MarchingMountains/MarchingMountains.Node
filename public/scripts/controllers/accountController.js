@@ -29,6 +29,7 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', '$routePara
         $http.get('/account/' + id).then(function(response) {
             if (response.data) {
                 $scope.user = response.data[0];
+                $scope.selectedState = response.data[0].state_id;
             } else {
                 console.log('failed to get account route');
                 $window.location.href = '/';
@@ -72,6 +73,12 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', '$routePara
         $scope.showChangePassword = true;
         $scope.showForm = false;
         $scope.showList = false;
+    };
+
+    $scope.accountList = function() {
+        $scope.showChangePassword = false;
+        $scope.showForm = false;
+        $scope.showList = true;
     };
 
     $scope.submitPasswordForm = function(isValid) {
