@@ -1,10 +1,16 @@
-myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory',
-    '$mdDialog', '$mdMedia', function($scope, SchoolsFactory, $mdDialog, $mdMedia) {
+myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'InstrumentsFactory',
+    '$mdDialog', '$mdMedia', function($scope, SchoolsFactory, InstrumentsFactory, $mdDialog, $mdMedia) {
         $scope.states = [{name: 'Minnesota', id: 1}, {name: 'Florida', id: 2}];
         $scope.schools = SchoolsFactory.allSchools;
         $scope.currentSchool = false;
+        console.log()
         var factoryCurrentSchool = SchoolsFactory.currentSchool.school_name;
         console.log(factoryCurrentSchool);
+        $scope.instrumentsList = [];
+
+        InstrumentsFactory.factoryGetInstrumentsList().then(function() {
+            $scope.instruments = InstrumentsFactory.instruments.list;
+        });
 
         if(factoryCurrentSchool != undefined) {
             $scope.currentSchool = true;
