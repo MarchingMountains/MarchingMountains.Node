@@ -1,67 +1,44 @@
-<!--<md-dialog>-->
-    <!--<div class="form-container">-->
-        <!--<h2>Login</h2>-->
-        <!--<form>-->
-            <!--<md-input-container>-->
-                <!--<div class="form-group">-->
-                    <!--<label for="email">Email</label>-->
-                    <!--<input type="email" ng-model="username" name="username" id="email" class="form-control" required/>-->
-                <!--</div>-->
-            <!--</md-input-container>-->
-            <!--<md-input-container>-->
-                <!--<div class="form-group">-->
-                    <!--<label for="password">Password</label>-->
-                    <!--<input type="password" ng-model="password" name="password" id="password" class="form-control" required/>-->
-                <!--</div>-->
-            <!--</md-input-container>-->
-            <!--<div class="form-group">-->
-                <!--<md-button type="submit" ng-click="login()" class="btn btn-primary">Login</md-button>-->
-                <!--<a href="#register" class="btn btn-link">Register</a>-->
-            <!--</div>-->
-        <!--</form>-->
-        <!--{{loggedInUser}}-->
-    <!--</div>-->
-<!--</md-dialog>-->
-
-
-<md-dialog>
+<md-dialog class="md-padding" layout="column">
     <md-dialog-content>
         <div ng-if="lc.show_form == 'login'">
             <form name="loginForm" ng-submit="loginForm.$valid && lc.login()" novalidate>
                 <md-input-container>
                     <label>Email</label>
-                    <input type="email" name="username" required ng-model="project.email">
+                    <input type="email" name="username" required ng-model="username">
 
                     <div ng-messages="loginForm.email.$error" ng-if="loginForm.email.$dirty">
                         <div ng-message="required">This is required.</div>
                     </div>
+                    {{username}}
                 </md-input-container>
                 <md-input-container>
                     <label>Password</label>
-                    <input type="password" name="password" required ng-model="project.password">
+                    <input type="password" name="password" required ng-model="password">
 
                     <div ng-messages="loginForm.password.$error" ng-if="loginForm.password.$dirty">
                         <div ng-message="required">This is required.</div>
                     </div>
+                    {{password}}
                 </md-input-container>
 
-                <md-button ng-click="login()" class="md-raised md-primary">Login</md-button>
+                <md-button ng-click="lc.login()" class="md-raised md-primary">Login</md-button>
                 <md-button ng-click="lc.showRegister()">Register</md-button>
             </form>
         </div>
         <div ng-if="lc.show_form == 'register'">
-            <form name="registerForm" ng-submit="registerForm.$valid && lc.register()" novalidate>
+            <form name="registerForm" ng-submit="$event.preventDefault()" novalidate>
                 <md-input-container>
                     <label>Email</label>
-                    <input type="email" name="username" required ng-model="project.email">
+                    <input type="email" name="username" required ng-model="username">
 
                     <div ng-messages="loginForm.email.$error" ng-if="loginForm.email.$dirty">
                         <div ng-message="required">This is required.</div>
                     </div>
+                    {{username}}
                 </md-input-container>
                 <md-input-container>
                     <label>Password</label>
-                    <input type="password" name="password" required ng-model="project.password">
+                    <input type="password" name="password" required ng-model="password">
 
                     <div ng-messages="loginForm.password.$error" ng-if="loginForm.password.$dirty">
                         <div ng-message="required">This is required.</div>
@@ -69,7 +46,7 @@
                 </md-input-container>
                 <md-input-container>
                     <label>Password Confirm</label>
-                    <input type="password_confirm" name="password_confirm" required ng-model="project.password_confirm">
+                    <input type="password_confirm" name="password_confirm" required ng-model="password_confirm">
 
                     <div ng-messages="loginForm.password_confirm.$error" ng-if="loginForm.password_confirm.$dirty">
                         <div ng-message="required">This is required.</div>
