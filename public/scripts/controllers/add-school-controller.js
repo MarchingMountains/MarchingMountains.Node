@@ -1,9 +1,8 @@
 myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'InstrumentsFactory',
     '$mdDialog', '$mdMedia', function($scope, SchoolsFactory, InstrumentsFactory, $mdDialog, $mdMedia) {
-        $scope.states = [{name: 'Minnesota', id: 1}, {name: 'Florida', id: 2}];
+        $scope.states = InstrumentsFactory.statesList.list;
         $scope.schools = SchoolsFactory.allSchools;
         $scope.currentSchool = false;
-        console.log()
         var factoryCurrentSchool = SchoolsFactory.currentSchool.school_name;
         console.log(factoryCurrentSchool);
 

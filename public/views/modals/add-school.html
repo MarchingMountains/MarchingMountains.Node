@@ -1,4 +1,4 @@
-<div class="addSchool">
+<div class="addSchool donateModal">
     <md-content>
         <form>
             <md-input-container class="md-block">
@@ -22,11 +22,11 @@
                     md-search-text="searchText"
                     md-selected-item-change="selectedItemChange(item)"
                     md-items="item in states | filter:searchText"
-                    md-item-text="item.name"
+                    md-item-text="item.state"
                     md-min-length="0"
                     md-floating-label="State">
                 <md-item-template>
-                    <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.name}}</span>
+                    <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.state}}</span>
                 </md-item-template>
             </md-autocomplete>
             <md-input-container class="md-block">
@@ -48,6 +48,7 @@
                                      md-items="item in ctrl.querySearch(ctrl.searchText)"
                                      md-item-text="item.instrument"
                                      placeholder="Instruments">
+                        <!--placeholder and md-floating label are both buggy solutions, find something else-->
                         <span md-highlight-text="ctrl.searchText">{{item.instrument}}</span>
                     </md-autocomplete>
                     <md-chip-template>
