@@ -1,7 +1,6 @@
 myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserService', function($scope, $http, $window, UserService) {
 
     //$scope.userID = $routeParams.id;
-    //$scope.userID = 1;
     $scope.UserService = UserService;
     $scope.showForm = true;
     $scope.showList = false;
