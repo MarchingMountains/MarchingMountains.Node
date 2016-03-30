@@ -16,10 +16,11 @@ var user = require('./routes/user');
 var register = require('./routes/register');
 var passport = require('./strategies/user_sql.js');
 var session = require('express-session');
+var account = require('./routes/account');
+var states = require('./routes/states');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
 
 app.use(session({
   secret: 'secret',
@@ -28,7 +29,6 @@ app.use(session({
   saveUninitialized: false,
   cookie: {maxage: 60000, secure: false}
 }));
-
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -41,6 +41,8 @@ app.use('/instruments', instruments);
 app.use('/donations', donations);
 app.use('/register', register);
 app.use('/user', user);
+app.use('/account', account);
+app.use('/states', states);
 app.use('/', index);
 
 app.use(express.static('public'));
