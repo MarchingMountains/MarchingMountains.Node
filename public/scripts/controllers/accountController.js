@@ -1,17 +1,20 @@
-myApp.controller('AccountController', ['$scope', '$http', '$window', '$routeParams', function($scope, $http, $window, $routeParams) {
+myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserService', function($scope, $http, $window, UserService) {
 
-    // $scope.userID = $routeParams.id;
-    $scope.userID = 1;
+    //$scope.userID = $routeParams.id;
+    //$scope.userID = 1;
+    $scope.UserService = UserService;
     $scope.showForm = true;
     $scope.showList = false;
     $scope.showChangePassword = false;
     $scope.editedPassword = false;
     $scope.states = [];
     $scope.selectedState = '';
+    $scope.loggedInUser = $scope.UserService.askForCurrentUser();
 
-    // hard coding this for now
-    // retrieveUser($scope.userID);
-    retrieveUser(1);
+    var id = $scope.loggedInUser.factoryUserId;
+    //var id = 1;
+
+    retrieveUser(id);
     getStates();
 
     function getStates() {
@@ -26,6 +29,7 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', '$routePara
     }
 
     function retrieveUser(id) {
+        console.log('id: ', id);
         $http.get('/account/' + id).then(function(response) {
             if (response.data) {
                 $scope.user = response.data[0];
@@ -41,11 +45,12 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', '$routePara
 
     $scope.submitAccountForm = function(isValid) {
         $scope.submitted = true;
+        console.log('selectedState: ', $scope.selectedState);
         if (isValid) {
 
             $scope.edited = false;
             $scope.showForm = true;
-            var id = $scope.userID;
+            //var id = $scope.loggedInUser.factoryUserId;
 
             var data = {
                 email: $scope.user.email,
@@ -64,7 +69,7 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', '$routePara
                 $scope.edited = true;
                 $scope.showList = true;
                 $scope.showForm = false;
-                retrieveUser($scope.userID);
+                retrieveUser(id);
             });
         }
     };
@@ -84,8 +89,6 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', '$routePara
     $scope.submitPasswordForm = function(isValid) {
 
         if(isValid) {
-
-            var id = $scope.userID;
 
             var data = {
                 password: $scope.password

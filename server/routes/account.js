@@ -11,20 +11,19 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 router.get('/*', function(req, res) {
 
-    // hard coding in id for now, until connected with login/register page
-    //var id = req.params[0];
-    var id = 1;
+    var id = req.params[0];
     var results = [];
 
     pg.connect(connection, function(err, client, done) {
         var query = client.query('SELECT * FROM users ' +
-            'JOIN states ON users.state_id = states.state_id ' +
+            'LEFT OUTER JOIN states ON users.state_id = states.state_id ' +
             'WHERE user_id = $1;',
             [id]);
 
         //Stream results back one row at a time
         query.on('row', function(row) {
             results.push(row);
+            console.log('results from account route: ', results);
         });
 
         //close connection
@@ -73,6 +72,7 @@ router.put('/*', function(req, res) {
     //var id = req.params[0];
     var id = 1;
     var results = [];
+    console.log('stateid:', req.body.state);
 
     pg.connect(connection, function (err, client, done) {
         client.query('UPDATE users ' +
