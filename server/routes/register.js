@@ -16,6 +16,7 @@ router.get('/', function(req, res, next) {
 
 // Handles POST request with new user data
 router.post('/', function(req, res, next) {
+    console.log(req.body.username);
 
     var saveUser = {
         email: req.body.username,
@@ -33,7 +34,7 @@ router.post('/', function(req, res, next) {
                     console.log("Error inserting data: ", err);
                     next(err);
                 } else {
-                    res.redirect('/');
+                    res.json(result);
                 }
             });
     });
