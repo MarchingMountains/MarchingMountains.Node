@@ -21,7 +21,8 @@ myApp.factory('UserService', ['$http', '$rootScope', function($http, $rootScope)
                 CurrentUser = new User (true, response.data.email, response.data.first_name, response.data.user_id);
                 console.log(CurrentUser);
             });
-        }
+        return promise;
+    }
 
     function register(user) {
         console.log(user);
@@ -30,17 +31,21 @@ myApp.factory('UserService', ['$http', '$rootScope', function($http, $rootScope)
                 CurrentUser = new User (true, response.data.email, response.data.first_name, response.data.user_id);
                 console.log(CurrentUser);
             });
+        return promise
     }
 
+    var publicFunctions = {
+        //askForCurrentUser: returnCurrentUser,
+        postLogin: function (user) {
+            return login(user);
+        },
+        postRegister: function(user) {
+            return register(user);
+        }
+        //CurrentUser: function(data) {
+        //    $rootScope.$broadcast(CurrentUser);
+        //}
+    };
 
-    return {
-        askForCurrentUser: returnCurrentUser,
-        postLogin: login,
-        postRegister: register,
-        CurrentUser: function(data) {
-                $rootScope.$broadcast(CurrentUser);
-            }
-    }
-
-
+    return publicFunctions;
 }]);

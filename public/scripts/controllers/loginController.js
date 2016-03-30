@@ -1,10 +1,7 @@
-myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', function($scope, $mdDialog, UserService) {
+myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', function($scope, UserService, $mdDialog) {
 
     console.log('inside login controller');
-    $scope.UserService = UserService;
-    $scope.username = '';
-    $scope.password = '';
-    $scope.loggedInUser = '';
+    //$scope.loggedInUser = '';
 
 
     $scope.login = function() {
@@ -13,9 +10,9 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', funct
             username: $scope.username,
             password: $scope.password
         };
-        $scope.UserService.postLogin(user);
-        $scope.username = '';
-        $scope.password = '';
+        UserService.postLogin(user).then(function(){
+            $mdDialog.hide();
+        });
 
     };
 
@@ -25,53 +22,26 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', funct
             username: $scope.username,
             password: $scope.password
         };
-        $scope.UserService.postRegister(newUser);
+        UserService.postRegister(newUser).then(function(){
+            $mdDialog.hide();
+        });
     };
 
-    $scope.$watch($scope.UserService.askForCurrentUser, function(newValue, oldValue){
-        $scope.loggedInUser = $scope.UserService.askForCurrentUser();
+    //$scope.$watch($scope.UserService.askForCurrentUser, function(newValue, oldValue){
+    //    $scope.loggedInUser = $scope.UserService.askForCurrentUser();
+    //
+    //});
 
-    });
 
-    var self = this;
-    self.show_form = 'login';
+    $scope.show_form = 'login';
 
-    self.showRegister = function() {
-        self.show_form = 'register';
+    $scope.showRegister = function() {
+        $scope.show_form = 'register';
         console.log('show register');
     };
 
-    self.showLogin = function() {
-        self.show_form = 'login';
+    $scope.showLogin = function() {
+        $scope.show_form = 'login';
         console.log('show login');
     };
-
-
 }]);
-
-//angular.module('dialogDemo', ['ngMaterial'])
-//    .controller('AppCtrl', function($mdDialog, $log) {
-//        var self = this;
-//
-//        self.login = function ($event) {
-//            $mdDialog.show({
-//                controller: 'dialogCtrl',
-//                controllerAs: 'lc',
-//                templateUrl: 'loginDialog.tmpl.html'
-//            });
-//        };
-//    })
-//    .controller('dialogCtrl', function($scope, $log) {
-//        var self = this;
-//        self.show_form = 'login';
-//
-//        self.showRegister = function() {
-//            self.show_form = 'register';
-//            console.log('show register');
-//        };
-//
-//        self.showLogin = function() {
-//            self.show_form = 'login';
-//            console.log('show login');
-//        };
-//    });
