@@ -33,6 +33,7 @@
       <script type="text/javascript" src="/scripts/services/userService.js"></script>
       <script type="text/javascript" src="/scripts/services/instruments-factory.js"></script>
       <script type="text/javascript" src="/scripts/services/schools-factory.js"></script>
+      <script type="text/javascript" src="/scripts/services/donations-factory.js"></script>
       <script type="text/javascript" src="/scripts/controllers/school-search-controller.js"></script>
       <script type="text/javascript" src="/scripts/controllers/my-schools-controller.js"></script>
       <script type="text/javascript" src="/scripts/controllers/add-school-controller.js"></script>
@@ -42,6 +43,9 @@
       <script type="text/javascript" src="/scripts/controllers/loginController.js"></script>
       <script type="text/javascript" src="/scripts/controllers/userController.js"></script>
       <script type="text/javascript" src="/scripts/controllers/chip-controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/phone-number-filter.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/school-donation-filter.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/modalController.js"></script>
 
       <link rel="stylesheet" type="text/css" href="/vendors/bootstrap.min.css"/>
       <link rel="stylesheet" type="text/css" href="/vendors/ang-accordion.css"/>
@@ -56,6 +60,6 @@
 
     <main ng-view class="container"></main>
 
-    <footer class="footer" ng-include="'/templates/footer.html'"></footer>
+    <footer class="container-fluid row footer" ng-include="'/templates/footer.html'"></footer>
   </body>
 </html>

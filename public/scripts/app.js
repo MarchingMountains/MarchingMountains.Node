@@ -38,7 +38,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
         controller: 'SchoolInfoController'
     })
     .when('/login', {
-      templateUrl: '/views/login.html',
+      templateUrl: '/views/templates/login.html',
       controller: 'LoginController'
     })
     .when('/register', {

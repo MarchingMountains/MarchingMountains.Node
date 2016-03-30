@@ -9,7 +9,8 @@ var connection = require('../../modules/connection');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-router.get('/*', function(req, res) {
+router.get('/', function(req, res) {
+
 
     var results = [];
 
