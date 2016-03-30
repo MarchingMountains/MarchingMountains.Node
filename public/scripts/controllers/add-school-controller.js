@@ -6,11 +6,6 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'Instrument
         console.log()
         var factoryCurrentSchool = SchoolsFactory.currentSchool.school_name;
         console.log(factoryCurrentSchool);
-        $scope.instrumentsList = [];
-
-        InstrumentsFactory.factoryGetInstrumentsList().then(function() {
-            $scope.instruments = InstrumentsFactory.instruments.list;
-        });
 
         if(factoryCurrentSchool != undefined) {
             $scope.currentSchool = true;

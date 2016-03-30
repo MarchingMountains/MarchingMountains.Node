@@ -11,6 +11,8 @@ var instruments = require('./routes/instruments');
 var index = require('./routes/index');
 var user = require('./routes/user');
 var register = require('./routes/register');
+var account = require('./routes/account');
+var states = require('./routes/states');
 var passport = require('./strategies/user_sql.js');
 var session = require('express-session');
 
@@ -31,6 +33,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //incoming routes
+app.use('/account', account);
+app.use('/states', states);
 app.use('/schools', schools);
 app.use('/instruments', instruments);
 app.use('/register', register);
