@@ -18,7 +18,16 @@
                     </md-input-container>
                     <md-input-container>
                     <label>Password</label>
-                    <input type="password" name="password" required ng-model="password"/>
+                    <input type="password" name="password" required ng-model="password"
+                           minlength="4" maxlength="50" />
+                        <div ng-messages="loginForm.$error" role="alert">
+                            <div ng-message="required">
+                                Your password must be between 4 and 50 characters long.
+                            </div>
+                            <div ng-message-exp="['minlength', 'maxlength']">
+                                Your password must be between 4 and 50 characters long.
+                            </div>
+                        </div>
                     {{password}}
                     </md-input-container>
                     <md-input-container>
