@@ -14,6 +14,6 @@ myApp.controller('ModalController', ['$scope', '$mdDialog', '$mdMedia', 'UserSer
                 targetEvent: ev,
                 clickOutsideToClose: true,
                 fullscreen: useFullScreen
-                });
-            }
+            });
+        }
     }]);

@@ -1,4 +1,4 @@
-myApp.factory('UserService', ['$http', '$rootScope', function($http, $rootScope) {
+myApp.factory('UserService', ['$http', function($http) {
 
     function User(isLogged, factoryUserName, factoryFirstName, factoryUserId) {
         this.isLogged = isLogged;
@@ -27,25 +27,26 @@ myApp.factory('UserService', ['$http', '$rootScope', function($http, $rootScope)
     function register(user) {
         console.log(user);
             var promise = $http.post('/register', user).then(function (response) {
-                console.log(response);
+                console.log(response.data);
                 CurrentUser = new User (true, response.data.email, response.data.first_name, response.data.user_id);
                 console.log(CurrentUser);
             });
-        return promise
+        return promise;
     }
 
     var publicFunctions = {
-        //askForCurrentUser: returnCurrentUser,
+        askForCurrentUser: function() {
+            return CurrentUser;
+        },
         postLogin: function (user) {
             return login(user);
         },
         postRegister: function(user) {
             return register(user);
         }
-        //CurrentUser: function(data) {
-        //    $rootScope.$broadcast(CurrentUser);
-        //}
     };
 
     return publicFunctions;
+
+
 }]);
