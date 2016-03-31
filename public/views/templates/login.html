@@ -1,23 +1,32 @@
 <md-dialog class="md-padding" layout="column">
-    <md-dialog-content>
-    <!--<div ng-show="show_for == 'login'">-->
-        <form name="loginForm">
-            <md-input-container>
-                <label>Email</label>
-                <input type="email" name="username" required ng-model="username"/>
-                {{username}}
-            </md-input-container>
-            <md-input-container>
-                <label>Password</label>
-                <input type="password" name="password" required ng-model="password"/>
-                {{password}}
-            </md-input-container>
-                <md-button ng-click="login()" class="md-raised md-primary">Login</md-button>
-                <!--<md-button ng-click="showRegister()">Register</md-button>-->
-        </form>
+        <div layout="column" ng-cloak class="md-inline-form">
+            <md-dialog-content>
+                <form name="loginForm" novalidate ng-submit="login(loginForm.$valid)">
+                    <md-input-container>
+                    <label>Email</label>
+                    <input type="email" name="username" required ng-model="username"
+                           minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                        <div ng-messages="loginForm.$error" role="alert">
+                            <div ng-message="required">
+                                Your email must be between 10 and 100 characters long and look like an e-mail address.
+                            </div>
+                            <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
+                                Your email must be between 10 and 100 characters long and look like an e-mail address.
+                            </div>
+                        </div>
+                            {{username}}
+                    </md-input-container>
+                    <md-input-container>
+                    <label>Password</label>
+                    <input type="password" name="password" required ng-model="password"/>
+                    {{password}}
+                    </md-input-container>
+                    <md-input-container>
+                        <md-button type="submit" class="md-raised md-primary" ng-disabled="loginForm.$invalid">Login</md-button>
+                    </md-input-container>
+                    <!--<md-button ng-click="showRegister()">Register</md-button>-->
+                </form>
 
-    <!--</div>-->
-    <!--<div ng-show="show_form = 'register'">-->
 
         <form name="registerForm" >
             <md-input-container>
@@ -36,7 +45,6 @@
                 <md-button ng-click="register()" class="md-raised md-primary">Register</md-button>
                 <!--<md-button ng-click="showLogin()">Login</md-button>-->
         </form>
-
-    <!--</div>-->
-    </md-dialog-content>
+        </md-dialog-content>
+    </div>
 </md-dialog>

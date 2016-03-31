@@ -4,14 +4,16 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', funct
 
     $scope.UserService = UserService;
 
-    $scope.login = function() {
-           var user = {
-               username: $scope.username,
-               password: $scope.password
-           };
-           $scope.UserService.postLogin(user).then(function () {
-               $mdDialog.hide();
-           })
+    $scope.login = function(isValid) {
+        if(isValid) {
+            var user = {
+                username: $scope.username,
+                password: $scope.password
+            };
+            $scope.UserService.postLogin(user).then(function () {
+                $mdDialog.hide();
+            })
+        }
 
     };
 
