@@ -1,18 +1,17 @@
 myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', function($scope, UserService, $mdDialog) {
 
     console.log('inside login controller');
-    //$scope.loggedInUser = '';
 
+    $scope.UserService = UserService;
 
     $scope.login = function() {
-        console.log("inside login function");
-        var user =  {
-            username: $scope.username,
-            password: $scope.password
-        };
-        UserService.postLogin(user).then(function(){
-            $mdDialog.hide();
-        });
+           var user = {
+               username: $scope.username,
+               password: $scope.password
+           };
+           $scope.UserService.postLogin(user).then(function () {
+               $mdDialog.hide();
+           })
 
     };
 
@@ -22,7 +21,7 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', funct
             username: $scope.username,
             password: $scope.password
         };
-        UserService.postRegister(newUser).then(function(){
+        $scope.UserService.postRegister(newUser).then(function(){
             $mdDialog.hide();
         });
     };
