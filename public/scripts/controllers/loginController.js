@@ -17,15 +17,17 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', funct
 
     };
 
-    $scope.register = function() {
-        console.log("inside register function");
-        var newUser =  {
-            username: $scope.username,
-            password: $scope.password
-        };
-        $scope.UserService.postRegister(newUser).then(function(){
-            $mdDialog.hide();
-        });
+    $scope.register = function(isValid) {
+        if (isValid) {
+            console.log("inside register function");
+            var newUser = {
+                username: $scope.username,
+                password: $scope.password
+            };
+            $scope.UserService.postRegister(newUser).then(function () {
+                $mdDialog.hide();
+            });
+        }
     };
 
     //$scope.$watch($scope.UserService.askForCurrentUser, function(newValue, oldValue){
@@ -46,3 +48,4 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', funct
         console.log('show login');
     };
 }]);
+
