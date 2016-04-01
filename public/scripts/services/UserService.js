@@ -1,4 +1,4 @@
-myApp.factory('UserService', ['$http', function($http) {
+myApp.factory('UserService', ['$http', '$window', function($http, $window) {
 
     function User(isLogged, factoryUserName, factoryFirstName, factoryUserId) {
         this.isLogged = isLogged;
@@ -34,6 +34,16 @@ myApp.factory('UserService', ['$http', function($http) {
         return promise;
     }
 
+    function logOut() {
+        var promise = $http.get('/').then(function (response) {
+            if (response) {
+                CurrentUser = undefined;
+                $window.location.href = '/#/home';
+            }
+            });
+        return promise;
+    }
+
     var publicFunctions = {
         askForCurrentUser: function() {
             return CurrentUser;
@@ -43,6 +53,9 @@ myApp.factory('UserService', ['$http', function($http) {
         },
         postRegister: function(user) {
             return register(user);
+        },
+        logOutUser: function() {
+            return logOut();
         }
     };
 
