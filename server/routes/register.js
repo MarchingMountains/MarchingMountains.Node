@@ -25,16 +25,15 @@ router.post('/', function(req, res, next) {
     //console.log('new user:', saveUser);
 
     pg.connect(connection, function(err, client, done) {
-        client.query("INSERT INTO users (email, password) VALUES ($1, $2) RETURNING user_id email",
+        client.query("INSERT INTO users (email, password) VALUES ($1, $2) RETURNING user_id, email",
             [saveUser.email, saveUser.password],
             function (err, result) {
                 client.end();
-
                 if(err) {
                     console.log("Error inserting data: ", err);
                     next(err);
                 } else {
-                    res.json(result);
+                    return res.send(result.rows[0]);
                 }
             });
     });

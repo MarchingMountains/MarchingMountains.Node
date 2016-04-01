@@ -23,7 +23,6 @@
     "angular-aria": "^1.5.3",
     "angular-material": "^1.0.6",
     "angular-messages": "^1.5.3",
-    "angular-mocks": "^1.5.3",
     "angular-password": "^1.0.1",
     "angular-route": "^1.5.3",
     "bcrypt": "^0.8.5",
@@ -34,7 +33,6 @@
     "express-jwt": "^3.3.0",
     "express-session": "^1.13.0",
     "karma": "^0.13.22",
-    "karma-chrome-launcher": "^0.2.3",
     "karma-coverage": "^0.5.5",
     "karma-firefox-launcher": "^0.1.7",
     "karma-threshold-reporter": "^0.1.15",
@@ -44,5 +42,12 @@
     "pg": "^4.5.1",
     "skeleton-css": "^2.0.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "angular-mocks": "^1.5.3",
+    "bardjs": "^0.1.8",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-jasmine": "^0.3.8"
+  }
 }
