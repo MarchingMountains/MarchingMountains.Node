@@ -23,7 +23,7 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
                 console.log('failed to get state route');
                 $window.location.href = '/';
             }
-        })
+        });
     }
 
     function retrieveUser(id) {
