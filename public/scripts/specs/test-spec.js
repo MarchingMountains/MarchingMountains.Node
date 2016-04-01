@@ -5,9 +5,9 @@ describe('testing a basic controller', function() {
 
     beforeEach(module('myApp'));
 
-        beforeEach(inject(function($rootScope, $controller) {
+    beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
-            ctrl = $controller('UserController', {$scope: scope});
+            ctrl = $controller('TestController', {$scope: scope});
         }
     ));
 
