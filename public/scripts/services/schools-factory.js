@@ -17,7 +17,6 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
 
     var setSelectedSchoolInfo = function(school) {
         selectedSchoolInfo.list = school;
-        console.log('selectedSchoolInfo in factory: ', selectedSchoolInfo);
     };
 
     var factoryGetDirectorSchools = function() {

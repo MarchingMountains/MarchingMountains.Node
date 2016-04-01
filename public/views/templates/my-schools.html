@@ -5,10 +5,14 @@
         <div>
             <p>{{school.address_line1}}</p>
             <p>{{school.address_line2}}</p>
-            <p>{{school.city}}, {{school.state_id}} {{school.zip}}</p>
+            <p>{{school.city}}, {{school.state}} {{school.zip}}</p>
             <p>{{school.phone}}</p>
             <p>{{school.website}}</p>
             <p>{{school.instructions}}</p>
+            <h4>Needed Instruments:</h4>
+            <ul>
+                <li ng-repeat="instrument in school.instruments">{{instrument.instrument}}</li>
+            </ul>
             <md-button ng-click="editSchool($event, school)">Edit School</md-button>
         </div>
     </collapsible-item>

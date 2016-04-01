@@ -5,11 +5,14 @@ myApp.controller('MySchoolsController', ['$scope', '$mdDialog', '$mdMedia', 'Sch
 		InstrumentsFactory.factoryGetInstrumentsList().then(function() {});
 	};
 
+	var getStates = function() {
+		InstrumentsFactory.getStates().then(function() {});
+	};
 
-		var getSchools = function () {
+
+	var getSchools = function () {
 		SchoolsFactory.getDirectorSchools().then(function() {
 			$scope.schools = SchoolsFactory.allSchools;
-			console.log($scope.schools);
 		});
 	};
 
@@ -41,4 +44,5 @@ myApp.controller('MySchoolsController', ['$scope', '$mdDialog', '$mdMedia', 'Sch
 
 	getSchools();
 	getInstruments();
+	getStates();
 }]);
