@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var connection = require('./modules/connection');
 //var flash = require("connect-flash");
 
+var logout = require('./routes/logout');
 var account = require('./routes/account');
 var states = require('./routes/states');
 var schools = require('./routes/schools');
@@ -14,10 +15,13 @@ var donations = require('./routes/donations');
 var index = require('./routes/index');
 var user = require('./routes/user');
 var register = require('./routes/register');
+var account = require('./routes/account');
+var states = require('./routes/states');
 var passport = require('./strategies/user_sql.js');
 var session = require('express-session');
 var account = require('./routes/account');
 var states = require('./routes/states');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -43,6 +47,7 @@ app.use('/register', register);
 app.use('/user', user);
 app.use('/account', account);
 app.use('/states', states);
+app.use('/logout', logout);
 app.use('/', index);
 
 app.use(express.static('public'));

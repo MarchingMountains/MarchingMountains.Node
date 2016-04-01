@@ -1,9 +1,13 @@
-myApp.controller('MySchoolsController', ['$scope', '$mdDialog', '$mdMedia', 'SchoolsFactory', function($scope, $mdDialog, $mdMedia, SchoolsFactory, AddSchoolController) {
+myApp.controller('MySchoolsController', ['$scope', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory', function($scope, $mdDialog, $mdMedia, SchoolsFactory, InstrumentsFactory, AddSchoolController) {
 	$scope.schools = [];
 
-	var getSchools = function () {
+	var getInstruments = function() {
+		InstrumentsFactory.factoryGetInstrumentsList().then(function() {});
+	};
+
+
+		var getSchools = function () {
 		SchoolsFactory.getDirectorSchools().then(function() {
-			//$scope.schools = SchoolsFactory.schoolsList();
 			$scope.schools = SchoolsFactory.allSchools;
 			console.log($scope.schools);
 		});
@@ -36,4 +40,5 @@ myApp.controller('MySchoolsController', ['$scope', '$mdDialog', '$mdMedia', 'Sch
 	};
 
 	getSchools();
+	getInstruments();
 }]);
