@@ -21,7 +21,6 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
     var factoryGetDirectorSchools = function() {
         var promise = $http.get('/schools/' + userID).then(function(response) {
             factorySchoolsList.list = response.data;
-            console.log('getdirectorschools::', response.data);
         });
         return promise;
     };

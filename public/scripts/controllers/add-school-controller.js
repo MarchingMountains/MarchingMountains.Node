@@ -12,8 +12,8 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'Instrument
             $scope.address_line1 = SchoolsFactory.currentSchool.address_line1;
             $scope.address_line2 = SchoolsFactory.currentSchool.address_line2;
             $scope.city = SchoolsFactory.currentSchool.city;
-            $scope.state_id = SchoolsFactory.currentSchool.state_id;
-            $scope.selectedItem = SchoolsFactory.currentSchool.state;
+            $scope.state = {state_id: SchoolsFactory.currentSchool.state_id, state: SchoolsFactory.currentSchool.state};
+            $scope.selectedItem = {state_id: SchoolsFactory.currentSchool.state_id, state: SchoolsFactory.currentSchool.state};
             $scope.zip = SchoolsFactory.currentSchool.zip;
             $scope.phone = SchoolsFactory.currentSchool.phone;
             $scope.instructions = SchoolsFactory.currentSchool.instructions;
@@ -43,7 +43,6 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'Instrument
         };
 
         $scope.updateSchool = function(state) {
-
             var school = {
                 school_id: SchoolsFactory.currentSchool.school_id,
                 user_id: SchoolsFactory.currentSchool.user_id,
@@ -52,7 +51,7 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'Instrument
                 address_line1: $scope.address_line1,
                 address_line2: $scope.address_line2,
                 city: $scope.city,
-                state_id: state.id,
+                state_id: state.state_id,
                 zip: $scope.zip,
                 phone: $scope.phone,
                 instructions: $scope.instructions,
