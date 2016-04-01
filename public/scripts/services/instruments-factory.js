@@ -5,6 +5,7 @@ myApp.factory('InstrumentsFactory', ['$http', function($http) {
   var getInstrumentsList = function() {
     var promise = $http.get('/instruments').then(function(response) {
       instruments.list = response.data;
+      console.log(instruments);
     });
     return promise;
   };

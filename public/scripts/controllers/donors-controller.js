@@ -1,6 +1,5 @@
-myApp.controller('DonorsController', ['$scope', '$location',
-'$mdDialog', '$mdMedia', 'DonationsFactory', 'UserService', function($scope,
-  $location, $mdDialog, $mdMedia, DonationsFactory, UserService) {
+myApp.controller('DonorsController', ['$scope', 'DonationsFactory', 'UserService',
+  function($scope, DonationsFactory, UserService) {
 
    $scope.DonationsFactory = DonationsFactory;
    $scope.UserService = UserService;

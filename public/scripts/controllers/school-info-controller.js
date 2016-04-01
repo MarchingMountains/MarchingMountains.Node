@@ -12,7 +12,7 @@ myApp.controller('SchoolInfoController', ['$scope', '$http', '$location', '$mdDi
   });
 
   $scope.returnToSearchResults = function() {
-    $location.url('/school-search');
+    $location.url('/donors');
   };
 
   $scope.donateNowModal = function(ev) {

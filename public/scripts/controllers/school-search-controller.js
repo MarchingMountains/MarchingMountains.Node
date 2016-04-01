@@ -19,7 +19,7 @@ myApp.controller('SchoolSearchController', ['$scope', '$http', '$location',
     $scope.SchoolsFactory.factoryGetSchoolsList(selectedInstrumentName, selectedInstrumentId).then(function() {
       $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrumentName.list;
       $scope.schoolSearchResults = $scope.SchoolsFactory.schoolSearchResults.list;
-      $location.url('/school-search');
+      $location.url('/donors');
     });
   };
 
