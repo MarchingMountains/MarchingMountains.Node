@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'angAccordion', 'ngPassword']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'material.svgAssetsCache', 'angAccordion', 'ngPassword', 'wj']);
 myApp.config(['$routeProvider', function($routeProvider) {
 
   $routeProvider
@@ -34,8 +34,8 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: 'MySchoolsController'
     })
     .when('/school-info', {
-        templateUrl: '/views/templates/school-info.html',
-        controller: 'SchoolInfoController'
+      templateUrl: '/views/templates/school-info.html',
+      controller: 'SchoolInfoController'
     })
     .when('/login', {
       templateUrl: '/views/templates/login.html',
