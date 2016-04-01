@@ -1,6 +1,6 @@
-var app = angular.module('myApp', []);
+//var app = angular.module('myApp', [])
 
-app.controller('UserController', ['$scope', function($scope) {
+myApp.controller('TestController', ['$scope', function($scope) {
     $scope.state = {};
     $scope.state.number = 42;
 }]);
