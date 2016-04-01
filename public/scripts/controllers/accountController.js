@@ -1,6 +1,5 @@
 myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserService', function($scope, $http, $window, UserService) {
 
-    //$scope.userID = $routeParams.id;
     $scope.UserService = UserService;
     $scope.showForm = true;
     $scope.showList = false;
@@ -10,8 +9,8 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
     $scope.selectedState = '';
     $scope.loggedInUser = $scope.UserService.askForCurrentUser();
 
-    var id = $scope.loggedInUser.factoryUserId;
-    //var id = 1;
+    //var id = $scope.loggedInUser.factoryUserId;
+    var id = 1;
 
     retrieveUser(id);
     getStates();
@@ -28,7 +27,7 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
     }
 
     function retrieveUser(id) {
-        console.log('id: ', id);
+        //console.log('id: ', id);
         $http.get('/account/' + id).then(function(response) {
             if (response.data) {
                 $scope.user = response.data[0];
@@ -44,7 +43,7 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
 
     $scope.submitAccountForm = function(isValid) {
         $scope.submitted = true;
-        console.log('selectedState: ', $scope.selectedState);
+
         if (isValid) {
 
             $scope.edited = false;
