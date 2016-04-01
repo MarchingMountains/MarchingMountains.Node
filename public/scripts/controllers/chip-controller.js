@@ -34,7 +34,7 @@ myApp.controller('ChipController', ['InstrumentsFactory', 'SchoolsFactory', func
 
         return function filterFn(musicMaker) {
             //console.log('search: ', musicMaker._lowername.indexOf(lowercaseQuery));
-            return (musicMaker._lowername.indexOf(lowercaseQuery) >= 0)
+            return (musicMaker._lowername.indexOf(lowercaseQuery) >= 0);
         };
     }
 

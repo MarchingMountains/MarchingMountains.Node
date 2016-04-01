@@ -12,7 +12,7 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', funct
             };
             $scope.UserService.postLogin(user).then(function () {
                 $mdDialog.hide();
-            })
+            });
         }
 
     };
@@ -48,4 +48,3 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', funct
         console.log('show login');
     };
 }]);
-

@@ -15,8 +15,8 @@ myApp.config(['$routeProvider', function($routeProvider) {
     .when('/donate-instrument', {
       templateUrl: '/views/templates/donate-instrument.html'
     })
-    .when('/school-search', {
-      templateUrl: '/views/templates/school-search.html',
+    .when('/donors', {
+      templateUrl: '/views/templates/donors.html',
       controller: 'SchoolSearchController'
     })
     .when('/contact', {
@@ -34,8 +34,8 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: 'MySchoolsController'
     })
     .when('/school-info', {
-        templateUrl: '/views/templates/school-info.html',
-        controller: 'SchoolInfoController'
+      templateUrl: '/views/templates/school-info.html',
+      controller: 'SchoolInfoController'
     })
     .when('/login', {
       templateUrl: '/views/templates/login.html',
