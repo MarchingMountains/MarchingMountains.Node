@@ -13,7 +13,6 @@ myApp.controller('MySchoolsController', ['$scope', '$mdDialog', '$mdMedia', 'Sch
 		var getSchools = function () {
 		SchoolsFactory.getDirectorSchools().then(function() {
 			$scope.schools = SchoolsFactory.allSchools;
-			console.log($scope.schools);
 		});
 	};
 

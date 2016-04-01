@@ -1,6 +1,5 @@
 myApp.controller('ModalController', ['$scope', '$mdDialog', '$mdMedia', 'UserService',
     function($scope, $mdDialog, $mdMedia, UserService, LoginController) {
-        console.log('inside Modal Controller');
 
         $scope.UserService = UserService;
 
@@ -14,6 +13,7 @@ myApp.controller('ModalController', ['$scope', '$mdDialog', '$mdMedia', 'UserSer
                 targetEvent: ev,
                 clickOutsideToClose: true,
                 fullscreen: useFullScreen
-                });
-            }
-    }]);
+            });
+        }
+    }
+]);

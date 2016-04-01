@@ -25,7 +25,8 @@ myApp.factory('InstrumentsFactory', ['$http', function($http) {
       return factoryGetStates();
     },
     instruments: instruments,
-    statesList: factoryStatesList
+    statesList: factoryStatesList,
+    currentInstruments: []
   };
 
   return publicFunctions;

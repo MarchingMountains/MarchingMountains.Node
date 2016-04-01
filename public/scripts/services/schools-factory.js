@@ -16,12 +16,12 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
 
     var setSelectedSchoolInfo = function(school) {
         selectedSchoolInfo.list = school;
-        console.log('selectedSchoolInfo in factory: ', selectedSchoolInfo);
     };
 
     var factoryGetDirectorSchools = function() {
         var promise = $http.get('/schools/' + userID).then(function(response) {
             factorySchoolsList.list = response.data;
+            console.log('getdirectorschools::', response.data);
         });
         return promise;
     };

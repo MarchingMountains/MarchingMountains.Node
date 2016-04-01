@@ -1,40 +1,48 @@
-myApp.controller('ChipController', ['InstrumentsFactory', function(InstrumentsFactory) {
-        var instrumentsList = InstrumentsFactory.instruments.list;
-        var self = this;
+myApp.controller('ChipController', ['InstrumentsFactory', 'SchoolsFactory', function(InstrumentsFactory, SchoolsFactory) {
+    var instrumentsList = InstrumentsFactory.instruments.list;
+    //var factoryCurrentSchool = SchoolsFactory.currentSchool.school_name;
+    var self = this;
 
-        self.readonly = false;
-        self.selectedItem = null;
-        self.searchText = null;
-        self.querySearch = querySearch;
-        self.instruments = loadInstruments();
-        self.selectedInstruments = [];
-        self.autocompleteDemoRequireMatch = true;
-        self.transformChip = transformChip;
+    self.readonly = false;
+    self.selectedItem = null;
+    self.searchText = null;
+    self.querySearch = querySearch;
+    self.instruments = loadInstruments();
+    self.selectedInstruments = [];
+    self.autocompleteDemoRequireMatch = true;
+    self.transformChip = transformChip;
 
-        function transformChip(chip) {
-            if (angular.isObject(chip)) {
-                return chip;
-            }
+    //if(factoryCurrentSchool != undefined) {
+    //    self.selectedInstruments = SchoolsFactory.currentSchool.instrument_id;
+    //}
+
+
+    function transformChip(chip) {
+        InstrumentsFactory.currentInstruments = self.selectedInstruments;
+        if (angular.isObject(chip)) {
+            return chip;
         }
+    }
 
-        function querySearch (query) {
-            var results = query ? self.instruments.filter(createFilterFor(query)) : [];
-            return results;
-        }
+    function querySearch (query) {
+        var results = query ? self.instruments.filter(createFilterFor(query)) : [];
+        return results;
+    }
 
-        function createFilterFor(query) {
-            var lowercaseQuery = angular.lowercase(query);
+    function createFilterFor(query) {
+        var lowercaseQuery = angular.lowercase(query);
 
-            return function filterFn(vegetable) {
-                return (vegetable._lowername.indexOf(lowercaseQuery) === 0)
-            };
-        }
+        return function filterFn(musicMaker) {
+            //console.log('search: ', musicMaker._lowername.indexOf(lowercaseQuery));
+            return (musicMaker._lowername.indexOf(lowercaseQuery) >= 0)
+        };
+    }
 
-        function loadInstruments() {
-            var instrument = instrumentsList;
-            return instrument.map(function (musicThing) {
-                musicThing._lowername = musicThing.instrument.toLowerCase();
-                return musicThing;
-            });
-        }
+    function loadInstruments() {
+        var instrument = instrumentsList;
+        return instrument.map(function (musicThing) {
+            musicThing._lowername = musicThing.instrument.toLowerCase();
+            return musicThing;
+        });
+    }
 }]);
