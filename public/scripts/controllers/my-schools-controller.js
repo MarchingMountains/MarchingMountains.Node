@@ -1,5 +1,6 @@
 myApp.controller('MySchoolsController', ['$scope', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory', function($scope, $mdDialog, $mdMedia, SchoolsFactory, InstrumentsFactory, AddSchoolController) {
 	$scope.schools = [];
+	$scope.test = 'test';
 
 	var getInstruments = function() {
 		InstrumentsFactory.factoryGetInstrumentsList().then(function() {});

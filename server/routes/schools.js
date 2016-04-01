@@ -52,7 +52,11 @@ router.post('/:id', function(req, res) {
             var school_id = result.rows[0].school_id;
             for (var i = 0; i < instruments.length; i++) {
                 var instrument_id = instruments[i].instrument_id;
-                client.query('INSERT INTO school_instruments (instrument_id, school_id) VALUES ($1, $2)', [instrument_id, school_id]);
+                client.query('INSERT INTO school_instruments (instrument_id, school_id) VALUES ($1, $2)', [instrument_id, school_id], function(err, result) {
+                    if ((i + 1) == instruments.length) {
+                        client.end();
+                    }
+                });
             }
         });
         res.sendStatus(200);
@@ -85,7 +89,11 @@ router.put('/:id', function(req, res) {
             client.query('DELETE FROM school_instruments WHERE school_id = $1', [school_id], function(err) {
                 for (var i = 0; i < instruments.length; i++) {
                     var instrument_id = instruments[i].instrument_id;
-                    client.query('INSERT INTO school_instruments (instrument_id, school_id) VALUES ($1, $2)', [instrument_id, school_id]);
+                    client.query('INSERT INTO school_instruments (instrument_id, school_id) VALUES ($1, $2)', [instrument_id, school_id], function (err, result) {
+                        if ((i + 1) == instruments.length) {
+                            client.end();
+                        }
+                    });
                 }
             });
         });
