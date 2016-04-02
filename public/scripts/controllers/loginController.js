@@ -4,6 +4,8 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', '$win
 
     $scope.UserService = UserService;
 
+    $scope.loggedInUser;
+
     $scope.login = function(isValid) {
         if(isValid) {
             var user = {
@@ -36,10 +38,10 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', '$win
         $mdDialog.hide();
     };
 
-    $scope.$watch($scope.UserService.askForCurrentUser, function(newValue, oldValue){
-        $scope.loggedInUser = $scope.UserService.askForCurrentUser();
-
-    });
+    //$scope.$watch($scope.UserService.watchCurrentUser, function(newValue, oldValue){
+    //    $scope.loggedInUser = $scope.UserService.askForCurrentUser();
+    //
+    //});
 
 
 }]);

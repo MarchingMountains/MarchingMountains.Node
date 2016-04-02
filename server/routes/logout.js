@@ -10,6 +10,8 @@ router.get('/', function(req, res) {
         req.session.destroy();
         console.log(req.user);
         console.log(req.session);
+    } else {
+        console.log("user not authenticated");
     }
 });
 
