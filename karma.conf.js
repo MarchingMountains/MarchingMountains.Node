@@ -26,8 +26,7 @@ module.exports = function(config) {
             'node_modules/angular-mocks/angular-mocks.js',
             'public/scripts/**/*.js',
             'public/scripts/app.js',
-            'public/scripts/controllers/accountController.js',
-            'test/**/*.js'
+            'public/scripts/controllers/accountController.js'
         ],
 
 
@@ -78,4 +77,4 @@ module.exports = function(config) {
         // how many browser should be started simultaneous
         concurrency: Infinity
     })
-}
+};
