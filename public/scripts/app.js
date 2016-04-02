@@ -42,7 +42,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: 'LoginController'
     })
     .when('/register', {
-      templateUrl: '/views/templates/register.html',
+      templateUrl: '/views/templates/register.html'
+    })
+    .when('/admin', {
+      templateUrl: '/views/templates/admin.html',
+      controller: 'AdminController'
     })
     .otherwise({
       redirectTo: '/home'

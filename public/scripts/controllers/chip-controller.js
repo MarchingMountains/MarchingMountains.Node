@@ -4,8 +4,8 @@ myApp.controller('ChipController', ['InstrumentsFactory', 'SchoolsFactory', func
     var self = this;
 
     self.readonly = false;
-    self.selectedItem = null;
-    self.searchText = null;
+    //self.selectedItem = undefined;
+    //self.searchText = undefined;
     self.querySearch = querySearch;
     self.instruments = loadInstruments();
     self.selectedInstruments = [];
@@ -15,7 +15,6 @@ myApp.controller('ChipController', ['InstrumentsFactory', 'SchoolsFactory', func
     //if(factoryCurrentSchool != undefined) {
     //    self.selectedInstruments = SchoolsFactory.currentSchool.instrument_id;
     //}
-
 
     function transformChip(chip) {
         InstrumentsFactory.currentInstruments = self.selectedInstruments;
