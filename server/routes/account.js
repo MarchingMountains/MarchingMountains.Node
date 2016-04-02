@@ -41,9 +41,7 @@ router.get('/*', function(req, res) {
 
 router.put('/password/*', function(req, res) {
 
-    // hard coding in id for now, until connected with login/register page
     var id = req.params[0];
-    //var id = 1;
     var results = [];
     var password = encryptLib.encryptPassword(req.body.password);
 
@@ -69,11 +67,8 @@ router.put('/password/*', function(req, res) {
 
 router.put('/*', function(req, res) {
 
-    // hard coding in id for now, until connected with login/register page
-    //var id = req.params[0];
-    var id = 1;
+    var id = req.params[0];
     var results = [];
-    console.log('stateid:', req.body.state);
 
     pg.connect(connection, function (err, client, done) {
         client.query('UPDATE users ' +
