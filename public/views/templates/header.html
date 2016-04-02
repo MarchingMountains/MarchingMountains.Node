@@ -2,23 +2,63 @@
   <a href="/" title="home"><img src="/img/MarchingMountainsLogo.png" alt="Marching Mountains Logo" /></a>
 </div>
 
-<div class="col-md-8" ng-controller="ModalController">
-  <md-content>
-    <nav>
-      <ul class="nav nav-pills pull-right">
-        <li role="presentation"><a href="#home" title="home">Home</a></li>
-        <li role="presentation"><a href="#about" title="about">About</a></li>
-        <li role="presentation"><a href="#faq" title="Frequently asked questions">FAQ</a></li>
-        <li role="presentation"><a href="#donate-instrument" title="Donate a musical instrument">Donate a musical instrument</a></li>
-        <li role="presentation"><a href="#school-search" title="School Search">School Search</a></li>
-        <li role="presentation"><a href="#contact" title="Contact Marching Mountains">Contact</a></li>
-        <li role="presentation"><a href="#band-directors" title="For Band Directors">Band Directors</a></li>
-        <li role="presentation"><md-button ng-click="openModal($event)" title="Logging In">LogIn / Register</md-button></li>
-        <li role="presentation"><md-button ng-click="logOut()" title="Logging Out">LogOut</md-button></li>
-        <li role="presentation"><a href="#account" title="Edit Account Information">Account</a></li>
-        <li role="presentation"><a href="https://givemn.org/organization/Marching-Mountains" target="_blank"><img src="/img/donate.png" alt="Help Marching Mountains - Get Kids Musical Instruments | GiveMN" /></a></li>
+<div class="col-md-8" id="menubarContainer" ng-controller="ModalController as ctrl" layout="row" ng-cloak>
+  <md-toolbar class="md-menu-toolbar">
+    <div layout="row">
+      <div>
+        <md-menu-bar>
+          <md-menu>
+            <button ng-click="$mdOpenMenu()">Site Information</button>
+            <md-menu-content>
+              <md-menu-item><md-button href="#about">About Marching Mountains</md-button></md-menu-item>
+              <md-menu-item><md-button href="#faq">FAQ</md-button></md-menu-item>
+              <md-menu-item><md-button href="#donate-instrument">How To Donate</md-button></md-menu-item>
+              <md-menu-item><md-button href="#donors">Search for schools that need instruments</md-button></md-menu-item>
+              <md-menu-item><md-button href="#band-directors">Band Directors</md-button></md-menu-item>
+              <md-menu-item><md-button href="#contact">Contact</md-button></md-menu-item>
+            </md-menu-content>
+          </md-menu>
 
-      </ul>
-    </nav>
-  </md-content>
+          <md-menu ng-if="first_name">
+
+            <button ng-click="$mdOpenMenu()">Welcome, {{first_name}}</button>
+
+            <md-menu-content>
+              <md-menu-item><md-button ng-click="openModal($event)" title="Logging In">LogIn / Register</md-button></md-menu-item>
+              <md-menu-item><md-button href="#account">Edit Account Information</md-button></md-menu-item>
+              <md-menu-item><md-button ng-click=logOut()><a href="/logout">Log Out</a></md-button></md-menu-item>
+            </md-menu-content>
+          </md-menu>
+
+        </md-menu-bar>
+      </div>
+    </div>
+  </md-toolbar>
+
+  <span ng-if="first_name == undefined" ng-click="openModal($event)">Log In / Register</span>
+  <a href="https://givemn.org/organization/Marching-Mountains" target="_blank">
+    <img src="/img/donate.png" alt="Help Marching Mountains - Get Kids Musical Instruments | GiveMN" /></a>
+
 </div>
+
+<!--<div class="col-md-8" ng-controller="ModalController">-->
+  <!--<md-content>-->
+    <!--<nav>-->
+      <!--<ul class="nav nav-pills pull-right">-->
+        <!--<li role="presentation"><a href="#home" title="home">Home</a></li>-->
+        <!--<li role="presentation"><a href="#about" title="about">About</a></li>-->
+        <!--<li role="presentation"><a href="#faq" title="Frequently asked questions">FAQ</a></li>-->
+        <!--<li role="presentation"><a href="#donate-instrument" title="Donate a musical instrument">Donate a musical instrument</a></li>-->
+        <!--<li role="presentation"><a href="#school-search" title="School Search">School Search</a></li>-->
+        <!--<li role="presentation"><a href="#contact" title="Contact Marching Mountains">Contact</a></li>-->
+        <!--<li role="presentation"><a href="#band-directors" title="For Band Directors">Band Directors</a></li>-->
+        <!--<li role="presentation"><md-button ng-click="openModal($event)" title="Logging In">LogIn / Register</md-button></li>-->
+        <!--<li role="presentation"><md-button ng-click="logOut()" title="Logging Out">LogOut</md-button></li>-->
+        <!--<li role="presentation"><a href="#account" title="Edit Account Information">Account</a></li>-->
+        <!--<li role="presentation"><a href="https://givemn.org/organization/Marching-Mountains" target="_blank">-->
+          <!--<img src="/img/donate.png" alt="Help Marching Mountains - Get Kids Musical Instruments | GiveMN" /></a>-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</nav>-->
+  <!--</md-content>-->
+<!--</div>-->

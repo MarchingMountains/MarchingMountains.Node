@@ -1,7 +1,6 @@
 myApp.controller('ModalController', ['$scope', '$mdDialog', '$mdMedia', 'UserService',
     function($scope, $mdDialog, $mdMedia, UserService, LoginController) {
 
-
         $scope.UserService = UserService;
 
         $scope.openModal = function(ev) {
@@ -18,10 +17,23 @@ myApp.controller('ModalController', ['$scope', '$mdDialog', '$mdMedia', 'UserSer
         };
 
         $scope.logOut = function() {
-
             $scope.UserService.logOutUser();
-
         };
+
+        $scope.$watch($scope.UserService.watchCurrentUser, function(newValue, oldValue){
+            if (newValue !== oldValue) {
+                console.log('factory first name: ', $scope.UserService.watchCurrentUser().factoryFirstName);
+                $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
+            }
+        });
+
+        //$scope.$watch(function(scope) {
+        //    return scope.UserService.watchCurrentUser.factoryFirstName
+        //},
+        //function(newValue) {
+        //    $scope.first_name = newValue;
+        //    console.log('newValue: ', newValue);
+        //});
 
     }
 ]);

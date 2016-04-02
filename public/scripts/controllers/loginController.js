@@ -11,6 +11,9 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', funct
                 password: $scope.password
             };
             $scope.UserService.postLogin(user).then(function () {
+                $scope.loggedInUser = $scope.UserService.askForCurrentUser();
+                $scope.first_name = $scope.loggedInUser.factoryFirstName;
+                console.log('login controller first name', $scope.first_name);
                 $mdDialog.hide();
             });
         }
