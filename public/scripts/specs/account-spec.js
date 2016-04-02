@@ -31,6 +31,8 @@ describe('AccountController getStates should reach the server', function() {
         // and we can mock a response that looks similar to a response we would actually expect
         mockBackend.expectGET('/states/')
             .respond({state_id: 1, state: 'AL'});
+        mockBackend.expectGET('/views/templates/home.html')
+            .respond('Hi');
 
         ctrl = $controller('AccountController');
     }));
