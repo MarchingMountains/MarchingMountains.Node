@@ -57,12 +57,10 @@ describe('Account Server Call', function() {
         mockBackend = $httpBackend;
         // we expect a get call on this route
         // and we can mock a response that looks similar to a response we would actually expect
-        mockBackend.expectGET('/datRoute')
-            .respond({id: 3000, name: 'Gina'});
-
-        mockBackend.expectGET('/views/templates/home.html').respond('hi');
-
-        console.log('cut', cut);
+        mockBackend.expectGET('/states/')
+            .respond({state_id: 1, state: 'AL'});
+        mockBackend.expectGET('/views/templates/home.html')
+            .respond('Hi');
 
     }));
 

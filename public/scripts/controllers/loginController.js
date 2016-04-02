@@ -1,8 +1,10 @@
-myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', function($scope, UserService, $mdDialog) {
+myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', '$window', '$location', function($scope, UserService, $mdDialog, $window, $location) {
 
     console.log('inside login controller');
 
     $scope.UserService = UserService;
+
+    $scope.loggedInUser;
 
     $scope.login = function(isValid) {
         if(isValid) {
@@ -21,6 +23,7 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', funct
     };
 
     $scope.register = function(isValid) {
+        $mdDialog.hide();
         if (isValid) {
             console.log("inside register function");
             var newUser = {
@@ -29,25 +32,19 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', funct
             };
             $scope.UserService.postRegister(newUser).then(function () {
                 $mdDialog.hide();
+                $window.location.href = '/#/home';
             });
         }
     };
 
-    //$scope.$watch($scope.UserService.askForCurrentUser, function(newValue, oldValue){
+    $scope.closeModal = function() {
+        $mdDialog.hide();
+    };
+
+    //$scope.$watch($scope.UserService.watchCurrentUser, function(newValue, oldValue){
     //    $scope.loggedInUser = $scope.UserService.askForCurrentUser();
     //
     //});
 
 
-    $scope.show_form = 'login';
-
-    $scope.showRegister = function() {
-        $scope.show_form = 'register';
-        console.log('show register');
-    };
-
-    $scope.showLogin = function() {
-        $scope.show_form = 'login';
-        console.log('show login');
-    };
 }]);
