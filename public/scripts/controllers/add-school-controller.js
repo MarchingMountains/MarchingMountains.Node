@@ -55,7 +55,8 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'Instrument
                 zip: $scope.zip,
                 phone: $scope.phone,
                 instructions: $scope.instructions,
-                instruments: InstrumentsFactory.currentInstruments
+                instruments: InstrumentsFactory.currentInstruments,
+                approved: null
             };
 
             SchoolsFactory.putDirectorSchool(school).then(function() {

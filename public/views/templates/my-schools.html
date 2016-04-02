@@ -3,6 +3,9 @@
 <ang-accordion one-at-a-time="true">
     <collapsible-item ng-repeat="school in schools.list" item-title="{{school.school_name}}">
         <div>
+            <p ng-if="school.approved == true">Verification Status: Verified</p>
+            <p ng-if="school.approved == null">Verification Status: Pending</p>
+            <p ng-if="school.approved == false">Verification Status: Denied</p>
             <p>{{school.address_line1}}</p>
             <p>{{school.address_line2}}</p>
             <p>{{school.city}}, {{school.state}} {{school.zip}}</p>

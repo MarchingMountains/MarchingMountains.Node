@@ -75,6 +75,7 @@ router.put('/:id', function(req, res) {
         req.body.phone,
         req.body.instructions,
         req.params.id,
+        req.body.approved,
         req.body.school_id
     ];
 
@@ -83,9 +84,9 @@ router.put('/:id', function(req, res) {
 
     pg.connect(connection, function(err, client, done) {
         client.query('UPDATE schools SET' +
-            '(school_name, website, address_line1, address_line2, city, state_id, zip, phone, instructions, user_id) ' +
-            '= ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)' +
-            'WHERE school_id = $11', updateSchool, function(err) {
+            '(school_name, website, address_line1, address_line2, city, state_id, zip, phone, instructions, ' +
+            'user_id, approved) = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)' +
+            'WHERE school_id = $12', updateSchool, function(err) {
             client.query('DELETE FROM school_instruments WHERE school_id = $1', [school_id], function(err) {
                 for (var i = 0; i < instruments.length; i++) {
                     var instrument_id = instruments[i].instrument_id;
