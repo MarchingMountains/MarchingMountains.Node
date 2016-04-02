@@ -19,7 +19,7 @@ myApp.controller('SchoolSearchController', ['$scope', '$http', '$location',
     $scope.SchoolsFactory.factoryGetSchoolsList(selectedInstrumentName, selectedInstrumentId).then(function() {
       $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrumentName.list;
       $scope.schoolSearchResults = $scope.SchoolsFactory.schoolSearchResults.list;
-      $location.url('/school-search');
+      $location.url('/donors');
     });
   };
 
@@ -41,7 +41,7 @@ myApp.controller('SchoolSearchController', ['$scope', '$http', '$location',
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 
     $mdDialog.show({
-      templateUrl: '../views/templates/donate-now-modal.html',
+      templateUrl: '../views/modals/donate-now-modal.html',
       controller: 'DonateNowController',
       parent: angular.element(document.body),
       targetEvent: ev,

@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'angAccordion', 'ngPassword']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'material.svgAssetsCache', 'angAccordion', 'ngPassword', 'wj']);
 myApp.config(['$routeProvider', function($routeProvider) {
 
   $routeProvider
@@ -15,8 +15,8 @@ myApp.config(['$routeProvider', function($routeProvider) {
     .when('/donate-instrument', {
       templateUrl: '/views/templates/donate-instrument.html'
     })
-    .when('/school-search', {
-      templateUrl: '/views/templates/school-search.html',
+    .when('/donors', {
+      templateUrl: '/views/templates/donors.html',
       controller: 'SchoolSearchController'
     })
     .when('/contact', {
@@ -34,15 +34,19 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: 'MySchoolsController'
     })
     .when('/school-info', {
-        templateUrl: '/views/templates/school-info.html',
-        controller: 'SchoolInfoController'
+      templateUrl: '/views/templates/school-info.html',
+      controller: 'SchoolInfoController'
     })
     .when('/login', {
       templateUrl: '/views/templates/login.html',
       controller: 'LoginController'
     })
     .when('/register', {
-      templateUrl: '/views/templates/register.html',
+      templateUrl: '/views/templates/register.html'
+    })
+    .when('/admin', {
+      templateUrl: '/views/templates/admin.html',
+      controller: 'AdminController'
     })
     .otherwise({
       redirectTo: '/home'

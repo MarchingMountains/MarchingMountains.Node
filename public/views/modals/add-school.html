@@ -1,8 +1,34 @@
-<div class="addSchool">
+<div class="addSchool donateModal">
     <md-content>
         <form>
             <md-input-container class="md-block">
                 <input type="text" ng-model="name" placeholder="School Name" value="name" />
+            </md-input-container>
+            <!--Instruments-->
+            <h5>Please select the instrument(s) your school needs:</h5>
+            <md-input-container ng-controller="ChipController as ctrl" class="chipsdemoCustomInputs md-padding">
+
+                <md-chips ng-model="ctrl.selectedInstruments"
+                          md-autocomplete-snap
+                          md-transform-chip="ctrl.transformChip($chip)"
+                          md-require-match="ctrl.autocompleteDemoRequireMatch">
+                    <md-autocomplete md-selected-item="selectedItem"
+                                     md-search-text-change="searchTextChange(searchText)"
+                                     md-search-text="searchText"
+                                     md-selected-item-change="selectedItemChange(item)"
+                                     md-items="item in ctrl.instruments | filter:searchText"
+                                     md-item-text="item.instrument"
+                                     md-min-length="0">
+                        <!--placeholder and md-floating label are both buggy solutions, find something else-->
+                        <span md-highlight-text="ctrl.searchText">{{item.instrument}}</span>
+                    </md-autocomplete>
+                    <md-chip-template>
+                        <span>
+                          <strong>{{$chip.instrument}}</strong>
+                        </span>
+                    </md-chip-template>
+                </md-chips>
+                <br>
             </md-input-container>
             <md-input-container class="md-block">
                 <input type="text" ng-model="website" placeholder="School Website" value="website" />
@@ -16,17 +42,18 @@
             <md-input-container class="md-block">
                 <input type="text" ng-model="city" placeholder="City" value="city" />
             </md-input-container>
+            <!--States-->
             <md-autocomplete
                     md-selected-item="selectedItem"
                     md-search-text-change="searchTextChange(searchText)"
                     md-search-text="searchText"
                     md-selected-item-change="selectedItemChange(item)"
                     md-items="item in states | filter:searchText"
-                    md-item-text="item.name"
+                    md-item-text="item.state"
                     md-min-length="0"
                     md-floating-label="State">
                 <md-item-template>
-                    <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.name}}</span>
+                    <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.state}}</span>
                 </md-item-template>
             </md-autocomplete>
             <md-input-container class="md-block">
@@ -38,8 +65,10 @@
             <md-input-container class="md-block">
                 <textarea ng-model="instructions" placeholder="Additional Shipping Instructions"></textarea>
             </md-input-container>
-            <md-button ng-if="currentSchool != true" ng-click="saveSchool(selectedItem)">Save School</md-button>
-            <md-button ng-if="currentSchool == true" ng-click="updateSchool(selectedItem)">Update School</md-button>
+
+            <br>
+            <md-button ng-if="currentSchool != true" ng-click="saveSchool(selectedItem, selectedInstruments)">Save School</md-button>
+            <md-button ng-if="currentSchool == true" ng-click="updateSchool(selectedItem, selectedInstruments)">Update School</md-button>
         </form>
     </md-content>
 </div>

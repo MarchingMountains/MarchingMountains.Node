@@ -1,7 +1,7 @@
 myApp.factory('SchoolsFactory', ['$http', function($http) {
 
     var userID = 5;
-    //var factorySchoolsList = [];
+
     var factorySchoolsList = {};
     var schoolSearchResults = {};
     var selectedInstrumentName = {};
@@ -17,13 +17,10 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
 
     var setSelectedSchoolInfo = function(school) {
         selectedSchoolInfo.list = school;
-        console.log('selectedSchoolInfo in factory: ', selectedSchoolInfo);
     };
 
     var factoryGetDirectorSchools = function() {
         var promise = $http.get('/schools/' + userID).then(function(response) {
-            //console.log('response: ', response);
-            //factorySchoolsList = response.data;
             factorySchoolsList.list = response.data;
         });
         return promise;
@@ -31,7 +28,6 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
 
     var factoryPostDirectorSchools = function(school) {
         var promise = $http.post('/schools/' + userID, school).then(function(response) {
-            //console.log('response: ', response);
             factoryGetDirectorSchools();
             factorySchoolsList.list = response.data;
         });
@@ -40,7 +36,6 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
 
     var factoryPutDirectorSchools = function(school) {
         var promise = $http.put('/schools/' + userID, school).then(function(response) {
-            //console.log('response: ', response);
             factoryGetDirectorSchools();
             factorySchoolsList.list = response.data;
         });
@@ -71,7 +66,6 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
         selectedSchoolInfo: selectedSchoolInfo,
         allSchools: factorySchoolsList,
         currentSchool: {}
-        //schoolsList: factorySchoolsList
     };
 
     return publicFunctions;
