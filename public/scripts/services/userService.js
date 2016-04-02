@@ -1,11 +1,5 @@
 myApp.factory('UserService', ['$http', '$window', function($http, $window) {
 
-    function User(isLogged, factoryUserName, factoryFirstName, factoryUserId) {
-        this.isLogged = isLogged;
-        this.factoryUserName = factoryUserName;
-        this.factoryFirstName = factoryFirstName;
-        this.factoryUserId = factoryUserId;
-    }
 
     var CurrentUser;
 
@@ -18,7 +12,12 @@ myApp.factory('UserService', ['$http', '$window', function($http, $window) {
         console.log(user);
         var promise = $http.post('/', user).then(function (response) {
             console.log(response);
-            CurrentUser = new User (true, response.data.email, response.data.first_name, response.data.user_id);
+            CurrentUser = {
+                isLogged: true,
+                factoryUserName: response.data.email,
+                factoryFirstName: response.data.first_name,
+                factoryUserId: response.data.user_id
+            };
             console.log(CurrentUser);
         });
         return promise;
@@ -28,7 +27,12 @@ myApp.factory('UserService', ['$http', '$window', function($http, $window) {
         console.log(user);
         var promise = $http.post('/register', user).then(function (response) {
             console.log(response.data);
-            CurrentUser = new User (true, response.data.email, response.data.first_name, response.data.user_id);
+            CurrentUser = {
+                isLogged: true,
+                factoryUserName: response.data.email,
+                factoryFirstName: response.data.first_name,
+                factoryUserId: response.data.user_id
+            };
             console.log(CurrentUser);
         });
         return promise;
@@ -51,7 +55,9 @@ myApp.factory('UserService', ['$http', '$window', function($http, $window) {
         },
         logOutUser: function() {
             return logOut();
-        }
+        },
+        watchCurrentUser: returnCurrentUser
+
     };
 
     return publicFunctions;
