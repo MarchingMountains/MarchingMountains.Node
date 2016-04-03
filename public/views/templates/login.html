@@ -5,13 +5,13 @@
                     <md-input-container>
                     <label>Email</label>
                     <input type="email" name="username" required ng-model="username"
-                           minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                           minlength="7" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
                         <div ng-messages="loginForm.$error" role="alert">
                             <div ng-message="required">
-                                Your email must be between 10 and 100 characters long and look like an e-mail address.
+                                Your email must be between 7 and 100 characters long and look like an e-mail address.
                             </div>
                             <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
-                                Your email must be between 10 and 100 characters long and look like an e-mail address.
+                                Your email must be between 7 and 100 characters long and look like an e-mail address.
                             </div>
                         </div>
                             {{username}}
@@ -41,13 +41,13 @@
                     <md-input-container>
                         <label>Email</label>
                         <input type="email" name="username" required ng-model="username"
-                        minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                        minlength="7" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
                             <div ng-messages="register.$error" role="alert">
                             <div ng-message="required">
-                                Your email must be between 10 and 100 characters long and look like an e-mail address.
+                                Your email must be between 7 and 100 characters long and look like an e-mail address.
                             </div>
                             <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
-                            Your email must be between 10 and 100 characters long and look like an e-mail address.
+                            Your email must be between 7 and 100 characters long and look like an e-mail address.
                             </div>
                             </div>
                         {{username}}

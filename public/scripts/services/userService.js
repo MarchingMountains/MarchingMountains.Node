@@ -46,7 +46,7 @@ myApp.factory('UserService', ['$http', '$window', function($http, $window) {
 
     var publicFunctions = {
         askForCurrentUser: function() {
-            return CurrentUser;
+            returnCurrentUser();
         },
         postLogin: function (user) {
             return login(user);

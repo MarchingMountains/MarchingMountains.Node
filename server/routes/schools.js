@@ -28,6 +28,31 @@ router.get('/:id', function(req, res) {
     });
 });
 
+router.get('/admin', function(req, res) {
+    var results = [];
+
+    pg.connect(connection, function(err, client, done) {
+        var query = client.query("SELECT schools.*, states.*, " +
+            "json_agg(json_build_object('instrument', instruments.instrument, 'instrument_id', instruments.instrument_id)) AS instruments " +
+            'FROM schools JOIN states ON schools.state_id = states.state_id ' +
+            'LEFT OUTER JOIN school_instruments ON schools.school_id = school_instruments.school_id ' +
+            'LEFT OUTER JOIN instruments ON instruments.instrument_id = school_instruments.instrument_id ' +
+            'GROUP BY schools.school_id, states.state_id ' +
+            'ORDER BY schools.school_name ASC');
+        query.on('row', function(row) {
+            results.push(row);
+        });
+        query.on('end', function() {
+            done();
+            console.log('results:: ', results);
+            return res.json(results);
+        });
+        if(err) {
+            console.log(err);
+        }
+    });
+});
+
 router.post('/:id', function(req, res) {
     var results = [];
     var newSchool = [

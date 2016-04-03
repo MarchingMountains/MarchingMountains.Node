@@ -1,6 +1,11 @@
-myApp.controller('MySchoolsController', ['$scope', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory', function($scope, $mdDialog, $mdMedia, SchoolsFactory, InstrumentsFactory, AddSchoolController) {
+myApp.controller('MySchoolsController',
+	['$scope', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory', 'UserService',
+		function($scope, $mdDialog, $mdMedia, SchoolsFactory, InstrumentsFactory, UserService, AddSchoolController) {
 	$scope.schools = [];
 	$scope.test = 'test';
+			var user = UserService.askForCurrentUser();
+			//user = user.factoryUserId;
+			console.log('user::', user);
 
 	var getInstruments = function() {
 		InstrumentsFactory.factoryGetInstrumentsList().then(function() {});
