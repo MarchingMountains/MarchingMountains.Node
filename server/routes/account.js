@@ -5,6 +5,7 @@ var path = require('path');
 var pg = require('pg');
 var bodyParser = require('body-parser');
 var connection = require('../../modules/connection');
+var encryptLib = require('../modules/encryption');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -23,7 +24,6 @@ router.get('/*', function(req, res) {
         //Stream results back one row at a time
         query.on('row', function(row) {
             results.push(row);
-            console.log('results from account route: ', results);
         });
 
         //close connection
@@ -41,16 +41,15 @@ router.get('/*', function(req, res) {
 
 router.put('/password/*', function(req, res) {
 
-    // hard coding in id for now, until connected with login/register page
-    //var id = req.params[0];
-    var id = 1;
+    var id = req.params[0];
     var results = [];
+    var password = encryptLib.encryptPassword(req.body.password);
 
     pg.connect(connection, function (err, client, done) {
         client.query('UPDATE users ' +
             'SET password = $1 ' +
             'WHERE user_id = $2;',
-            [req.body.password, id],
+            [password, id],
 
             function (err, result) {
                 done();
@@ -68,11 +67,8 @@ router.put('/password/*', function(req, res) {
 
 router.put('/*', function(req, res) {
 
-    // hard coding in id for now, until connected with login/register page
-    //var id = req.params[0];
-    var id = 1;
+    var id = req.params[0];
     var results = [];
-    console.log('stateid:', req.body.state);
 
     pg.connect(connection, function (err, client, done) {
         client.query('UPDATE users ' +
