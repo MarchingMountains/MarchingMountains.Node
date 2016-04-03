@@ -55,7 +55,7 @@
     </md-toolbar>
   </div>
 
-  <div class="col-md-2" ng-if="first_name == undefined">
+  <div class="col-md-2" ng-if="isLoggedIn == false">
     <div ng-click="openModal($event)" class="login">Log In / Register</div>
   </div>
 

@@ -1,7 +1,12 @@
-myApp.controller('HeaderController', ['$scope', '$mdDialog', '$mdMedia', 'UserService',
-    function($scope, $mdDialog, $mdMedia, UserService, LoginController) {
+myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'UserService',
+    function($scope, $http, $mdDialog, $mdMedia, UserService, LoginController) {
+
 
         $scope.UserService = UserService;
+        $scope.first_name;
+        $scope.user_name;
+        $scope.isLoggedIn = false;
+
 
         $scope.openModal = function(ev) {
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
@@ -23,8 +28,23 @@ myApp.controller('HeaderController', ['$scope', '$mdDialog', '$mdMedia', 'UserSe
         $scope.$watch($scope.UserService.watchCurrentUser, function(newValue, oldValue){
             if (newValue !== oldValue) {
                 $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
+                $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
+                $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
             }
         });
+
+        var getUserData = function() {
+            $scope.UserService.getUser().then(function() {
+                if ($scope.UserService.watchCurrentUser() != undefined) {
+                    $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
+                    $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
+                    $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
+                }
+                console.log($scope.UserService.watchCurrentUser());
+            });
+        };
+
+        getUserData();
 
     }
 ]);

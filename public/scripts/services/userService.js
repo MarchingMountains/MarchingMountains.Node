@@ -42,6 +42,24 @@ myApp.factory('UserService', ['$http', '$window', function($http, $window) {
         CurrentUser = undefined;
         $window.location.href = '/#/home';
     }
+    var getUserData = function() {
+        var promise = $http.get('/user').then(function(response) {
+            console.log("response from getUserData:", response);
+            if (response.data.user_id != undefined) {
+                CurrentUser = {
+                    isLogged: true,
+                    factoryUserName: response.data.email,
+                    factoryFirstName: response.data.first_name,
+                    factoryUserId: response.data.user_id
+                    };
+            }
+            else if (response.data == false) {
+                $window.location.href = '/#/home';
+            }
+        });
+
+        return promise;
+    };
 
     var publicFunctions = {
         askForCurrentUser: function() {
@@ -55,6 +73,9 @@ myApp.factory('UserService', ['$http', '$window', function($http, $window) {
         },
         logOutUser: function() {
             return logOut();
+        },
+        getUser: function() {
+            return getUserData();
         },
         watchCurrentUser: returnCurrentUser
 
