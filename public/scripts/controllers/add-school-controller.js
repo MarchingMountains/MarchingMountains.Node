@@ -36,7 +36,8 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'Instrument
             };
 
             SchoolsFactory.postDirectorSchool(school).then(function() {
-                $scope.schools = SchoolsFactory.schoolsList();
+                //$scope.schools = SchoolsFactory.schoolsList();
+                $scope.schools = SchoolsFactory.directorSchools;
                 InstrumentsFactory.currentInstruments = [];
             });
             $mdDialog.hide();

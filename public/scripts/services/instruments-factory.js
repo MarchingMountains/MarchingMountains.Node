@@ -1,5 +1,4 @@
 myApp.factory('InstrumentsFactory', ['$http', function($http) {
-
   var instruments = {};
   var factoryStatesList = {};
 
@@ -17,6 +16,14 @@ myApp.factory('InstrumentsFactory', ['$http', function($http) {
     return promise;
   };
 
+  var factoryPutInstrument = function(instrument) {
+    var instrumentID = instrument.instrument_id;
+    var promise = $http.put('/instruments/' + instrumentID, instrument).then(function(response) {
+      getInstrumentsList();
+    });
+    return promise;
+  };
+
   var publicFunctions = {
     factoryGetInstrumentsList: function() {
       return getInstrumentsList();
@@ -24,11 +31,13 @@ myApp.factory('InstrumentsFactory', ['$http', function($http) {
     getStates: function() {
       return factoryGetStates();
     },
+    putInstrument: function(instrument) {
+      return factoryPutInstrument(instrument);
+    },
     instruments: instruments,
     statesList: factoryStatesList,
     currentInstruments: []
   };
 
   return publicFunctions;
-
 }]);

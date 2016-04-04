@@ -31,7 +31,6 @@ router.get('/admin', function(req, res) {
         });
         query.on('end', function() {
             done();
-            console.log('results:: ', results);
             return res.json(results);
         });
         if(err) {

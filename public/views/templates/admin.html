@@ -100,13 +100,9 @@
             <md-list flex>
                 <md-list-item class="md-1-line" ng-repeat="instrument in instruments" ng-click="null">
                     <div class="md-list-item-text" layout="column">
-                        <h5>{{instrument.instrument}}</h5>
-                        <input placeholder="{{instrument.instrument}}"></input>
+                        <h5 editable-text="instrument.instrument" onaftersave="editInstrument(instrument)">{{instrument.instrument}}</h5>
                     </div>
                 </md-list-item>
-            <!--<ul>-->
-                <!--<li ng-repeat="instrument in instruments">{{instrument.instrument}}</li>-->
-            <!--</ul>-->
         </md-tab>
     </md-tabs>
 </md-content>

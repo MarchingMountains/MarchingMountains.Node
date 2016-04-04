@@ -39,9 +39,12 @@ myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'Schools
         SchoolsFactory.currentSchool = school;
     };
 
-    //var editInstruments = function(instrument) {
-    //
-    //};
+    $scope.editInstrument = function(currentInstrument) {
+        var instrument = {instrument: currentInstrument.instrument, instrument_id: currentInstrument.instrument_id};
+        InstrumentsFactory.putInstrument(instrument).then(function() {
+            $scope.instruments = InstrumentsFactory.instruments.list;
+        });
+    };
 
     getDonations();
     getSchools();
