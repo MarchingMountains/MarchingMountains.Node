@@ -18,7 +18,7 @@ myApp.controller('MySchoolsController',
 
 	var getSchools = function () {
 		SchoolsFactory.getDirectorSchools().then(function() {
-			$scope.schools = SchoolsFactory.allSchools;
+			$scope.schools = SchoolsFactory.directorSchools;
 		});
 	};
 

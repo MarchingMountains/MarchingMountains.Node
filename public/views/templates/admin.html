@@ -1,11 +1,10 @@
-
 <md-content>
     <md-tabs md-dynamic-height="" md-border-bottom="">
         <md-tab label="Users">
-            <table st-table="displayedUsers" st-safe-src="userTable" class="table table-striped">
+            <table st-table="displayedUsers" st-safe-src="usersTable" class="table table-striped">
                 <thead>
                 <tr>
-                    <th colspan="5"><input st-search="" class="form-control" placeholder="Search Users..." type="text"/></th>
+                    <th colspan="6"><input st-search="" class="form-control" placeholder="Search Users..." type="text"/></th>
                 </tr>
                 <tr>
                     <th st-sort="first_name">First Name</th>
@@ -29,7 +28,7 @@
             </table>
         </md-tab>
         <md-tab label="Schools">
-            <table st-table="displayedSchools" st-safe-src="schoolTable" class="table table-striped">
+            <table st-table="displayedSchools" st-safe-src="schoolsTable" class="table table-striped">
                 <thead>
                 <tr>
                     <th colspan="10"><input st-search="" class="form-control" placeholder="Search Schools..." type="text"/></th>
@@ -68,10 +67,10 @@
             </table>
         </md-tab>
         <md-tab label="Donations">
-            <table st-table="displayedDonations" st-safe-src="donationTable" class="table table-striped">
+            <table st-table="displayedDonations" st-safe-src="donationsTable" class="table table-striped">
                 <thead>
                 <tr>
-                    <th colspan="6"><input st-search="" class="form-control" placeholder="Search Donations..." type="text"/></th>
+                    <th colspan="5"><input st-search="" class="form-control" placeholder="Search Donations..." type="text"/></th>
                 </tr>
                 <tr>
                     <th st-sort="user">Donor Name</th>
@@ -94,6 +93,11 @@
                 </tr>
                 </tbody>
             </table>
+        </md-tab>
+        <md-tab label="Instruments">
+            <ul>
+                <li ng-repeat="instrument in instruments">{{instrument.instrument}}</li>
+            </ul>
         </md-tab>
     </md-tabs>
 </md-content>

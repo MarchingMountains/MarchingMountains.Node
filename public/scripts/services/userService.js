@@ -8,6 +8,7 @@ myApp.factory('UserService', ['$http', '$window', function($http, $window) {
     }
 
     var CurrentUser;
+    var allUsers = {};
 
     function returnCurrentUser() {
         return CurrentUser;
@@ -44,6 +45,14 @@ myApp.factory('UserService', ['$http', '$window', function($http, $window) {
         return promise;
     }
 
+    var factoryGetAllUsers = function() {
+        var promise = $http.get('/user/admin').then(function(response) {
+            allUsers.list = response.data;
+            console.log('factory allUsers: ', allUsers.list);
+        });
+        return promise;
+    };
+
     var publicFunctions = {
         askForCurrentUser: function() {
             returnCurrentUser();
@@ -56,7 +65,11 @@ myApp.factory('UserService', ['$http', '$window', function($http, $window) {
         },
         logOutUser: function() {
             return logOut();
-        }
+        },
+        getAllUsers: function() {
+            return factoryGetAllUsers();
+        },
+        allUsers: allUsers
     };
 
     return publicFunctions;

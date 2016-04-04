@@ -11,14 +11,12 @@ router.get('/admin', function(req, res){
         'JOIN instruments ON donations.instrument_id = instruments.instrument_id ' +
         'JOIN schools ON donations.school_id = schools.school_id ' +
         'JOIN users ON donations.user_id = users.user_id ' +
-        'ORDER BY donations.date DESC;',
-        req.params.id);
+        'ORDER BY donations.date DESC;');
     query.on('row', function(row) {
       results.push(row);
     });
     query.on('end', function() {
       client.end();
-      console.log('results:: ', results);
       return res.json(results);
     });
     if(err) {
