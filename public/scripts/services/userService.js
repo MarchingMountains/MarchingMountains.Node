@@ -1,12 +1,18 @@
-myApp.factory('UserService', ['$http', '$window', function($http, $window) {
+myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStorage', function($http, $window, $localStorage, $sessionStorage) {
 
 
-    var CurrentUser;
+    var CurrentUser = {
+        isLogged: false,
+        factoryUserName: undefined,
+        factoryFirstName: undefined,
+        factoryUserId: undefined
+    };
+    restoreSession();
+
 
     function returnCurrentUser() {
         return CurrentUser;
     }
-
 
     function login(user) {
         console.log(user);
@@ -18,7 +24,8 @@ myApp.factory('UserService', ['$http', '$window', function($http, $window) {
                 factoryFirstName: response.data.first_name,
                 factoryUserId: response.data.user_id
             };
-            console.log(CurrentUser);
+            persistSession();
+            console.log("CurrentUser inside Login:", CurrentUser);
         });
         return promise;
     }
@@ -33,33 +40,53 @@ myApp.factory('UserService', ['$http', '$window', function($http, $window) {
                 factoryFirstName: response.data.first_name,
                 factoryUserId: response.data.user_id
             };
+            persistSession();
             console.log(CurrentUser);
         });
         return promise;
     }
 
     function logOut() {
-        CurrentUser = undefined;
+        CurrentUser = {
+            isLogged: false,
+            factoryUserName: undefined,
+            factoryFirstName: undefined,
+            factoryUserId: undefined
+        };
+        delete $localStorage.CurrentUser;
         $window.location.href = '/#/home';
     }
-    var getUserData = function() {
-        var promise = $http.get('/user').then(function(response) {
-            console.log("response from getUserData:", response);
-            if (response.data.user_id != undefined) {
-                CurrentUser = {
-                    isLogged: true,
-                    factoryUserName: response.data.email,
-                    factoryFirstName: response.data.first_name,
-                    factoryUserId: response.data.user_id
-                    };
-            }
-            else if (response.data == false) {
-                $window.location.href = '/#/home';
-            }
-        });
+    //var getUserData = function() {
+    //    var promise = $http.get('/user').then(function(response) {
+    //        console.log("response from getUserData:", response);
+    //        if (response.data.user_id != undefined) {
+    //            $localStorage.CurrentUser = {
+    //                isLogged: true,
+    //                factoryUserName: response.data.email,
+    //                factoryFirstName: response.data.first_name,
+    //                factoryUserId: response.data.user_id
+    //                };
+    //            persistSession();
+    //        }
+    //        else if (response.data == false) {
+    //            $window.location.href = '/#/home';
+    //        }
+    //    });
+    //
+    //    return promise;
+    //};
 
-        return promise;
-    };
+    function persistSession() {
+        console.log("LocalStroage:", $localStorage);
+        $localStorage.CurrentUser = CurrentUser;
+        console.log("localSorage.CurrentUser:", $localStorage.CurrentUser);
+    }
+
+    function restoreSession() {
+        if($localStorage.CurrentUser != undefined) {
+            CurrentUser = $localStorage.CurrentUser;
+        }
+    }
 
     var publicFunctions = {
         askForCurrentUser: function() {
