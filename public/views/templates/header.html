@@ -1,5 +1,5 @@
 <div ng-controller="HeaderController">
-  <div class="col-md-4">
+  <div class="col-md-3">
     <a href="/" title="home"><img src="/img/MarchingMountainsLogo.png" alt="Marching Mountains Logo" /></a>
   </div>
 
@@ -46,18 +46,21 @@
     </md-toolbar>
   </div>
 
-  <div class="col-md-2" ng-if="isLoggedIn == false">
-    <md-button ng-click="openModal($event)" class="login">Login / Register</md-button>
+  <div class="col-md-3" ng-if="isLoggedIn == false">
+    <div ng-click="openModal($event)" class="login">Log In / Register</div>
   </div>
 
-  <div class="col-md-2" ng-if="isLoggedIn == true" id="menubarContainer" layout="row" ng-cloak>
+  <div class="col-md-3" ng-if="isLoggedIn == true" id="menubarContainer" layout="row" ng-cloak>
     <md-toolbar class="md-menu-toolbar">
       <div layout="row">
         <div>
           <md-menu-bar>
             <md-menu>
 
-              <button ng-click="$mdOpenMenu()">Welcome, {{displayedUser}}</button>
+              <button ng-click="$mdOpenMenu()">Welcome,
+                <span ng-if="first_name != ''">{{first_name}}</span>
+                <span ng-if="first_name === ''">{{user_name}}</span>
+              </button>
 
               <md-menu-content>
                 <md-menu-item><md-button href="#account">Edit Account Information</md-button></md-menu-item>
@@ -73,6 +76,4 @@
     <!--<a href="https://givemn.org/organization/Marching-Mountains" target="_blank">-->
       <!--<img src="/img/donate.png" alt="Help Marching Mountains - Get Kids Musical Instruments | GiveMN" /></a>-->
   <!--</div>-->
-
-
 </div>
