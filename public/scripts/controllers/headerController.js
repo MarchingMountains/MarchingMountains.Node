@@ -40,13 +40,10 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
         });
 
         var welcomeText = function() {
-            console.log("inside welcome text");
             if($scope.first_name != undefined) {
                 $scope.displayedUser = $scope.first_name;
-                console.log("inside welcome text if", $scope.welcome);
             } else {
                 $scope.displayedUser = $scope.user_name;
-                console.log("inside welcome text else", $scope.welcome);
             }
         };
 
