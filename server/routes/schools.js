@@ -86,6 +86,13 @@ router.post('/:id', function(req, res) {
     });
 });
 
+router.put('/verify/:id', function(req, res) {
+    console.log('req.body::', req.body);
+    pg.connect(connection, function(err, client, done) {
+        client.query('UPDATE schools SET (approved) = ($1) WHERE school_id = $2', [req.body.approved, req.params.id])
+    })
+});
+
 router.put('/:id', function(req, res) {
     var updateSchool = [
         req.body.name,

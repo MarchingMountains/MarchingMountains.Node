@@ -38,7 +38,7 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
     var factoryPostDirectorSchools = function(school) {
         var promise = $http.post('/schools/' + userID, school).then(function(response) {
             factoryGetDirectorSchools();
-            factorySchoolsList.list = response.data;
+            //factorySchoolsList.list = response.data;
         });
         return promise;
     };
@@ -46,7 +46,14 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
     var factoryPutDirectorSchools = function(school) {
         var promise = $http.put('/schools/' + userID, school).then(function(response) {
             factoryGetDirectorSchools();
-            factorySchoolsList.list = response.data;
+            //factorySchoolsList.list = response.data;
+        });
+        return promise;
+    };
+
+    var factoryVerifySchool = function(schoolID, status) {
+        var promise = $http.put('/schools/verify/' + schoolID, status).then(function(response) {
+            factoryGetAllSchools();
         });
         return promise;
     };
@@ -72,6 +79,9 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
         },
         factorySetSelectedSchoolInfo: function(school) {
             return setSelectedSchoolInfo(school);
+        },
+        verifySchool: function(schoolID, status) {
+            return factoryVerifySchool(schoolID, status);
         },
         schoolSearchResults: schoolSearchResults,
         selectedInstrumentName: selectedInstrumentName,

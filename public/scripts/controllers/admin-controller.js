@@ -1,5 +1,5 @@
-myApp.controller('AdminController', ['$scope', 'SchoolsFactory', 'InstrumentsFactory', 'DonationsFactory', 'UserService',
-    function($scope, SchoolsFactory, InstrumentsFactory, DonationsFactory, UserService) {
+myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'SchoolsFactory', 'InstrumentsFactory', 'DonationsFactory', 'UserService',
+    function($scope, $mdMedia, $mdDialog, SchoolsFactory, InstrumentsFactory, DonationsFactory, UserService) {
 
     var getDonations = function() {
         DonationsFactory.getAllDonations().then(function() {
@@ -24,6 +24,24 @@ myApp.controller('AdminController', ['$scope', 'SchoolsFactory', 'InstrumentsFac
             $scope.instruments = InstrumentsFactory.instruments.list;
         });
     };
+
+    $scope.approveSchoolModal = function(school, ev) {
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+
+        $mdDialog.show({
+            templateUrl: '../views/modals/approve-school.html',
+            controller: 'ApproveSchoolController',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            fullscreen: useFullScreen
+        });
+        SchoolsFactory.currentSchool = school;
+    };
+
+    //var editInstruments = function(instrument) {
+    //
+    //};
 
     getDonations();
     getSchools();

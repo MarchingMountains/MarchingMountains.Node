@@ -38,7 +38,7 @@
                     <th st-sort="website">Website</th>
                     <th st-sort="phone">Phone #</th>
                     <th st-sort="address_line1">Address Line 1</th>
-                    <th st-sort="address_line2">Address Line 2</th>
+                    <!--<th st-sort="address_line2">Address Line 2</th>-->
                     <th st-sort="city">City</th>
                     <th st-sort="state">State</th>
                     <th st-sort="zip">Zip</th>
@@ -51,15 +51,17 @@
                     <td>{{school.school_name}}</td>
                     <td><a href="{{school.website}}">Go to School</a></td>
                     <td>{{school.phone}}</td>
-                    <td>{{school.address_line1}}</td>
-                    <td>{{school.address_line2}}</td>
+                    <td>{{school.address_line1}} <br> {{school.address_line2}}</td>
+                    <!--<td></td>-->
                     <td>{{school.city}}</td>
                     <td>{{school.state}}</td>
                     <td>{{school.zip}}</td>
                     <td>{{school.first_name}} {{school.last_name}}</td>
                     <td>
                         <button ng-if="school.approved == true">Verified</button>
-                        <button ng-if="school.approved == null">Pending</button>
+                        <button ng-if="school.approved == null"
+                                ng-click="approveSchoolModal(school, $event)">Pending
+                        </button>
                         <button ng-if="school.approved == false">Denied</button>
                     </td>
                 </tr>
@@ -85,9 +87,9 @@
                     <td>{{donation.first_name}} {{donation.last_name}}</td>
                     <td>{{donation.instrument}}</td>
                     <td>{{donation.school_name}}</td>
-                    <td>{{donation.date}}</td>
+                    <td>{{donation.date  | date:'M/d/yyyy'}}</td>
                     <td>
-                        <button ng-if="donation.donation_received == true">Verified</button>
+                        <button ng-if="donation.donation_received == true">Received</button>
                         <button ng-if="donation.donation_received == false">In Transit</button>
                     </td>
                 </tr>
@@ -95,9 +97,16 @@
             </table>
         </md-tab>
         <md-tab label="Instruments">
-            <ul>
-                <li ng-repeat="instrument in instruments">{{instrument.instrument}}</li>
-            </ul>
+            <md-list flex>
+                <md-list-item class="md-1-line" ng-repeat="instrument in instruments" ng-click="null">
+                    <div class="md-list-item-text" layout="column">
+                        <h5>{{instrument.instrument}}</h5>
+                        <input placeholder="{{instrument.instrument}}"></input>
+                    </div>
+                </md-list-item>
+            <!--<ul>-->
+                <!--<li ng-repeat="instrument in instruments">{{instrument.instrument}}</li>-->
+            <!--</ul>-->
         </md-tab>
     </md-tabs>
 </md-content>

@@ -1,5 +1,4 @@
 myApp.factory('UserService', ['$http', '$window', function($http, $window) {
-
     function User(isLogged, factoryUserName, factoryFirstName, factoryUserId) {
         this.isLogged = isLogged;
         this.factoryUserName = factoryUserName;
@@ -13,7 +12,6 @@ myApp.factory('UserService', ['$http', '$window', function($http, $window) {
     function returnCurrentUser() {
         return CurrentUser;
     }
-
 
     function login(user) {
         console.log(user);
@@ -73,6 +71,4 @@ myApp.factory('UserService', ['$http', '$window', function($http, $window) {
     };
 
     return publicFunctions;
-
-
 }]);
