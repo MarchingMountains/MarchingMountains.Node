@@ -4,10 +4,16 @@ var passport = require('passport');
 
 
 router.get('/', function(req, res) {
-    req.session.destroy();
-    req.logout();
-    res.send(res);
-
+    if (req.isAuthenticated()) {
+        console.log(req.user);
+        req.logout();
+        req.session.destroy();
+        console.log(req.user);
+        console.log(req.session);
+        res.redirect("/#/home");
+    } else {
+        console.log("user not authenticated");
+    }
 });
 
 module.exports = router;

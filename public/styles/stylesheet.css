@@ -27,6 +27,10 @@
   overflow-y: hidden;
 }
 
+.loginModal {
+  min-width: 300px;
+}
+
 .chipsdemoCustomInputs md-content.autocomplete {
   min-height: 200px; }
 
@@ -48,3 +52,7 @@
 .chipsdemoCustomInputs .veggie-option .md-item-text p {
   padding: 0;
   margin: 0; }
+
+.login {
+  margin-top: 10px;
+}
