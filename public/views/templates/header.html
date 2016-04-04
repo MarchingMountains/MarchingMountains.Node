@@ -55,8 +55,11 @@
     </md-toolbar>
   </div>
 
-  <div class="col-md-2" ng-if="isLoggedIn == false">
-    <div ng-click="openModal($event)" class="login">Log In / Register</div>
+  <div class="col-md-2" ng-if="user_name == undefined">
+    <md-button ng-click="openModal($event)" class="login">Login / Register</md-button>
+  </div>
+  <div class="col-md-2" ng-if="user_name != undefined">
+    <md-button ng-click=logOut()><a href="/logout">Log Out</a></md-button>
   </div>
 
   <div class="col-md-2" ng-if="first_name" id="menubarContainer" layout="row" ng-cloak>

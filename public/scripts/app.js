@@ -49,6 +49,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/templates/admin.html',
       controller: 'AdminController'
     })
+    .when('/logout', {
+      templateUrl: '/views/templates/home.html',
+      controller: 'SchoolSearchController'
+    })
     .otherwise({
       redirectTo: '/home'
     });

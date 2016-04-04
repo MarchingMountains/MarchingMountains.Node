@@ -21,8 +21,13 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
             });
         };
 
+
         $scope.logOut = function() {
             $scope.UserService.logOutUser();
+            $scope.first_name = undefined;
+            $scope.user_name = undefined;
+            $scope.isLoggedIn = false;
+
         };
 
         $scope.$watch($scope.UserService.watchCurrentUser, function(newValue, oldValue){
@@ -36,6 +41,7 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
         var getUserData = function() {
             $scope.UserService.getUser().then(function() {
                 if ($scope.UserService.watchCurrentUser() != undefined) {
+
                     $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
                     $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
                     $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
@@ -43,6 +49,15 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
                 console.log($scope.UserService.watchCurrentUser());
             });
         };
+
+        //var toggleLoginText = function() {
+        //  if($scope.isLoggedIn = false) {
+        //      $scope.login.text = "Login / Register"
+        //  }
+        //  else if($scope.isLoggedIn = true) {
+        //      $scope.login.text = "Logout"
+        //  }
+        //};
 
         getUserData();
 

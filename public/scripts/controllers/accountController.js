@@ -7,7 +7,7 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
     $scope.editedPassword = false;
     $scope.states = [];
     $scope.selectedState = '';
-    $scope.loggedInUser = $scope.UserService.askForCurrentUser();
+    $scope.loggedInUser = $scope.UserService.watchCurrentUser();
 
     var id = $scope.loggedInUser.factoryUserId;
     console.log('id: ', id);
