@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
             return next(err);
         }
         if (!user) {
-            console.log("!user");
+            console.log("!user", user);
             return res.send(user);
         }
         req.logIn(user, function(err) {

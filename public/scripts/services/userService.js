@@ -1,4 +1,4 @@
-myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStorage', function($http, $window, $localStorage, $sessionStorage) {
+myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStorage', '$q', function($http, $window, $localStorage, $sessionStorage, $q) {
 
 
     var CurrentUser = {
@@ -7,8 +7,6 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
         factoryFirstName: undefined,
         factoryUserId: undefined
     };
-    restoreSession();
-
 
     function returnCurrentUser() {
         return CurrentUser;
@@ -17,14 +15,20 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
     function login(user) {
         console.log(user);
         var promise = $http.post('/', user).then(function (response) {
-            console.log(response);
-            CurrentUser = {
-                isLogged: true,
-                factoryUserName: response.data.email,
-                factoryFirstName: response.data.first_name,
-                factoryUserId: response.data.user_id
-            };
-            persistSession();
+            if (response.data === false) {
+                console.log("Incorrect email/password");
+                return response.data;
+            } else {
+                console.log("inside correct login", response.data);
+                CurrentUser = {
+                    isLogged: true,
+                    factoryUserName: response.data.email,
+                    factoryFirstName: response.data.first_name,
+                    factoryUserId: response.data.user_id
+                };
+                persistSession();
+                return response.data;
+            }
             console.log("CurrentUser inside Login:", CurrentUser);
         });
         return promise;
@@ -56,25 +60,6 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
         delete $localStorage.CurrentUser;
         $window.location.href = '/#/home';
     }
-    //var getUserData = function() {
-    //    var promise = $http.get('/user').then(function(response) {
-    //        console.log("response from getUserData:", response);
-    //        if (response.data.user_id != undefined) {
-    //            $localStorage.CurrentUser = {
-    //                isLogged: true,
-    //                factoryUserName: response.data.email,
-    //                factoryFirstName: response.data.first_name,
-    //                factoryUserId: response.data.user_id
-    //                };
-    //            persistSession();
-    //        }
-    //        else if (response.data == false) {
-    //            $window.location.href = '/#/home';
-    //        }
-    //    });
-    //
-    //    return promise;
-    //};
 
     function persistSession() {
         console.log("LocalStroage:", $localStorage);
@@ -87,6 +72,8 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
             CurrentUser = $localStorage.CurrentUser;
         }
     }
+
+    restoreSession();
 
     var publicFunctions = {
         askForCurrentUser: function() {
