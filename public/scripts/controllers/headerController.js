@@ -2,6 +2,7 @@ myApp.controller('HeaderController', ['$scope', '$mdDialog', '$mdMedia', 'UserSe
     function($scope, $mdDialog, $mdMedia, UserService, LoginController) {
 
         $scope.UserService = UserService;
+        $scope.loggedIn = false;
 
         $scope.openModal = function(ev) {
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
@@ -18,11 +19,15 @@ myApp.controller('HeaderController', ['$scope', '$mdDialog', '$mdMedia', 'UserSe
 
         $scope.logOut = function() {
             $scope.UserService.logOutUser();
+            $scope.first_name = undefined;
+            $scope.loggedIn = false;
         };
 
         $scope.$watch($scope.UserService.watchCurrentUser, function(newValue, oldValue){
-            if (newValue !== oldValue) {
+            if ($scope.UserService.watchCurrentUser() != undefined) {
                 $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
+                $scope.email = $scope.UserService.watchCurrentUser().factoryUserName;
+                $scope.loggedIn = true;
             }
         });
 

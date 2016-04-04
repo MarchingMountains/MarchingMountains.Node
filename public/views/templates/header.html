@@ -25,7 +25,8 @@
               <md-menu-content>
 
                 <md-menu-item><md-button href="#donors">Donate</md-button></md-menu-item>
-                <md-menu-item><md-button href="#my-schools">Request</md-button></md-menu-item>
+                <md-menu-item ng-if="loggedIn == false"><md-button href="#band-directors">Request</md-button></md-menu-item>
+                <md-menu-item ng-if="loggedIn"><md-button href="#my-schools">Request</md-button></md-menu-item>
 
               </md-menu-content>
             </md-menu>
@@ -39,27 +40,17 @@
               </md-menu-content>
             </md-menu>
 
-            <!--<md-menu ng-if="first_name">-->
-
-              <!--<button ng-click="$mdOpenMenu()">Welcome, {{first_name}}</button>-->
-
-              <!--<md-menu-content>-->
-                <!--<md-menu-item><md-button href="#account">Edit Account Information</md-button></md-menu-item>-->
-                <!--<md-menu-item><md-button ng-click=logOut()><a href="/logout">Log Out</a></md-button></md-menu-item>-->
-              <!--</md-menu-content>-->
-            <!--</md-menu>-->
-
           </md-menu-bar>
         </div>
       </div>
     </md-toolbar>
   </div>
 
-  <div class="col-md-2" ng-if="first_name == undefined">
+  <div class="col-md-2" ng-if="loggedIn == false">
     <div ng-click="openModal($event)" class="login">Log In / Register</div>
   </div>
 
-  <div class="col-md-2" ng-if="first_name" id="menubarContainer" layout="row" ng-cloak>
+  <div class="col-md-2" ng-if="loggedIn" id="menubarContainer" layout="row" ng-cloak>
 
 
     <md-toolbar class="md-menu-toolbar">
