@@ -1,30 +1,29 @@
-<md-dialog class="md-padding" layout="column">
-    <md-dialog-content style="max-width:800px;max-height:1000px; ">
-        <div ng-show="show_form='login'" layout=column" ng-cloak class="md-inline-form">
+<md-dialog class="md-padding">
+    <md-dialog-content class="loginModal">
+        <div ng-show="show_form='login'" ng-cloak class="md-inline-form">
             <form name="loginForm" novalidate ng-submit="login(loginForm.$valid)">
                 <md-input-container>
-                <label>Email</label>
-                <input type="email" name="username" required ng-model="username"
-                       minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
-                    <div ng-messages="loginForm.$error" role="alert">
-                        <div ng-message="required">
-                            Your email must be between 10 and 100 characters long and look like an e-mail address.
+                    <label>Email</label>
+                    <input type="email" name="username" required ng-model="username" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                        <div ng-messages="loginForm.$error" role="alert">
+                            <div ng-message="required">
+                                Please enter your e-mail address
+                            </div>
+                            <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
+                                Please fix your email address
+                            </div>
                         </div>
-                        <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
-                            Your email must be between 10 and 100 characters long and look like an e-mail address.
-                        </div>
-                    </div>
                 </md-input-container><br>
+
                 <md-input-container>
                 <label>Password</label>
-                <input type="password" name="password" required ng-model="password"
-                       minlength="4" maxlength="50" />
-                    <div ng-messages="loginForm.$error" role="alert">
+                <input type="password" name="password" required ng-model="password" minlength="4" maxlength="50" />
+                    <div ng-messages="loginForm.$error" ng-if="loginForm.$submitted || loginForm.password.$dirty" role="alert">
                         <div ng-message="required">
-                            Your password must be between 4 and 50 characters long.
+                            Please enter your password
                         </div>
                         <div ng-message-exp="['minlength', 'maxlength']">
-                            Your password must be between 4 and 50 characters long.
+                            Must be between 4 and 50 characters long
                         </div>
                     </div>
                 </md-input-container>
@@ -32,7 +31,7 @@
                     <md-button type="submit" class="md-raised md-primary" ng-disabled="loginForm.$invalid">Login</md-button>
                     <md-button><a href="#register" ng-click="closeModal()">Register</a></md-button>
                 </div>
-            </form><br>
+            </form>
         </div>
     </md-dialog-content>
 </md-dialog>
