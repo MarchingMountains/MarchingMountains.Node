@@ -46,6 +46,13 @@ myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'Schools
         });
     };
 
+    $scope.deleteInstrument = function(instrumentID) {
+        console.log('holyshit, no way::', instrumentID);
+        InstrumentsFactory.deleteInstrument(instrumentID).then(function() {
+            $scope.instruments = InstrumentsFactory.instruments.list;
+        });
+    };
+
     getDonations();
     getSchools();
     getUsers();
