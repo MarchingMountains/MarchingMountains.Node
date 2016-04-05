@@ -26,7 +26,7 @@ router.put('/:id', function(req, res) {
       client.end();
     });
     res.sendStatus(200);
-  })
+  });
 });
 
 router.delete('/:id', function(req, res) {
@@ -35,7 +35,7 @@ router.delete('/:id', function(req, res) {
       client.end();
     });
     res.sendStatus(200);
-  })
+  });
 });
 
 module.exports = router;

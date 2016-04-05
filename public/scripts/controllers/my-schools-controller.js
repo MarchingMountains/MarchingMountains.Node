@@ -7,8 +7,6 @@ myApp.controller('MySchoolsController',
 	$scope.donations = [];
 
 	var user = UserService.askForCurrentUser();
-	//user = user.factoryUserId;
-	console.log('user::', user);
 
 	var getInstruments = function() {
 		InstrumentsFactory.factoryGetInstrumentsList().then(function() {});
@@ -21,8 +19,9 @@ myApp.controller('MySchoolsController',
 	var getSchools = function () {
 		SchoolsFactory.getDirectorSchools().then(function() {
 			$scope.schools = SchoolsFactory.directorSchools;
-			buildDonations();
-			console.log('donations array: ', $scope.donations);
+			if(user !== undefined) {
+				buildDonations();
+			}
 		});
 	};
 
@@ -30,7 +29,6 @@ myApp.controller('MySchoolsController',
 		for(var i = 0; i < $scope.schools.list.length; i++) {
 			for(var j = 0; j < $scope.schools.list[i].donations.length; j++) {
 				$scope.donations.push({
-					// school_id: $scope.schools.list[i].school_id,
 					school_name: $scope.schools.list[i].school_name,
 					instrument_name: $scope.schools.list[i].donations[j].instrument,
 					date: $scope.schools.list[i].donations[j].date,

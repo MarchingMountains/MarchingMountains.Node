@@ -1,6 +1,6 @@
 myApp.factory('SchoolsFactory', ['$http', function($http) {
 
-  var userID = 5;
+  // var userID = 5;
 
   var factorySchoolsList = {};
   var schoolSearchResults = {};
