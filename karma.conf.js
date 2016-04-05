@@ -15,14 +15,18 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        'public/vendors/angular.min.js',
-        'public/vendors/angular-route.min.js',
-        'public/vendors/angular-material.min.js',
         'public/vendors/ang-accordion.js',
-        'public/vendors/angular-messages.min.js',
-        'public/vendors/angular-password.min.js',
+        'public/vendors/angular.min.js',
         'public/vendors/angular-animate.min.js',
         'public/vendors/angular-aria.min.js',
+        'public/vendors/angular-material.min.js',
+        'public/vendors/angular-messages.min.js',
+        'public/vendors/angular-password.min.js',
+        'public/vendors/angular-route.min.js',
+        'public/vendors/ngStorage.min.js',
+        'public/vendors/sinon.js',
+        'public/vendors/smart-table.min.js',
+        'public/vendors/xeditable.min.js',
         'node_modules/angular-mocks/angular-mocks.js',
         'public/scripts/**/*.js',
         'public/scripts/app.js',
