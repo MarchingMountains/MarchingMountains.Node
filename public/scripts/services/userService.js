@@ -1,6 +1,5 @@
 myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStorage', '$q', function($http, $window, $localStorage, $sessionStorage, $q) {
-
-
+    var allUsers = {};
     var CurrentUser = {
         isLogged: false,
         factoryUserName: undefined,
@@ -13,7 +12,6 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
     }
 
     function login(user) {
-        console.log(user);
         var promise = $http.post('/', user).then(function (response) {
             if (response.data === false) {
                 console.log("Incorrect email/password");
@@ -37,7 +35,6 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
     function register(user) {
         console.log(user);
         var promise = $http.post('/register', user).then(function (response) {
-            console.log(response.data);
             CurrentUser = {
                 isLogged: true,
                 factoryUserName: response.data.email,
@@ -45,7 +42,6 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
                 factoryUserId: response.data.user_id
             };
             persistSession();
-            console.log(CurrentUser);
         });
         return promise;
     }
@@ -62,9 +58,7 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
     }
 
     function persistSession() {
-        console.log("LocalStroage:", $localStorage);
         $localStorage.CurrentUser = CurrentUser;
-        console.log("localSorage.CurrentUser:", $localStorage.CurrentUser);
     }
 
     function restoreSession() {
@@ -72,6 +66,13 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
             CurrentUser = $localStorage.CurrentUser;
         }
     }
+
+    var factoryGetAllUsers = function() {
+        var promise = $http.get('/user/admin').then(function(response) {
+            allUsers.list = response.data;
+        });
+        return promise;
+    };
 
     restoreSession();
 
@@ -91,11 +92,13 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
         getUser: function() {
             return getUserData();
         },
+        getAllUsers: function() {
+            return factoryGetAllUsers();
+        },
+        allUsers: allUsers,
         watchCurrentUser: returnCurrentUser
 
     };
 
     return publicFunctions;
-
-
 }]);

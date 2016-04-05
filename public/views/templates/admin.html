@@ -1,0 +1,110 @@
+<md-content>
+    <md-tabs md-dynamic-height="" md-border-bottom="">
+        <md-tab label="Users">
+            <table st-table="displayedUsers" st-safe-src="usersTable" class="table table-striped">
+                <thead>
+                <tr>
+                    <th colspan="6"><input st-search="" class="form-control" placeholder="Search Users..." type="text"/></th>
+                </tr>
+                <tr>
+                    <th st-sort="first_name">First Name</th>
+                    <th st-sort="last_name">Last Name</th>
+                    <th st-sort="email">Email</th>
+                    <th st-sort="phone">Phone #</th>
+                    <th st-sort="city">City</th>
+                    <th st-sort="state">State</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="user in displayedUsers">
+                    <td>{{user.first_name}}</td>
+                    <td>{{user.last_name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phone}}</td>
+                    <td>{{user.city}}</td>
+                    <td>{{user.state}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </md-tab>
+        <md-tab label="Schools">
+            <table st-table="displayedSchools" st-safe-src="schoolsTable" class="table table-striped">
+                <thead>
+                <tr>
+                    <th colspan="10"><input st-search="" class="form-control" placeholder="Search Schools..." type="text"/></th>
+                </tr>
+                <tr>
+                    <th st-sort="school_name">School</th>
+                    <th st-sort="website">Website</th>
+                    <th st-sort="phone">Phone #</th>
+                    <th st-sort="address_line1">Address Line 1</th>
+                    <!--<th st-sort="address_line2">Address Line 2</th>-->
+                    <th st-sort="city">City</th>
+                    <th st-sort="state">State</th>
+                    <th st-sort="zip">Zip</th>
+                    <th st-sort="user">Band Director</th>
+                    <th st-sort="approved">Verified?</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="school in displayedSchools">
+                    <td>{{school.school_name}}</td>
+                    <td><a href="{{school.website}}">Go to School</a></td>
+                    <td>{{school.phone}}</td>
+                    <td>{{school.address_line1}} <br> {{school.address_line2}}</td>
+                    <!--<td></td>-->
+                    <td>{{school.city}}</td>
+                    <td>{{school.state}}</td>
+                    <td>{{school.zip}}</td>
+                    <td>{{school.first_name}} {{school.last_name}}</td>
+                    <td>
+                        <button ng-if="school.approved == true">Verified</button>
+                        <button ng-if="school.approved == null"
+                                ng-click="approveSchoolModal(school, $event)">Pending
+                        </button>
+                        <button ng-if="school.approved == false">Denied</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </md-tab>
+        <md-tab label="Donations">
+            <table st-table="displayedDonations" st-safe-src="donationsTable" class="table table-striped">
+                <thead>
+                <tr>
+                    <th colspan="5"><input st-search="" class="form-control" placeholder="Search Donations..." type="text"/></th>
+                </tr>
+                <tr>
+                    <th st-sort="user">Donor Name</th>
+                    <th st-sort="instrument">Instrument</th>
+                    <th st-sort="school_name">School</th>
+                    <th st-sort="date">Date</th>
+                    <th st-sort="donation_received">Received?</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="donation in displayedDonations">
+                    <td>{{donation.first_name}} {{donation.last_name}}</td>
+                    <td>{{donation.instrument}}</td>
+                    <td>{{donation.school_name}}</td>
+                    <td>{{donation.date  | date:'M/d/yyyy'}}</td>
+                    <td>
+                        <button ng-if="donation.donation_received == true">Received</button>
+                        <button ng-if="donation.donation_received == false">In Transit</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </md-tab>
+        <md-tab label="Instruments">
+            <md-list flex>
+                <md-list-item class="md-1-line" ng-repeat="instrument in instruments" ng-click="null">
+                    <div class="md-list-item-text" layout="column">
+                        <h5 editable-text="instrument.instrument"
+                            onafterdelete="deleteInstrument(instrument.instrument_id)"
+                            onaftersave="editInstrument(instrument)">{{instrument.instrument}}</h5>
+                    </div>
+                </md-list-item>
+        </md-tab>
+    </md-tabs>
+</md-content>

@@ -2,6 +2,7 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
 
   var selectedSchoolDonations = {};
   var currentUserDonations = {};
+  var allDonations = {};
 
   var SelectedSchoolDonations = function(selectedSchoolId) {
     var promise = $http.get('/donations/school/' + selectedSchoolId).then(function(response) {
@@ -13,7 +14,13 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
   var getCurrentUserDonations = function(currentUserId) {
     var promise = $http.get('/donations/user/' + currentUserId).then(function(response) {
       currentUserDonations.list = response.data;
-      console.log('factory currentUserDonations: ', currentUserDonations.list);
+    });
+    return promise;
+  };
+
+  var factoryGetAllDonations = function() {
+    var promise = $http.get('/donations/admin').then(function(response) {
+      allDonations.list = response.data;
     });
     return promise;
   };
@@ -25,8 +32,12 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
     factoryGetCurrentUserDonations: function(currentUserId) {
       return getCurrentUserDonations(currentUserId);
     },
+    getAllDonations: function() {
+      return factoryGetAllDonations();
+    },
     selectedSchoolDonations: selectedSchoolDonations,
-    currentUserDonations: currentUserDonations
+    currentUserDonations: currentUserDonations,
+    allDonations: allDonations
   };
 
   return publicFunctions;

@@ -3,6 +3,29 @@ var router = express.Router();
 var connection = require('../modules/connection');
 var pg = require('pg');
 
+router.get('/admin', function(req, res) {
+    var results = [];
+    pg.connect(connection, function(err, client, done) {
+        var query = client.query("SELECT schools.*, states.*, " +
+            "json_agg(json_build_object('instrument', instruments.instrument, 'instrument_id', instruments.instrument_id)) AS instruments " +
+            'FROM schools LEFT OUTER JOIN states ON schools.state_id = states.state_id ' +
+            'LEFT OUTER JOIN school_instruments ON schools.school_id = school_instruments.school_id ' +
+            'LEFT OUTER JOIN instruments ON instruments.instrument_id = school_instruments.instrument_id ' +
+            'GROUP BY schools.school_id, states.state_id ' +
+            'ORDER BY schools.school_name ASC');
+        query.on('row', function(row) {
+            results.push(row);
+        });
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+        if(err) {
+            console.log(err);
+        }
+    });
+});
+
 router.get('/:id', function(req, res) {
     var results = [];
     var directorID = req.params.id;
@@ -63,6 +86,13 @@ router.post('/:id', function(req, res) {
     });
 });
 
+router.put('/verify/:id', function(req, res) {
+    console.log('req.body::', req.body);
+    pg.connect(connection, function(err, client, done) {
+        client.query('UPDATE schools SET (approved) = ($1) WHERE school_id = $2', [req.body.approved, req.params.id])
+    })
+});
+
 router.put('/:id', function(req, res) {
     var updateSchool = [
         req.body.name,
@@ -75,6 +105,7 @@ router.put('/:id', function(req, res) {
         req.body.phone,
         req.body.instructions,
         req.params.id,
+        req.body.approved,
         req.body.school_id
     ];
 
@@ -83,9 +114,9 @@ router.put('/:id', function(req, res) {
 
     pg.connect(connection, function(err, client, done) {
         client.query('UPDATE schools SET' +
-            '(school_name, website, address_line1, address_line2, city, state_id, zip, phone, instructions, user_id) ' +
-            '= ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)' +
-            'WHERE school_id = $11', updateSchool, function(err) {
+            '(school_name, website, address_line1, address_line2, city, state_id, zip, phone, instructions, ' +
+            'user_id, approved) = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)' +
+            'WHERE school_id = $12', updateSchool, function(err) {
             client.query('DELETE FROM school_instruments WHERE school_id = $1', [school_id], function(err) {
                 for (var i = 0; i < instruments.length; i++) {
                     var instrument_id = instruments[i].instrument_id;
