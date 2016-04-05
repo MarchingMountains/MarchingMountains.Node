@@ -25,6 +25,7 @@ myApp.factory('InstrumentsFactory', ['$http', function($http) {
   };
 
   var factoryPostInstrument = function(instrument) {
+    var instrument = {'instrument': instrument};
     var promise = $http.post('/instruments', instrument).then(function(response) {
       getInstrumentsList();
     });
