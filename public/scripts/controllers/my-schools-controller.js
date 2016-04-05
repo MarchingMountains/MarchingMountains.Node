@@ -1,10 +1,14 @@
-myApp.controller('MySchoolsController', ['$scope', '$mdDialog', '$mdMedia',
-'SchoolsFactory', 'InstrumentsFactory', 'DonationsFactory', function($scope,
-	$mdDialog, $mdMedia, SchoolsFactory, InstrumentsFactory, DonationsFactory, AddSchoolController) {
+myApp.controller('MySchoolsController',
+	['$scope', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory',
+	'DonationsFactory', 'UserService', function($scope, $mdDialog, $mdMedia,
+		SchoolsFactory, InstrumentsFactory,DonationsFactory, UserService, AddSchoolController) {
 
 	$scope.schools = [];
-	$scope.test = 'test';
 	$scope.donations = [];
+
+	var user = UserService.askForCurrentUser();
+	//user = user.factoryUserId;
+	console.log('user::', user);
 
 	var getInstruments = function() {
 		InstrumentsFactory.factoryGetInstrumentsList().then(function() {});
@@ -14,11 +18,9 @@ myApp.controller('MySchoolsController', ['$scope', '$mdDialog', '$mdMedia',
 		InstrumentsFactory.getStates().then(function() {});
 	};
 
-
 	var getSchools = function () {
 		SchoolsFactory.getDirectorSchools().then(function() {
-			$scope.schools = SchoolsFactory.allSchools;
-			console.log('school list: ', $scope.schools);
+			$scope.schools = SchoolsFactory.directorSchools;
 			buildDonations();
 			console.log('donations array: ', $scope.donations);
 		});

@@ -1,12 +1,10 @@
 myApp.factory('InstrumentsFactory', ['$http', function($http) {
-
   var instruments = {};
   var factoryStatesList = {};
 
   var getInstrumentsList = function() {
     var promise = $http.get('/instruments').then(function(response) {
       instruments.list = response.data;
-      console.log(instruments);
     });
     return promise;
   };
@@ -18,6 +16,21 @@ myApp.factory('InstrumentsFactory', ['$http', function($http) {
     return promise;
   };
 
+  var factoryPutInstrument = function(instrument) {
+    var instrumentID = instrument.instrument_id;
+    var promise = $http.put('/instruments/' + instrumentID, instrument).then(function(response) {
+      getInstrumentsList();
+    });
+    return promise;
+  };
+
+  var factoryDeleteInstrument = function(instrumentID) {
+    var promise = $http.delete('/instruments/' + instrumentID).then(function(response) {
+      getInstrumentsList();
+    });
+    return promise;
+  };
+
   var publicFunctions = {
     factoryGetInstrumentsList: function() {
       return getInstrumentsList();
@@ -25,11 +38,16 @@ myApp.factory('InstrumentsFactory', ['$http', function($http) {
     getStates: function() {
       return factoryGetStates();
     },
+    putInstrument: function(instrument) {
+      return factoryPutInstrument(instrument);
+    },
+    deleteInstrument: function(instrumentID) {
+      return factoryDeleteInstrument(instrumentID);
+    },
     instruments: instruments,
     statesList: factoryStatesList,
     currentInstruments: []
   };
 
   return publicFunctions;
-
 }]);

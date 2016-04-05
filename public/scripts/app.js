@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'material.svgAssetsCache', 'angAccordion', 'ngPassword', 'wj']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage', 'material.svgAssetsCache', 'angAccordion', 'ngPassword', 'wj', 'smart-table', 'xeditable']);
 myApp.config(['$routeProvider', function($routeProvider) {
 
   $routeProvider
@@ -42,14 +42,23 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: 'LoginController'
     })
     .when('/register', {
-      templateUrl: '/views/templates/register.html'
+      templateUrl: '/views/templates/register.html',
+      controller: 'LoginController'
     })
     .when('/admin', {
       templateUrl: '/views/templates/admin.html',
       controller: 'AdminController'
+    })
+    .when('/logout', {
+      templateUrl: '/views/templates/home.html',
+      controller: 'SchoolSearchController'
     })
     .otherwise({
       redirectTo: '/home'
     });
 
 }]);
+
+myApp.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});

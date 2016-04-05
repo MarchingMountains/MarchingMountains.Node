@@ -1,48 +1,81 @@
-myApp.factory('UserService', ['$http', '$window', function($http, $window) {
+myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStorage', '$q', function($http, $window, $localStorage, $sessionStorage, $q) {
 
-    function User(isLogged, factoryUserName, factoryFirstName, factoryUserId) {
-        this.isLogged = isLogged;
-        this.factoryUserName = factoryUserName;
-        this.factoryFirstName = factoryFirstName;
-        this.factoryUserId = factoryUserId;
-    }
+    var allUsers = {};
 
-    var CurrentUser;
+    var CurrentUser = {
+        isLogged: false,
+        factoryUserName: undefined,
+        factoryFirstName: undefined,
+        factoryUserId: undefined
+    };
 
     function returnCurrentUser() {
         return CurrentUser;
     }
 
-
     function login(user) {
-        console.log(user);
-            var promise = $http.post('/', user).then(function (response) {
-                console.log(response);
-                CurrentUser = new User (true, response.data.email, response.data.first_name, response.data.user_id);
-                console.log(CurrentUser);
-            });
+        var promise = $http.post('/', user).then(function (response) {
+            if (response.data === false) {
+                console.log("Incorrect email/password");
+                return response.data;
+            } else {
+                CurrentUser = {
+                    isLogged: true,
+                    factoryUserName: response.data.email,
+                    factoryFirstName: response.data.first_name,
+                    factoryUserId: response.data.user_id
+                };
+                persistSession();
+                return response.data;
+            }
+            console.log("CurrentUser inside Login:", CurrentUser);
+        });
         return promise;
     }
 
     function register(user) {
         console.log(user);
-            var promise = $http.post('/register', user).then(function (response) {
-                console.log(response.data);
-                CurrentUser = new User (true, response.data.email, response.data.first_name, response.data.user_id);
-                console.log(CurrentUser);
-            });
+        var promise = $http.post('/register', user).then(function (response) {
+            CurrentUser = {
+                isLogged: true,
+                factoryUserName: response.data.email,
+                factoryFirstName: response.data.first_name,
+                factoryUserId: response.data.user_id
+            };
+            persistSession();
+        });
         return promise;
     }
 
     function logOut() {
-        var promise = $http.get('/').then(function (response) {
-            if (response) {
-                CurrentUser = undefined;
-                $window.location.href = '/#/home';
-            }
-            });
-        return promise;
+        CurrentUser = {
+            isLogged: false,
+            factoryUserName: undefined,
+            factoryFirstName: undefined,
+            factoryUserId: undefined
+        };
+        delete $localStorage.CurrentUser;
+        $window.location.href = '/#/home';
     }
+
+    function persistSession() {
+        $localStorage.CurrentUser = CurrentUser;
+    }
+
+    function restoreSession() {
+        if($localStorage.CurrentUser != undefined) {
+            CurrentUser = $localStorage.CurrentUser;
+        }
+    }
+
+    var factoryGetAllUsers = function() {
+        var promise = $http.get('/user/admin').then(function(response) {
+            allUsers.list = response.data;
+        });
+        return promise;
+    };
+
+    restoreSession();
 
     var publicFunctions = {
         askForCurrentUser: function() {
@@ -56,10 +89,17 @@ myApp.factory('UserService', ['$http', '$window', function($http, $window) {
         },
         logOutUser: function() {
             return logOut();
-        }
+        },
+        getUser: function() {
+            return getUserData();
+        },
+        getAllUsers: function() {
+            return factoryGetAllUsers();
+        },
+        allUsers: allUsers,
+        watchCurrentUser: returnCurrentUser
+
     };
 
     return publicFunctions;
-
-
 }]);

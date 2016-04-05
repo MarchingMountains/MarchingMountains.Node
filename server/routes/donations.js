@@ -6,6 +6,28 @@ var api_key = 'key-9fad0a24dab479c9890b265c5c0495a3';
 var domain = 'sandboxf24cc5b071a54b549d355abfc18c80b3.mailgun.org';
 var Mailgun = require('mailgun-js');
 
+router.get('/admin', function(req, res){
+  var results = [];
+  pg.connect(connection, function(err, client, done) {
+    var query = client.query('SELECT school_name, instrument, date, donation_received, users.first_name, ' +
+        'users.last_name FROM donations ' +
+        'JOIN instruments ON donations.instrument_id = instruments.instrument_id ' +
+        'JOIN schools ON donations.school_id = schools.school_id ' +
+        'JOIN users ON donations.user_id = users.user_id ' +
+        'ORDER BY donations.date DESC;');
+    query.on('row', function(row) {
+      results.push(row);
+    });
+    query.on('end', function() {
+      client.end();
+      return res.json(results);
+    });
+    if(err) {
+      console.log(err);
+    }
+  });
+});
+
 router.get('/school/:id', function(req, res){
   var results = [];
   pg.connect(connection, function(err, client, done) {
