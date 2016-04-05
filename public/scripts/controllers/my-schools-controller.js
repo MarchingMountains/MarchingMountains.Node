@@ -6,7 +6,9 @@ myApp.controller('MySchoolsController',
 	$scope.schools = [];
 	$scope.donations = [];
 
-	var user = UserService.askForCurrentUser();
+	console.log('before set userid', SchoolsFactory.userID);
+	SchoolsFactory.userID = UserService.askForCurrentUser().factoryUserId;
+	console.log('after set userid', SchoolsFactory.userID);
 
 	var getInstruments = function() {
 		InstrumentsFactory.factoryGetInstrumentsList().then(function() {});
@@ -17,25 +19,27 @@ myApp.controller('MySchoolsController',
 	};
 
 	var getSchools = function () {
+		// var userID = UserService.askForCurrentUser().factoryUserId;
+		console.log('userID: ', SchoolsFactory.userID);
 		SchoolsFactory.getDirectorSchools().then(function() {
 			$scope.schools = SchoolsFactory.directorSchools;
-			if(user !== undefined) {
-				buildDonations();
-			}
+			buildDonations();
 		});
 	};
 
 	var buildDonations = function () {
 		for(var i = 0; i < $scope.schools.list.length; i++) {
-			for(var j = 0; j < $scope.schools.list[i].donations.length; j++) {
-				$scope.donations.push({
-					school_name: $scope.schools.list[i].school_name,
-					instrument_name: $scope.schools.list[i].donations[j].instrument,
-					date: $scope.schools.list[i].donations[j].date,
-					donation_id: $scope.schools.list[i].donations[j].donation_id,
-					donation_received: $scope.schools.list[i].donations[j].donation_received,
-					donor_email: $scope.schools.list[i].donations[j].user_email
-				});
+			if($scope.schools.list[i].donations !== undefined) {
+				for(var j = 0; j < $scope.schools.list[i].donations.length; j++) {
+					$scope.donations.push({
+						school_name: $scope.schools.list[i].school_name,
+						instrument_name: $scope.schools.list[i].donations[j].instrument,
+						date: $scope.schools.list[i].donations[j].date,
+						donation_id: $scope.schools.list[i].donations[j].donation_id,
+						donation_received: $scope.schools.list[i].donations[j].donation_received,
+						donor_email: $scope.schools.list[i].donations[j].user_email
+					});
+				}
 			}
 		}
 	};
