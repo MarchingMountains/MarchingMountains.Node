@@ -1,16 +1,17 @@
 myApp.factory('SchoolsFactory', ['$http', function($http) {
 
-    var userID = 5;
+    var userID = 4;
 
     var factorySchoolsList = {};
     var schoolSearchResults = {};
-    var selectedInstrumentName = {};
+    var selectedInstrument = {};
     var selectedSchoolInfo = {};
 
-    var getSchoolList = function(name, id) {
-        var promise = $http.get('/schools/instruments/' + id).then(function(response) {
+    var getSchoolList = function(instrument) {
+        var promise = $http.get('/schools/instruments/' + instrument.instrument_id).then(function(response) {
             schoolSearchResults.list = response.data;
-            selectedInstrumentName.list = name;
+            selectedInstrument.list = instrument;
+            console.log(response.data);
         });
         return promise;
     };
@@ -55,14 +56,14 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
         schoolsList: function() {
             return factorySchoolsList.list;
         },
-        factoryGetSchoolsList: function(name, id) {
-            return getSchoolList(name, id);
+        factoryGetSchoolsList: function(instrument) {
+            return getSchoolList(instrument);
         },
         factorySetSelectedSchoolInfo: function(school) {
             return setSelectedSchoolInfo(school);
         },
         schoolSearchResults: schoolSearchResults,
-        selectedInstrumentName: selectedInstrumentName,
+        selectedInstrument: selectedInstrument,
         selectedSchoolInfo: selectedSchoolInfo,
         allSchools: factorySchoolsList,
         currentSchool: {}

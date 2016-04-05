@@ -48,3 +48,9 @@
 .chipsdemoCustomInputs .veggie-option .md-item-text p {
   padding: 0;
   margin: 0; }
+
+.smallCard {
+  width: 25em;
+  display: inline-block;
+  /*height: 11.5em;*/
+}
