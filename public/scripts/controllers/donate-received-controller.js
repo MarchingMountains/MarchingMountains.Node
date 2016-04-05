@@ -3,9 +3,6 @@ myApp.controller('DonationReceivedController', ['$scope', '$http', '$mdDialog', 
   SchoolsFactory, DonationsFactory) {
 
 $scope.DonationsFactory = DonationsFactory;
-$scope.schools = [];
-$scope.donations = [];
-
 
  $scope.confirmReceived = function(ev) {
 
@@ -23,7 +20,6 @@ $scope.donations = [];
    };
 
     DonationsFactory.factorySetDonationReceived(DonationsFactory.currentDonation).then(function() {
-      getSchools();
       $http.post('/donations/email', emailMessage);
       $mdDialog.hide();
     });
