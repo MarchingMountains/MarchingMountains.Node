@@ -29,7 +29,6 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', '$win
     $scope.register = function(isValid) {
         $mdDialog.hide();
         if (isValid) {
-            console.log("inside register function");
             var newUser = {
                 username: $scope.username,
                 password: $scope.password
