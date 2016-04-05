@@ -59,6 +59,10 @@ myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'Schools
         //console.log('newinstrument', $scope.newInstrument, $scope.adding);
         $scope.adding = false;
         //console.log('newinstrument', newInstrument, $scope.adding);
+
+        InstrumentsFactory.postInstrument(newInstrument).then(function() {
+            $scope.instruments = InstrumentsFactory.instruments.list;
+        });
     };
 
     //$scope.deleteInstrument = function(instrumentID) {
