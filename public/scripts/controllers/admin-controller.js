@@ -40,6 +40,7 @@ myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'Schools
     };
 
     $scope.editInstrument = function(currentInstrument) {
+        console.log('editInstrument::', currentInstrument);
         var instrument = {instrument: currentInstrument.instrument, instrument_id: currentInstrument.instrument_id};
         InstrumentsFactory.putInstrument(instrument).then(function() {
             $scope.instruments = InstrumentsFactory.instruments.list;
@@ -58,24 +59,3 @@ myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'Schools
     getUsers();
     getInstruments();
 }]);
-
-
-//myApp.controller('ListController', ['$scope', 'dataFactory', function($scope, dataFactory) {
-//    $scope.dataFactory = dataFactory;
-//    $scope.userID = dataFactory.userID;
-//    $scope.loggedIn = dataFactory.loggedIn;
-//
-//    var getParkData = function () {
-//        dataFactory.getParks().then(function() {
-//            $scope.parkTable = dataFactory.parksList();
-//        })
-//    };
-//
-//    getParkData();
-//
-//    $scope.visitPark = function(parkID) {
-//        dataFactory.updateMyParks(parkID).then(function() {
-//            getParkData();
-//        });
-//    };
-//}]);
