@@ -17,7 +17,7 @@ router.get('/admin', function(req, res) {
             results.push(row);
         });
         query.on('end', function() {
-            done();
+            client.end();
             return res.json(results);
         });
         if(err) {

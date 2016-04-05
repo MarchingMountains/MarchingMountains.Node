@@ -1,4 +1,6 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage', 'material.svgAssetsCache', 'angAccordion', 'ngPassword', 'wj', 'smart-table', 'xeditable']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage',
+'material.svgAssetsCache', 'angAccordion', 'ngPassword', 'wj', 'smart-table', 'xeditable']);
+
 myApp.config(['$routeProvider', function($routeProvider) {
 
   $routeProvider
