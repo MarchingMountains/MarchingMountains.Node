@@ -1,4 +1,4 @@
-myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStorage', function($http, $window, $localStorage, $sessionStorage) {
+myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStorage', '$q', function($http, $window, $localStorage, $sessionStorage, $q) {
     var allUsers = {};
     var CurrentUser = {
         isLogged: false,
@@ -6,7 +6,6 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
         factoryFirstName: undefined,
         factoryUserId: undefined
     };
-    restoreSession();
 
     function returnCurrentUser() {
         return CurrentUser;
@@ -14,13 +13,21 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
 
     function login(user) {
         var promise = $http.post('/', user).then(function (response) {
-            CurrentUser = {
-                isLogged: true,
-                factoryUserName: response.data.email,
-                factoryFirstName: response.data.first_name,
-                factoryUserId: response.data.user_id
-            };
-            persistSession();
+            if (response.data === false) {
+                console.log("Incorrect email/password");
+                return response.data;
+            } else {
+                console.log("inside correct login", response.data);
+                CurrentUser = {
+                    isLogged: true,
+                    factoryUserName: response.data.email,
+                    factoryFirstName: response.data.first_name,
+                    factoryUserId: response.data.user_id
+                };
+                persistSession();
+                return response.data;
+            }
+            console.log("CurrentUser inside Login:", CurrentUser);
         });
         return promise;
     }
@@ -66,6 +73,8 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
         });
         return promise;
     };
+
+    restoreSession();
 
     var publicFunctions = {
         askForCurrentUser: function() {
