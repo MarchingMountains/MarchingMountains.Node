@@ -522,12 +522,6 @@ angular.module('xeditable').factory('editableController',
         };
       }
 
-      if ($attrs.onbeforedelete) {
-        self.onbeforedelete = function() {
-          return self.catchError($parse($attrs.onbeforedelete)($scope));
-        };
-      }
-
       /**
        * Called during submit after value is saved to model.  
        * See [demo](#onaftersave).
@@ -538,11 +532,6 @@ angular.module('xeditable').factory('editableController',
       if ($attrs.onaftersave) {
         self.onaftersave = function() {
           return self.catchError($parse($attrs.onaftersave)($scope));
-        };
-      }
-      if ($attrs.onafterdelete) {
-        self.onafterdelete = function() {
-          return self.catchError($parse($attrs.onafterdelete)($scope));
         };
       }
 
@@ -574,7 +563,7 @@ angular.module('xeditable').factory('editableController',
         self.cancelEl = angular.element(theme.cancelTpl);
         if(self.icon_set) {
           self.submitEl.find('span').addClass(self.icon_set.ok);
-          self.deleteEl.find('span').addClass(self.icon_set.delete);
+          self.deleteEl.find('span').addClass(self.icon_set.cancel);
           self.cancelEl.find('span').addClass(self.icon_set.cancel);
         }
         self.buttonsEl.append(self.submitEl).append(self.deleteEl).append(self.cancelEl);
@@ -838,9 +827,7 @@ angular.module('xeditable').factory('editableController',
     self.onhide = angular.noop;
     self.oncancel = angular.noop;
     self.onbeforesave = angular.noop;
-    self.onbeforedelete = angular.noop;
     self.onaftersave = angular.noop;
-    self.onafterdelete = angular.noop;
   }
 
   return EditableController;
@@ -1036,7 +1023,6 @@ angular.module('xeditable').factory('editableFormController',
     }
 
     var toCancel = [];
-    var toDelete = [];
     var toSubmit = [];
     for (var i=0; i<shown.length; i++) {
 
@@ -1058,17 +1044,12 @@ angular.module('xeditable').factory('editableFormController',
       if (shown[i]._blur === 'submit' && isBlur(shown[i], e)) {
         toSubmit.push(shown[i]);
       }
-
-      if (shown[i]._blur === 'delete' && isBlur(shown[i], e)) {
-        toDelete.push(shown[i]);
-      }
     }
 
-    if (toCancel.length || toSubmit.length || toDelete.length) {
+    if (toCancel.length || toSubmit.length) {
       $rootScope.$apply(function() {
         angular.forEach(toCancel, function(v){ v.$cancel(); });
         angular.forEach(toSubmit, function(v){ v.$submit(); });
-        angular.forEach(toDelete, function(v){ v.$submit(); });
       });
     }
   });
@@ -1266,7 +1247,6 @@ angular.module('xeditable').factory('editableFormController',
       var pc = editablePromiseCollection();
       angular.forEach(this.$editables, function(editable) {
         pc.when(editable.onbeforesave());
-        pc.when(editable.onbeforedelete());
       });
 
       /*
@@ -1286,7 +1266,6 @@ angular.module('xeditable').factory('editableFormController',
       function checkSelf(childrenTrue){
         var pc = editablePromiseCollection();
         pc.when(this.$onbeforesave());
-        pc.when(this.$onbeforedelete());
         pc.then({
           onWait: angular.bind(this, this.$setWaiting), 
           onTrue: childrenTrue ? angular.bind(this, this.$save) : angular.bind(this, this.$hide), 
@@ -1308,10 +1287,6 @@ angular.module('xeditable').factory('editableFormController',
       angular.forEach(this.$editables, function(editable) {
         pc.when(editable.onaftersave());
       });
-      pc.when(this.$onafterdelete());
-      angular.forEach(this.$editables, function(editable) {
-        pc.when(editable.onafterdelete());
-      });
 
       /*
       onaftersave result:
@@ -1330,9 +1305,7 @@ angular.module('xeditable').factory('editableFormController',
     $oncancel: angular.noop,
     $onhide: angular.noop,
     $onbeforesave: angular.noop,
-    $onbeforedelete: angular.noop,
-    $onaftersave: angular.noop,
-    $onafterdelete: angular.noop
+    $onaftersave: angular.noop
   };
 
   return function() {
@@ -1480,11 +1453,6 @@ angular.module('xeditable').directive('editableForm',
                   return $parse(attrs.onbeforesave)(scope, {$data: eForm.$data});
                 };
               }
-              if(attrs.onbeforedelete) {
-                eForm.$onbeforedelete = function() {
-                  return $parse(attrs.onbeforedelete)(scope, {$data: eForm.$data});
-                };
-              }
 
               /**
                * Called when form values are saved to model.  
@@ -1499,22 +1467,11 @@ angular.module('xeditable').directive('editableForm',
                   return $parse(attrs.onaftersave)(scope, {$data: eForm.$data});
                 };
               }
-              if(attrs.onafterdelete) {
-                eForm.$onafterdelete = function() {
-                  return $parse(attrs.onafterdelete)(scope, {$data: eForm.$data});
-                };
-              }
 
               elem.bind('submit', function(event) {
                 event.preventDefault();
                 scope.$apply(function() {
                   eForm.$submit();
-                });
-              });
-              elem.bind('delete', function(event) {
-                event.preventDefault();
-                scope.$apply(function() {
-                  eForm.$delete();
                 });
               });
             }
@@ -2174,20 +2131,17 @@ angular.module('xeditable').factory('editableIcons', function() {
     default: {
       'bs2': {
         ok: 'icon-ok icon-white',
-        cancel: 'icon-remove',
-        delete: 'icon-trash'
+        cancel: 'icon-remove'
       },
       'bs3': {
         ok: 'glyphicon glyphicon-ok',
-        cancel: 'glyphicon glyphicon-remove',
-        delete: 'glyphicon glyphicon-ban-circle'
+        cancel: 'glyphicon glyphicon-remove'
       }
     },
     external: {
       'font-awesome': {
         ok: 'fa fa-check',
-        cancel: 'fa fa-times',
-        delete: 'fa fa-trash'
+        cancel: 'fa fa-times'
       }
     }
   };
@@ -2215,7 +2169,7 @@ angular.module('xeditable').factory('editableThemes', function() {
       errorTpl:     '<div class="editable-error" ng-show="$error" ng-bind="$error"></div>',
       buttonsTpl:   '<span class="editable-buttons"></span>',
       submitTpl:    '<button type="submit">save</button>',
-      deleteTpl:    '<button type="submit">delete</button>',
+      deleteTpl:    '<button type="button">delete</button>',
       cancelTpl:    '<button type="button" ng-click="$form.$cancel()">cancel</button>'
     },
 
@@ -2228,7 +2182,7 @@ angular.module('xeditable').factory('editableThemes', function() {
       errorTpl:    '<div class="editable-error help-block" ng-show="$error" ng-bind="$error"></div>',
       buttonsTpl:  '<span class="editable-buttons"></span>',
       submitTpl:   '<button type="submit" class="btn btn-primary"><span></span></button>',
-      deleteTpl:   '<button type="submit" class="btn btn-danger"><span></span></button>',
+      deleteTpl:   '<button type="button" class="btn btn-danger"><span></span></button>',
       cancelTpl:   '<button type="button" class="btn" ng-click="$form.$cancel()">'+
                       '<span></span>'+
                    '</button>'
@@ -2244,7 +2198,7 @@ angular.module('xeditable').factory('editableThemes', function() {
       errorTpl:    '<div class="editable-error help-block" ng-show="$error" ng-bind="$error"></div>',
       buttonsTpl:  '<span class="editable-buttons"></span>',
       submitTpl:   '<button type="submit" class="btn btn-primary"><span></span></button>',
-      deleteTpl:   '<button type="submit" class="btn btn-danger"><span></span></button>',
+      deleteTpl:   '<button type="button" class="btn btn-danger"><span></span></button>',
       cancelTpl:   '<button type="button" class="btn btn-default" ng-click="$form.$cancel()">'+
                      '<span></span>'+
                    '</button>',
@@ -2302,7 +2256,7 @@ angular.module('xeditable').factory('editableThemes', function() {
       errorTpl:    '<div class="editable-error ui error message" ng-show="$error" ng-bind="$error"></div>',
       buttonsTpl:  '<span class="mini ui buttons"></span>',
       submitTpl:   '<button type="submit" class="ui primary button"><i class="ui check icon"></i></button>',
-      deleteTpl:   '<button type="submit" class="ui danger button"><i class="ui cancel icon"></i></button>',
+      deleteTpl:   '<button type="button" class="ui danger button"><i class="ui cancel icon"></i></button>',
       cancelTpl:   '<button type="button" class="ui button" ng-click="$form.$cancel()">'+
                       '<i class="ui cancel icon"></i>'+
                    '</button>'
