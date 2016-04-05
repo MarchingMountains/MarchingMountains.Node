@@ -44,18 +44,17 @@ passport.use('local', new localStrategy({
         emailField: 'email'
     }, function(req, username, password, done) {
 
-        //console.log('In passport local strategy - email=' + username);
         pg.connect(connection, function (err, client) {
             //console.log('called local - pg');
             var user = {};
 
             var query = client.query("SELECT * FROM users WHERE email = $1", [username], function (err, result) {
-                if (result.rows.length === 0) {
+                if (result.rowCount === 0) {
+                    console.log("User not found");
                     done(null, false, {message: 'Incorrect credentials.'});
                 }
-                query.on('row', function (row) {
-                    //console.log('User obj', row);
-                    user = row;
+                else {
+                    user = result.rows[0];
                     // Hash and compare
                     if (encryptLib.comparePassword(password, user.password)) {
                         // all good!
@@ -65,8 +64,7 @@ passport.use('local', new localStrategy({
                         //console.log('nope');
                         done(null, false, {message: 'Incorrect credentials.'});
                     }
-
-                });
+                }
 
                 // After all data is returned, close connection and return results
                 query.on('end', function () {
