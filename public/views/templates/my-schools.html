@@ -1,19 +1,43 @@
-<h1>Your Schools</h1>
-<md-button ng-click="addSchool($event)">Add a New School</md-button>
-<ang-accordion one-at-a-time="true">
-    <collapsible-item ng-repeat="school in schools.list" item-title="{{school.school_name}}">
-        <div>
-            <p>{{school.address_line1}}</p>
-            <p>{{school.address_line2}}</p>
-            <p>{{school.city}}, {{school.state}} {{school.zip}}</p>
-            <p>{{school.phone}}</p>
-            <p>{{school.website}}</p>
-            <p>{{school.instructions}}</p>
-            <h4>Needed Instruments:</h4>
-            <ul>
+<md-content>
+  <md-tabs md-dynamic-height md-border-bottom>
+    <md-tab label="Schools">
+      <md-content class="md-padding">
+        <h1>Your Schools</h1>
+        <md-button ng-click="addSchool($event)">Add a New School</md-button>
+        <ang-accordion one-at-a-time="true">
+          <collapsible-item ng-repeat="school in schools.list" item-title="{{school.school_name}}">
+            <div>
+              <p>{{school.address_line1}}</p>
+              <p>{{school.address_line2}}</p>
+              <p>{{school.city}}, {{school.state}} {{school.zip}}</p>
+              <p>{{school.phone}}</p>
+              <p>{{school.website}}</p>
+              <p>{{school.instructions}}</p>
+              <h4>Needed Instruments:</h4>
+              <ul>
                 <li ng-repeat="instrument in school.instruments">{{instrument.instrument}}</li>
-            </ul>
-            <md-button ng-click="editSchool($event, school)">Edit School</md-button>
-        </div>
-    </collapsible-item>
-</ang-accordion>
+              </ul>
+              <md-button ng-click="editSchool($event, school)">Edit School</md-button>
+            </div>
+          </collapsible-item>
+      </ang-accordion>
+      </md-content>
+    </md-tab>
+    <md-tab label="Donations">
+      <md-content class="md-padding">
+        <md-card ng-repeat="donation in donations" class="smallCard">
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{donation.school_name}}</span>
+              <span class="md-subhead">A {{donation.instrument_name}} was donated on {{donation.date | date:'M/d/yyyy'}}.</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="center">
+            <md-button ng-show="!donation.donation_received" ng-click="donationReceived($event, donation)">Confirm</md-button>
+            <h5 ng-show="donation.donation_received">Instrument has been received</h5>
+          </md-card-actions>
+        </md-card>
+      </md-content>
+    </md-tab>
+  </md-tabs>
+</md-content>

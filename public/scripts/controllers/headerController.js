@@ -1,7 +1,5 @@
 myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'UserService',
     function($scope, $http, $mdDialog, $mdMedia, UserService, LoginController) {
-
-
         $scope.UserService = UserService;
         $scope.first_name;
         $scope.user_name;
@@ -21,12 +19,12 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
             });
         };
 
-
         $scope.logOut = function() {
             $scope.UserService.logOutUser();
             $scope.first_name = undefined;
             $scope.user_name = undefined;
             $scope.isLoggedIn = false;
+            console.log("on LogOut inside controller:", $scope.isLoggedIn);
         };
 
         $scope.$watch($scope.UserService.watchCurrentUser, function(newValue, oldValue){
@@ -35,18 +33,15 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
                 $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
                 $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
                 welcomeText();
+                console.log("On $watch, Factory Logged In:", $scope.isLoggedIn);
             }
-            console.log("factory isLogged:", $scope.UserService.watchCurrentUser().isLogged);
         });
 
         var welcomeText = function() {
-            console.log("inside welcome text");
             if($scope.first_name != undefined) {
                 $scope.displayedUser = $scope.first_name;
-                console.log("inside welcome text if", $scope.welcome);
             } else {
                 $scope.displayedUser = $scope.user_name;
-                console.log("inside welcome text else", $scope.welcome);
             }
         };
 
@@ -54,29 +49,11 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
             $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
             $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
             $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
+            console.log("On Load getCachedUser, Factory Logged In:", $scope.isLoggedIn);
 
         };
 
         getCachedUser();
         welcomeText();
-
-        //not being used. Old function to get current user from factory when header is reloaded.  This function did a call
-        //to the server to get the info.  I wrote a new function to get the CurrentUser from the factory now
-        //since the factory will keep a copy of the current user even on page reload because of ngStorage
-        //var getUserData = function() {
-        //    $scope.UserService.getUser().then(function() {
-        //        if ($scope.UserService.watchCurrentUser() != undefined) {
-        //
-        //            $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
-        //            $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
-        //            $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
-        //        }
-        //        console.log($scope.UserService.watchCurrentUser());
-        //    });
-        //};
-
-
-        //getUserData();
-
     }
 ]);

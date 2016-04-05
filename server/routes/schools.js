@@ -3,6 +3,29 @@ var router = express.Router();
 var connection = require('../modules/connection');
 var pg = require('pg');
 
+router.get('/admin', function(req, res) {
+    var results = [];
+    pg.connect(connection, function(err, client, done) {
+        var query = client.query("SELECT schools.*, states.*, " +
+            "json_agg(json_build_object('instrument', instruments.instrument, 'instrument_id', instruments.instrument_id)) AS instruments " +
+            'FROM schools LEFT OUTER JOIN states ON schools.state_id = states.state_id ' +
+            'LEFT OUTER JOIN school_instruments ON schools.school_id = school_instruments.school_id ' +
+            'LEFT OUTER JOIN instruments ON instruments.instrument_id = school_instruments.instrument_id ' +
+            'GROUP BY schools.school_id, states.state_id ' +
+            'ORDER BY schools.school_name ASC');
+        query.on('row', function(row) {
+            results.push(row);
+        });
+        query.on('end', function() {
+            done();
+            return res.json(results);
+        });
+        if(err) {
+            console.log(err);
+        }
+    });
+});
+
 router.get('/:id', function(req, res) {
     var results = [];
     var directorID = req.params.id;
@@ -19,8 +42,30 @@ router.get('/:id', function(req, res) {
             results.push(row);
         });
         query.on('end', function() {
-            done();
-            return res.json(results);
+          var query2 = client.query("SELECT schools.*, states.*, " +
+              "json_agg(json_build_object('date', donations.date, 'donation_id', " +
+              "donations.donation_id, 'school_id', donations.school_id, 'user_id', " +
+              "donations.user_id, 'donation_received', donations.donation_received, " +
+              "'instrument_id', donations.instrument_id, 'instrument', instruments.instrument, " +
+              "'user_email', users.email)) AS donations " +
+              'FROM schools JOIN states ON schools.state_id = states.state_id ' +
+              'JOIN donations on schools.school_id = donations.school_id ' +
+              'JOIN users on donations.user_id = users.user_id ' +
+              'LEFT OUTER JOIN instruments ON instruments.instrument_id = donations.instrument_id ' +
+              'WHERE schools.user_id = $1 GROUP BY schools.school_id, states.state_id ' +
+              'ORDER BY schools.school_name ASC', directorID);
+
+              query2.on('row', function(row) {
+                for(var i = 0; i < results.length; i++) {
+                  if (results[i].user_id == row.user_id && results[i].school_id == row.school_id) {
+                    results[i].donations = row.donations;
+                  }
+                }
+              });
+              query2.on('end', function() {
+                done();
+                return res.json(results);
+              });
         });
         if(err) {
             console.log(err);
@@ -63,6 +108,15 @@ router.post('/:id', function(req, res) {
     });
 });
 
+router.put('/verify/:id', function(req, res) {
+    console.log('req.body::', req.body);
+    pg.connect(connection, function(err, client, done) {
+        client.query('UPDATE schools SET (approved) = ($1) WHERE school_id = $2', [req.body.approved, req.params.id]);
+        client.end();
+        res.sendStatus(200);
+    })
+});
+
 router.put('/:id', function(req, res) {
     var updateSchool = [
         req.body.name,
@@ -75,6 +129,7 @@ router.put('/:id', function(req, res) {
         req.body.phone,
         req.body.instructions,
         req.params.id,
+        req.body.approved,
         req.body.school_id
     ];
 
@@ -83,9 +138,9 @@ router.put('/:id', function(req, res) {
 
     pg.connect(connection, function(err, client, done) {
         client.query('UPDATE schools SET' +
-            '(school_name, website, address_line1, address_line2, city, state_id, zip, phone, instructions, user_id) ' +
-            '= ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)' +
-            'WHERE school_id = $11', updateSchool, function(err) {
+            '(school_name, website, address_line1, address_line2, city, state_id, zip, phone, instructions, ' +
+            'user_id, approved) = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)' +
+            'WHERE school_id = $12', updateSchool, function(err) {
             client.query('DELETE FROM school_instruments WHERE school_id = $1', [school_id], function(err) {
                 for (var i = 0; i < instruments.length; i++) {
                     var instrument_id = instruments[i].instrument_id;
@@ -104,7 +159,8 @@ router.put('/:id', function(req, res) {
 router.get('/instruments/:id', function(req, res){
   var results = [];
   pg.connect(connection, function(err, client, done) {
-    var query = client.query('SELECT * FROM schools ' +
+    var query = client.query('SELECT schools.*, users.email FROM schools ' +
+      'JOIN users ON schools.user_id = users.user_id ' +
       'JOIN school_instruments ON schools.school_id = school_instruments.school_id ' +
       'JOIN states ON schools.state_id = states.state_id ' +
       'WHERE school_instruments.instrument_id = $1;',

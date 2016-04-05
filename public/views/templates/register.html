@@ -35,7 +35,7 @@
             <div layout-lg="row">
                 <md-input-container class="md-block">
                     <label>Password Confirm</label>
-                    <input type="password_confirm" name="password_confirm" required ng-model="password_confirm"
+                    <input type="password" name="password_confirm" required ng-model="password_confirm"
                            wj-validation-error="password != password_confirm ? 'Passwords don\'t match' : ''" />
                     <div ng-show="registerForm.password_confirm.$error.wjValidationError && !registerForm.password_confirm.$pristine">
                         Sorry, the passwords don't match.
