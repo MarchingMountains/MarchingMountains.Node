@@ -22,16 +22,18 @@ router.get('/', function(req, res) {
 
 router.put('/:id', function(req, res) {
   pg.connect(connection, function(err, client, done) {
-    client.query('UPDATE instruments SET (instrument) = ($1) WHERE instrument_id = $2', [req.body.instrument, req.params.id]);
-    client.end();
+    client.query('UPDATE instruments SET (instrument) = ($1) WHERE instrument_id = $2', [req.body.instrument, req.params.id], function(err) {
+      client.end();
+    });
     res.sendStatus(200);
   })
 });
 
 router.delete('/:id', function(req, res) {
   pg.connect(connection, function(err, client, done) {
-    client.query('DELETE FROM instruments WHERE instrument_id = $1', [req.params.id]);
-    client.end();
+    client.query('DELETE FROM instruments WHERE instrument_id = $1', [req.params.id], function(err) {
+      client.end();
+    });
     res.sendStatus(200);
   })
 });
