@@ -98,13 +98,19 @@
         </md-tab>
         <md-tab label="Instruments">
             <md-list flex>
-                <md-list-item class="md-1-line" ng-repeat="instrument in instruments" ng-click="null">
+                <md-list-item class="md-1-line" ng-repeat="instrument in instruments">
                     <div class="md-list-item-text" layout="column">
-                        <h5 editable-text="instrument.instrument"
-                            onafterdelete="deleteInstrument(instrument.instrument_id)"
-                            onaftersave="editInstrument(instrument)">{{instrument.instrument}}</h5>
+                        <a href="#" editable-text="instrument.instrument" onaftersave="editInstrument(instrument)">
+                            {{instrument.instrument}}</a>
                     </div>
                 </md-list-item>
+                <md-list-item class="md-1-line">
+                    <form>
+                        <input type="text" ng-model="newInstrument" placeholder="New Instrument" />
+                        <md-button ng-click="addInstrument()">Add Instrument</md-button>
+                    </form>
+                </md-list-item>
+            </md-list>
         </md-tab>
     </md-tabs>
 </md-content>
