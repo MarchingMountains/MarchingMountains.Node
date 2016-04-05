@@ -42,8 +42,30 @@ router.get('/:id', function(req, res) {
             results.push(row);
         });
         query.on('end', function() {
-            done();
-            return res.json(results);
+          var query2 = client.query("SELECT schools.*, states.*, " +
+              "json_agg(json_build_object('date', donations.date, 'donation_id', " +
+              "donations.donation_id, 'school_id', donations.school_id, 'user_id', " +
+              "donations.user_id, 'donation_received', donations.donation_received, " +
+              "'instrument_id', donations.instrument_id, 'instrument', instruments.instrument, " +
+              "'user_email', users.email)) AS donations " +
+              'FROM schools JOIN states ON schools.state_id = states.state_id ' +
+              'JOIN donations on schools.school_id = donations.school_id ' +
+              'JOIN users on donations.user_id = users.user_id ' +
+              'LEFT OUTER JOIN instruments ON instruments.instrument_id = donations.instrument_id ' +
+              'WHERE schools.user_id = $1 GROUP BY schools.school_id, states.state_id ' +
+              'ORDER BY schools.school_name ASC', directorID);
+
+              query2.on('row', function(row) {
+                for(var i = 0; i < results.length; i++) {
+                  if (results[i].user_id == row.user_id && results[i].school_id == row.school_id) {
+                    results[i].donations = row.donations;
+                  }
+                }
+              });
+              query2.on('end', function() {
+                done();
+                return res.json(results);
+              });
         });
         if(err) {
             console.log(err);
@@ -137,7 +159,8 @@ router.put('/:id', function(req, res) {
 router.get('/instruments/:id', function(req, res){
   var results = [];
   pg.connect(connection, function(err, client, done) {
-    var query = client.query('SELECT * FROM schools ' +
+    var query = client.query('SELECT schools.*, users.email FROM schools ' +
+      'JOIN users ON schools.user_id = users.user_id ' +
       'JOIN school_instruments ON schools.school_id = school_instruments.school_id ' +
       'JOIN states ON schools.state_id = states.state_id ' +
       'WHERE school_instruments.instrument_id = $1;',
