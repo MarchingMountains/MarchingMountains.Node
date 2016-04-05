@@ -1,22 +1,22 @@
-myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'SchoolsFactory', 'InstrumentsFactory', 'DonationsFactory', 'UserService',
-    function($scope, $mdMedia, $mdDialog, SchoolsFactory, InstrumentsFactory, DonationsFactory, UserService) {
+myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'AdminFactory', 'InstrumentsFactory',
+    function($scope, $mdMedia, $mdDialog, AdminFactory, InstrumentsFactory) {
     $scope.adding = false;
 
     var getDonations = function() {
-        DonationsFactory.getAllDonations().then(function() {
-            $scope.donationsTable = DonationsFactory.allDonations.list;
+        AdminFactory.getAllDonations().then(function() {
+            $scope.donationsTable = AdminFactory.allDonations.list;
         });
     };
-    //
+
     var getSchools = function() {
-        SchoolsFactory.getAllSchools().then(function() {
-            $scope.schoolsTable = SchoolsFactory.allSchools.list;
+        AdminFactory.getAllSchools().then(function() {
+            $scope.schoolsTable = AdminFactory.allSchools.list;
         });
     };
 
     var getUsers = function() {
-        UserService.getAllUsers().then(function() {
-            $scope.usersTable = UserService.allUsers.list;
+        AdminFactory.getAllUsers().then(function() {
+            $scope.usersTable = AdminFactory.allUsers.list;
         });
     };
 
@@ -37,7 +37,7 @@ myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'Schools
             clickOutsideToClose: true,
             fullscreen: useFullScreen
         });
-        SchoolsFactory.currentSchool = school;
+        AdminFactory.currentSchool = school;
     };
 
     $scope.editInstrument = function(currentInstrument) {

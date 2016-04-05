@@ -58,11 +58,11 @@
                     <td>{{school.zip}}</td>
                     <td>{{school.first_name}} {{school.last_name}}</td>
                     <td>
-                        <button ng-if="school.approved == true">Verified</button>
-                        <button ng-if="school.approved == null"
+                        <p class="btn btn-success" ng-if="school.approved == true">Verified</p>
+                        <button class="btn btn-primary" ng-if="school.approved == null"
                                 ng-click="approveSchoolModal(school, $event)">Pending
                         </button>
-                        <button ng-if="school.approved == false">Denied</button>
+                        <p class="btn btn-danger" ng-if="school.approved == false">Denied</p>
                     </td>
                 </tr>
                 </tbody>
@@ -89,8 +89,8 @@
                     <td>{{donation.school_name}}</td>
                     <td>{{donation.date  | date:'M/d/yyyy'}}</td>
                     <td>
-                        <button ng-if="donation.donation_received == true">Received</button>
-                        <button ng-if="donation.donation_received == false">In Transit</button>
+                        <p ng-if="donation.donation_received == true">Received</p>
+                        <p ng-if="donation.donation_received == false">In Transit</p>
                     </td>
                 </tr>
                 </tbody>

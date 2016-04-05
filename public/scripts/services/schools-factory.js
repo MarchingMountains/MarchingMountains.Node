@@ -6,7 +6,7 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
   var schoolSearchResults = {};
   var selectedInstrument = {};
   var selectedSchoolInfo = {};
-  var allSchools = {};
+
 
   var getSchoolList = function(instrument) {
     var promise = $http.get('/schools/instruments/' + instrument.instrument_id).then(function(response) {
@@ -28,13 +28,6 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
     return promise;
   };
 
-  var factoryGetAllSchools = function() {
-    var promise = $http.get('/schools/admin').then(function(response) {
-      allSchools.list = response.data;
-    });
-    return promise;
-  };
-
   var factoryPostDirectorSchools = function(school) {
     var promise = $http.post('/schools/' + userID, school).then(function(response) {
       factoryGetDirectorSchools();
@@ -49,19 +42,9 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
     return promise;
   };
 
-  var factoryVerifySchool = function(schoolID, status) {
-    var promise = $http.put('/schools/verify/' + schoolID, status).then(function(response) {
-      factoryGetAllSchools();
-    });
-    return promise;
-  };
-
   var publicFunctions = {
     getDirectorSchools: function() {
       return factoryGetDirectorSchools();
-    },
-    getAllSchools: function() {
-      return factoryGetAllSchools();
     },
     postDirectorSchool: function(school) {
       return factoryPostDirectorSchools(school);
@@ -78,15 +61,11 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
     factorySetSelectedSchoolInfo: function(school) {
       return setSelectedSchoolInfo(school);
     },
-    verifySchool: function(schoolID, status) {
-      return factoryVerifySchool(schoolID, status);
-    },
     schoolSearchResults: schoolSearchResults,
     selectedInstrument: selectedInstrument,
     selectedSchoolInfo: selectedSchoolInfo,
     directorSchools: factorySchoolsList,
-    currentSchool: {},
-    allSchools: allSchools
+    currentSchool: {}
   };
 
   return publicFunctions;
