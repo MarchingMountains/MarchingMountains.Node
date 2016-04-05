@@ -9,7 +9,6 @@ myApp.controller('DonorsController', ['$scope', 'DonationsFactory', 'UserService
 
    $scope.DonationsFactory.factoryGetCurrentUserDonations($scope.currentUser).then(function() {
      $scope.currentUserDonations = $scope.DonationsFactory.currentUserDonations.list;
-     console.log('controller currentUserDonations: ', $scope.currentUserDonations);
    });
 
 }]);

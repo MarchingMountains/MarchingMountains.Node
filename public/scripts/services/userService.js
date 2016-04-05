@@ -1,5 +1,7 @@
 myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStorage', '$q', function($http, $window, $localStorage, $sessionStorage, $q) {
+
     var allUsers = {};
+
     var CurrentUser = {
         isLogged: false,
         factoryUserName: undefined,
@@ -17,7 +19,6 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
                 console.log("Incorrect email/password");
                 return response.data;
             } else {
-                console.log("inside correct login", response.data);
                 CurrentUser = {
                     isLogged: true,
                     factoryUserName: response.data.email,
