@@ -79,7 +79,6 @@ myApp.factory('SchoolsFactory', ['$http', '$window', function($http, $window) {
     selectedSchoolInfo: selectedSchoolInfo,
     directorSchools: factorySchoolsList,
     currentSchool: {},
-    allSchools: allSchools,
     userID: false
   };
 
