@@ -6,6 +6,37 @@ var api_key = 'key-9fad0a24dab479c9890b265c5c0495a3';
 var domain = 'sandboxf24cc5b071a54b549d355abfc18c80b3.mailgun.org';
 var Mailgun = require('mailgun-js');
 
+function isLoggedIn(req, res, next){
+  console.log(req.session);
+  if(req.isAuthenticated()){
+    return next();
+  }
+  console.log("inside donation.js isLoggedIn, user not authenticated", req.user);
+  //res.redirect('/login');
+}
+
+router.get('/admin', function(req, res){
+  var results = [];
+  pg.connect(connection, function(err, client, done) {
+    var query = client.query('SELECT school_name, instrument, date, donation_received, users.first_name, ' +
+        'users.last_name FROM donations ' +
+        'JOIN instruments ON donations.instrument_id = instruments.instrument_id ' +
+        'JOIN schools ON donations.school_id = schools.school_id ' +
+        'JOIN users ON donations.user_id = users.user_id ' +
+        'ORDER BY donations.date DESC;');
+    query.on('row', function(row) {
+      results.push(row);
+    });
+    query.on('end', function() {
+      client.end();
+      return res.json(results);
+    });
+    if(err) {
+      console.log(err);
+    }
+  });
+});
+
 router.get('/school/:id', function(req, res){
   var results = [];
   pg.connect(connection, function(err, client, done) {
@@ -48,6 +79,7 @@ router.get('/user/:id', function(req, res){
 });
 
 router.post('/school/:id', function(req, res) {
+  console.log("HERE I AM - inside donations.js post, /school/:id");
   var results = [];
   pg.connect(connection, function(err, client, done) {
     var query = client.query('INSERT INTO donations (date, donation_received, instrument_id, user_id, school_id) ' +
@@ -67,7 +99,8 @@ router.post('/school/:id', function(req, res) {
   });
 });
 
-router.put('/received/:id', function(req, res) {
+router.put('/received/:id', isLoggedIn, function(req, res) {
+  console.log("inside donations.js put, /received/:id", req.user);
   console.log('req.body: ', req.params.id);
   var results = [];
   pg.connect(connection, function(err, client, done) {

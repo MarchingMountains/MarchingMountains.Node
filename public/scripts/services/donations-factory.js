@@ -20,6 +20,7 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
   };
 
   var submitDonation = function(donationInfo) {
+    console.log("submitting a donation!");
     $http.post('/donations/school/' + donationInfo.school_id, donationInfo);
   };
 
