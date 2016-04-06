@@ -51,7 +51,6 @@ router.get('/:id', function(req, res) {
 });
 
 router.post('/:id', function(req, res) {
-    var results = [];
     var newSchool = [
         req.body.name,
         req.body.website,
@@ -86,6 +85,8 @@ router.post('/:id', function(req, res) {
 });
 
 router.put('/:id', function(req, res) {
+    var instruments = req.body.instruments;
+    var school_id = req.body.school_id;
     var updateSchool = [
         req.body.name,
         req.body.website,
@@ -100,9 +101,6 @@ router.put('/:id', function(req, res) {
         req.body.approved,
         req.body.school_id
     ];
-
-    var instruments = req.body.instruments;
-    var school_id = req.body.school_id;
 
     pg.connect(connection, function(err, client, done) {
         client.query('UPDATE schools SET' +
@@ -126,7 +124,6 @@ router.put('/:id', function(req, res) {
 
 router.get('/instruments/:id', function(req, res){
   var results = [];
-    console.log('instruments/id::', req.params);
   pg.connect(connection, function(err, client, done) {
     var query = client.query('SELECT schools.*, users.email FROM schools ' +
       'JOIN users ON schools.user_id = users.user_id ' +
@@ -135,7 +132,6 @@ router.get('/instruments/:id', function(req, res){
       'WHERE school_instruments.instrument_id = $1;',
       [req.params.id]);
     query.on('row', function(row) {
-        console.log('results', results);
       results.push(row);
     });
     query.on('end', function() {

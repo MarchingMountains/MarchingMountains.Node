@@ -7,10 +7,8 @@ var passport = require('passport');
 router.get('/', function(req, res) {
     // check if logged in
     if(req.isAuthenticated()) {
-        console.log("if condition:", req.user);
         res.send(req.user);
     } else {
-        console.log("else condidtion:", req.user);
         // failure best handled on the server. do redirect here.
         res.send(false);
     }

@@ -27,7 +27,6 @@ router.get('/schools', function(req, res) {
 });
 
 router.put('/verify-school/:id', function(req, res) {
-    console.log('req.body::', req.body);
     pg.connect(connection, function(err, client, done) {
         client.query('UPDATE schools SET (approved) = ($1) WHERE school_id = $2', [req.body.approved, req.params.id], function(err) {
             client.end();
