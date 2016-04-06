@@ -6,9 +6,7 @@ myApp.controller('MySchoolsController',
 	$scope.schools = [];
 	$scope.donations = [];
 
-	console.log('before set userid', SchoolsFactory.userID);
 	SchoolsFactory.userID = UserService.askForCurrentUser().factoryUserId;
-	console.log('after set userid', SchoolsFactory.userID);
 
 	var getInstruments = function() {
 		InstrumentsFactory.factoryGetInstrumentsList().then(function() {});
@@ -19,8 +17,6 @@ myApp.controller('MySchoolsController',
 	};
 
 	var getSchools = function () {
-		// var userID = UserService.askForCurrentUser().factoryUserId;
-		console.log('userID: ', SchoolsFactory.userID);
 		SchoolsFactory.getDirectorSchools().then(function() {
 			$scope.schools = SchoolsFactory.directorSchools;
 			buildDonations();

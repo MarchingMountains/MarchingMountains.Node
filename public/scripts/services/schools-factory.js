@@ -19,7 +19,6 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
 
   var factoryGetDirectorSchools = function() {
     userID = publicFunctions.userID;
-    console.log('factoryUserId', userID);
     var promise = $http.get('/schools/' + userID).then(function(response) {
       factorySchoolsList.list = response.data;
     });
@@ -64,7 +63,6 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
     selectedSchoolInfo: selectedSchoolInfo,
     directorSchools: factorySchoolsList,
     currentSchool: {},
-    allSchools: allSchools,
     userID: false
   };
 

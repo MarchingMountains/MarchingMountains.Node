@@ -15,10 +15,11 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'Instrument
             $scope.address_line2 = SchoolsFactory.currentSchool.address_line2;
             $scope.city = SchoolsFactory.currentSchool.city;
             $scope.state = {state_id: SchoolsFactory.currentSchool.state_id, state: SchoolsFactory.currentSchool.state};
-            $scope.selectedItem = {state_id: SchoolsFactory.currentSchool.state_id, state: SchoolsFactory.currentSchool.state};
+            $scope.selectedState = {state_id: SchoolsFactory.currentSchool.state_id, state: SchoolsFactory.currentSchool.state};
             $scope.zip = SchoolsFactory.currentSchool.zip;
             $scope.phone = SchoolsFactory.currentSchool.phone;
             $scope.instructions = SchoolsFactory.currentSchool.instructions;
+            $scope.instruments = InstrumentsFactory.currentInstruments;
         } else if(factoryCurrentSchool === undefined) {
             $scope.currentSchool = false;
         }
