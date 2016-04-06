@@ -19,7 +19,7 @@ router.post('/', function(req, res, next) {
         req.logIn(user, function(err) {
             if (err) {
                 console.log("res.login err");
-                return next(err)
+                return next(err);
             }
             console.log("res.login:", user);
             return res.json(user);
@@ -29,8 +29,3 @@ router.post('/', function(req, res, next) {
 
 
 module.exports = router;
-
-
-
-
-

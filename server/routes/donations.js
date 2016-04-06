@@ -108,7 +108,6 @@ router.put('/received/:id', function(req, res) {
 });
 
 router.post('/email', function(req, res) {
-  console.log('trying to send email...');
   var mailgun = new Mailgun({apiKey: api_key, domain: domain});
   var data = {
     from: req.body.from,
@@ -122,7 +121,6 @@ router.post('/email', function(req, res) {
       console.log("Error inserting data: ", err);
       res.send(false);
     } else {
-      console.log('sent email');
       res.send(true);
     }
   });

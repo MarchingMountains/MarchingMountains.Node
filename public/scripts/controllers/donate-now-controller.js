@@ -9,8 +9,10 @@ myApp.controller('DonateNowController', ['$scope', '$http', '$mdDialog', '$mdMed
   $scope.selectedSchoolInfo = $scope.SchoolsFactory.selectedSchoolInfo.list;
   $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrument.list;
 
+  DonationsFactory.userID = UserService.askForCurrentUser().factoryUserId;
+  $scope.currentUser = DonationsFactory.userID;
+
  $scope.donateNow = function(ev) {
-   $scope.currentUser = $scope.UserService.askForCurrentUser().factoryUserId;
 
    var instrumentDonation = {
     date: 'today',
@@ -28,7 +30,10 @@ myApp.controller('DonateNowController', ['$scope', '$http', '$mdDialog', '$mdMed
     text: $scope.donorNote + '\n\nDo not reply to this e-mail. Mailbox is not monitored.'
   };
 
-  $scope.DonationsFactory.factorySubmitDonation(instrumentDonation);
+  $scope.DonationsFactory.factorySubmitDonation(instrumentDonation).then(function() {
+    $scope.currentUserDonations = DonationsFactory.currentUserDonations;
+  });
+
   $http.post('/donations/email', emailMessage);
   $mdDialog.hide();
 

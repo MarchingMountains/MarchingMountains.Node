@@ -11,7 +11,6 @@ myApp.controller('SchoolInfoController', ['$scope', '$http', '$location', '$mdDi
       $scope.selectedSchoolDonations = $scope.DonationsFactory.selectedSchoolDonations.list;
     });
   } else {
-    console.log('shits undefined, yo.');
     $location.url('/home');
   }
 

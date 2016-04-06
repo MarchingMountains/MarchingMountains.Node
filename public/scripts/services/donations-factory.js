@@ -4,6 +4,7 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
   var currentUserDonations = {};
   var currentDonation;
   var allDonations = {};
+  var userID = false;
 
   var SelectedSchoolDonations = function(selectedSchoolId) {
     var promise = $http.get('/donations/school/' + selectedSchoolId).then(function(response) {
@@ -12,8 +13,9 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
     return promise;
   };
 
-  var getCurrentUserDonations = function(currentUserId) {
-    var promise = $http.get('/donations/user/' + currentUserId).then(function(response) {
+  var getCurrentUserDonations = function() {
+    userID = publicFunctions.userID;
+    var promise = $http.get('/donations/user/' + userID).then(function(response) {
       console.log(response.data);
       currentUserDonations.list = response.data;
     });
@@ -21,7 +23,10 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
   };
 
   var submitDonation = function(donationInfo) {
-    $http.post('/donations/school/' + donationInfo.school_id, donationInfo);
+    var promise = $http.post('/donations/school/' + donationInfo.school_id, donationInfo).then(function(){
+      getCurrentUserDonations();
+    });
+    return promise;
   };
 
   var setDonationReceived = function(donationInfo) {
@@ -41,8 +46,8 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
     factoryGetSelectedSchoolDonations: function(selectedSchoolId) {
       return SelectedSchoolDonations(selectedSchoolId);
     },
-    factoryGetCurrentUserDonations: function(currentUserId) {
-      return getCurrentUserDonations(currentUserId);
+    factoryGetCurrentUserDonations: function() {
+      return getCurrentUserDonations();
     },
     factorySubmitDonation: function(donationInfo) {
       return submitDonation(donationInfo);
@@ -56,7 +61,8 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
     selectedSchoolDonations: selectedSchoolDonations,
     currentUserDonations: currentUserDonations,
     currentDonation: currentDonation,
-    allDonations: allDonations
+    allDonations: allDonations,
+    userID: false
   };
 
   return publicFunctions;

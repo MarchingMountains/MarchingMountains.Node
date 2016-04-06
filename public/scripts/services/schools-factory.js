@@ -6,7 +6,7 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
   var selectedSchoolInfo = {};
   var allSchools = {};
   var userID = false;
-
+  var directorDonations = {};
 
   var getSchoolList = function(instrument) {
     var promise = $http.get('/schools/instruments/' + instrument.instrument_id).then(function(response) {
@@ -21,11 +21,11 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
   };
 
   var factoryGetDirectorSchools = function() {
+    directorDonations.list = [];
     userID = publicFunctions.userID;
-    console.log('factoryUserId', userID);
     var promise = $http.get('/schools/' + userID).then(function(response) {
-      console.log('inside factoryGetDirectorSchools');
       factorySchoolsList.list = response.data;
+      buildDonations(factorySchoolsList);
     });
     return promise;
   };
@@ -58,6 +58,23 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
     return promise;
   };
 
+  var buildDonations = function (factorySchoolsList) {
+		for(var i = 0; i < factorySchoolsList.list.length; i++) {
+			if(factorySchoolsList.list[i].donations !== undefined) {
+				for(var j = 0; j < factorySchoolsList.list[i].donations.length; j++) {
+					directorDonations.list.push({
+						school_name: factorySchoolsList.list[i].school_name,
+						instrument_name: factorySchoolsList.list[i].donations[j].instrument,
+						date: factorySchoolsList.list[i].donations[j].date,
+						donation_id: factorySchoolsList.list[i].donations[j].donation_id,
+						donation_received: factorySchoolsList.list[i].donations[j].donation_received,
+						donor_email: factorySchoolsList.list[i].donations[j].user_email
+					});
+				}
+			}
+		}
+	};
+
   var publicFunctions = {
     getDirectorSchools: function(userID) {
       return factoryGetDirectorSchools(userID);
@@ -89,7 +106,8 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
     directorSchools: factorySchoolsList,
     currentSchool: {},
     allSchools: allSchools,
-    userID: false
+    userID: false,
+    directorDonations: directorDonations
   };
 
   return publicFunctions;
