@@ -6,10 +6,14 @@ myApp.controller('SchoolInfoController', ['$scope', '$http', '$location', '$mdDi
   $scope.DonationsFactory = DonationsFactory;
 
   $scope.selectedSchoolInfo = $scope.SchoolsFactory.selectedSchoolInfo.list;
-
-  $scope.DonationsFactory.factoryGetSelectedSchoolDonations($scope.selectedSchoolInfo.school_id).then(function() {
-    $scope.selectedSchoolDonations = $scope.DonationsFactory.selectedSchoolDonations.list;
-  });
+  if($scope.selectedSchoolInfo !== undefined) {
+    $scope.DonationsFactory.factoryGetSelectedSchoolDonations($scope.selectedSchoolInfo.school_id).then(function() {
+      $scope.selectedSchoolDonations = $scope.DonationsFactory.selectedSchoolDonations.list;
+    });
+  } else {
+    console.log('shits undefined, yo.');
+    $location.url('/home');
+  }
 
   $scope.returnToSearchResults = function() {
     $location.url('/donors');
