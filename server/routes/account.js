@@ -10,12 +10,11 @@ var encryptLib = require('../modules/encryption');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-
 function isLoggedIn(req, res, next){
     console.log(req.session);
     if(req.isAuthenticated()){
-        return next();
-    }
+            return next();
+        }
     console.log("inside account.js isLoggedIn function, user not authenticated", req.user);
     res.send(false);
 }

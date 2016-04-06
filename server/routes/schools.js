@@ -12,10 +12,10 @@ function isLoggedIn(req, res, next){
     res.send(false);
 }
 
-router.get('/:id', isLoggedIn, function(req, res) {
+router.get('/:id', function(req, res) {
     console.log("hitting router.GET schools.js /:id, also called on page load of my-schools");
     var results = [];
-    var directorID = req.params.id;
+    var directorID = [req.params.id];
 
     pg.connect(connection, function(err, client, done) {
         var query = client.query("SELECT schools.*, states.*, " +
@@ -146,7 +146,7 @@ router.get('/instruments/:id', function(req, res){
       'JOIN school_instruments ON schools.school_id = school_instruments.school_id ' +
       'JOIN states ON schools.state_id = states.state_id ' +
       'WHERE school_instruments.instrument_id = $1;',
-      req.params.id);
+      [req.params.id]);
     query.on('row', function(row) {
       results.push(row);
     });

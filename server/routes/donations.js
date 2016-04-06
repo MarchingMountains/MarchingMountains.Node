@@ -12,30 +12,9 @@ function isLoggedIn(req, res, next){
     return next();
   }
   console.log("inside donation.js isLoggedIn, user not authenticated", req.user);
-  //res.redirect('/login');
+  res.send(false);
 }
 
-router.get('/admin', function(req, res){
-  var results = [];
-  pg.connect(connection, function(err, client, done) {
-    var query = client.query('SELECT school_name, instrument, date, donation_received, users.first_name, ' +
-        'users.last_name FROM donations ' +
-        'JOIN instruments ON donations.instrument_id = instruments.instrument_id ' +
-        'JOIN schools ON donations.school_id = schools.school_id ' +
-        'JOIN users ON donations.user_id = users.user_id ' +
-        'ORDER BY donations.date DESC;');
-    query.on('row', function(row) {
-      results.push(row);
-    });
-    query.on('end', function() {
-      client.end();
-      return res.json(results);
-    });
-    if(err) {
-      console.log(err);
-    }
-  });
-});
 
 router.get('/school/:id', function(req, res){
   var results = [];
@@ -57,14 +36,39 @@ router.get('/school/:id', function(req, res){
   });
 });
 
+router.get('/user/:id', isLoggedIn, function(req, res){
+  var results = [];
+  console.log('/user/id', req.body);
+  pg.connect(connection, function(err, client, done) {
+    var query = client.query('SELECT school_name, instrument, date, donation_received FROM donations ' +
+        'JOIN instruments ON donations.instrument_id = instruments.instrument_id ' +
+        'JOIN schools ON donations.school_id = schools.school_id ' +
+        'WHERE donations.user_id = $1 ORDER BY donations.date DESC;',
+        req.params.id);
+    query.on('row', function(row) {
+      results.push(row);
+      console.log("results HERE", results);
+    });
+    query.on('end', function() {
+      client.end();
+      return res.json(results);
+    });
+    if(err) {
+      console.log(err);
+    }
+  });
+});
+
+
 router.get('/user/:id', function(req, res){
+  console.log("inside GET user/id", req.params);
   var results = [];
   pg.connect(connection, function(err, client, done) {
     var query = client.query('SELECT school_name, instrument, date, donation_received FROM donations ' +
-      'JOIN instruments ON donations.instrument_id = instruments.instrument_id ' +
-      'JOIN schools ON donations.school_id = schools.school_id ' +
-      'WHERE donations.user_id = $1 ORDER BY donations.date DESC;',
-      req.params.id);
+        'JOIN instruments ON donations.instrument_id = instruments.instrument_id ' +
+        'JOIN schools ON donations.school_id = schools.school_id ' +
+        'WHERE donations.user_id = $1 ORDER BY donations.date DESC;',
+        [req.params.id]);
     query.on('row', function(row) {
       results.push(row);
     });
@@ -118,7 +122,7 @@ router.put('/received/:id', isLoggedIn, function(req, res) {
   });
 });
 
-router.post('/email', function(req, res) {
+router.post('/email', isLoggedIn, function(req, res) {
   console.log('trying to send email...');
   var mailgun = new Mailgun({apiKey: api_key, domain: domain});
   var data = {
