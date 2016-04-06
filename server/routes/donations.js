@@ -12,7 +12,7 @@ router.get('/school/:id', function(req, res){
     var query = client.query('SELECT * FROM donations ' +
       'JOIN instruments ON donations.instrument_id = instruments.instrument_id ' +
       'WHERE donations.school_id = $1 ORDER BY donations.date DESC;',
-      req.params.id);
+      [req.params.id]);
     query.on('row', function(row) {
       results.push(row);
     });
@@ -33,7 +33,7 @@ router.get('/user/:id', function(req, res){
       'JOIN instruments ON donations.instrument_id = instruments.instrument_id ' +
       'JOIN schools ON donations.school_id = schools.school_id ' +
       'WHERE donations.user_id = $1 ORDER BY donations.date DESC;',
-      req.params.id);
+      [req.params.id]);
     query.on('row', function(row) {
       results.push(row);
     });
