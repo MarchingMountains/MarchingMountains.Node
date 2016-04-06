@@ -1,7 +1,4 @@
 myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStorage', '$q', function($http, $window, $localStorage, $sessionStorage, $q) {
-
-    var allUsers = {};
-
     var CurrentUser = {
         isLogged: false,
         factoryUserName: undefined,
@@ -68,13 +65,6 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
         }
     }
 
-    var factoryGetAllUsers = function() {
-        var promise = $http.get('/user/admin').then(function(response) {
-            allUsers.list = response.data;
-        });
-        return promise;
-    };
-
     restoreSession();
 
     var publicFunctions = {
@@ -93,12 +83,7 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
         getUser: function() {
             return getUserData();
         },
-        getAllUsers: function() {
-            return factoryGetAllUsers();
-        },
-        allUsers: allUsers,
         watchCurrentUser: returnCurrentUser
-
     };
 
     return publicFunctions;

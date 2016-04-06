@@ -24,6 +24,14 @@ myApp.factory('InstrumentsFactory', ['$http', function($http) {
     return promise;
   };
 
+  var factoryPostInstrument = function(instrument) {
+    var instrument = {'instrument': instrument};
+    var promise = $http.post('/instruments', instrument).then(function(response) {
+      getInstrumentsList();
+    });
+    return promise;
+  };
+
   var factoryDeleteInstrument = function(instrumentID) {
     var promise = $http.delete('/instruments/' + instrumentID).then(function(response) {
       getInstrumentsList();
@@ -40,6 +48,9 @@ myApp.factory('InstrumentsFactory', ['$http', function($http) {
     },
     putInstrument: function(instrument) {
       return factoryPutInstrument(instrument);
+    },
+    postInstrument: function(instrument) {
+      return factoryPostInstrument(instrument);
     },
     deleteInstrument: function(instrumentID) {
       return factoryDeleteInstrument(instrumentID);
