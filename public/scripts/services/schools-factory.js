@@ -1,18 +1,14 @@
 myApp.factory('SchoolsFactory', ['$http', function($http) {
 
-  var userID = 5;
-
   var factorySchoolsList = {};
   var schoolSearchResults = {};
   var selectedInstrument = {};
   var selectedSchoolInfo = {};
 
-
   var getSchoolList = function(instrument) {
     var promise = $http.get('/schools/instruments/' + instrument.instrument_id).then(function(response) {
       schoolSearchResults.list = response.data;
       selectedInstrument.list = instrument;
-      console.log(response.data);
     });
     return promise;
   };
@@ -22,6 +18,8 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
   };
 
   var factoryGetDirectorSchools = function() {
+    userID = publicFunctions.userID;
+    console.log('factoryUserId', userID);
     var promise = $http.get('/schools/' + userID).then(function(response) {
       factorySchoolsList.list = response.data;
     });
@@ -43,8 +41,8 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
   };
 
   var publicFunctions = {
-    getDirectorSchools: function() {
-      return factoryGetDirectorSchools();
+    getDirectorSchools: function(userID) {
+      return factoryGetDirectorSchools(userID);
     },
     postDirectorSchool: function(school) {
       return factoryPostDirectorSchools(school);
@@ -65,7 +63,9 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
     selectedInstrument: selectedInstrument,
     selectedSchoolInfo: selectedSchoolInfo,
     directorSchools: factorySchoolsList,
-    currentSchool: {}
+    currentSchool: {},
+    allSchools: allSchools,
+    userID: false
   };
 
   return publicFunctions;

@@ -1,11 +1,13 @@
 myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'InstrumentsFactory',
-    '$mdDialog', '$mdMedia', function($scope, SchoolsFactory, InstrumentsFactory, $mdDialog, $mdMedia) {
+  '$mdDialog', '$mdMedia', 'UserService', function($scope, SchoolsFactory, InstrumentsFactory,
+    $mdDialog, $mdMedia, UserService) {
         $scope.states = InstrumentsFactory.statesList.list;
         $scope.schools = SchoolsFactory.allSchools;
         $scope.currentSchool = false;
         var factoryCurrentSchool = SchoolsFactory.currentSchool.school_name;
+        var user = UserService.askForCurrentUser().factoryUserId;
 
-        if(factoryCurrentSchool != undefined) {
+        if(factoryCurrentSchool !== undefined) {
             $scope.currentSchool = true;
             $scope.name = SchoolsFactory.currentSchool.school_name;
             $scope.website = SchoolsFactory.currentSchool.website;
@@ -17,7 +19,7 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'Instrument
             $scope.zip = SchoolsFactory.currentSchool.zip;
             $scope.phone = SchoolsFactory.currentSchool.phone;
             $scope.instructions = SchoolsFactory.currentSchool.instructions;
-        } else if(factoryCurrentSchool == undefined) {
+        } else if(factoryCurrentSchool === undefined) {
             $scope.currentSchool = false;
         }
 
@@ -36,7 +38,6 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'Instrument
             };
 
             SchoolsFactory.postDirectorSchool(school).then(function() {
-                //$scope.schools = SchoolsFactory.schoolsList();
                 $scope.schools = SchoolsFactory.directorSchools;
                 InstrumentsFactory.currentInstruments = [];
             });
