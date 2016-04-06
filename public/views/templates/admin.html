@@ -101,7 +101,12 @@
                 <md-list-item class="md-1-line" ng-repeat="instrument in instruments">
                     <div class="md-list-item-text" layout="column">
                         <a href="#" editable-text="instrument.instrument" onaftersave="editInstrument(instrument)">
-                            {{instrument.instrument}}</a>
+                            {{instrument.instrument}}
+                            <button class="btn btn-danger pull-right"
+                                    ng-click="deleteInstrument(instrument.instrument_id)">
+                                Del
+                            </button>
+                        </a>
                     </div>
                 </md-list-item>
                 <md-list-item class="md-1-line">

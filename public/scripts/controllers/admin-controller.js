@@ -41,7 +41,6 @@ myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'AdminFa
     };
 
     $scope.editInstrument = function(currentInstrument) {
-        console.log('editInstrument::', currentInstrument);
         var instrument = {instrument: currentInstrument.instrument, instrument_id: currentInstrument.instrument_id};
         InstrumentsFactory.putInstrument(instrument).then(function() {
             $scope.instruments = InstrumentsFactory.instruments.list;
@@ -49,9 +48,7 @@ myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'AdminFa
     };
 
     $scope.showAdd = function() {
-        console.log('adding', $scope.adding);
         $scope.adding = true;
-        console.log('adding', $scope.adding);
     };
 
     $scope.addInstrument = function() {
@@ -63,14 +60,14 @@ myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'AdminFa
         InstrumentsFactory.postInstrument(newInstrument).then(function() {
             $scope.instruments = InstrumentsFactory.instruments.list;
         });
+        $scope.newInstrument = '';
     };
 
-    //$scope.deleteInstrument = function(instrumentID) {
-    //    console.log('holyshit, no way::', instrumentID);
-    //    InstrumentsFactory.deleteInstrument(instrumentID).then(function() {
-    //        $scope.instruments = InstrumentsFactory.instruments.list;
-    //    });
-    //};
+    $scope.deleteInstrument = function(instrumentID) {
+        InstrumentsFactory.deleteInstrument(instrumentID).then(function() {
+            $scope.instruments = InstrumentsFactory.instruments.list;
+        });
+    };
 
     getDonations();
     getSchools();
