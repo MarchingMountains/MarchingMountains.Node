@@ -4,14 +4,13 @@ var connection = require('../modules/connection');
 var pg = require('pg');
 
 function isLoggedIn(req, res, next){
-    console.log(req.session);
     if(req.isAuthenticated()){
         console.log("WE ARE AUTHENTICATED IN ADMIN");
         if(req.user.user_id === 1) {
             return next();
         }
     }
-    console.log("inside admin.js isLoggedIn, user not authenticated", req.user);
+    console.log("WE ARE NOT AUTHENTICATED IN ADMIN");
     res.send(false);
 }
 
