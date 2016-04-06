@@ -27,7 +27,7 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
         };
 
         $scope.$watch($scope.UserService.watchCurrentUser, function(newValue, oldValue){
-            if ($scope.UserService.watchCurrentUser() !== undefined) {
+            if ($scope.UserService.watchCurrentUser() != undefined) {
                 $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
                 $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
                 $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
@@ -36,7 +36,7 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
         });
 
         var welcomeText = function() {
-            if($scope.first_name !== undefined) {
+            if($scope.first_name != undefined) {
                 $scope.displayedUser = $scope.first_name;
             } else {
                 $scope.displayedUser = $scope.user_name;
