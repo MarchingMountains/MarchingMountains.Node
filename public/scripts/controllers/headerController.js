@@ -1,5 +1,5 @@
 myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'UserService',
-    function($scope, $http, $mdDialog, $mdMedia, UserService, LoginController) {
+    function($scope, $http, $mdDialog, $mdMedia, UserService, LoginController, RegisterController) {
         $scope.UserService = UserService;
         $scope.first_name;
         $scope.user_name;

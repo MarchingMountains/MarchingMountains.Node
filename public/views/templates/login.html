@@ -29,7 +29,7 @@
                 </md-input-container>
                 <div layout="row">
                     <md-button type="submit" class="md-raised md-primary" ng-disabled="loginForm.$invalid">Login</md-button>
-                    <md-button><a href="#register" ng-click="closeModal()">Register</a></md-button>
+                    <md-button ng-click="closeModal($event)">Register</md-button>
                 </div>
                 <div ng-show="loginErrorMessage">
                     <p>{{loginErrorMessage}}</p>
