@@ -10,7 +10,17 @@ var encryptLib = require('../modules/encryption');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-router.get('/*', function(req, res) {
+
+function isLoggedIn(req, res, next){
+    console.log(req.session);
+    if(req.isAuthenticated()){
+        return next();
+    }
+    console.log("inside account.js isLoggedIn function, user not authenticated", req.user);
+    res.send(false);
+}
+
+router.get('/*', isLoggedIn, function(req, res) {
 
     var id = req.params[0];
     var results = [];
@@ -39,7 +49,7 @@ router.get('/*', function(req, res) {
     });
 });
 
-router.put('/password/*', function(req, res) {
+router.put('/password/*', isLoggedIn, function(req, res) {
 
     var id = req.params[0];
     var results = [];
@@ -65,7 +75,7 @@ router.put('/password/*', function(req, res) {
     });
 });
 
-router.put('/*', function(req, res) {
+router.put('/*', isLoggedIn, function(req, res) {
 
     var id = req.params[0];
     var results = [];

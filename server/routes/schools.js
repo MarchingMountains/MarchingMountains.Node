@@ -3,7 +3,17 @@ var router = express.Router();
 var connection = require('../modules/connection');
 var pg = require('pg');
 
-router.get('/:id', function(req, res) {
+function isLoggedIn(req, res, next){
+    console.log(req.session);
+    if(req.isAuthenticated()){
+        return next();
+    }
+    console.log("inside schools.js isLoggedIn, user not authenticated", req.user);
+    res.send(false);
+}
+
+router.get('/:id', isLoggedIn, function(req, res) {
+    console.log("hitting router.GET schools.js /:id, also called on page load of my-schools");
     var results = [];
     var directorID = req.params.id;
 
@@ -50,7 +60,8 @@ router.get('/:id', function(req, res) {
     });
 });
 
-router.post('/:id', function(req, res) {
+router.post('/:id', isLoggedIn, function(req, res) {
+    console.log("hitting router.POST schools.js /:id");
     var results = [];
     var newSchool = [
         req.body.name,
@@ -85,7 +96,8 @@ router.post('/:id', function(req, res) {
     });
 });
 
-router.put('/:id', function(req, res) {
+router.put('/:id', isLoggedIn, function(req, res) {
+    console.log("inside PUT schools.js /:id called in the modal of my-schools when you update a school");
     var updateSchool = [
         req.body.name,
         req.body.website,
@@ -125,6 +137,8 @@ router.put('/:id', function(req, res) {
 });
 
 router.get('/instruments/:id', function(req, res){
+    console.log("inside GET schools.js /instruments/:id, on load of my-schools &  school-info render");
+    console.log("THIS ROUTE SHOULD BE OPEN");
   var results = [];
   pg.connect(connection, function(err, client, done) {
     var query = client.query('SELECT schools.*, users.email FROM schools ' +
