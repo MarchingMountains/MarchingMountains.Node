@@ -44,8 +44,10 @@ router.put('/:id', function(req, res) {
 router.delete('/:id', function(req, res) {
   pg.connect(connection, function(err, client, done) {
     client.query('DELETE FROM instruments WHERE instrument_id = $1', [req.params.id], function(err) {
-      client.end();
-      res.sendStatus(200);
+      client.query('DELETE FROM school_instruments WHERE instrument_id = $1', [req.params.id], function(err) {
+        client.end();
+        res.sendStatus(200);
+      });
     });
   })
 });

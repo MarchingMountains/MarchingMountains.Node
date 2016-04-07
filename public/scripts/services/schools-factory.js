@@ -19,7 +19,6 @@ myApp.factory('SchoolsFactory', ['$http', '$window', function($http, $window) {
 
   var factoryGetDirectorSchools = function() {
     userID = publicFunctions.userID;
-    console.log('factoryUserId', userID);
     var promise = $http.get('/schools/' + userID).then(function(response) {
       if (response.data) {
         factorySchoolsList.list = response.data;

@@ -4,25 +4,25 @@ myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'AdminFa
 
     var getDonations = function() {
         AdminFactory.getAllDonations().then(function() {
-            $scope.donationsTable = AdminFactory.allDonations.list;
+            $scope.donationsTable = AdminFactory.allDonations;
         });
     };
 
     var getSchools = function() {
         AdminFactory.getAllSchools().then(function() {
-            $scope.schoolsTable = AdminFactory.allSchools.list;
+            $scope.schoolsTable = AdminFactory.allSchools;
         });
     };
 
     var getUsers = function() {
         AdminFactory.getAllUsers().then(function() {
-            $scope.usersTable = AdminFactory.allUsers.list;
+            $scope.usersTable = AdminFactory.allUsers;
         });
     };
 
     var getInstruments = function() {
         InstrumentsFactory.factoryGetInstrumentsList().then(function() {
-            $scope.instruments = InstrumentsFactory.instruments.list;
+            $scope.instruments = InstrumentsFactory.instruments;
         });
     };
 
@@ -41,17 +41,14 @@ myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'AdminFa
     };
 
     $scope.editInstrument = function(currentInstrument) {
-        console.log('editInstrument::', currentInstrument);
         var instrument = {instrument: currentInstrument.instrument, instrument_id: currentInstrument.instrument_id};
         InstrumentsFactory.putInstrument(instrument).then(function() {
-            $scope.instruments = InstrumentsFactory.instruments.list;
+            $scope.instruments = InstrumentsFactory.instruments;
         });
     };
 
     $scope.showAdd = function() {
-        console.log('adding', $scope.adding);
         $scope.adding = true;
-        console.log('adding', $scope.adding);
     };
 
     $scope.addInstrument = function() {
@@ -61,16 +58,16 @@ myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'AdminFa
         console.log('newinstrument', newInstrument, $scope.adding);
 
         InstrumentsFactory.postInstrument(newInstrument).then(function() {
-            $scope.instruments = InstrumentsFactory.instruments.list;
+            $scope.instruments = InstrumentsFactory.instruments;
         });
+        $scope.newInstrument = '';
     };
 
-    //$scope.deleteInstrument = function(instrumentID) {
-    //    console.log('holyshit, no way::', instrumentID);
-    //    InstrumentsFactory.deleteInstrument(instrumentID).then(function() {
-    //        $scope.instruments = InstrumentsFactory.instruments.list;
-    //    });
-    //};
+    $scope.deleteInstrument = function(instrumentID) {
+        InstrumentsFactory.deleteInstrument(instrumentID).then(function() {
+            $scope.instruments = InstrumentsFactory.instruments;
+        });
+    };
 
     getDonations();
     getSchools();

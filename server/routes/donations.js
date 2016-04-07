@@ -8,16 +8,12 @@ var Mailgun = require('mailgun-js');
 
 function isLoggedIn(req, res, next){
   if(req.isAuthenticated()){
-    console.log("WE ARE AUTHENTICATED IN DONATIONS.JS");
     return next();
   }
-  console.log("WE ARE NOT AUTHENTICATED IN DONATIONS.JS");
   res.send(false);
 }
 
-
 router.get('/school/:id', function(req, res){
-  console.log("DONATIONS.JS - get schools by ID - THIS ROUTE SHOULD BE OPEN");
   var results = [];
   pg.connect(connection, function(err, client, done) {
     var query = client.query('SELECT * FROM donations ' +
@@ -38,39 +34,13 @@ router.get('/school/:id', function(req, res){
 });
 
 router.get('/user/:id', function(req, res){
-  console.log("DONATIONS.JS, GET user by id - THIS ROUTE SHOULD BE OPEN");
-  var results = [];
-  console.log('/user/id', req.body);
-  pg.connect(connection, function(err, client, done) {
-    var query = client.query('SELECT school_name, instrument, date, donation_received FROM donations ' +
-        'JOIN instruments ON donations.instrument_id = instruments.instrument_id ' +
-        'JOIN schools ON donations.school_id = schools.school_id ' +
-        'WHERE donations.user_id = $1 ORDER BY donations.date DESC;',
-        [req.params.id]);
-    query.on('row', function(row) {
-      results.push(row);
-      console.log("results HERE", results);
-    });
-    query.on('end', function() {
-      client.end();
-      return res.json(results);
-    });
-    if(err) {
-      console.log(err);
-    }
-  });
-});
-
-
-router.get('/user/:id', function(req, res){
-  console.log("DONATIONS.JS, GET user by ID - THIS ROUTE SHOULD BE OPEN");
   var results = [];
   pg.connect(connection, function(err, client, done) {
     var query = client.query('SELECT school_name, instrument, date, donation_received FROM donations ' +
-        'JOIN instruments ON donations.instrument_id = instruments.instrument_id ' +
-        'JOIN schools ON donations.school_id = schools.school_id ' +
-        'WHERE donations.user_id = $1 ORDER BY donations.date DESC;',
-        [req.params.id]);
+      'JOIN instruments ON donations.instrument_id = instruments.instrument_id ' +
+      'JOIN schools ON donations.school_id = schools.school_id ' +
+      'WHERE donations.user_id = $1 ORDER BY donations.date DESC;',
+      [req.params.id]);
     query.on('row', function(row) {
       results.push(row);
     });
@@ -85,16 +55,12 @@ router.get('/user/:id', function(req, res){
 });
 
 router.post('/school/:id', isLoggedIn, function(req, res) {
-  console.log("DONATIONS.JS, POST schools by id");
   var results = [];
   pg.connect(connection, function(err, client, done) {
-    var query = client.query('INSERT INTO donations (date, donation_received, instrument_id, user_id, school_id) ' +
+    client.query('INSERT INTO donations (date, donation_received, instrument_id, user_id, school_id) ' +
     'VALUES ($1, $2, $3, $4, $5)', [req.body.date, req.body.donation_received, req.body.instrument_id,
-    req.body.user_id, req.body.school_id],
-
-    function (err, result) {
+    req.body.user_id, req.body.school_id], function (err, result) {
       done();
-
       if (err) {
         console.log("Error inserting data: ", err);
         res.send(false);
@@ -106,13 +72,10 @@ router.post('/school/:id', isLoggedIn, function(req, res) {
 });
 
 router.put('/received/:id', isLoggedIn, function(req, res) {
-  console.log("DONATIONS.JS, PUT received donations by id");
-  console.log('req.body: ', req.params.id);
   var results = [];
   pg.connect(connection, function(err, client, done) {
-    var query = client.query('UPDATE donations SET (donation_received) = (true) ' +
-    'WHERE donation_id = $1', [req.params.id],
-    function(err, result) {
+    client.query('UPDATE donations SET (donation_received) = (true) ' +
+    'WHERE donation_id = $1', [req.params.id], function(err, result) {
       done();
       if(err) {
         console.log("Error updating data: ", err);

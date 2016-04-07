@@ -4,17 +4,13 @@ var connection = require('../modules/connection');
 var pg = require('pg');
 
 function isLoggedIn(req, res, next){
-    console.log(req.session);
     if(req.isAuthenticated()){
-        console.log("WE ARE AUTHENTICATED IN SCHOOLS.JS");
         return next();
     }
-    console.log("WE ARE NOT AUTHENTICATED IN SCHOOLS.JS");
     res.send(false);
 }
 
 router.get('/:id', isLoggedIn, function(req, res) {
-    console.log("SCHOOLS.JS, GET by id - THIS ROUTE SHOULD BE AUTHENTICATED");
     var results = [];
     var directorID = [req.params.id];
 
@@ -62,8 +58,7 @@ router.get('/:id', isLoggedIn, function(req, res) {
 });
 
 router.post('/:id', isLoggedIn, function(req, res) {
-    console.log("SCHOOLS.JS, POST by id - THIS ROUTE SHOULD BE AUTHENTICATED");
-    var results = [];
+    var instruments = req.body.instruments;
     var newSchool = [
         req.body.name,
         req.body.website,
@@ -76,8 +71,6 @@ router.post('/:id', isLoggedIn, function(req, res) {
         req.body.instructions,
         req.params.id
     ];
-
-    var instruments = req.body.instruments;
 
     pg.connect(connection, function(err, client, done) {
         client.query('INSERT INTO schools ' +
@@ -98,7 +91,8 @@ router.post('/:id', isLoggedIn, function(req, res) {
 });
 
 router.put('/:id', isLoggedIn, function(req, res) {
-    console.log("SCHOOLS.JS, PUT by ID - THIS ROUTE SHOULD BE AUTHENTICATED");
+    var instruments = req.body.instruments;
+    var school_id = req.body.school_id;
     var updateSchool = [
         req.body.name,
         req.body.website,
@@ -113,9 +107,6 @@ router.put('/:id', isLoggedIn, function(req, res) {
         req.body.approved,
         req.body.school_id
     ];
-
-    var instruments = req.body.instruments;
-    var school_id = req.body.school_id;
 
     pg.connect(connection, function(err, client, done) {
         client.query('UPDATE schools SET' +
@@ -138,7 +129,6 @@ router.put('/:id', isLoggedIn, function(req, res) {
 });
 
 router.get('/instruments/:id', function(req, res){
-    console.log("THIS ROUTE SHOULD BE OPEN");
   var results = [];
   pg.connect(connection, function(err, client, done) {
     var query = client.query('SELECT schools.*, users.email FROM schools ' +

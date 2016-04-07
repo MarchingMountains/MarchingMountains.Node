@@ -6,21 +6,19 @@
             </md-input-container>
             <!--Instruments-->
             <h5>Please select the instrument(s) your school needs:</h5>
-            <md-input-container ng-controller="ChipController as ctrl" class="chipsdemoCustomInputs md-padding">
-
-                <md-chips ng-model="ctrl.selectedInstruments"
-                          md-autocomplete-snap
-                          md-transform-chip="ctrl.transformChip($chip)"
-                          md-require-match="ctrl.autocompleteDemoRequireMatch">
+            <md-input-container class="chipsdemoCustomInputs md-padding">
+                <md-chips ng-model="selectedInstruments"
+                          md-transform-chip="transformChip($chip)"
+                          md-require-match="autocompleteDemoRequireMatch">
                     <md-autocomplete md-selected-item="selectedItem"
                                      md-search-text-change="searchTextChange(searchText)"
                                      md-search-text="searchText"
                                      md-selected-item-change="selectedItemChange(item)"
-                                     md-items="item in ctrl.instruments | filter:searchText"
+                                     md-items="item in chipInstruments | filter:searchText"
                                      md-item-text="item.instrument"
-                                     md-min-length="0">
-                        <!--placeholder and md-floating label are both buggy solutions, find something else-->
-                        <span md-highlight-text="ctrl.searchText">{{item.instrument}}</span>
+                                     md-min-length="0"
+                                     secondary-placeholder="Search for an instrument">
+                        <span md-highlight-text="searchText">{{item.instrument}}</span>
                     </md-autocomplete>
                     <md-chip-template>
                         <span>
@@ -43,19 +41,12 @@
                 <input type="text" ng-model="city" placeholder="City" value="city" />
             </md-input-container>
             <!--States-->
-            <md-autocomplete
-                    md-selected-item="selectedItem"
-                    md-search-text-change="searchTextChange(searchText)"
-                    md-search-text="searchText"
-                    md-selected-item-change="selectedItemChange(item)"
-                    md-items="item in states | filter:searchText"
-                    md-item-text="item.state"
-                    md-min-length="0"
-                    md-floating-label="State">
-                <md-item-template>
-                    <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.state}}</span>
-                </md-item-template>
-            </md-autocomplete>
+            <md-select ng-show="currentSchool != true" ng-model="selectedState" placeholder="State">
+                <md-option ng-value="state" ng-repeat="state in states.list">{{state.state}}</md-option>
+            </md-select>
+            <md-select ng-show="currentSchool == true" ng-model="selectedState" placeholder="{{selectedState.state}}">
+                <md-option ng-value="state" ng-repeat="state in states.list">{{state.state}}</md-option>
+            </md-select>
             <md-input-container class="md-block">
                 <input type="number" ng-model="zip" placeholder="Zip" />
             </md-input-container>
@@ -65,10 +56,9 @@
             <md-input-container class="md-block">
                 <textarea ng-model="instructions" placeholder="Additional Shipping Instructions"></textarea>
             </md-input-container>
-
             <br>
-            <md-button ng-if="currentSchool != true" ng-click="saveSchool(selectedItem, selectedInstruments)">Save School</md-button>
-            <md-button ng-if="currentSchool == true" ng-click="updateSchool(selectedItem, selectedInstruments)">Update School</md-button>
+            <md-button ng-if="currentSchool != true" ng-click="saveSchool(selectedState)">Save School</md-button>
+            <md-button ng-if="currentSchool == true" ng-click="updateSchool(selectedState)">Update School</md-button>
         </form>
     </md-content>
 </div>

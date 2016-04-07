@@ -10,18 +10,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 router.get('/', function(req, res) {
-
-
     var results = [];
-
     pg.connect(connection, function(err, client, done) {
         var query = client.query('SELECT * FROM states;');
-
         //Stream results back one row at a time
         query.on('row', function(row) {
             results.push(row);
         });
-
         //close connection
         query.on('end', function() {
             done();
@@ -31,7 +26,6 @@ router.get('/', function(req, res) {
         if(err) {
             console.log(err);
         }
-
     });
 });
 

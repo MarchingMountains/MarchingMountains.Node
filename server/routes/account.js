@@ -11,16 +11,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 function isLoggedIn(req, res, next){
-    console.log(req.session);
     if(req.isAuthenticated()){
-            return next();
-        }
-    console.log("inside account.js isLoggedIn function, user not authenticated", req.user);
+        return next();
+    }
     res.send(false);
 }
 
 router.get('/*', isLoggedIn, function(req, res) {
-
     var id = req.params[0];
     var results = [];
 
@@ -49,7 +46,6 @@ router.get('/*', isLoggedIn, function(req, res) {
 });
 
 router.put('/password/*', isLoggedIn, function(req, res) {
-
     var id = req.params[0];
     var results = [];
     var password = encryptLib.encryptPassword(req.body.password);
@@ -70,12 +66,12 @@ router.put('/password/*', isLoggedIn, function(req, res) {
                     res.send(results);
                 }
 
-            });
+            }
+        );
     });
 });
 
 router.put('/*', isLoggedIn, function(req, res) {
-
     var id = req.params[0];
     var results = [];
 
@@ -106,7 +102,8 @@ router.put('/*', isLoggedIn, function(req, res) {
                     res.send(results);
                 }
 
-            });
+            }
+        );
     });
 });
 

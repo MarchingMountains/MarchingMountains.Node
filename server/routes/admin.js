@@ -5,12 +5,10 @@ var pg = require('pg');
 
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
-        console.log("WE ARE AUTHENTICATED IN ADMIN");
         if(req.user.user_id === 1) {
             return next();
         }
     }
-    console.log("WE ARE NOT AUTHENTICATED IN ADMIN");
     res.send(false);
 }
 
@@ -38,7 +36,6 @@ router.get('/schools', isLoggedIn, function(req, res) {
 });
 
 router.put('/verify-school/:id', isLoggedIn, function(req, res) {
-    console.log('req.body::', req.body);
     pg.connect(connection, function(err, client, done) {
         client.query('UPDATE schools SET (approved) = ($1) WHERE school_id = $2', [req.body.approved, req.params.id], function(err) {
             client.end();

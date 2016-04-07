@@ -1,11 +1,28 @@
-myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'InstrumentsFactory',
-  '$mdDialog', '$mdMedia', 'UserService', function($scope, SchoolsFactory, InstrumentsFactory,
-    $mdDialog, $mdMedia, UserService) {
-        $scope.states = InstrumentsFactory.statesList.list;
+myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'InstrumentsFactory', '$mdDialog',
+    function($scope, SchoolsFactory, InstrumentsFactory, $mdDialog) {
+        var instrumentsList = InstrumentsFactory.instruments.list;
+        var factoryCurrentSchool = SchoolsFactory.currentSchool.school_name;
+
+        $scope.states = InstrumentsFactory.statesList;
         $scope.schools = SchoolsFactory.allSchools;
         $scope.currentSchool = false;
-        var factoryCurrentSchool = SchoolsFactory.currentSchool.school_name;
-        var user = UserService.askForCurrentUser().factoryUserId;
+        $scope.chipInstruments = loadInstruments();
+        $scope.selectedInstruments = [];
+        $scope.autocompleteDemoRequireMatch = true;
+
+        $scope.transformChip = function(chip) {
+            InstrumentsFactory.currentInstruments = $scope.selectedInstruments;
+            if (angular.isObject(chip)) {
+                return chip;
+            }
+        };
+
+        function loadInstruments() {
+            return instrumentsList.map(function (musicThing) {
+                musicThing._lowername = musicThing.instrument.toLowerCase();
+                return musicThing;
+            });
+        }
 
         if(factoryCurrentSchool !== undefined) {
             $scope.currentSchool = true;
@@ -15,10 +32,13 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'Instrument
             $scope.address_line2 = SchoolsFactory.currentSchool.address_line2;
             $scope.city = SchoolsFactory.currentSchool.city;
             $scope.state = {state_id: SchoolsFactory.currentSchool.state_id, state: SchoolsFactory.currentSchool.state};
-            $scope.selectedItem = {state_id: SchoolsFactory.currentSchool.state_id, state: SchoolsFactory.currentSchool.state};
+            $scope.selectedState = {state_id: SchoolsFactory.currentSchool.state_id, state: SchoolsFactory.currentSchool.state};
             $scope.zip = SchoolsFactory.currentSchool.zip;
             $scope.phone = SchoolsFactory.currentSchool.phone;
             $scope.instructions = SchoolsFactory.currentSchool.instructions;
+            InstrumentsFactory.currentInstruments = SchoolsFactory.currentSchool.instruments;
+            $scope.selectedInstruments = InstrumentsFactory.currentInstruments;
+            console.log('currentinstruments', SchoolsFactory.currentSchool.instruments);
         } else if(factoryCurrentSchool === undefined) {
             $scope.currentSchool = false;
         }
