@@ -48,11 +48,11 @@
     </md-toolbar>
   </div>
 
-  <div class="col-md-2" ng-if="isLoggedIn === false">
+  <div class="col-md-3" ng-if="isLoggedIn === false">
     <md-button ng-click="openModal($event)" class="login">Login / Register</md-button>
   </div>
 
-  <div class="col-md-2" ng-if="isLoggedIn === true" id="menubarContainer" layout="row" ng-cloak>
+  <div class="col-md-3 login" ng-if="isLoggedIn === true" id="menubarContainer" layout="row" ng-cloak>
     <md-toolbar class="md-menu-toolbar">
       <div layout="row">
         <div>
@@ -65,8 +65,8 @@
               </button>
 
               <md-menu-content>
-                <md-menu-item><md-button href="#account">Edit Account Information</md-button></md-menu-item>
-                <md-menu-item><md-button ng-click=logOut()><a href="/logout">Log Out</a></md-button></md-menu-item>
+                <md-menu-item><md-button href="#account" class="nav">Edit Account Information</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click=logOut() class="nav"><a href="/logout">Log Out</a></md-button></md-menu-item>
               </md-menu-content>
             </md-menu>
           </md-menu-bar>

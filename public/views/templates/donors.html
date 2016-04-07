@@ -2,8 +2,7 @@
   <h3>What type of instrument would you like to donate?</h3>
   <div class="autocompletedemoBasicUsage">
     <md-content>
-      <form ng-submit="$event.preventDefault()">
-        <div layout-gt-sm="row" class="schoolSearch">
+      <form ng-submit="$event.preventDefault()" class="home-form center margin-top">
           <md-autocomplete
             md-selected-item="selectedItem"
             md-search-text-change="searchTextChange(searchText)"
@@ -12,19 +11,19 @@
             md-items="item in instruments | filter:searchText"
             md-item-text="item.instrument"
             md-min-length="0"
-            md-floating-label="Choose an instrument to donate"
-            class="md-block" flex-gt-sm>
+            placeholder="Choose an instrument to donate">
             <md-item-template>
               <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.instrument}}</span>
             </md-item-template>
           </md-autocomplete>
-          <md-button ng-click="searchSchool(selectedItem)">Search for schools</md-button>
-        </div>
+
+        <!--</div>-->
+        <md-button ng-click="searchSchool(selectedItem)" class="md-raised margin-top">Search for schools</md-button>
       </form>
     </md-content>
   </div>
-  <md-divider></md-divider>
-  <div class="row">
+  <md-divider class="margin-top"></md-divider>
+  <div class="row margin-top">
     <div class="col-md-8">
       <h4 ng-show="selectedInstrument">Schools in need of a {{selectedInstrument.instrument}}</h4>
       <h5 ng-show="selectedInstrument && !schoolSearchResults[0].school_id">No schools are in need of a {{selectedInstrument.instrument}} at this time</h5>

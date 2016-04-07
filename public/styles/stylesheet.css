@@ -32,6 +32,10 @@ a {
   flex: 1;
 }
 
+#header {
+  background: rgba(250, 245, 245, 0.7);
+}
+
 #footer {
   background: rgba(36,60,86,0.7);
   margin-top: 3em;
@@ -39,12 +43,8 @@ a {
 
 .footer-text {
   margin-top: 1.1em;
-  font: 1.3em 'Abel', sans-serif;
+  font: 1.1em 'Abel', sans-serif;
   color: #8c8c8c;
-}
-
-#header {
-  background: rgba(250, 245, 245, 0.7);
 }
 
 .container {
@@ -106,14 +106,24 @@ a {
 }
 
 .login {
-  margin-top: 2.5em;
-  margin-right: 1em;
+  margin-top: 2.1em;
+  /*margin-right: 1em;*/
   text-align: right;
   font: 1.2em 'Abel', sans-serif;
 }
 
 md-toolbar.md-default-theme.md-menu-toolbar, md-toolbar.md-menu-toolbar {
   background: none;
+}
+
+.md-button.md-raised:not([disabled]) {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.nav {
+  font-size: 30px;
+  font-family: 'Abel', sans-serif;
+  /* font size is not working. WHY??? */
 }
 
 md-menu button {
@@ -127,15 +137,10 @@ md-content {
 
 .home-form {
   width: 30em;
-
 }
 
 .center {
   margin: 0 auto;
-}
-
-.nav {
-  font: 1em 'Abel', sans-serif;
 }
 
 .photo-left {
@@ -176,6 +181,10 @@ md-content {
 .smallCard {
   width: 25em;
   display: inline-block;
+}
+
+.dropdown-style {
+  background-color: #ffffff;
 }
 
 /* for larger than handhelds */
