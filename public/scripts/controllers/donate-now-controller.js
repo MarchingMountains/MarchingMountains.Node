@@ -1,16 +1,16 @@
 myApp.controller('DonateNowController', ['$scope', '$http', '$mdDialog', '$mdMedia',
-'SchoolsFactory', 'DonationsFactory', function($scope, $http, $mdDialog, $mdMedia,
-  SchoolsFactory, DonationsFactory) {
+'SchoolsFactory', 'DonationsFactory', 'UserService', function($scope, $http, $mdDialog, $mdMedia,
+  SchoolsFactory, DonationsFactory, UserService) {
 
   $scope.SchoolsFactory = SchoolsFactory;
   $scope.DonationsFactory = DonationsFactory;
+  $scope.UserService = UserService;
 
   $scope.selectedSchoolInfo = $scope.SchoolsFactory.selectedSchoolInfo.list;
   $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrument.list;
-  $scope.currentUser = 2;
 
  $scope.donateNow = function(ev) {
-   //  $scope.currentUser = $scope.UserService.askForCurrentUser();
+   $scope.currentUser = $scope.UserService.askForCurrentUser().factoryUserId;
 
    var instrumentDonation = {
     date: 'today',
@@ -20,20 +20,19 @@ myApp.controller('DonateNowController', ['$scope', '$http', '$mdDialog', '$mdMed
     school_id: $scope.selectedSchoolInfo.school_id,
    };
 
-   var emailMessage = {
-     from: 'mail@marchingmountains.org',
-     to: $scope.selectedSchoolInfo.email,
-     subject: 'New ' + $scope.selectedInstrument.instrument + ' donation for ' +
-      $scope.selectedSchoolInfo.school_name,
-     text: $scope.donorNote + '\n\nDo not reply to this e-mail. Mailbox is not monitored.'
-   };
+  var emailMessage = {
+    from: 'mail@marchingmountains.org',
+    to: $scope.selectedSchoolInfo.email,
+    subject: 'New ' + $scope.selectedInstrument.instrument + ' donation for ' +
+    $scope.selectedSchoolInfo.school_name,
+    text: $scope.donorNote + '\n\nDo not reply to this e-mail. Mailbox is not monitored.'
+  };
 
-  //  $scope.DonationsFactory.factorySubmitDonation(instrumentDonation);
-  //  $scope.DonationsFactory.factoryTestEmail();
+
+  $scope.DonationsFactory.factorySubmitDonation(instrumentDonation);
   $http.post('/donations/email', emailMessage);
   $mdDialog.hide();
 
-  //alert start
     $scope.status = '  ';
     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 
@@ -48,7 +47,6 @@ myApp.controller('DonateNowController', ['$scope', '$http', '$mdDialog', '$mdMed
         .ok('OK')
         .targetEvent(ev)
     );
-  //alert end
   };
 
   $scope.cancelDonation = function() {

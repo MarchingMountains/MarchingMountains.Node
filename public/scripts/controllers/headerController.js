@@ -24,16 +24,14 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
             $scope.first_name = undefined;
             $scope.user_name = undefined;
             $scope.isLoggedIn = false;
-            console.log("on LogOut inside controller:", $scope.isLoggedIn);
         };
 
         $scope.$watch($scope.UserService.watchCurrentUser, function(newValue, oldValue){
-            if ($scope.UserService.watchCurrentUser() != undefined) {
+            if ($scope.UserService.watchCurrentUser() !== undefined) {
                 $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
                 $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
                 $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
                 welcomeText();
-                console.log("On $watch, Factory Logged In:", $scope.isLoggedIn);
             }
         });
 

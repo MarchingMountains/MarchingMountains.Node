@@ -14,6 +14,7 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
+
     files: [
         'public/vendors/angular.min.js',
         'public/vendors/angular-route.min.js',
@@ -36,9 +37,15 @@ module.exports = function(config) {
         'http://cdn.wijmo.com/5.20161.138/interop/angular/wijmo.angular.min.js'
     ],
 
-
     // list of files to exclude
     exclude: [
+      'public/scripts/specs/account-spec.js',
+      'public/scripts/specs/instruments-factory-spec.js',
+      'public/scripts/specs/modal-controller-spec.js',
+      'public/scripts/specs/schools-spec.js',
+      'public/scripts/specs/test-spec.js',
+      'public/scripts/specs/temp-test-controller.js',
+      // 'public/scripts/specs/donors-controller-spec.js',
     ],
 
 
@@ -84,6 +91,6 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
-  })
+  });
 
 };

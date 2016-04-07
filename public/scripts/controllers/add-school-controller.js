@@ -1,11 +1,30 @@
-myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'InstrumentsFactory',
-    '$mdDialog', '$mdMedia', function($scope, SchoolsFactory, InstrumentsFactory, $mdDialog, $mdMedia) {
-        $scope.states = InstrumentsFactory.statesList.list;
-        $scope.schools = SchoolsFactory.allSchools;
-        $scope.currentSchool = false;
+myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'InstrumentsFactory', '$mdDialog',
+    function($scope, SchoolsFactory, InstrumentsFactory, $mdDialog) {
+        var instrumentsList = InstrumentsFactory.instruments.list;
         var factoryCurrentSchool = SchoolsFactory.currentSchool.school_name;
 
-        if(factoryCurrentSchool != undefined) {
+        $scope.states = InstrumentsFactory.statesList;
+        $scope.schools = SchoolsFactory.allSchools;
+        $scope.currentSchool = false;
+        $scope.chipInstruments = loadInstruments();
+        $scope.selectedInstruments = [];
+        $scope.autocompleteDemoRequireMatch = true;
+
+        $scope.transformChip = function(chip) {
+            InstrumentsFactory.currentInstruments = $scope.selectedInstruments;
+            if (angular.isObject(chip)) {
+                return chip;
+            }
+        };
+
+        function loadInstruments() {
+            return instrumentsList.map(function (musicThing) {
+                musicThing._lowername = musicThing.instrument.toLowerCase();
+                return musicThing;
+            });
+        }
+
+        if(factoryCurrentSchool !== undefined) {
             $scope.currentSchool = true;
             $scope.name = SchoolsFactory.currentSchool.school_name;
             $scope.website = SchoolsFactory.currentSchool.website;
@@ -13,11 +32,14 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'Instrument
             $scope.address_line2 = SchoolsFactory.currentSchool.address_line2;
             $scope.city = SchoolsFactory.currentSchool.city;
             $scope.state = {state_id: SchoolsFactory.currentSchool.state_id, state: SchoolsFactory.currentSchool.state};
-            $scope.selectedItem = {state_id: SchoolsFactory.currentSchool.state_id, state: SchoolsFactory.currentSchool.state};
+            $scope.selectedState = {state_id: SchoolsFactory.currentSchool.state_id, state: SchoolsFactory.currentSchool.state};
             $scope.zip = SchoolsFactory.currentSchool.zip;
             $scope.phone = SchoolsFactory.currentSchool.phone;
             $scope.instructions = SchoolsFactory.currentSchool.instructions;
-        } else if(factoryCurrentSchool == undefined) {
+            InstrumentsFactory.currentInstruments = SchoolsFactory.currentSchool.instruments;
+            $scope.selectedInstruments = InstrumentsFactory.currentInstruments;
+            console.log('currentinstruments', SchoolsFactory.currentSchool.instruments);
+        } else if(factoryCurrentSchool === undefined) {
             $scope.currentSchool = false;
         }
 
@@ -36,7 +58,6 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'Instrument
             };
 
             SchoolsFactory.postDirectorSchool(school).then(function() {
-                //$scope.schools = SchoolsFactory.schoolsList();
                 $scope.schools = SchoolsFactory.directorSchools;
                 InstrumentsFactory.currentInstruments = [];
             });

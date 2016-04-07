@@ -1,9 +1,8 @@
-myApp.factory('DonationsFactory', ['$http', function($http) {
+myApp.factory('DonationsFactory', ['$http', '$window', function($http, $window) {
 
   var selectedSchoolDonations = {};
   var currentUserDonations = {};
   var currentDonation;
-  var allDonations = {};
 
   var SelectedSchoolDonations = function(selectedSchoolId) {
     var promise = $http.get('/donations/school/' + selectedSchoolId).then(function(response) {
@@ -14,27 +13,28 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
 
   var getCurrentUserDonations = function(currentUserId) {
     var promise = $http.get('/donations/user/' + currentUserId).then(function(response) {
-      console.log(response.data);
-      currentUserDonations.list = response.data;
+      if (response.data) {
+        currentUserDonations.list = response.data;
+      } else {
+        $window.location.href = '/';
+      }
     });
     return promise;
   };
 
   var submitDonation = function(donationInfo) {
+    console.log("submitting a donation!");
+    console.log("we need to redirect nonuser away from this button!, its reject on the back end if you are not a user but not on front end");
     $http.post('/donations/school/' + donationInfo.school_id, donationInfo);
   };
 
   var setDonationReceived = function(donationInfo) {
-    var promise = $http.put('/donations/received/' + donationInfo.donation_id).then(function(){
-      console.log('updated donation_received to true');
+    var promise = $http.put('/donations/received/' + donationInfo.donation_id).then(function() {
+      if (response.data === false) {
+        $window.location.href = '/';
+      }
     });
-    return promise;
-  };
-  var factoryGetAllDonations = function() {
-    var promise = $http.get('/donations/admin').then(function(response) {
-      allDonations.list = response.data;
-    });
-    return promise;
+      return promise;
   };
 
   var publicFunctions = {
@@ -50,13 +50,9 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
     factorySetDonationReceived: function(donationInfo) {
       return setDonationReceived(donationInfo);
     },
-    getAllDonations: function() {
-      return factoryGetAllDonations();
-    },
     selectedSchoolDonations: selectedSchoolDonations,
     currentUserDonations: currentUserDonations,
-    currentDonation: currentDonation,
-    allDonations: allDonations
+    currentDonation: currentDonation
   };
 
   return publicFunctions;
