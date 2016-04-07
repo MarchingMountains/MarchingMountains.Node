@@ -3,6 +3,7 @@ myApp.factory('DonationsFactory', ['$http', '$window', function($http, $window) 
   var selectedSchoolDonations = {};
   var currentUserDonations = {};
   var currentDonation;
+  var userID = false;
 
   var SelectedSchoolDonations = function(selectedSchoolId) {
     var promise = $http.get('/donations/school/' + selectedSchoolId).then(function(response) {
@@ -11,8 +12,9 @@ myApp.factory('DonationsFactory', ['$http', '$window', function($http, $window) 
     return promise;
   };
 
-  var getCurrentUserDonations = function(currentUserId) {
-    var promise = $http.get('/donations/user/' + currentUserId).then(function(response) {
+  var getCurrentUserDonations = function() {
+    userID = publicFunctions.userID;
+    var promise = $http.get('/donations/user/' + userID).then(function(response) {
       if (response.data) {
         currentUserDonations.list = response.data;
       } else {
@@ -23,16 +25,14 @@ myApp.factory('DonationsFactory', ['$http', '$window', function($http, $window) 
   };
 
   var submitDonation = function(donationInfo) {
-    console.log("submitting a donation!");
-    console.log("we need to redirect nonuser away from this button!, its reject on the back end if you are not a user but not on front end");
-    $http.post('/donations/school/' + donationInfo.school_id, donationInfo);
+    var promise = $http.post('/donations/school/' + donationInfo.school_id, donationInfo).then(function(){
+      getCurrentUserDonations();
+    });
+    return promise;
   };
 
   var setDonationReceived = function(donationInfo) {
     var promise = $http.put('/donations/received/' + donationInfo.donation_id).then(function() {
-      if (response.data === false) {
-        $window.location.href = '/';
-      }
     });
       return promise;
   };
@@ -41,8 +41,8 @@ myApp.factory('DonationsFactory', ['$http', '$window', function($http, $window) 
     factoryGetSelectedSchoolDonations: function(selectedSchoolId) {
       return SelectedSchoolDonations(selectedSchoolId);
     },
-    factoryGetCurrentUserDonations: function(currentUserId) {
-      return getCurrentUserDonations(currentUserId);
+    factoryGetCurrentUserDonations: function() {
+      return getCurrentUserDonations();
     },
     factorySubmitDonation: function(donationInfo) {
       return submitDonation(donationInfo);
@@ -52,7 +52,8 @@ myApp.factory('DonationsFactory', ['$http', '$window', function($http, $window) 
     },
     selectedSchoolDonations: selectedSchoolDonations,
     currentUserDonations: currentUserDonations,
-    currentDonation: currentDonation
+    currentDonation: currentDonation,
+    userID: false
   };
 
   return publicFunctions;

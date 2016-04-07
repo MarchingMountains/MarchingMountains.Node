@@ -46,9 +46,9 @@
         </collapsible-item>
       </ang-accordion>
     </div>
-    <div class="col-md-4" ng-controller="DonorsController" ng-show="currentUserDonations[0]">
+    <div class="col-md-4" ng-controller="DonorsController" ng-show="currentUserDonations.list[0]">
       <h4>Your donations</h4>
-      <ul ng-repeat="donations in currentUserDonations">
+      <ul ng-repeat="donations in currentUserDonations.list">
         <li>
           {{donations.instrument}} to {{donations.school_name}} on {{donations.date | date:'M/d/yyyy'}}<br />
           <span ng-show="donations.donation_received" class="donationReceived">Status: Received</span>

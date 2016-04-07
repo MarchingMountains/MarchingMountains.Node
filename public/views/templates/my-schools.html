@@ -25,7 +25,8 @@
     </md-tab>
     <md-tab label="Donations">
       <md-content class="md-padding">
-        <md-card ng-repeat="donation in donations" class="smallCard">
+        <h3 ng-show="donations">No donations at this time.</h3>
+        <md-card ng-repeat="donation in donations.list" class="smallCard">
           <md-card-title>
             <md-card-title-text>
               <span class="md-headline">{{donation.school_name}}</span>

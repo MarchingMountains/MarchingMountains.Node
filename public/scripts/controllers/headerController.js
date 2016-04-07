@@ -1,5 +1,5 @@
 myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'UserService',
-    function($scope, $http, $mdDialog, $mdMedia, UserService, LoginController) {
+    function($scope, $http, $mdDialog, $mdMedia, UserService, LoginController, RegisterController) {
         $scope.UserService = UserService;
         $scope.first_name;
         $scope.user_name;
@@ -27,7 +27,7 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
         };
 
         $scope.$watch($scope.UserService.watchCurrentUser, function(newValue, oldValue){
-            if ($scope.UserService.watchCurrentUser() !== undefined) {
+            if ($scope.UserService.watchCurrentUser() != undefined) {
                 $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
                 $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
                 $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;

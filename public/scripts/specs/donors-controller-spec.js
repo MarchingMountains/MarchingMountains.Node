@@ -15,6 +15,12 @@ describe('Test for donor-controller', function() {
 
   it('Should equal a number', function() {
     var $scope = {};
+    var mockService1 = function UserService() {
+      return 6;
+    };
+    var mockService2 = function DonationsFactory() {
+      return [{ name: 'Tea' }, { name: 'Syrup' }];
+    };
     var controller = $controller('DonorsController', { $scope: $scope });
     expect($scope.currentUser).toEqual(jasmine.any(Number));
   });
