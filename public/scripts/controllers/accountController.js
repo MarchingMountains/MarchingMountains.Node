@@ -52,6 +52,7 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
     function retrieveUser(id) {
         //console.log('id: ', id);
         $http.get('/account/' + id).then(function(response) {
+            console.log(response.data);
             if (response.data) {
                 $scope.user = response.data[0];
                 $scope.selectedState = response.data[0].state_id;
@@ -87,10 +88,15 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
             };
 
             $http.put('/account/' + id, data).then(function(response){
-                $scope.edited = true;
-                $scope.showList = true;
-                $scope.showForm = false;
-                retrieveUser(id);
+                if (response.data) {
+                    $scope.edited = true;
+                    $scope.showList = true;
+                    $scope.showForm = false;
+                    retrieveUser(id);
+                } else {
+                    console.log('failed to get account route');
+                    $window.location.href = '/';
+                }
             });
         }
     };
@@ -116,7 +122,12 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
             };
 
             $http.put('/account/password/' + id, data).then(function(response){
-                $scope.editedPassword = true;
+                if (response.data) {
+                    $scope.editedPassword = true;
+                } else {
+                console.log('failed to get account route');
+                $window.location.href = '/';
+                }
             });
         }
     };

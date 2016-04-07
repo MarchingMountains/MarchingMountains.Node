@@ -14,6 +14,7 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
+
     files: [
         'public/vendors/angular.min.js',
         'public/vendors/angular-route.min.js',
@@ -35,7 +36,6 @@ module.exports = function(config) {
         'http://cdn.wijmo.com/5.20161.138/controls/wijmo.min.js',
         'http://cdn.wijmo.com/5.20161.138/interop/angular/wijmo.angular.min.js'
     ],
-
 
     // list of files to exclude
     exclude: [

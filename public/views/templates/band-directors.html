@@ -1,6 +1,7 @@
-<div>
+<div ng-controller="HeaderController">
 	<h1>Welcome Band Directors</h1>
-	<p>If you are a band director of a public school band program in Appalachia or Minnesota, please log in
+	<p>If you are a band director of a public school band program in Appalachia or Minnesota,
+		<a href="#my-schools" ng-click="openModal($event)">please log in</a>
 		to register your school to receive donations.</p>
 	<p>If you have any questions, please
 		<a href="mailto:donate@marchingmountains.org">contact me, Ian Felton, founder, at donate@marchingmountains.org</a>.

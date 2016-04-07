@@ -1,9 +1,8 @@
-myApp.factory('DonationsFactory', ['$http', function($http) {
+myApp.factory('DonationsFactory', ['$http', '$window', function($http, $window) {
 
   var selectedSchoolDonations = {};
   var currentUserDonations = {};
   var currentDonation;
-  var allDonations = {};
   var userID = false;
 
   var SelectedSchoolDonations = function(selectedSchoolId) {
@@ -16,8 +15,11 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
   var getCurrentUserDonations = function() {
     userID = publicFunctions.userID;
     var promise = $http.get('/donations/user/' + userID).then(function(response) {
-      console.log(response.data);
-      currentUserDonations.list = response.data;
+      if (response.data) {
+        currentUserDonations.list = response.data;
+      } else {
+        $window.location.href = '/';
+      }
     });
     return promise;
   };
@@ -30,16 +32,12 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
   };
 
   var setDonationReceived = function(donationInfo) {
-    var promise = $http.put('/donations/received/' + donationInfo.donation_id).then(function(){
-      console.log('updated donation_received to true');
+    var promise = $http.put('/donations/received/' + donationInfo.donation_id).then(function() {
+      if (response.data === false) {
+        $window.location.href = '/';
+      }
     });
-    return promise;
-  };
-  var factoryGetAllDonations = function() {
-    var promise = $http.get('/donations/admin').then(function(response) {
-      allDonations.list = response.data;
-    });
-    return promise;
+      return promise;
   };
 
   var publicFunctions = {
@@ -55,13 +53,9 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
     factorySetDonationReceived: function(donationInfo) {
       return setDonationReceived(donationInfo);
     },
-    getAllDonations: function() {
-      return factoryGetAllDonations();
-    },
     selectedSchoolDonations: selectedSchoolDonations,
     currentUserDonations: currentUserDonations,
     currentDonation: currentDonation,
-    allDonations: allDonations,
     userID: false
   };
 

@@ -1,11 +1,11 @@
 myApp.controller('ApproveSchoolController', ['$scope', '$http', '$mdDialog', '$mdMedia',
-    'SchoolsFactory', function($scope, $http, $mdDialog, $mdMedia, SchoolsFactory) {
+    'AdminFactory', function($scope, $http, $mdDialog, $mdMedia, AdminFactory) {
 
-    var schoolID = SchoolsFactory.currentSchool.school_id;
+    var schoolID = AdminFactory.currentSchool.school_id;
 
     $scope.verifySchool = function(status) {
         var schoolStatus = {approved: status};
-        SchoolsFactory.verifySchool(schoolID, schoolStatus).then(function() {
+        AdminFactory.verifySchool(schoolID, schoolStatus).then(function() {
             console.log('verifySchool', schoolID, schoolStatus);
         });
         $mdDialog.hide();
