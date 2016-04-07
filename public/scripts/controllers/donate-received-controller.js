@@ -2,8 +2,6 @@ myApp.controller('DonationReceivedController', ['$scope', '$http', '$mdDialog', 
 'SchoolsFactory', 'DonationsFactory', function($scope, $http, $mdDialog, $mdMedia,
   SchoolsFactory, DonationsFactory) {
 
-$scope.DonationsFactory = DonationsFactory;
-
  $scope.confirmReceived = function(ev) {
 
    var donationReceived = {
@@ -20,8 +18,10 @@ $scope.DonationsFactory = DonationsFactory;
    };
 
     DonationsFactory.factorySetDonationReceived(DonationsFactory.currentDonation).then(function() {
+      SchoolsFactory.getDirectorSchools().then(function() {
       $http.post('/donations/email', emailMessage);
       $mdDialog.hide();
+      });
     });
 
     $scope.status = '  ';
