@@ -33,9 +33,6 @@ myApp.factory('DonationsFactory', ['$http', '$window', function($http, $window) 
 
   var setDonationReceived = function(donationInfo) {
     var promise = $http.put('/donations/received/' + donationInfo.donation_id).then(function() {
-      if (response.data === false) {
-        $window.location.href = '/';
-      }
     });
       return promise;
   };

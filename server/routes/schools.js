@@ -21,7 +21,7 @@ router.get('/:id', isLoggedIn, function(req, res) {
             'LEFT OUTER JOIN school_instruments ON schools.school_id = school_instruments.school_id ' +
             'LEFT OUTER JOIN instruments ON instruments.instrument_id = school_instruments.instrument_id ' +
             'WHERE schools.user_id = $1 GROUP BY schools.school_id, states.state_id ' +
-            'ORDER BY schools.school_name ASC', [directorID]);
+            'ORDER BY schools.school_name ASC', directorID);
         query.on('row', function(row) {
             results.push(row);
         });
@@ -37,7 +37,7 @@ router.get('/:id', isLoggedIn, function(req, res) {
               'JOIN users on donations.user_id = users.user_id ' +
               'LEFT OUTER JOIN instruments ON instruments.instrument_id = donations.instrument_id ' +
               'WHERE schools.user_id = $1 GROUP BY schools.school_id, states.state_id ' +
-              'ORDER BY schools.school_name ASC', [directorID]);
+              'ORDER BY schools.school_name ASC', directorID);
 
               query2.on('row', function(row) {
                 for(var i = 0; i < results.length; i++) {
