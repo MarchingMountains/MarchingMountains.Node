@@ -60,9 +60,22 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
     }
 
     function restoreSession() {
-        if($localStorage.CurrentUser != undefined) {
-            CurrentUser = $localStorage.CurrentUser;
-        }
+        var promise = $http.get('/user').then(function(response) {
+            if(response.data === false) {
+                CurrentUser = {
+                    isLogged: false,
+                    factoryUserName: undefined,
+                    factoryFirstName: undefined,
+                    factoryUserId: undefined
+                };
+                delete $localStorage.CurrentUser;
+                console.log("user has been logged out");
+            }
+        });
+        return promise;
+        //if($localStorage.CurrentUser != undefined) {
+        //    CurrentUser = $localStorage.CurrentUser;
+        //}
     }
 
     restoreSession();
