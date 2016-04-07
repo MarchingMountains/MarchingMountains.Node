@@ -3,7 +3,7 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'Instrument
         var instrumentsList = InstrumentsFactory.instruments.list;
         var factoryCurrentSchool = SchoolsFactory.currentSchool.school_name;
 
-        $scope.states = InstrumentsFactory.statesList.list;
+        $scope.states = InstrumentsFactory.statesList;
         $scope.schools = SchoolsFactory.allSchools;
         $scope.currentSchool = false;
         $scope.chipInstruments = loadInstruments();

@@ -42,10 +42,10 @@
             </md-input-container>
             <!--States-->
             <md-select ng-show="currentSchool != true" ng-model="selectedState" placeholder="State">
-                <md-option ng-value="state" ng-repeat="state in states">{{state.state}}</md-option>
+                <md-option ng-value="state" ng-repeat="state in states.list">{{state.state}}</md-option>
             </md-select>
             <md-select ng-show="currentSchool == true" ng-model="selectedState" placeholder="{{selectedState.state}}">
-                <md-option ng-value="state" ng-repeat="state in states">{{state.state}}</md-option>
+                <md-option ng-value="state" ng-repeat="state in states.list">{{state.state}}</md-option>
             </md-select>
             <md-input-container class="md-block">
                 <input type="number" ng-model="zip" placeholder="Zip" />

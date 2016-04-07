@@ -8,7 +8,6 @@ myApp.factory('AdminFactory', ['$http', '$window', function($http, $window) {
             if (response.data) {
             allSchools.list = response.data;
             } else {
-                console.log('failed to get account route');
                 $window.location.href = '/';
             }
         });
@@ -20,7 +19,6 @@ myApp.factory('AdminFactory', ['$http', '$window', function($http, $window) {
             if (response.data) {
             factoryGetAllSchools();
             } else {
-                console.log('failed to get account route');
                 $window.location.href = '/';
             }
         });
@@ -32,7 +30,6 @@ myApp.factory('AdminFactory', ['$http', '$window', function($http, $window) {
             if (response.data) {
             allDonations.list = response.data;
             } else {
-                console.log('failed to get account route');
                 $window.location.href = '/';
             }
         });
@@ -44,7 +41,6 @@ myApp.factory('AdminFactory', ['$http', '$window', function($http, $window) {
             if (response.data) {
             allUsers.list = response.data;
             } else {
-                console.log('failed to get account route');
                 $window.location.href = '/';
             }
         });
