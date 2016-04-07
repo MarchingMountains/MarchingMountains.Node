@@ -1,22 +1,24 @@
 <div ng-controller="HeaderController">
-  <div class="col-md-4">
-    <a href="/" title="home"><img src="/img/MarchingMountainsLogo.png" alt="Marching Mountains Logo" /></a>
+  <div class="col-md-2 col-md-offset-1 logotop">
+    <a href="/" title="home"><img src="/img/MarchingMountainsLogo2.png" alt="Marching Mountains Logo" class="logo"/></a>
   </div>
 
-  <div class="col-md-6" id="menubarContainer" layout="row" ng-cloak>
+  <div class="col-md-6 navContainer" id="menubarContainer" layout="row" ng-cloak>
     <md-toolbar class="md-menu-toolbar">
-      <div layout="row">
+      <div layout="row" class="navigation">
         <div>
           <md-menu-bar>
             <md-menu>
               <button ng-click="$mdOpenMenu()">ABOUT</button>
               <md-menu-content>
-                <md-menu-item><md-button href="#home">Home</md-button></md-menu-item>
-                <md-menu-item><md-button href="#about">About Marching Mountains</md-button></md-menu-item>
-                <md-menu-item><md-button href="#faq">FAQ</md-button></md-menu-item>
-                <md-menu-item><md-button href="#donate-instrument">How To Donate</md-button></md-menu-item>
-                <md-menu-item><md-button href="#band-directors">Band Director Info</md-button></md-menu-item>
-                <md-menu-item><md-button href="#contact">Contact</md-button></md-menu-item>
+                <md-menu-item><md-button href="#home" class="nav">Home</md-button></md-menu-item>
+                <md-menu-item><md-button href="#about" class="nav">About Marching Mountains</md-button></md-menu-item>
+                <md-menu-item><md-button href="#faq" class="nav">FAQ</md-button></md-menu-item>
+                <md-menu-item><md-button href="#donate-instrument" class="nav">How To Donate</md-button></md-menu-item>
+                <md-menu-item><md-button href="#band-directors" class="nav">Band Director Info</md-button></md-menu-item>
+                <md-menu-item><md-button href="#press" class="nav">Press</md-button></md-menu-item>
+                <md-menu-item><md-button href="#stories" class="nav">Stories</md-button></md-menu-item>
+                <md-menu-item><md-button href="#contact" class="nav">Contact</md-button></md-menu-item>
               </md-menu-content>
             </md-menu>
 
@@ -24,9 +26,9 @@
               <button ng-click="$mdOpenMenu()">INSTRUMENTS</button>
               <md-menu-content>
 
-                <md-menu-item><md-button href="#donors">Donate</md-button></md-menu-item>
-                <md-menu-item ng-if="isLoggedIn == false"><md-button href="#band-directors">Request</md-button></md-menu-item>
-                <md-menu-item ng-if="isLoggedIn"><md-button href="#my-schools">Request</md-button></md-menu-item>
+                <md-menu-item><md-button href="#donors" class="nav">Donate</md-button></md-menu-item>
+                <md-menu-item ng-if="isLoggedIn == false"><md-button href="#band-directors" class="nav">Request</md-button></md-menu-item>
+                <md-menu-item ng-if="isLoggedIn"><md-button href="#my-schools" class="nav">Request</md-button></md-menu-item>
 
               </md-menu-content>
             </md-menu>
@@ -35,7 +37,7 @@
               <button ng-click="$mdOpenMenu()">SUPPORT</button>
               <md-menu-content>
 
-                <md-menu-item><md-button href="https://givemn.org/organization/Marching-Mountains" target="_blank">Donate Funds</md-button></md-menu-item>
+                <md-menu-item><md-button href="https://givemn.org/organization/Marching-Mountains" target="_blank" class="nav">Donate Funds</md-button></md-menu-item>
 
               </md-menu-content>
             </md-menu>
@@ -57,7 +59,10 @@
           <md-menu-bar>
             <md-menu>
 
-              <button ng-click="$mdOpenMenu()">Welcome, {{displayedUser}}</button>
+              <button ng-click="$mdOpenMenu()">Welcome,
+                <span ng-if="first_name != ''">{{first_name}}</span>
+                <span ng-if="first_name === ''">{{user_name}}</span>
+              </button>
 
               <md-menu-content>
                 <md-menu-item><md-button href="#account">Edit Account Information</md-button></md-menu-item>
@@ -69,10 +74,5 @@
       </div>
     </md-toolbar>
   </div>
-  <!--<div class="col-md-2">-->
-    <!--<a href="https://givemn.org/organization/Marching-Mountains" target="_blank">-->
-      <!--<img src="/img/donate.png" alt="Help Marching Mountains - Get Kids Musical Instruments | GiveMN" /></a>-->
-  <!--</div>-->
-
-
+  <div class="col-md-1"></div>
 </div>
