@@ -12,5 +12,4 @@ myApp.controller('DonorsController', ['$scope', 'DonationsFactory', 'UserService
       $scope.currentUserDonations = $scope.DonationsFactory.currentUserDonations;
     });
   }
-
 }]);

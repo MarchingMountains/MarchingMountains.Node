@@ -33,8 +33,8 @@ router.get('/school/:id', function(req, res){
   pg.connect(connection, function(err, client, done) {
     var query = client.query('SELECT * FROM donations ' +
       'JOIN instruments ON donations.instrument_id = instruments.instrument_id ' +
-      'WHERE donations.school_id = $1 ORDER BY donations.date DESC;',
-      req.params.id);
+      'WHERE donations.school_id = $1 AND donations.donation_received = $2 ORDER BY donations.date DESC;',
+      [req.params.id, true]);
     query.on('row', function(row) {
       results.push(row);
     });
