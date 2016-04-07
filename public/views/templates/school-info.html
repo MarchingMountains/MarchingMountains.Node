@@ -2,7 +2,7 @@
   <h2>{{selectedSchoolInfo.school_name}}</h2>
   <ul>
     <li>
-      Address:
+      <strong>Address: </strong>
       <ul>
         <li>
           {{selectedSchoolInfo.address_line1}}
@@ -11,15 +11,15 @@
           {{selectedSchoolInfo.address_line2}}
         </li>
         <li>
-          {{selectedSchoolInfo.city}}, {{selectedSchoolInfo.state_name}} {{selectedSchoolInfo.zip}}
+          {{selectedSchoolInfo.city}}, {{selectedSchoolInfo.state}} {{selectedSchoolInfo.zip}}
         </li>
       </ul>
     </li>
     <li>
-      Number: {{selectedSchoolInfo.phone | tel}}
+      <strong>Number: </strong> {{selectedSchoolInfo.phone | tel}}
     </li>
     <li>
-      Website: <a href="{{selectedSchoolInfo.website}}" target="_blank">{{selectedSchoolInfo.website}}</a>
+      <strong>Website: </strong> <a href="{{selectedSchoolInfo.website}}" target="_blank">{{selectedSchoolInfo.website}}</a>
     </li>
   </ul>
   <md-divider></md-divider>

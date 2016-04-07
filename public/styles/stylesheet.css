@@ -1,6 +1,9 @@
 * {
   margin: 0;
 }
+ul {
+  list-style-type: none;
+}
 
 body {
   background: url("/img/mountains-background.jpg") center center no-repeat fixed;
@@ -143,8 +146,21 @@ md-content {
   background-color: transparent;
 }
 
-.home-form {
-  width: 30em;
+.home-form, .search-form {
+  width: 27%;
+}
+
+.search-form {
+  display: inline-block;
+  float: left;
+}
+
+.search-btn {
+  float: left;
+}
+
+.donations-bottom-border {
+  border-bottom: 1px solid #354581;
 }
 
 .center {
@@ -158,6 +174,17 @@ md-content {
 
 .margin-top {
   margin-top: 1.6em;
+}
+.margin-left {
+  margin-left: 1.6em;
+}
+
+.small-margin-top {
+  margin-top: 1em;
+}
+.donations-overflow {
+  height: 9em;
+  overflow-y:scroll;
 }
 
 .chipsdemoCustomInputs md-content.autocomplete {
