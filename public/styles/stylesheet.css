@@ -113,6 +113,7 @@ a {
   margin-top: 2.1em;
   text-align: right;
   font: 1.2em 'Abel', sans-serif;
+  background-color: transparent;
 }
 
 md-toolbar.md-default-theme.md-menu-toolbar, md-toolbar.md-menu-toolbar {
