@@ -65,12 +65,17 @@
       <link rel="stylesheet" type="text/css" href="/vendors/ang-accordion.css" />
       <link rel="stylesheet" type="text/css" href="/vendors/xeditable.min.css" />
       <link rel="stylesheet" type="text/css" href="/styles/stylesheet.css"/>
+      <link href='https://fonts.googleapis.com/css?family=Abel|Open+Sans:400,600,700,800,300|Merriweather:400,300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <header class="container-fluid row" ng-include="'/templates/header.html'"></header>
-
-    <main ng-view class="container"></main>
-
-    <footer class="container-fluid row footer" ng-include="'/templates/footer.html'"></footer>
+    <div id="wrap">
+        <div id="header">
+            <header class="container-fluid" ng-include="'/templates/header.html'"></header>
+        </div>
+        <main ng-view class="container"></main>
+    </div>
+    <div id="footer">
+        <footer class="container-fluid" ng-include="'/templates/footer.html'"></footer>
+    </div>
   </body>
 </html>

@@ -49,6 +49,18 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/templates/admin.html',
       controller: 'AdminController'
     })
+    .when('/press', {
+      templateUrl: '/views/templates/press.html'
+    })
+    .when('/press1', {
+      templateUrl: '/views/templates/press-1.html'
+    })
+    .when('/press2', {
+      templateUrl: '/views/templates/press-2.html'
+    })
+    .when('/stories', {
+      templateUrl: '/views/templates/stories.html'
+    })
     .when('/logout', {
       templateUrl: '/views/templates/home.html',
       controller: 'SchoolSearchController'

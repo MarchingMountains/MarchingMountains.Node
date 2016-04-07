@@ -1,9 +1,65 @@
+* {
+  margin: 0;
+}
+
+body {
+  background: url("/img/mountains-background.jpg") center center no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  font-family: 'Merriweather', sans-serif;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  margin-bottom: 1em;
+}
+
+a {
+  color: #354581;
+}
+
+#wrap {
+  flex: 1;
+}
+
+#footer {
+  background: rgba(36,60,86,0.7);
+  margin-top: 3em;
+}
+
+.footer-text {
+  margin-top: 1.1em;
+  font: 1.3em 'Abel', sans-serif;
+  color: #8c8c8c;
+}
+
+#header {
+  background: rgba(250, 245, 245, 0.7);
+}
+
+.container {
+  margin-top: 3em;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 3em 3em;
+  border-radius: 1em;
+}
+
 .message {
     color: #880000;
 }
 
 .donateModal {
-  margin:2em;
+  margin: 2em;
   max-width: 25em;
 }
 
@@ -29,6 +85,66 @@
 
 .loginModal {
   min-width: 300px;
+}
+
+.logo {
+  margin: .9em 0 1.3em .7em;
+}
+
+.logotop {
+  z-index: 2;
+}
+
+.navContainer {
+  margin-top: 1.4em;
+  display: flex;
+  z-index: 1;
+}
+
+.navigation {
+  margin: auto;
+}
+
+.login {
+  margin-top: 2.5em;
+  margin-right: 1em;
+  text-align: right;
+  font: 1.2em 'Abel', sans-serif;
+}
+
+md-toolbar.md-default-theme.md-menu-toolbar, md-toolbar.md-menu-toolbar {
+  background: none;
+}
+
+md-menu button {
+  padding: 0 20px;
+  font: 1em 'Abel', sans-serif;
+}
+
+md-content {
+  background-color: transparent;
+}
+
+.home-form {
+  width: 30em;
+
+}
+
+.center {
+  margin: 0 auto;
+}
+
+.nav {
+  font: 1em 'Abel', sans-serif;
+}
+
+.photo-left {
+  float: left;
+  margin-right: 1em;
+}
+
+.margin-top {
+  margin-top: 1.6em;
 }
 
 .chipsdemoCustomInputs md-content.autocomplete {
@@ -62,6 +178,12 @@
   display: inline-block;
 }
 
-.login {
-  margin-top: 10px;
+/* for larger than handhelds */
+@media (min-width: 450px) {
+  #footer {
+    height: 4em;
+  }
 }
+
+
+
