@@ -35,7 +35,6 @@ a {
   background-color: rgb(222, 231, 235);
 }
 
-
 #wrap {
   flex: 1;
 }
@@ -115,9 +114,9 @@ a {
 
 .login {
   margin-top: 2.1em;
-  /*margin-right: 1em;*/
   text-align: right;
   font: 1.2em 'Abel', sans-serif;
+  background-color: transparent;
 }
 
 md-toolbar.md-default-theme.md-menu-toolbar, md-toolbar.md-menu-toolbar {
@@ -131,9 +130,11 @@ md-toolbar.md-default-theme.md-menu-toolbar, md-toolbar.md-menu-toolbar {
 }
 
 .nav {
-  font-size: 30px;
+  font-size: 1.2em !important;
   font-family: 'Abel', sans-serif;
-  /* font size is not working. WHY??? */
+  background-color: #ffffff;
+  border: 0;
+  box-shadow: none;
 }
 
 md-menu button {
