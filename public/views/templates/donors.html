@@ -18,7 +18,7 @@
           </md-autocomplete>
 
         <!--</div>-->
-        <md-button ng-click="searchSchool(selectedItem)" class="md-raised margin-top">Search for schools</md-button>
+        <md-button ng-click="searchSchool(selectedItem)" class="margin-top">Search for schools</md-button>
       </form>
     </md-content>
   </div>
@@ -38,8 +38,8 @@
                 Website: <a href="{{school.website}}" target="_blank">{{school.website}}</a>
               </li>
               <li>
-                <md-button ng-click="goToSchoolPage(school)">More Info</md-button>
-                <md-button ng-click="donateNowModal(school, $event)">Donate Now</md-button>
+                <md-button ng-click="goToSchoolPage(school)" class="margin-top">More Info</md-button>
+                <md-button ng-click="donateNowModal(school, $event)" class="margin-top">Donate Now</md-button>
               </li>
             </ul>
           </div>

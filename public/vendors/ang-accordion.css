@@ -4,13 +4,13 @@
 
 .collapsible-item .title {
   padding: 10px;
-  background-color: #f5f5f5;
-  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
-  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
-  border: 1px solid #ccc;
+  background-color: rgb(222, 231, 235);
+  /*background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);*/
+  /*background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));*/
+  /*background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);*/
+  /*background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);*/
+  /*background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);*/
+  border: 1px solid #8f989c;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
@@ -40,7 +40,7 @@
   top: -4px;
   max-height: 0;
   overflow: hidden;
-  border: 1px solid #ccc;
+  border: 1px solid #8f989c;
   border-top: 0;
   z-index: -1;
   -webkit-transition: max-height 0.5s ease;

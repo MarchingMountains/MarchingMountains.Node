@@ -28,6 +28,11 @@ a {
   color: #354581;
 }
 
+.blue-button {
+  background-color: rgb(222, 231, 235);
+}
+
+
 #wrap {
   flex: 1;
 }
@@ -116,8 +121,10 @@ md-toolbar.md-default-theme.md-menu-toolbar, md-toolbar.md-menu-toolbar {
   background: none;
 }
 
-.md-button.md-raised:not([disabled]) {
+.md-button {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  background-color: rgb(222, 231, 235);
+  padding: 0 2em 0 2em;
 }
 
 .nav {
