@@ -3,7 +3,16 @@ var router = express.Router();
 var connection = require('../modules/connection');
 var pg = require('pg');
 
-router.get('/schools', function(req, res) {
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        if(req.user.user_id === 1) {
+            return next();
+        }
+    }
+    res.send(false);
+}
+
+router.get('/schools', isLoggedIn, function(req, res) {
     var results = [];
     pg.connect(connection, function(err, client, done) {
         var query = client.query("SELECT schools.*, states.*, " +
@@ -26,7 +35,7 @@ router.get('/schools', function(req, res) {
     })
 });
 
-router.put('/verify-school/:id', function(req, res) {
+router.put('/verify-school/:id', isLoggedIn, function(req, res) {
     pg.connect(connection, function(err, client, done) {
         client.query('UPDATE schools SET (approved) = ($1) WHERE school_id = $2', [req.body.approved, req.params.id], function(err) {
             client.end();
@@ -35,7 +44,7 @@ router.put('/verify-school/:id', function(req, res) {
     })
 });
 
-router.get('/users', function(req, res) {
+router.get('/users', isLoggedIn, function(req, res) {
     var results = [];
 
     pg.connect(connection, function(err, client, done) {
@@ -55,7 +64,7 @@ router.get('/users', function(req, res) {
     });
 });
 
-router.get('/donations', function(req, res){
+router.get('/donations', isLoggedIn, function(req, res){
     var results = [];
     pg.connect(connection, function(err, client, done) {
         var query = client.query('SELECT school_name, instrument, date, donation_received, users.first_name, ' +

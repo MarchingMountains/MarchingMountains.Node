@@ -1,4 +1,4 @@
-myApp.factory('SchoolsFactory', ['$http', function($http) {
+myApp.factory('SchoolsFactory', ['$http', '$window', function($http, $window) {
 
   var factorySchoolsList = {};
   var schoolSearchResults = {};
@@ -20,21 +20,36 @@ myApp.factory('SchoolsFactory', ['$http', function($http) {
   var factoryGetDirectorSchools = function() {
     userID = publicFunctions.userID;
     var promise = $http.get('/schools/' + userID).then(function(response) {
-      factorySchoolsList.list = response.data;
+      if (response.data) {
+        factorySchoolsList.list = response.data;
+      } else {
+        console.log('failed to get account route');
+        $window.location.href = '/';
+      }
     });
     return promise;
   };
 
   var factoryPostDirectorSchools = function(school) {
     var promise = $http.post('/schools/' + userID, school).then(function(response) {
+      if (response.data) {
       factoryGetDirectorSchools();
+      } else {
+        console.log('failed to get account route');
+        $window.location.href = '/';
+      }
     });
     return promise;
   };
 
   var factoryPutDirectorSchools = function(school) {
     var promise = $http.put('/schools/' + userID, school).then(function(response) {
-      factoryGetDirectorSchools();
+      if (response.data) {
+        factoryGetDirectorSchools();
+      } else {
+      console.log('failed to get account route');
+      $window.location.href = '/';
+      }
     });
     return promise;
   };

@@ -3,9 +3,16 @@ var router = express.Router();
 var connection = require('../modules/connection');
 var pg = require('pg');
 
-router.get('/:id', function(req, res) {
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.send(false);
+}
+
+router.get('/:id', isLoggedIn, function(req, res) {
     var results = [];
-    var directorID = req.params.id;
+    var directorID = [req.params.id];
 
     pg.connect(connection, function(err, client, done) {
         var query = client.query("SELECT schools.*, states.*, " +
@@ -50,7 +57,8 @@ router.get('/:id', function(req, res) {
     });
 });
 
-router.post('/:id', function(req, res) {
+router.post('/:id', isLoggedIn, function(req, res) {
+    var instruments = req.body.instruments;
     var newSchool = [
         req.body.name,
         req.body.website,
@@ -63,8 +71,6 @@ router.post('/:id', function(req, res) {
         req.body.instructions,
         req.params.id
     ];
-
-    var instruments = req.body.instruments;
 
     pg.connect(connection, function(err, client, done) {
         client.query('INSERT INTO schools ' +
@@ -84,7 +90,7 @@ router.post('/:id', function(req, res) {
     });
 });
 
-router.put('/:id', function(req, res) {
+router.put('/:id', isLoggedIn, function(req, res) {
     var instruments = req.body.instruments;
     var school_id = req.body.school_id;
     var updateSchool = [

@@ -28,6 +28,7 @@ myApp.controller('DonateNowController', ['$scope', '$http', '$mdDialog', '$mdMed
     text: $scope.donorNote + '\n\nDo not reply to this e-mail. Mailbox is not monitored.'
   };
 
+
   $scope.DonationsFactory.factorySubmitDonation(instrumentDonation);
   $http.post('/donations/email', emailMessage);
   $mdDialog.hide();

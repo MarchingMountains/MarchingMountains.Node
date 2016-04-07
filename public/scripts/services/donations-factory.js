@@ -1,4 +1,4 @@
-myApp.factory('DonationsFactory', ['$http', function($http) {
+myApp.factory('DonationsFactory', ['$http', '$window', function($http, $window) {
 
   var selectedSchoolDonations = {};
   var currentUserDonations = {};
@@ -13,21 +13,28 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
 
   var getCurrentUserDonations = function(currentUserId) {
     var promise = $http.get('/donations/user/' + currentUserId).then(function(response) {
-      console.log(response.data);
-      currentUserDonations.list = response.data;
+      if (response.data) {
+        currentUserDonations.list = response.data;
+      } else {
+        $window.location.href = '/';
+      }
     });
     return promise;
   };
 
   var submitDonation = function(donationInfo) {
+    console.log("submitting a donation!");
+    console.log("we need to redirect nonuser away from this button!, its reject on the back end if you are not a user but not on front end");
     $http.post('/donations/school/' + donationInfo.school_id, donationInfo);
   };
 
   var setDonationReceived = function(donationInfo) {
-    var promise = $http.put('/donations/received/' + donationInfo.donation_id).then(function(){
-      console.log('updated donation_received to true');
+    var promise = $http.put('/donations/received/' + donationInfo.donation_id).then(function() {
+      if (response.data === false) {
+        $window.location.href = '/';
+      }
     });
-    return promise;
+      return promise;
   };
 
   var publicFunctions = {
