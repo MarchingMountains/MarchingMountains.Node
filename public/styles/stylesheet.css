@@ -1,6 +1,9 @@
 * {
   margin: 0;
 }
+ul {
+  list-style-type: none;
+}
 
 body {
   background: url("/img/mountains-background.jpg") center center no-repeat fixed;
@@ -28,8 +31,16 @@ a {
   color: #354581;
 }
 
+.blue-button {
+  background-color: rgb(222, 231, 235);
+}
+
 #wrap {
   flex: 1;
+}
+
+#header {
+  background: rgba(250, 245, 245, 0.7);
 }
 
 #footer {
@@ -39,12 +50,8 @@ a {
 
 .footer-text {
   margin-top: 1.1em;
-  font: 1.3em 'Abel', sans-serif;
+  font: 1.1em 'Abel', sans-serif;
   color: #8c8c8c;
-}
-
-#header {
-  background: rgba(250, 245, 245, 0.7);
 }
 
 .container {
@@ -111,14 +118,28 @@ a {
 }
 
 .login {
-  margin-top: 2.5em;
-  margin-right: 1em;
+  margin-top: 2.1em;
   text-align: right;
   font: 1.2em 'Abel', sans-serif;
+  background-color: transparent;
 }
 
 md-toolbar.md-default-theme.md-menu-toolbar, md-toolbar.md-menu-toolbar {
   background: none;
+}
+
+.md-button {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  background-color: rgb(222, 231, 235);
+  padding: 0 2em 0 2em;
+}
+
+.nav {
+  font-size: 1.2em !important;
+  font-family: 'Abel', sans-serif;
+  background-color: #ffffff;
+  border: 0;
+  box-shadow: none;
 }
 
 md-menu button {
@@ -130,17 +151,25 @@ md-content {
   background-color: transparent;
 }
 
-.home-form {
-  width: 30em;
+.home-form, .search-form {
+  width: 27%;
+}
 
+.search-form {
+  display: inline-block;
+  float: left;
+}
+
+.search-btn {
+  float: left;
+}
+
+.donations-bottom-border {
+  border-bottom: 1px solid #354581;
 }
 
 .center {
   margin: 0 auto;
-}
-
-.nav {
-  font: 1em 'Abel', sans-serif;
 }
 
 .photo-left {
@@ -150,6 +179,17 @@ md-content {
 
 .margin-top {
   margin-top: 1.6em;
+}
+.margin-left {
+  margin-left: 1.6em;
+}
+
+.small-margin-top {
+  margin-top: 1em;
+}
+.donations-overflow {
+  height: 9em;
+  overflow-y:scroll;
 }
 
 .chipsdemoCustomInputs md-content.autocomplete {
@@ -179,8 +219,12 @@ md-content {
 }
 
 .smallCard {
-  width: 25em;
+  width: 23em;
   display: inline-block;
+}
+
+.dropdown-style {
+  background-color: #ffffff;
 }
 
 /* for larger than handhelds */

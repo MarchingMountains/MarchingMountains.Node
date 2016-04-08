@@ -1,8 +1,8 @@
-<div class="content-wrapper">
+<div class="content-wrapper"  ng-show="selectedSchoolInfo">
   <h2>{{selectedSchoolInfo.school_name}}</h2>
   <ul>
     <li>
-      Address:
+      <strong>Address: </strong>
       <ul>
         <li>
           {{selectedSchoolInfo.address_line1}}
@@ -11,15 +11,15 @@
           {{selectedSchoolInfo.address_line2}}
         </li>
         <li>
-          {{selectedSchoolInfo.city}}, {{selectedSchoolInfo.state_name}} {{selectedSchoolInfo.zip}}
+          {{selectedSchoolInfo.city}}, {{selectedSchoolInfo.state}} {{selectedSchoolInfo.zip}}
         </li>
       </ul>
     </li>
     <li>
-      Number: {{selectedSchoolInfo.phone | tel}}
+      <strong>Number: </strong> {{selectedSchoolInfo.phone | tel}}
     </li>
     <li>
-      Website: <a href="{{selectedSchoolInfo.website}}" target="_blank">{{selectedSchoolInfo.website}}</a>
+      <strong>Website: </strong> <a href="{{selectedSchoolInfo.website}}" target="_blank">{{selectedSchoolInfo.website}}</a>
     </li>
   </ul>
   <md-divider></md-divider>
@@ -29,11 +29,9 @@
       {{donation.instrument}} - {{donation.date | date:'M/d/yyyy'}}
     </li>
   </ul>
-  <!-- Shows only if no donation and hides if donation is there for school -->
   <p ng-show="!selectedSchoolDonations[0]">
-    This school has not donations at this time.
+    This school has no donations at this time.
   </p>
-  <md-divider></md-divider>
-  <md-button ng-click="returnToSearchResults()">Return to search results</md-button>
-  <md-button ng-click="donateNowModal($event)">Donate Now</md-button>
+  <md-button ng-click="returnToSearchResults()" class="margin-top">Return to search results</md-button>
+  <md-button ng-click="donateNowModal($event)" class="margin-top">Donate Now</md-button>
 </div>

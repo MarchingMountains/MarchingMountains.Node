@@ -131,12 +131,12 @@ router.put('/:id', isLoggedIn, function(req, res) {
 router.get('/instruments/:id', function(req, res){
   var results = [];
   pg.connect(connection, function(err, client, done) {
-    var query = client.query('SELECT schools.*, users.email FROM schools ' +
+    var query = client.query('SELECT schools.*, users.email, states.state FROM schools ' +
       'JOIN users ON schools.user_id = users.user_id ' +
       'JOIN school_instruments ON schools.school_id = school_instruments.school_id ' +
       'JOIN states ON schools.state_id = states.state_id ' +
-      'WHERE school_instruments.instrument_id = $1;',
-      [req.params.id]);
+      'WHERE school_instruments.instrument_id = $1 AND schools.approved = $2;',
+      [req.params.id, true]);
     query.on('row', function(row) {
       results.push(row);
     });

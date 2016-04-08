@@ -39,6 +39,7 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
                 factoryFirstName: response.data.first_name,
                 factoryUserId: response.data.user_id
             };
+            console.log('currentUser from factory: ', CurrentUser);
             persistSession();
         });
         return promise;
@@ -60,7 +61,7 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
     }
 
     function restoreSession() {
-        if($localStorage.CurrentUser != undefined) {
+        if($localStorage.CurrentUser !== undefined) {
             CurrentUser = $localStorage.CurrentUser;
         }
     }
