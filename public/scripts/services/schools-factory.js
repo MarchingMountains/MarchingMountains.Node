@@ -1,4 +1,4 @@
-myApp.factory('SchoolsFactory', ['$http', '$window', function($http, $window) {
+myApp.factory('SchoolsFactory', ['$http', '$window', '$localStorage', function($http, $window, $localStorage) {
 
   var factorySchoolsList = {};
   var schoolSearchResults = {};
@@ -27,8 +27,9 @@ myApp.factory('SchoolsFactory', ['$http', '$window', function($http, $window) {
         factorySchoolsList.list = response.data;
         buildDonations(factorySchoolsList);
       } else {
-        console.log('failed to get account route');
-        $window.location.href = '/';
+        alert("Please logIn to continue");
+        delete $localStorage.CurrentUser;
+        $window.location.href = '/#/home';
       }
     });
     return promise;
@@ -39,8 +40,9 @@ myApp.factory('SchoolsFactory', ['$http', '$window', function($http, $window) {
       if (response.data) {
       factoryGetDirectorSchools();
       } else {
-        console.log('failed to get account route');
-        $window.location.href = '/';
+        alert("Please logIn to continue");
+        delete $localStorage.CurrentUser;
+        $window.location.href = '/#/home';
       }
     });
     return promise;
@@ -51,8 +53,9 @@ myApp.factory('SchoolsFactory', ['$http', '$window', function($http, $window) {
       if (response.data) {
         factoryGetDirectorSchools();
       } else {
-      console.log('failed to get account route');
-      $window.location.href = '/';
+        alert("Please logIn to continue");
+        delete $localStorage.CurrentUser;
+        $window.location.href = '/#/home';
       }
     });
     return promise;

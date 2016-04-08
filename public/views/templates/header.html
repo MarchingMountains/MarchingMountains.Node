@@ -62,6 +62,7 @@
               <button ng-click="$mdOpenMenu()">Welcome,
                 <span ng-if="first_name != ''">{{first_name}}</span>
                 <span ng-if="first_name === ''">{{user_name}}</span>
+                <span ng-if="isLoggedIn === true && userID === 1">{{first_name}}</span>
               </button>
 
               <md-menu-content>
