@@ -28,7 +28,7 @@ myApp.factory('SchoolsFactory', ['$http', '$window', '$localStorage', function($
         buildDonations(factorySchoolsList);
       } else {
         alert("Please logIn to continue");
-        delete $localStorage.CurrentUser;
+        delete $localStorage;
         $window.location.href = '/#/home';
       }
     });
@@ -41,7 +41,7 @@ myApp.factory('SchoolsFactory', ['$http', '$window', '$localStorage', function($
       factoryGetDirectorSchools();
       } else {
         alert("Please logIn to continue");
-        delete $localStorage.CurrentUser;
+        delete $localStorage;
         $window.location.href = '/#/home';
       }
     });
@@ -54,7 +54,7 @@ myApp.factory('SchoolsFactory', ['$http', '$window', '$localStorage', function($
         factoryGetDirectorSchools();
       } else {
         alert("Please logIn to continue");
-        delete $localStorage.CurrentUser;
+        delete $localStorage;
         $window.location.href = '/#/home';
       }
     });

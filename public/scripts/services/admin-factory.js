@@ -9,7 +9,7 @@ myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', function($ht
             allSchools.list = response.data;
             } else {
                 alert("Please logIn to continue");
-                delete $localStorage.CurrentUser;
+                delete $localStorage;
                 $window.location.href = '/#/home';
             }
         });
@@ -22,7 +22,7 @@ myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', function($ht
             factoryGetAllSchools();
             } else {
                 alert("Please logIn to continue");
-                delete $localStorage.CurrentUser;
+                delete $localStorage;
                 $window.location.href = '/#/home';
             }
         });
@@ -34,9 +34,7 @@ myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', function($ht
             if (response.data) {
             allDonations.list = response.data;
             } else {
-                alert("Please logIn to continue");
-                delete $localStorage.CurrentUser;
-                $window.location.href = '/#/home';
+                delete $localStorage;
             }
         });
         return promise;
@@ -47,9 +45,7 @@ myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', function($ht
             if (response.data) {
             allUsers.list = response.data;
             } else {
-                alert("Please logIn to continue");
-                delete $localStorage.CurrentUser;
-                $window.location.href = '/#/home';
+                delete $localStorage;
             }
         });
         return promise;

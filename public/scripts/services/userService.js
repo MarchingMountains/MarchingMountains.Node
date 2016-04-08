@@ -1,4 +1,4 @@
-myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStorage', '$q', function($http, $window, $localStorage, $sessionStorage, $q) {
+myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStorage', function($http, $window, $localStorage, $sessionStorage) {
     var CurrentUser = {
         isLogged: false,
         factoryUserName: undefined,
