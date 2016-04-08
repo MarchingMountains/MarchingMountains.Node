@@ -36,7 +36,7 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
         });
 
         var welcomeText = function() {
-            if($scope.first_name != undefined) {
+            if($scope.first_name != undefined && $scope.first_name != '') {
                 $scope.displayedUser = $scope.first_name;
             } else {
                 $scope.displayedUser = $scope.user_name;
