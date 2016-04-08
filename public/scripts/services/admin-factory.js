@@ -1,4 +1,4 @@
-myApp.factory('AdminFactory', ['$http', '$window', function($http, $window) {
+myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', function($http, $window, $localStorage) {
     var allSchools = {};
     var allDonations = {};
     var allUsers = {};
@@ -8,7 +8,9 @@ myApp.factory('AdminFactory', ['$http', '$window', function($http, $window) {
             if (response.data) {
             allSchools.list = response.data;
             } else {
-                $window.location.href = '/';
+                alert("Please logIn to continue");
+                delete $localStorage;
+                $window.location.href = '/#/home';
             }
         });
         return promise;
@@ -19,7 +21,9 @@ myApp.factory('AdminFactory', ['$http', '$window', function($http, $window) {
             if (response.data) {
             factoryGetAllSchools();
             } else {
-                $window.location.href = '/';
+                alert("Please logIn to continue");
+                delete $localStorage;
+                $window.location.href = '/#/home';
             }
         });
         return promise;
@@ -30,7 +34,7 @@ myApp.factory('AdminFactory', ['$http', '$window', function($http, $window) {
             if (response.data) {
             allDonations.list = response.data;
             } else {
-                $window.location.href = '/';
+                delete $localStorage;
             }
         });
         return promise;
@@ -41,7 +45,7 @@ myApp.factory('AdminFactory', ['$http', '$window', function($http, $window) {
             if (response.data) {
             allUsers.list = response.data;
             } else {
-                $window.location.href = '/';
+                delete $localStorage;
             }
         });
         return promise;

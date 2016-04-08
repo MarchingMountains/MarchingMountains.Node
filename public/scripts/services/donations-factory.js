@@ -1,4 +1,4 @@
-myApp.factory('DonationsFactory', ['$http', '$window', function($http, $window) {
+myApp.factory('DonationsFactory', ['$http', '$window', '$localStorage', function($http, $window, $localStoage) {
 
   var selectedSchoolDonations = {};
   var currentUserDonations = {};
@@ -18,7 +18,9 @@ myApp.factory('DonationsFactory', ['$http', '$window', function($http, $window) 
       if (response.data) {
         currentUserDonations.list = response.data;
       } else {
-        $window.location.href = '/';
+        alert("Please logIn to continue");
+        delete $localStorage.CurrentUser;
+        $window.location.href = '/#/home';
       }
     });
     return promise;
