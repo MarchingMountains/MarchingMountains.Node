@@ -1,5 +1,5 @@
 myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'AdminFactory', 'InstrumentsFactory',
-    function($scope, $mdMedia, $mdDialog, AdminFactory, InstrumentsFactory) {
+    function($scope, $mdMedia, $mdDialog, AdminFactory, InstrumentsFactory, tel) {
     $scope.adding = false;
 
     var getDonations = function() {

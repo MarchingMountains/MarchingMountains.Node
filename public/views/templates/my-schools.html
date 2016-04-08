@@ -2,7 +2,6 @@
   <md-tabs md-dynamic-height md-border-bottom>
     <md-tab label="Schools">
       <md-content class="md-padding">
-        <h1>Your Schools</h1>
         <md-button ng-click="addSchool($event)">Add a New School</md-button>
         <ang-accordion one-at-a-time="true">
           <collapsible-item ng-repeat="school in schools.list" item-title="{{school.school_name}}">
@@ -10,7 +9,7 @@
               <p>{{school.address_line1}}</p>
               <p>{{school.address_line2}}</p>
               <p>{{school.city}}, {{school.state}} {{school.zip}}</p>
-              <p>{{school.phone}}</p>
+              <p>{{school.phone | tel}}</p>
               <p>{{school.website}}</p>
               <p>{{school.instructions}}</p>
               <h4>Needed Instruments:</h4>
