@@ -64,33 +64,6 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
             CurrentUser = $localStorage.CurrentUser;
         }
     }
-        //var promise = $http.get('/user/check').then(function (response) {
-        //    if (response.data === false && CurrentUser.isLogged === true) {
-        //        console.log("Hitting the if block");
-        //        CurrentUser = {
-        //            isLogged: false,
-        //            factoryUserName: undefined,
-        //            factoryFirstName: undefined,
-        //            factoryUserId: undefined
-        //        };
-        //        alert("Please logIn to continue");
-        //    }
-            //else {
-            //    CurrentUser = {
-            //        isLogged: true,
-            //        factoryUserName: response.data.email,
-            //        factoryFirstName: response.data.first_name,
-            //        factoryUserId: response.data.user_id
-            //    };
-            //    persistSession();
-            //    return response.data;
-            //}
-
-    //    });
-    //    return promise;
-    //}
-
-
 
     restoreSession();
 
