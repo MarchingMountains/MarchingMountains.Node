@@ -75,6 +75,11 @@ a {
   margin: 0 0 1em 0;
 }
 
+.addSchool {
+  margin: 2em;
+  width: 30em;
+}
+
 .donorNote {
   width: 25em;
   margin: 3em 0 0 0;
@@ -227,4 +232,26 @@ md-content {
   #footer {
     height: 4em;
   }
+}
+
+.md-select-menu-container.md-active md-select-menu>* {
+  background-color: white;
+}
+
+.table-striped>tbody>tr:nth-of-type(even) {
+  background-color: rgba(222, 231, 235, 0.6);
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: rgba(249, 249, 249, 0.6);
+}
+
+.admin-instrument-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sillyChips {
+  display: block;
 }
