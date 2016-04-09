@@ -75,6 +75,11 @@ a {
   margin: 0 0 1em 0;
 }
 
+.addSchool {
+  margin: 2em;
+  width: 30em;
+}
+
 .donorNote {
   width: 25em;
   margin: 3em 0 0 0;
@@ -175,13 +180,27 @@ md-content {
 .margin-top {
   margin-top: 1.6em;
 }
+
 .margin-left {
   margin-left: 1.6em;
+}
+
+.large-margin-left {
+  margin-left: 4.6em;
 }
 
 .small-margin-top {
   margin-top: 1em;
 }
+
+.large-margin-top {
+  margin-top: 2.3em;
+}
+
+.margin-bottom {
+  margin-bottom: 1.6em;
+}
+
 .donations-overflow {
   height: 9em;
   overflow-y:scroll;
@@ -227,4 +246,26 @@ md-content {
   #footer {
     height: 4em;
   }
+}
+
+.md-select-menu-container.md-active md-select-menu>* {
+  background-color: white;
+}
+
+.table-striped>tbody>tr:nth-of-type(even) {
+  background-color: rgba(222, 231, 235, 0.6);
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: rgba(249, 249, 249, 0.6);
+}
+
+.admin-instrument-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sillyChips {
+  display: block;
 }

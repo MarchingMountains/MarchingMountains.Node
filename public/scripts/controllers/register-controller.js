@@ -13,7 +13,7 @@ myApp.controller('RegisterController', ['$scope', 'UserService', '$mdDialog', '$
       };
       $scope.UserService.postRegister(newUser).then(function () {
         $mdDialog.hide();
-        $window.location.href = '/#/home';
+        // $window.location.href = '/#/home';
       });
     }
   };

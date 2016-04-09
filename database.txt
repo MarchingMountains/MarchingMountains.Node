@@ -1,4 +1,6 @@
-WITHOUT REFERENCES/DEPENDENICES:
+---------DATABASE NAME: marchingmountains---------
+---------WITHOUT REFERENCES/DEPENDENCIES:---------
+
 DROP TABLE donations, instruments, school_instruments, schools, states, users;
 
 CREATE TABLE states (
@@ -50,10 +52,10 @@ CREATE TABLE school_instruments (
    instrument_id integer
 );
 
-//////////////////////
-WITH FOREIGN KEYS
+///////////////////////////////////
+---------WITH FOREIGN KEYS---------
 
-DATABASE NAME: marchingmountains
+DROP TABLE donations, instruments, school_instruments, schools, states, users;
 
 CREATE TABLE states (
    state_id SERIAL PRIMARY KEY,
@@ -69,6 +71,7 @@ CREATE TABLE users (
    address_line2 varchar(255),
    city varchar(255),
    state_id integer REFERENCES states(state_id),
+
    zip integer,
    phone varchar(15)
 );
@@ -80,10 +83,13 @@ CREATE TABLE schools (
    address_line2 varchar(255),
    city varchar(255),
    state_id integer REFERENCES states(state_id),
+
    zip integer,
    phone varchar(15),
    instructions varchar(8000),
    user_id integer REFERENCES users(user_id)
+
+   approved boolean DEFAULT NULL
 );
 CREATE TABLE instruments (
    instrument_id SERIAL PRIMARY KEY,
@@ -92,12 +98,14 @@ CREATE TABLE instruments (
 CREATE TABLE donations (
    donation_id SERIAL PRIMARY KEY,
    date date NOT NULL,
-   donation_received boolean,
+   donation_received boolean DEFAULT false,
    instrument_id integer REFERENCES instruments(instrument_id),
    user_id integer REFERENCES users(user_id),
    school_id integer REFERENCES schools(school_id)
+
 );
 CREATE TABLE school_instruments (
+   id SERIAL PRIMARY KEY,
    school_id integer REFERENCES schools(school_id),
    instrument_id integer REFERENCES instruments(instrument_id)
 );

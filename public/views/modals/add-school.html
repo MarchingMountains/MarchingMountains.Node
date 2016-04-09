@@ -1,12 +1,12 @@
-<div class="addSchool donateModal">
+<div class="addSchool">
     <md-content>
         <form>
             <md-input-container class="md-block">
                 <input type="text" ng-model="name" placeholder="School Name" value="name" />
             </md-input-container>
             <!--Instruments-->
-            <h5>Please select the instrument(s) your school needs:</h5>
-            <md-input-container class="chipsdemoCustomInputs md-padding">
+            <md-input-container class="chipsdemoCustomInputs md-padding sillyChips">
+                <label>Instrument(s)</label>
                 <md-chips ng-model="selectedInstruments"
                           md-transform-chip="transformChip($chip)"
                           md-require-match="autocompleteDemoRequireMatch">
@@ -16,8 +16,7 @@
                                      md-selected-item-change="selectedItemChange(item)"
                                      md-items="item in chipInstruments | filter:searchText"
                                      md-item-text="item.instrument"
-                                     md-min-length="0"
-                                     secondary-placeholder="Search for an instrument">
+                                     md-min-length="0">
                         <span md-highlight-text="searchText">{{item.instrument}}</span>
                     </md-autocomplete>
                     <md-chip-template>
@@ -41,10 +40,11 @@
                 <input type="text" ng-model="city" placeholder="City" value="city" />
             </md-input-container>
             <!--States-->
-            <md-select ng-show="currentSchool != true" ng-model="selectedState" placeholder="State">
+            <md-select class="state-dropdown" ng-show="currentSchool != true" ng-model="selectedState"
+                       placeholder="State">
                 <md-option ng-value="state" ng-repeat="state in states.list">{{state.state}}</md-option>
             </md-select>
-            <md-select ng-show="currentSchool == true" ng-model="selectedState" placeholder="{{selectedState.state}}">
+            <md-select class="state-dropdown" ng-show="currentSchool == true" ng-model="selectedState" placeholder="{{selectedState.state}}">
                 <md-option ng-value="state" ng-repeat="state in states.list">{{state.state}}</md-option>
             </md-select>
             <md-input-container class="md-block">

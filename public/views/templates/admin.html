@@ -20,7 +20,7 @@
                     <td>{{user.first_name}}</td>
                     <td>{{user.last_name}}</td>
                     <td>{{user.email}}</td>
-                    <td>{{user.phone}}</td>
+                    <td>{{user.phone | tel}}</td>
                     <td>{{user.city}}</td>
                     <td>{{user.state}}</td>
                 </tr>
@@ -35,10 +35,8 @@
                 </tr>
                 <tr>
                     <th st-sort="school_name">School</th>
-                    <th st-sort="website">Website</th>
-                    <th st-sort="phone">Phone #</th>
-                    <th st-sort="address_line1">Address Line 1</th>
-                    <!--<th st-sort="address_line2">Address Line 2</th>-->
+                    <th st-sort="phone">School Phone #</th>
+                    <th st-sort="address_line1">Address</th>
                     <th st-sort="city">City</th>
                     <th st-sort="state">State</th>
                     <th st-sort="zip">Zip</th>
@@ -48,9 +46,9 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="school in displayedSchools">
-                    <td>{{school.school_name}}</td>
-                    <td><a href="{{school.website}}">Go to School</a></td>
-                    <td>{{school.phone}}</td>
+                    <!--<td>{{school.school_name}}</td>-->
+                    <td><a target="_blank" href="{{school.website}}">{{school.school_name}}</a></td>
+                    <td>{{school.phone | tel}}</td>
                     <td>{{school.address_line1}} <br> {{school.address_line2}}</td>
                     <!--<td></td>-->
                     <td>{{school.city}}</td>
@@ -58,11 +56,15 @@
                     <td>{{school.zip}}</td>
                     <td>{{school.first_name}} {{school.last_name}}</td>
                     <td>
-                        <p class="btn btn-success" ng-if="school.approved == true">Verified</p>
+                        <button class="btn btn-success" ng-if="school.approved == true"
+                                ng-click="approveSchoolModal(school, $event)">Verified
+                        </button>
                         <button class="btn btn-primary" ng-if="school.approved == null"
                                 ng-click="approveSchoolModal(school, $event)">Pending
                         </button>
-                        <p class="btn btn-danger" ng-if="school.approved == false">Denied</p>
+                        <button class="btn btn-danger" ng-if="school.approved == false"
+                                ng-click="approveSchoolModal(school, $event)">Denied
+                        </button>
                     </td>
                 </tr>
                 </tbody>
@@ -78,6 +80,7 @@
                     <th st-sort="user">Donor Name</th>
                     <th st-sort="instrument">Instrument</th>
                     <th st-sort="school_name">School</th>
+                    <th st-sort="phone">Donor Phone #</th>
                     <th st-sort="date">Date</th>
                     <th st-sort="donation_received">Received?</th>
                 </tr>
@@ -87,6 +90,7 @@
                     <td>{{donation.first_name}} {{donation.last_name}}</td>
                     <td>{{donation.instrument}}</td>
                     <td>{{donation.school_name}}</td>
+                    <td>{{donation.phone | tel}}</td>
                     <td>{{donation.date  | date:'M/d/yyyy'}}</td>
                     <td>
                         <p ng-if="donation.donation_received == true">Received</p>
@@ -97,16 +101,15 @@
             </table>
         </md-tab>
         <md-tab label="Instruments">
-            <md-list flex>
+            <md-list flex class="admin-instrument-list">
                 <md-list-item class="md-1-line" ng-repeat="instrument in instruments.list">
                     <div class="md-list-item-text" layout="column">
-                        <a href="#" editable-text="instrument.instrument" onaftersave="editInstrument(instrument)">
+                        <!--<md-checkbox class="md-primary">-->
+                            <a href="#" editable-text="instrument.instrument"
+                                 onaftersave="editInstrument(instrument)">
                             {{instrument.instrument}}
-                            <button class="btn btn-danger pull-right"
-                                    ng-click="deleteInstrument(instrument.instrument_id)">
-                                Del
-                            </button>
-                        </a>
+                            </a>
+                        <!--</md-checkbox>-->
                     </div>
                 </md-list-item>
                 <md-list-item class="md-1-line">
