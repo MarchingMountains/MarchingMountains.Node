@@ -56,11 +56,15 @@
                     <td>{{school.zip}}</td>
                     <td>{{school.first_name}} {{school.last_name}}</td>
                     <td>
-                        <p class="btn btn-success" ng-if="school.approved == true">Verified</p>
+                        <button class="btn btn-success" ng-if="school.approved == true"
+                                ng-click="approveSchoolModal(school, $event)">Verified
+                        </button>
                         <button class="btn btn-primary" ng-if="school.approved == null"
                                 ng-click="approveSchoolModal(school, $event)">Pending
                         </button>
-                        <p class="btn btn-danger" ng-if="school.approved == false">Denied</p>
+                        <button class="btn btn-danger" ng-if="school.approved == false"
+                                ng-click="approveSchoolModal(school, $event)">Denied
+                        </button>
                     </td>
                 </tr>
                 </tbody>
@@ -100,9 +104,12 @@
             <md-list flex class="admin-instrument-list">
                 <md-list-item class="md-1-line" ng-repeat="instrument in instruments.list">
                     <div class="md-list-item-text" layout="column">
-                        <a href="#" editable-text="instrument.instrument" onaftersave="editInstrument(instrument)">
+                        <!--<md-checkbox class="md-primary">-->
+                            <a href="#" editable-text="instrument.instrument"
+                                 onaftersave="editInstrument(instrument)">
                             {{instrument.instrument}}
-                        </a>
+                            </a>
+                        <!--</md-checkbox>-->
                     </div>
                 </md-list-item>
                 <md-list-item class="md-1-line">
