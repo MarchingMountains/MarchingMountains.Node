@@ -18,7 +18,7 @@ myApp.factory('DonationsFactory', ['$http', '$window', '$localStorage', function
       if (response.data) {
         currentUserDonations.list = response.data;
       } else {
-        alert("Please logIn to continue");
+        logInAlert();
         delete $localStorage.CurrentUser;
         $window.location.href = '/#/home';
       }
@@ -37,6 +37,19 @@ myApp.factory('DonationsFactory', ['$http', '$window', '$localStorage', function
     var promise = $http.put('/donations/received/' + donationInfo.donation_id).then(function() {
     });
       return promise;
+  };
+
+  var logInAlert = function(ev) {
+    $mdDialog.show(
+      $mdDialog.alert()
+        .parent(angular.element(document.querySelector('#popupContainer')))
+        .clickOutsideToClose(true)
+        .title('Alert!')
+        .textContent('Please log in to continue.')
+        .ariaLabel('Alert please log in')
+        .ok('OK')
+        .targetEvent(ev)
+    );
   };
 
   var publicFunctions = {

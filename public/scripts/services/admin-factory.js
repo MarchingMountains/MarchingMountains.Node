@@ -8,7 +8,7 @@ myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', function($ht
             if (response.data) {
             allSchools.list = response.data;
             } else {
-                alert("Please logIn to continue");
+                logInAlert();
                 delete $localStorage;
                 $window.location.href = '/#/home';
             }
@@ -21,7 +21,7 @@ myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', function($ht
             if (response.data) {
             factoryGetAllSchools();
             } else {
-                alert("Please logIn to continue");
+                logInAlert();
                 delete $localStorage;
                 $window.location.href = '/#/home';
             }
@@ -49,6 +49,19 @@ myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', function($ht
             }
         });
         return promise;
+    };
+
+    var logInAlert = function(ev) {
+      $mdDialog.show(
+        $mdDialog.alert()
+          .parent(angular.element(document.querySelector('#popupContainer')))
+          .clickOutsideToClose(true)
+          .title('Alert!')
+          .textContent('Please log in to continue.')
+          .ariaLabel('Alert please log in')
+          .ok('OK')
+          .targetEvent(ev)
+      );
     };
 
     var publicFunctions = {
