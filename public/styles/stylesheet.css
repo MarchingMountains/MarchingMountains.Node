@@ -164,6 +164,10 @@ md-content {
   float: left;
 }
 
+.collapsible-item.open .body {
+  background-color: rgba(222, 231, 235, 0.6);
+}
+
 .donations-bottom-border {
   border-bottom: 1px solid #354581;
 }
