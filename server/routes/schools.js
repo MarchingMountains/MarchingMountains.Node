@@ -131,7 +131,7 @@ router.put('/:id', isLoggedIn, function(req, res) {
 router.get('/instruments/:id', function(req, res){
   var results = [];
   pg.connect(connection, function(err, client, done) {
-    var query = client.query('SELECT schools.*, users.email, states.state FROM schools ' +
+    var query = client.query('SELECT schools.*, users.email, users.first_name, users.last_name, states.state FROM schools ' +
       'JOIN users ON schools.user_id = users.user_id ' +
       'JOIN school_instruments ON schools.school_id = school_instruments.school_id ' +
       'JOIN states ON schools.state_id = states.state_id ' +

@@ -25,3 +25,6 @@ describe('Test for donor-controller', function() {
     expect($scope.currentUser).toEqual(jasmine.any(Number));
   });
 });
+
+
+//SOLID programming

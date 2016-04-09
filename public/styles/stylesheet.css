@@ -180,13 +180,27 @@ md-content {
 .margin-top {
   margin-top: 1.6em;
 }
+
 .margin-left {
   margin-left: 1.6em;
+}
+
+.large-margin-left {
+  margin-left: 4.6em;
 }
 
 .small-margin-top {
   margin-top: 1em;
 }
+
+.large-margin-top {
+  margin-top: 2.3em;
+}
+
+.margin-bottom {
+  margin-bottom: 1.6em;
+}
+
 .donations-overflow {
   height: 9em;
   overflow-y:scroll;
