@@ -15,12 +15,13 @@ function isLoggedIn(req, res, next){
 router.get('/schools', isLoggedIn, function(req, res) {
     var results = [];
     pg.connect(connection, function(err, client, done) {
-        var query = client.query("SELECT schools.*, states.*, " +
+        var query = client.query("SELECT schools.*, states.*, users.last_name, users.first_name, " +
             "json_agg(json_build_object('instrument', instruments.instrument, 'instrument_id', instruments.instrument_id)) AS instruments " +
             'FROM schools LEFT OUTER JOIN states ON schools.state_id = states.state_id ' +
             'LEFT OUTER JOIN school_instruments ON schools.school_id = school_instruments.school_id ' +
             'LEFT OUTER JOIN instruments ON instruments.instrument_id = school_instruments.instrument_id ' +
-            'GROUP BY schools.school_id, states.state_id ' +
+            'LEFT OUTER JOIN users ON schools.user_id = users.user_id ' +
+            'GROUP BY schools.school_id, states.state_id, users.user_id ' +
             'ORDER BY schools.approved NULLS FIRST, schools.school_name ASC');
         query.on('row', function(row) {
             results.push(row);
@@ -68,7 +69,7 @@ router.get('/donations', isLoggedIn, function(req, res){
     var results = [];
     pg.connect(connection, function(err, client, done) {
         var query = client.query('SELECT school_name, instrument, date, donation_received, users.first_name, ' +
-            'users.last_name FROM donations ' +
+            'users.last_name, users.phone FROM donations ' +
             'JOIN instruments ON donations.instrument_id = instruments.instrument_id ' +
             'JOIN schools ON donations.school_id = schools.school_id ' +
             'JOIN users ON donations.user_id = users.user_id ' +
