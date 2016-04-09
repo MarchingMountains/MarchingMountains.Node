@@ -1,4 +1,4 @@
-myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStorage', '$q', function($http, $window, $localStorage, $sessionStorage, $q) {
+myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStorage', function($http, $window, $localStorage, $sessionStorage) {
     var CurrentUser = {
         isLogged: false,
         factoryUserName: undefined,
@@ -39,7 +39,6 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
                 factoryFirstName: response.data.first_name,
                 factoryUserId: response.data.user_id
             };
-            console.log('currentUser from factory: ', CurrentUser);
             persistSession();
         });
         return promise;
@@ -61,10 +60,37 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
     }
 
     function restoreSession() {
-        if($localStorage.CurrentUser !== undefined) {
+        if($localStorage.CurrentUser != undefined) {
             CurrentUser = $localStorage.CurrentUser;
         }
     }
+        //var promise = $http.get('/user/check').then(function (response) {
+        //    if (response.data === false && CurrentUser.isLogged === true) {
+        //        console.log("Hitting the if block");
+        //        CurrentUser = {
+        //            isLogged: false,
+        //            factoryUserName: undefined,
+        //            factoryFirstName: undefined,
+        //            factoryUserId: undefined
+        //        };
+        //        alert("Please logIn to continue");
+        //    }
+            //else {
+            //    CurrentUser = {
+            //        isLogged: true,
+            //        factoryUserName: response.data.email,
+            //        factoryFirstName: response.data.first_name,
+            //        factoryUserId: response.data.user_id
+            //    };
+            //    persistSession();
+            //    return response.data;
+            //}
+
+    //    });
+    //    return promise;
+    //}
+
+
 
     restoreSession();
 

@@ -60,14 +60,12 @@
             <md-menu>
 
               <button ng-click="$mdOpenMenu()">Welcome,
-                <span ng-if="first_name != ''">{{first_name}}</span>
-                <span ng-if="first_name === ''">{{user_name}}</span>
+                <span>{{displayedUser}}</span>
               </button>
 
               <md-menu-content>
                 <md-menu-item><md-button href="#account" class="nav">Edit Account Information</md-button></md-menu-item>
-                <md-menu-item><md-button ng-click=logOut() class="nav"><a href="/logout">Log Out</a></md-button></md-menu-item>
-                <!--<md-menu-item ng-if=""><md-button href="#admin" class="nav">Admin</md-button></md-menu-item>-->
+                <md-menu-item><md-button ng-click="logOut()" class="nav"><a href="/logout">Log Out</a></md-button></md-menu-item>
               </md-menu-content>
             </md-menu>
           </md-menu-bar>
