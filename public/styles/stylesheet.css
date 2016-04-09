@@ -117,13 +117,6 @@ a {
   margin: auto;
 }
 
-.login {
-  margin-top: 2.1em;
-  text-align: right;
-  font: 1.2em 'Abel', sans-serif;
-  background-color: transparent;
-}
-
 md-toolbar.md-default-theme.md-menu-toolbar, md-toolbar.md-menu-toolbar {
   background: none;
 }
@@ -132,6 +125,14 @@ md-toolbar.md-default-theme.md-menu-toolbar, md-toolbar.md-menu-toolbar {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   background-color: rgb(222, 231, 235);
   padding: 0 2em 0 2em;
+}
+
+.login {
+  margin-top: 2.1em;
+  text-align: right;
+  font: 1.2em 'Abel', sans-serif;
+  background: none;
+  box-shadow: none;
 }
 
 .nav {
