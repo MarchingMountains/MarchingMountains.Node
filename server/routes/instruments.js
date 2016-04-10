@@ -34,11 +34,12 @@ router.post('/', function(req, res) {
 
 router.put('/:id', function(req, res) {
   pg.connect(connection, function(err, client, done) {
-    client.query('UPDATE instruments SET (instrument, active) = ($1, $2) WHERE instrument_id = $3', [req.body.instrument, req.body.active, req.params.id], function(err) {
+    client.query('UPDATE instruments SET (instrument, active) = ($1, $2) WHERE instrument_id = $3',
+    [req.body.instrument, req.body.active, req.params.id], function(err) {
       client.end();
       res.sendStatus(200);
     });
-  })
+  });
 });
 
 router.delete('/:id', function(req, res) {
@@ -49,7 +50,7 @@ router.delete('/:id', function(req, res) {
         res.sendStatus(200);
       });
     });
-  })
+  });
 });
 
 module.exports = router;
