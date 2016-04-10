@@ -4,7 +4,7 @@
   "description": "Marching Mountains",
   "main": "app.js",
   "scripts": {
-    "test": "gulp clean test",
+    "test": "",
     "uat": "nightwatch",
     "uat_prod": "nightwatch -e prod",
     "start": "node server/app.js"
