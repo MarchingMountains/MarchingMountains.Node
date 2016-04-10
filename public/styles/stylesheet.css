@@ -270,3 +270,7 @@ md-content {
 .sillyChips {
   display: block;
 }
+
+.testclass {
+  display: inline;
+}

@@ -101,25 +101,24 @@
             </table>
         </md-tab>
         <md-tab label="Instruments">
-            <md-list flex class="admin-instrument-list">
-                <md-list-item class="md-1-line" ng-repeat="instrument in instruments.list">
-                    <div class="md-list-item-text" layout="column">
-                        <!--<md-checkbox class="md-primary">-->
-                            <a href="#" editable-text="instrument.instrument"
-                                 onaftersave="editInstrument(instrument)">
-                            {{instrument.instrument}}
-                            </a>
-                        <!--</md-checkbox>-->
-                    </div>
-                </md-list-item>
-                <md-list-item class="md-1-line">
-                    <md-button ng-if="adding == false" ng-click="showAdd()">Add Instrument</md-button>
-                    <form ng-show="adding == true">
-                        <input type="text" ng-model="newInstrument" placeholder="New Instrument" />
-                        <md-button ng-click="addInstrument()">Add Instrument</md-button>
-                    </form>
-                </md-list-item>
-            </md-list>
+          <div flex class="admin-instrument-list large-margin-top">
+            <div ng-repeat="instrument in instruments.list">
+              <md-switch ng-model="instrument.active" aria-label="Instrument Activity Switch"
+                class="md-primary testclass" ng-change="editInstrument(instrument)">
+              </md-switch>
+              <a href="#" editable-text="instrument.instrument"
+                onaftersave="editInstrument(instrument)">
+                {{instrument.instrument}}
+              </a>
+            </div>
+          </div>
+          <div class="md-1-line text-center large-margin-top">
+            <md-button ng-if="adding == false" ng-click="showAdd()">Add Instrument</md-button>
+            <form ng-show="adding == true">
+              <input type="text" ng-model="newInstrument" placeholder="New Instrument" />
+              <md-button ng-click="addInstrument()">Add Instrument</md-button>
+            </form>
+          </div>
         </md-tab>
     </md-tabs>
 </md-content>

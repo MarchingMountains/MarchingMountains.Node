@@ -1,4 +1,5 @@
-myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', function($http, $window, $localStorage) {
+myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', '$mdDialog',
+ function($http, $window, $localStorage, $mdDialog) {
     var allSchools = {};
     var allDonations = {};
     var allUsers = {};
