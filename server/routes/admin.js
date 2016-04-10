@@ -15,7 +15,7 @@ function isLoggedIn(req, res, next){
 router.get('/schools', isLoggedIn, function(req, res) {
     var results = [];
     pg.connect(connection, function(err, client, done) {
-        var query = client.query("SELECT schools.*, states.*, users.last_name, users.first_name, " +
+        var query = client.query("SELECT schools.*, states.*, users.last_name, users.first_name, users.email, " +
             "json_agg(json_build_object('instrument', instruments.instrument, 'instrument_id', instruments.instrument_id)) AS instruments " +
             'FROM schools LEFT OUTER JOIN states ON schools.state_id = states.state_id ' +
             'LEFT OUTER JOIN school_instruments ON schools.school_id = school_instruments.school_id ' +

@@ -59,10 +59,10 @@ myApp.controller('AddSchoolController', ['$scope', '$http', '$mdDialog', '$mdMed
 
             var emailMessage = {
                 from: 'mail@marchingmountains.org',
-                to: 'kcolestock17@gmail.com',
+                to: 'ian@gmail.com',
                 subject: 'New School Added: ' + $scope.name,
                 text: $scope.name + ' has been submitted for approval, please go to the admin dashboard to' +
-                ' approve this school. \n\nDo not reply to this e-mail. Mailbox is no monitored.'
+                ' approve this school. \n\nDo not reply to this e-mail. Mailbox is not monitored.'
             };
 
             $http.post('/schools/email', emailMessage);

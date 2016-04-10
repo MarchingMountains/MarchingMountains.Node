@@ -20,6 +20,7 @@ myApp.controller('MySchoolsController',
 		SchoolsFactory.getDirectorSchools().then(function() {
 			$scope.schools = SchoolsFactory.directorSchools;
 			$scope.donations = SchoolsFactory.directorDonations;
+			console.log($scope.donations);
 		});
 	};
 
