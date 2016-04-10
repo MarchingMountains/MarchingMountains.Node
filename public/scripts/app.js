@@ -63,6 +63,30 @@ myApp.config(['$routeProvider', function($routeProvider) {
     .when('/stories', {
       templateUrl: '/views/templates/stories.html'
     })
+    .when('/discover-areas', {
+      templateUrl: '/views/templates/discover-areas.html'
+    })
+    .when('/discover-how', {
+      templateUrl: '/views/templates/discover-how.html'
+    })
+    .when('/discover-what', {
+      templateUrl: '/views/templates/discover-what.html'
+    })
+    .when('/discover-who', {
+      templateUrl: '/views/templates/discover-who.html'
+    })
+    .when('/success-stories', {
+      templateUrl: '/views/templates/success-stories.html'
+    })
+    .when('/videos', {
+      templateUrl: '/views/templates/videos.html'
+    })
+    .when('/volunteer', {
+      templateUrl: '/views/templates/volunteer.html'
+    })
+    .when('/reports', {
+      templateUrl: '/views/templates/annual-reports.html'
+    })
     .when('/logout', {
       templateUrl: '/views/templates/home.html',
       controller: 'SchoolSearchController'

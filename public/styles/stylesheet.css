@@ -28,7 +28,7 @@ h1 {
 }
 
 a {
-  color: #354581;
+  color: #0484af;
 }
 
 .blue-button {
@@ -117,13 +117,6 @@ a {
   margin: auto;
 }
 
-.login {
-  margin-top: 2.1em;
-  text-align: right;
-  font: 1.2em 'Abel', sans-serif;
-  background-color: transparent;
-}
-
 md-toolbar.md-default-theme.md-menu-toolbar, md-toolbar.md-menu-toolbar {
   background: none;
 }
@@ -132,6 +125,14 @@ md-toolbar.md-default-theme.md-menu-toolbar, md-toolbar.md-menu-toolbar {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   background-color: rgb(222, 231, 235);
   padding: 0 2em 0 2em;
+}
+
+.login {
+  margin-top: 2.1em;
+  text-align: right;
+  font: 1.2em 'Abel', sans-serif;
+  background: none;
+  box-shadow: none;
 }
 
 .nav {
@@ -164,6 +165,10 @@ md-content {
   float: left;
 }
 
+.collapsible-item.open .body {
+  background-color: rgba(222, 231, 235, 0.6);
+}
+
 .donations-bottom-border {
   border-bottom: 1px solid #354581;
 }
@@ -180,13 +185,27 @@ md-content {
 .margin-top {
   margin-top: 1.6em;
 }
+
 .margin-left {
   margin-left: 1.6em;
+}
+
+.large-margin-left {
+  margin-left: 4.6em;
 }
 
 .small-margin-top {
   margin-top: 1em;
 }
+
+.large-margin-top {
+  margin-top: 2.3em;
+}
+
+.margin-bottom {
+  margin-bottom: 1.6em;
+}
+
 .donations-overflow {
   height: 9em;
   overflow-y:scroll;
@@ -254,4 +273,14 @@ md-content {
 
 .sillyChips {
   display: block;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }

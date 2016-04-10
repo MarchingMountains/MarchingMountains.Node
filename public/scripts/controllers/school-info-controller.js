@@ -12,6 +12,7 @@ myApp.controller('SchoolInfoController', ['$scope', '$http', '$location', '$mdDi
   if($scope.selectedSchoolInfo !== undefined) {
     $scope.DonationsFactory.factoryGetSelectedSchoolDonations($scope.selectedSchoolInfo.school_id).then(function() {
       $scope.selectedSchoolDonations = $scope.DonationsFactory.selectedSchoolDonations.list;
+      console.log($scope.selectedSchoolDonations);
     });
   } else {
     $location.url('/home');
@@ -22,17 +23,6 @@ myApp.controller('SchoolInfoController', ['$scope', '$http', '$location', '$mdDi
   };
 
   $scope.donateNowModal = function(ev) {
-
-    // var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
-    //
-    // $mdDialog.show({
-    //   templateUrl: '../views/modals/donate-now-modal.html',
-    //   controller: 'DonateNowController',
-    //   parent: angular.element(document.body),
-    //   targetEvent: ev,
-    //   clickOutsideToClose:true,
-    //   fullscreen: useFullScreen,
-    // });
 
     $scope.currentUser = UserService.askForCurrentUser().factoryUserId;
 

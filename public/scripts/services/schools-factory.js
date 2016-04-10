@@ -1,4 +1,5 @@
-myApp.factory('SchoolsFactory', ['$http', '$window', '$localStorage', function($http, $window, $localStorage) {
+myApp.factory('SchoolsFactory', ['$http', '$window', '$localStorage', '$mdDialog',
+  '$mdMedia', function($http, $window, $localStorage, $mdDialog, $mdMedia) {
 
   var factorySchoolsList = {};
   var schoolSearchResults = {};
@@ -27,9 +28,9 @@ myApp.factory('SchoolsFactory', ['$http', '$window', '$localStorage', function($
         factorySchoolsList.list = response.data;
         buildDonations(factorySchoolsList);
       } else {
-        alert("Please logIn to continue");
         delete $localStorage;
-        $window.location.href = '/#/home';
+        $window.location.href = '/#/band-directors';
+        logInAlert();
       }
     });
     return promise;
@@ -40,7 +41,7 @@ myApp.factory('SchoolsFactory', ['$http', '$window', '$localStorage', function($
       if (response.data) {
       factoryGetDirectorSchools();
       } else {
-        alert("Please logIn to continue");
+        logInAlert();
         delete $localStorage;
         $window.location.href = '/#/home';
       }
@@ -53,7 +54,7 @@ myApp.factory('SchoolsFactory', ['$http', '$window', '$localStorage', function($
       if (response.data) {
         factoryGetDirectorSchools();
       } else {
-        alert("Please logIn to continue");
+        logInAlert();
         delete $localStorage;
         $window.location.href = '/#/home';
       }
@@ -77,6 +78,19 @@ myApp.factory('SchoolsFactory', ['$http', '$window', '$localStorage', function($
 			}
 		}
 	};
+
+  var logInAlert = function(ev) {
+    $mdDialog.show(
+      $mdDialog.alert()
+        .parent(angular.element(document.querySelector('#popupContainer')))
+        .clickOutsideToClose(true)
+        .title('Alert!')
+        .textContent('Please log in to continue.')
+        .ariaLabel('Alert please log in')
+        .ok('OK')
+        .targetEvent(ev)
+    );
+  };
 
   var publicFunctions = {
     getDirectorSchools: function(userID) {

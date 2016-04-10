@@ -12,7 +12,19 @@
               <button ng-click="$mdOpenMenu()">ABOUT</button>
               <md-menu-content>
                 <md-menu-item><md-button href="#home" class="nav">Home</md-button></md-menu-item>
-                <md-menu-item><md-button href="#about" class="nav">About Marching Mountains</md-button></md-menu-item>
+
+                <md-menu-item>
+                  <md-menu>
+                    <md-menu-item><md-button href="#about" class="nav" ng-click="$mdOpenMenu()">About Marching Mountains</md-button></md-menu-item>
+                    <md-menu-content width="3">
+                      <md-menu-item><md-button href="#discover-what" class="nav">What does Marching Mountains do?</md-button></md-menu-item>
+                      <md-menu-item><md-button href="#discover-who" class="nav">Who is involved?</md-button></md-menu-item>
+                      <md-menu-item><md-button href="#discover-how" class="nav">How does Marching Mountains help?</md-button></md-menu-item>
+                      <md-menu-item><md-button href="#discover-areas" class="nav">Where does Marching Mountains help?</md-button></md-menu-item>
+                    </md-menu-content>
+                  </md-menu>
+                </md-menu-item>
+
                 <md-menu-item><md-button href="#faq" class="nav">FAQ</md-button></md-menu-item>
                 <md-menu-item><md-button href="#donate-instrument" class="nav">How To Donate</md-button></md-menu-item>
                 <md-menu-item><md-button href="#band-directors" class="nav">Band Director Info</md-button></md-menu-item>
@@ -65,7 +77,8 @@
 
               <md-menu-content>
                 <md-menu-item><md-button href="#account" class="nav">Edit Account Information</md-button></md-menu-item>
-                <md-menu-item><md-button ng-click="logOut()" class="nav"><a href="/logout">Log Out</a></md-button></md-menu-item>
+                <md-menu-item ng-if="isLoggedIn === true && userID === 1"><md-button href="#admin" class="nav">Admin</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click=logOut() class="nav"><a href="/logout">Log Out</a></md-button></md-menu-item>
               </md-menu-content>
             </md-menu>
           </md-menu-bar>
