@@ -1,5 +1,5 @@
-myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'InstrumentsFactory', '$mdDialog',
-    function($scope, SchoolsFactory, InstrumentsFactory, $mdDialog) {
+myApp.controller('AddSchoolController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory',
+    function($scope, $http, $mdDialog, $mdMedia, SchoolsFactory, InstrumentsFactory) {
         var instrumentsList = InstrumentsFactory.instruments.list;
         var factoryCurrentSchool = SchoolsFactory.currentSchool.school_name;
 
@@ -43,7 +43,7 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'Instrument
             $scope.currentSchool = false;
         }
 
-        $scope.saveSchool = function(state) {
+        $scope.saveSchool = function(state, ev) {
             var school = {
                 name: $scope.name,
                 website: $scope.website,
@@ -57,10 +57,36 @@ myApp.controller('AddSchoolController', ['$scope', 'SchoolsFactory', 'Instrument
                 instruments: InstrumentsFactory.currentInstruments
             };
 
+            var emailMessage = {
+                from: 'mail@marchingmountains.org',
+                to: 'kcolestock17@gmail.com',
+                subject: 'New School Added: ' + $scope.name,
+                text: $scope.name + ' has been submitted for approval, please go to the admin dashboard to' +
+                ' approve this school. \n\nDo not reply to this e-mail. Mailbox is no monitored.'
+            };
+
+            $http.post('/schools/email', emailMessage);
+
+            $scope.status = '  ';
+            $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#popupContainer')))
+                    .clickOutsideToClose(true)
+                    .title('Success!')
+                    .textContent('Your school has been submitted for approval. ' +
+                        'Once approved it will show in the instrument search!')
+                    .ariaLabel('Alert success')
+                    .ok('OK')
+                    .targetEvent(ev)
+            );
+
             SchoolsFactory.postDirectorSchool(school).then(function() {
                 $scope.schools = SchoolsFactory.directorSchools;
                 InstrumentsFactory.currentInstruments = [];
             });
+
             $mdDialog.hide();
         };
 

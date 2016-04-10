@@ -104,7 +104,7 @@
           <div flex class="admin-instrument-list large-margin-top">
             <div ng-repeat="instrument in instruments.list">
               <md-switch ng-model="instrument.active" aria-label="Instrument Activity Switch"
-                class="md-primary testclass" ng-change="editInstrument(instrument)">
+                class="md-primary instrumentInline" ng-change="editInstrument(instrument)">
               </md-switch>
               <a href="#" editable-text="instrument.instrument"
                 onaftersave="editInstrument(instrument)">

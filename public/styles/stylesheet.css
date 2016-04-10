@@ -1,6 +1,7 @@
 * {
   margin: 0;
 }
+
 ul {
   list-style-type: none;
 }
@@ -165,6 +166,10 @@ md-content {
   float: left;
 }
 
+.collapsible-item.open .body {
+  background-color: rgba(222, 231, 235, 0.6);
+}
+
 .donations-bottom-border {
   border-bottom: 1px solid #354581;
 }
@@ -271,6 +276,16 @@ md-content {
   display: block;
 }
 
-.testclass {
+.instrumentInline {
   display: inline;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }

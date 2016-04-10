@@ -41,8 +41,11 @@ myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'AdminFa
     };
 
     $scope.editInstrument = function(currentInstrument) {
-        var instrument = {instrument: currentInstrument.instrument, instrument_id: currentInstrument.instrument_id,
-          active: currentInstrument.active};
+        var instrument = {
+            instrument: currentInstrument.instrument,
+            instrument_id: currentInstrument.instrument_id,
+            active: currentInstrument.active
+        };
         InstrumentsFactory.putInstrument(instrument).then(function() {
             $scope.instruments = InstrumentsFactory.instruments;
         });
