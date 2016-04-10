@@ -1,6 +1,7 @@
 * {
   margin: 0;
 }
+
 ul {
   list-style-type: none;
 }
@@ -273,6 +274,10 @@ md-content {
 
 .sillyChips {
   display: block;
+}
+
+.instrumentInline {
+  display: inline;
 }
 
 ::-webkit-scrollbar {
