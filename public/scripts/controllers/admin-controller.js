@@ -38,6 +38,7 @@ myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'AdminFa
             fullscreen: useFullScreen
         });
         AdminFactory.currentSchool = school;
+
     };
 
     $scope.editInstrument = function(currentInstrument) {
