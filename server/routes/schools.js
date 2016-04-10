@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var connection = require('../modules/connection');
+var api_key = 'key-9fad0a24dab479c9890b265c5c0495a3';
+var domain = 'sandboxf24cc5b071a54b549d355abfc18c80b3.mailgun.org';
+var Mailgun = require('mailgun-js');
 var pg = require('pg');
 
 function isLoggedIn(req, res, next){
@@ -53,6 +56,25 @@ router.get('/:id', isLoggedIn, function(req, res) {
         });
         if(err) {
             console.log(err);
+        }
+    });
+});
+
+router.post('/email', isLoggedIn, function(req, res) {
+    var mailgun = new Mailgun({apiKey: api_key, domain: domain});
+    var data = {
+        from: req.body.from,
+        to: req.body.to,
+        subject: req.body.subject,
+        text: req.body.text
+    };
+
+    mailgun.messages().send(data, function (err, body) {
+        if (err) {
+            console.log("Error inserting data: ", err);
+            res.send(false);
+        } else {
+            res.send(true);
         }
     });
 });

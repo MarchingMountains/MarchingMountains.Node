@@ -57,7 +57,7 @@
                 <textarea ng-model="instructions" placeholder="Additional Shipping Instructions"></textarea>
             </md-input-container>
             <br>
-            <md-button ng-if="currentSchool != true" ng-click="saveSchool(selectedState)">Save School</md-button>
+            <md-button ng-if="currentSchool != true" ng-click="saveSchool(selectedState, $event)">Save School</md-button>
             <md-button ng-if="currentSchool == true" ng-click="updateSchool(selectedState)">Update School</md-button>
         </form>
     </md-content>
