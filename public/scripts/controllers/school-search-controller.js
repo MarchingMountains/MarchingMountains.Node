@@ -13,7 +13,13 @@ myApp.controller('SchoolSearchController', ['$scope', '$http', '$location',
   $scope.currentUser = $scope.UserService.watchCurrentUser.factoryUserId;
 
   $scope.InstrumentsFactory.factoryGetInstrumentsList().then(function() {
-    $scope.instruments = $scope.InstrumentsFactory.instruments.list;
+    var instrumentsList = $scope.InstrumentsFactory.instruments.list;
+    $scope.instruments = [];
+    for(var i = 0; i < instrumentsList.length; i++) {
+      if(instrumentsList[i].active == true) {
+        $scope.instruments.push(instrumentsList[i]);
+      }
+    }
   });
 
   $scope.indexSearchSchool = function(selectedInstrument) {
