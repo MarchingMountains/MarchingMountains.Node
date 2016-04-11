@@ -100,9 +100,9 @@
                 </tbody>
             </table>
         </md-tab>
-        <md-tab label="Instruments">
+        <md-tab label="Instruments"><div class="admin-list-container">
           <div flex class="admin-instrument-list large-margin-top">
-            <div ng-repeat="instrument in instruments.list">
+            <div class="small-margin-top" ng-repeat="instrument in instruments.list">
               <md-switch ng-model="instrument.active" aria-label="Instrument Activity Switch"
                 class="md-primary instrumentInline" ng-change="editInstrument(instrument)">
               </md-switch>
@@ -118,7 +118,7 @@
               <input type="text" ng-model="newInstrument" placeholder="New Instrument" />
               <md-button ng-click="addInstrument()">Add Instrument</md-button>
             </form>
-          </div>
+          </div></div>
         </md-tab>
     </md-tabs>
 </md-content>
