@@ -4,6 +4,7 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', '$mdM
     $scope.UserService = UserService;
     $scope.loginErrorMessage;
     $scope.loggedInUser;
+    $scope.password_confirm;
 
     $scope.login = function(isValid) {
         if (isValid) {
