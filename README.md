@@ -43,6 +43,14 @@ About the Project
 Marching Mountains has already provided more than 500 years of band to kids in Appalachia and Minnesota by donating instruments to schools in rural Kentucky and urban Minneapolis. Check out a couple videos of work we've done in the past: http://www.marchingmountains.org/video or read about us on Huffington Post at http://www.huffingtonpost.com/2010/09/02/post_509_n_704029.html
 Technology Goals
 
+In April 2016, a team from Prime Academy in Minneapolis, MN, took on creating the core features of the app as well as a new design. They are currently in the process of completing the features and integrating it with the cloud. We're excited to see their efforts hopefully become the new platform for the organization.
+
+###Prime Academy Team
+* Gwen Williams
+* Kat Traxler
+* Kailey Colestock
+* Luis De La Espriella
+
 We want this to be a fun project to work on and also one that's valuable for contributor's resumes. We want you to get something else out of it beyond just the meaningfulness of volunteering. The project is primarily built in Node.js and React. Along the way, other fun, new technologies will be used appropriately to solve problems.
 How to contribute
 
