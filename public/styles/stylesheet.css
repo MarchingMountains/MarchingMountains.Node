@@ -1,15 +1,84 @@
+* {
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+body {
+  background: url("/img/mountains-background.jpg") center center no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  font-family: 'Merriweather', sans-serif;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  margin-bottom: 1em;
+}
+
+a {
+  color: #0484af;
+}
+
+.blue-button {
+  background-color: rgb(222, 231, 235);
+}
+
+#wrap {
+  flex: 1;
+}
+
+#header {
+  background: rgba(250, 245, 245, 0.7);
+}
+
+#footer {
+  background: rgba(36,60,86,0.7);
+  margin-top: 3em;
+}
+
+.footer-text {
+  margin-top: 1.1em;
+  font: 1.1em 'Abel', sans-serif;
+  color: #8c8c8c;
+}
+
+.container {
+  margin-top: 3em;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 3em 3em;
+  border-radius: 1em;
+}
+
 .message {
     color: #880000;
 }
 
 .donateModal {
-  margin:2em;
+  margin: 2em;
   max-width: 25em;
 }
 
 .donateModal h2 {
   text-align: center;
   margin: 0 0 1em 0;
+}
+
+.addSchool {
+  margin: 2em;
+  width: 30em;
 }
 
 .donorNote {
@@ -31,28 +100,258 @@
   min-width: 300px;
 }
 
+.logo {
+  margin: .9em 0 1.3em .7em;
+}
+
+.logotop {
+  z-index: 2;
+}
+
+.navContainer {
+  margin-top: 1.4em;
+  display: flex;
+  z-index: 1;
+}
+
+.navigation {
+  margin: auto;
+}
+
+md-toolbar.md-default-theme.md-menu-toolbar, md-toolbar.md-menu-toolbar {
+  background: none;
+}
+
+.md-button {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  background-color: rgb(222, 231, 235);
+  padding: 0 2em 0 2em;
+}
+
+.login {
+  margin-top: 2.1em;
+  text-align: right;
+  font: 1.2em 'Abel', sans-serif;
+  background: none;
+  box-shadow: none;
+}
+
+.nav {
+  font-size: 1.2em !important;
+  font-family: 'Abel', sans-serif;
+  background-color: #ffffff;
+  border: 0;
+  box-shadow: none;
+}
+
+md-menu button {
+  padding: 0 20px;
+  font: 1em 'Abel', sans-serif;
+}
+
+md-content {
+  background-color: transparent;
+}
+
+.home-form, .search-form {
+  width: 27%;
+}
+
+.search-form {
+  display: inline-block;
+  float: left;
+}
+
+.search-btn {
+  float: left;
+}
+
+.collapsible-item.open .body {
+  background-color: rgba(222, 231, 235, 0.6);
+}
+
+.donations-bottom-border {
+  border-bottom: 1px solid #354581;
+}
+
+.center {
+  margin: 0 auto;
+}
+
+.photo-left {
+  float: left;
+  margin-right: 1em;
+}
+
+.margin-top {
+  margin-top: 1.6em;
+}
+
+.margin-left {
+  margin-left: 1.6em;
+}
+
+.large-margin-left {
+  margin-left: 4.6em;
+}
+
+.small-margin-top {
+  margin-top: 1em;
+}
+
+.large-margin-top {
+  margin-top: 2.3em;
+}
+
+.margin-bottom {
+  margin-bottom: 1.6em;
+}
+
+.donations-overflow {
+  height: 9em;
+  overflow-y:scroll;
+}
+
 .chipsdemoCustomInputs md-content.autocomplete {
   min-height: 200px; }
 
 .chipsdemoCustomInputs input[type=number] {
-  width: 110px; }
+  width: 110px;
+}
 
 .chipsdemoCustomInputs .veggie-option {
   float: left;
   width: 20%;
   box-sizing: border-box;
-  padding: 0 8px; }
+  padding: 0 8px;
+}
 
 .chipsdemoCustomInputs .veggie-option .md-item-text {
   padding: 8px;
   background: #f0f0f0;
-  border-radius: 3px; }
+  border-radius: 3px;
+}
 
 .chipsdemoCustomInputs .veggie-option .md-item-text h3,
 .chipsdemoCustomInputs .veggie-option .md-item-text p {
   padding: 0;
-  margin: 0; }
-
-.login {
-  margin-top: 10px;
+  margin: 0;
 }
+
+.smallCard {
+  width: 23em;
+  display: inline-block;
+}
+
+.dropdown-style {
+  background-color: #ffffff;
+}
+
+/* for larger than handhelds */
+@media (min-width: 450px) {
+  #footer {
+    height: 4em;
+  }
+}
+
+.md-select-menu-container.md-active md-select-menu>* {
+  background-color: white;
+}
+
+.table-striped>tbody>tr:nth-of-type(even) {
+  background-color: rgba(222, 231, 235, 0.6);
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: rgba(249, 249, 249, 0.6);
+}
+
+.admin-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-instrument-list {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2em;
+}
+
+.sillyChips {
+  display: block;
+}
+
+.instrumentInline {
+  display: inline;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.editable-click, a.editable-click {
+  border-bottom: none;
+  color: rgb(36,60,86);
+}
+
+md-switch.md-default-theme.md-checked.md-primary .md-thumb, md-switch.md-checked.md-primary .md-thumb,md-switch.md-default-theme.md-checked.md-primary .md-ink-ripple, md-switch.md-checked.md-primary .md-ink-ripple {
+  background-color: rgb(58, 96, 138);
+}
+
+md-switch.md-default-theme.md-checked.md-primary .md-bar, md-switch.md-checked.md-primary .md-bar {
+  background-color: rgba(58, 96, 138, 0.7);
+}
+
+md-tabs .md-tab.md-active {
+  color: rgb(58, 96, 138);
+}
+
+md-tabs md-ink-bar {
+  color: #880000;
+  background: #880000;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+
+.btn-success:hover {
+  color: #fff;
+  background-color: #398439;
+  border-color: #296029;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: #ac2925;
+  border-color: #880000;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #204d74;
+  border-color: rgb(36,60,86);
+}
+
+/*rgba(36,60,86,0.7)*/

@@ -33,17 +33,23 @@
       <script src="http://cdn.wijmo.com/5.20161.138/interop/angular/wijmo.angular.min.js" type="text/javascript"></script>
       <script type="text/javascript" src="/vendors/smart-table.min.js"></script>
       <script type="text/javascript" src="/vendors/xeditable.min.js"></script>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 93787b0b9a92b96ee587f0480e19736c26783d57
 
       <script type="text/javascript" src="../app.js"></script>
       <script type="text/javascript" src="/scripts/services/userService.js"></script>
       <script type="text/javascript" src="/scripts/services/instruments-factory.js"></script>
       <script type="text/javascript" src="/scripts/services/schools-factory.js"></script>
       <script type="text/javascript" src="/scripts/services/donations-factory.js"></script>
+      <script type="text/javascript" src="/scripts/services/admin-factory.js"></script>
       <script type="text/javascript" src="/scripts/controllers/school-search-controller.js"></script>
       <script type="text/javascript" src="/scripts/controllers/my-schools-controller.js"></script>
       <script type="text/javascript" src="/scripts/controllers/add-school-controller.js"></script>
       <script type="text/javascript" src="/scripts/controllers/school-info-controller.js"></script>
       <script type="text/javascript" src="/scripts/controllers/donate-now-controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/donate-received-controller.js"></script>
       <script type="text/javascript" src="/scripts/controllers/accountController.js"></script>
       <script type="text/javascript" src="/scripts/controllers/loginController.js"></script>
       <script type="text/javascript" src="/scripts/controllers/userController.js"></script>
@@ -54,22 +60,26 @@
       <script type="text/javascript" src="/scripts/controllers/chip-controller.js"></script>
       <script type="text/javascript" src="/scripts/controllers/admin-controller.js"></script>
       <script type="text/javascript" src="/scripts/controllers/approve-school-controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/register-controller.js"></script>
 
       <link href="http://cdn.wijmo.com/5.20161.138/styles/wijmo.min.css" rel="stylesheet" type="text/css" />
       <link rel="stylesheet" type="text/css" href="/vendors/bootstrap.min.css"/>
       <link rel="stylesheet" type="text/css" href="/vendors/ang-accordion.css"/>
-      <!-- <link rel="stylesheet" type="text/css" href="/css/normalize.css"/>
-      <link rel="stylesheet" type="text/css" href="/css/skeleton.min.css"/> -->
       <link rel="stylesheet" type="text/css" href="/vendors/angular-material.min.css" />
       <link rel="stylesheet" type="text/css" href="/vendors/ang-accordion.css" />
       <link rel="stylesheet" type="text/css" href="/vendors/xeditable.min.css" />
       <link rel="stylesheet" type="text/css" href="/styles/stylesheet.css"/>
+      <link href='https://fonts.googleapis.com/css?family=Abel|Open+Sans:400,600,700,800,300|Merriweather:400,300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <header class="container-fluid row" ng-include="'/templates/header.html'"></header>
-
-    <main ng-view class="container"></main>
-
-    <footer class="container-fluid row footer" ng-include="'/templates/footer.html'"></footer>
+    <div id="wrap">
+        <div id="header">
+            <header class="container-fluid" ng-include="'/templates/header.html'"></header>
+        </div>
+        <main ng-view class="container"></main>
+    </div>
+    <div id="footer">
+        <footer class="container-fluid" ng-include="'/templates/footer.html'"></footer>
+    </div>
   </body>
 </html>

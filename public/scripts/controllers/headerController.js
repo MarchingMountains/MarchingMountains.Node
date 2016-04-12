@@ -1,10 +1,15 @@
-myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'UserService',
-    function($scope, $http, $mdDialog, $mdMedia, UserService, LoginController) {
+myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'UserService', '$localStorage',
+    function($scope, $http, $mdDialog, $mdMedia, UserService, LoginController, RegisterController, $localStorage) {
+
         $scope.UserService = UserService;
         $scope.first_name;
         $scope.user_name;
         $scope.isLoggedIn = false;
-        $scope.displayedUser;
+        $scope.userID;
+
+
+        $scope.storage = $localStorage;
+
 
         $scope.openModal = function(ev) {
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
@@ -24,6 +29,7 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
             $scope.first_name = undefined;
             $scope.user_name = undefined;
             $scope.isLoggedIn = false;
+            $scope.userID = undefined;
         };
 
         $scope.$watch($scope.UserService.watchCurrentUser, function(newValue, oldValue){
@@ -31,12 +37,13 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
                 $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
                 $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
                 $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
+                $scope.userID = $scope.UserService.watchCurrentUser().factoryUserId;
                 welcomeText();
             }
         });
 
         var welcomeText = function() {
-            if($scope.first_name != undefined) {
+            if($scope.first_name != undefined && $scope.first_name != '') {
                 $scope.displayedUser = $scope.first_name;
             } else {
                 $scope.displayedUser = $scope.user_name;
@@ -47,10 +54,10 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
             $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
             $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
             $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
-
+            $scope.userID = $scope.UserService.watchCurrentUser().factoryUserId;
+            console.log("On Load getCachedUser, Factory Logged In:", $scope.isLoggedIn);
         };
-
+        
         getCachedUser();
-        welcomeText();
     }
 ]);

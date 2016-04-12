@@ -1,10 +1,10 @@
-myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', '$window', '$location', function($scope, UserService, $mdDialog, $window, $location) {
-
-    console.log('inside login controller');
+myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', '$mdMedia',
+'$window', '$location', function($scope, UserService, $mdDialog, $mdMedia, $window, $location) {
 
     $scope.UserService = UserService;
     $scope.loginErrorMessage;
     $scope.loggedInUser;
+    $scope.password_confirm;
 
     $scope.login = function(isValid) {
         if (isValid) {
@@ -21,7 +21,7 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', '$win
                         $mdDialog.hide();
                     }
                 }
-            )
+            );
         }
 
     };
@@ -29,7 +29,6 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', '$win
     $scope.register = function(isValid) {
         $mdDialog.hide();
         if (isValid) {
-            console.log("inside register function");
             var newUser = {
                 username: $scope.username,
                 password: $scope.password
@@ -41,8 +40,18 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', '$win
         }
     };
 
-    $scope.closeModal = function() {
+    $scope.closeModal = function(ev) {
         $mdDialog.hide();
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+
+        $mdDialog.show({
+            templateUrl: '../views/templates/register.html',
+            controller: 'RegisterController',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            fullscreen: useFullScreen
+        });
     };
 
 

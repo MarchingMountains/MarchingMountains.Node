@@ -1,39 +1,35 @@
-<div class="content-wrapper">
+<div class="content-wrapper"  ng-show="selectedSchoolInfo">
   <h2>{{selectedSchoolInfo.school_name}}</h2>
-  <ul>
-    <li>
-      Address:
-      <ul>
-        <li>
-          {{selectedSchoolInfo.address_line1}}
-        </li>
-        <li ng-show="selectedSchoolInfo.address_line2">
-          {{selectedSchoolInfo.address_line2}}
-        </li>
-        <li>
-          {{selectedSchoolInfo.city}}, {{selectedSchoolInfo.state_name}} {{selectedSchoolInfo.zip}}
-        </li>
-      </ul>
-    </li>
-    <li>
-      Number: {{selectedSchoolInfo.phone | tel}}
-    </li>
-    <li>
-      Website: <a href="{{selectedSchoolInfo.website}}" target="_blank">{{selectedSchoolInfo.website}}</a>
-    </li>
-  </ul>
+  <p class="margin-top">
+    <strong>Address: </strong><span ng-show="selectedSchoolInfo.address_line1">{{selectedSchoolInfo.address_line1}}</span><br />
+    <span class="large-margin-left" ng-show="selectedSchoolInfo.address_line2">
+      {{selectedSchoolInfo.address_line2}}
+    <br /></span>
+    <span class="large-margin-left">
+      <span ng-show="selectedSchoolInfo.city">{{selectedSchoolInfo.city}}</span><span ng-show="selectedSchoolInfo.state">, {{selectedSchoolInfo.state}}</span>
+      <span> {{selectedSchoolInfo.zip}}</span>
+    </span>
+  </p>
+  <p class="small-margin-top" ng-show="selectedSchoolInfo.last_name">
+    <strong>Band Director: </strong>
+    {{selectedSchoolInfo.first_name}} {{selectedSchoolInfo.last_name}}
+  </p>
+  <p class="small-margin-top" ng-show="selectedSchoolInfo.phone">
+    <strong>Number: </strong> {{selectedSchoolInfo.phone | tel}}
+  </p>
+  <p class="small-margin-top margin-bottom" ng-show="selectedSchoolInfo.website">
+    <strong>Website: </strong><a href="{{selectedSchoolInfo.website}}" target="_blank">{{selectedSchoolInfo.website}}</a>
+  </p>
   <md-divider></md-divider>
-  <h4>Received Donations</h4>
+  <h3 class="small-margin-top">Received Donations</h3>
   <ul ng-repeat="donation in selectedSchoolDonations">
     <li ng-show="donation.donation_received">
       {{donation.instrument}} - {{donation.date | date:'M/d/yyyy'}}
     </li>
   </ul>
-  <!-- Shows only if no donation and hides if donation is there for school -->
   <p ng-show="!selectedSchoolDonations[0]">
-    This school has not donations at this time.
+    This school has no donations at this time.
   </p>
-  <md-divider></md-divider>
-  <md-button ng-click="returnToSearchResults()">Return to search results</md-button>
-  <md-button ng-click="donateNowModal($event)">Donate Now</md-button>
+  <md-button ng-click="returnToSearchResults()" class="margin-top">Return to search results</md-button>
+  <md-button ng-click="donateNowModal($event)" class="margin-top">Donate Now</md-button>
 </div>

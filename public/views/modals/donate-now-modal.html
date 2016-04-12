@@ -9,9 +9,8 @@
       <textarea rows="5" name="donorNote" ng-model="donorNote"></textarea>
     </md-input-container>
     <div class="modalButtons">
-      <md-button ng-click="donateNow(selectedSchoolInfo, currentUserInfo)">Donate Now</md-button>
+      <md-button ng-click="donateNow($event)">Donate</md-button>
       <md-button ng-click="cancelDonation()">Cancel</md-button>
     </div>
   </div>
-
 </md-content>

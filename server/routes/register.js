@@ -16,8 +16,6 @@ router.get('/', function(req, res, next) {
 
 // Handles POST request with new user data
 router.post('/', function(req, res, next) {
-    console.log(req.body.username);
-
     var saveUser = {
         email: req.body.username,
         password: encryptLib.encryptPassword(req.body.password)
@@ -33,29 +31,24 @@ router.post('/', function(req, res, next) {
                     } else {
                         passport.authenticate('local', function(err, user, info) {
                             if (err) {
-                                console.log("err");
                                 return next(err);
                             }
                             if (!user) {
-                                console.log("!user");
                                 return res.send(user);
                             }
                             req.logIn(user, function(err) {
                                 if (err) {
-                                    console.log("res.login err");
-                                    return next(err)
+                                    return next(err);
                                 }
-                                console.log("res.login:", user);
                                 return res.json(user);
                             });
                         })(req, res, next);
                     }
-                });
+                }
+            );
         });
-    console.log("inside /register req.user:", req.user);
-    console.log("inside /register req.session:", req.session);
-
-});
+    }
+);
 
 
 module.exports = router;

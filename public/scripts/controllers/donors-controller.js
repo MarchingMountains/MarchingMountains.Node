@@ -1,15 +1,15 @@
 myApp.controller('DonorsController', ['$scope', 'DonationsFactory', 'UserService',
   function($scope, DonationsFactory, UserService) {
 
-   $scope.DonationsFactory = DonationsFactory;
-   $scope.UserService = UserService;
+  $scope.DonationsFactory = DonationsFactory;
+  $scope.UserService = UserService;
 
-   $scope.currentUser = 2;
-  //  $scope.currentUser = $scope.UserService.askForCurrentUser();
+  DonationsFactory.userID = UserService.askForCurrentUser().factoryUserId;
+  $scope.currentUser = DonationsFactory.userID;
 
-   $scope.DonationsFactory.factoryGetCurrentUserDonations($scope.currentUser).then(function() {
-     $scope.currentUserDonations = $scope.DonationsFactory.currentUserDonations.list;
-     console.log('controller currentUserDonations: ', $scope.currentUserDonations);
-   });
-
+  if($scope.currentUser !== undefined) {
+    $scope.DonationsFactory.factoryGetCurrentUserDonations().then(function() {
+      $scope.currentUserDonations = $scope.DonationsFactory.currentUserDonations;
+    });
+  }
 }]);

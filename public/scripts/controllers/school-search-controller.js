@@ -1,31 +1,38 @@
 myApp.controller('SchoolSearchController', ['$scope', '$http', '$location',
-'$mdDialog', '$mdMedia', 'InstrumentsFactory', 'SchoolsFactory', function($scope,
-  $http, $location, $mdDialog, $mdMedia, InstrumentsFactory, SchoolsFactory,
+'$mdDialog', '$mdMedia', 'InstrumentsFactory', 'SchoolsFactory', 'UserService',function($scope,
+  $http, $location, $mdDialog, $mdMedia, InstrumentsFactory, SchoolsFactory, UserService,
   DonateNowController) {
-
-  console.log("SchoolSearchController is loaded");
 
   $scope.InstrumentsFactory = InstrumentsFactory;
   $scope.SchoolsFactory = SchoolsFactory;
+  $scope.UserService = UserService;
 
   $scope.schoolSearchResults = $scope.SchoolsFactory.schoolSearchResults.list;
-  $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrumentName.list;
+  $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrument.list;
+
+  $scope.currentUser = $scope.UserService.watchCurrentUser.factoryUserId;
 
   $scope.InstrumentsFactory.factoryGetInstrumentsList().then(function() {
-    $scope.instruments = $scope.InstrumentsFactory.instruments.list;
+    var instrumentsList = $scope.InstrumentsFactory.instruments.list;
+    $scope.instruments = [];
+    for(var i = 0; i < instrumentsList.length; i++) {
+      if(instrumentsList[i].active == true) {
+        $scope.instruments.push(instrumentsList[i]);
+      }
+    }
   });
 
-  $scope.indexSearchSchool = function(selectedInstrumentName, selectedInstrumentId) {
-    $scope.SchoolsFactory.factoryGetSchoolsList(selectedInstrumentName, selectedInstrumentId).then(function() {
-      $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrumentName.list;
+  $scope.indexSearchSchool = function(selectedInstrument) {
+    $scope.SchoolsFactory.factoryGetSchoolsList(selectedInstrument).then(function() {
+      $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrument.list;
       $scope.schoolSearchResults = $scope.SchoolsFactory.schoolSearchResults.list;
       $location.url('/donors');
     });
   };
 
-  $scope.searchSchool = function(selectedInstrumentName, selectedInstrumentId) {
-    $scope.SchoolsFactory.factoryGetSchoolsList(selectedInstrumentName, selectedInstrumentId).then(function() {
-      $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrumentName.list;
+  $scope.searchSchool = function(selectedInstrument) {
+    $scope.SchoolsFactory.factoryGetSchoolsList(selectedInstrument).then(function() {
+      $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrument.list;
       $scope.schoolSearchResults = $scope.SchoolsFactory.schoolSearchResults.list;
     });
   };
@@ -36,18 +43,30 @@ myApp.controller('SchoolSearchController', ['$scope', '$http', '$location',
   };
 
   $scope.donateNowModal = function(selectedSchool, ev) {
+    $scope.currentUser = $scope.UserService.askForCurrentUser().factoryUserId;
     $scope.SchoolsFactory.factorySetSelectedSchoolInfo(selectedSchool);
-
-    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
-
-    $mdDialog.show({
-      templateUrl: '../views/modals/donate-now-modal.html',
-      controller: 'DonateNowController',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose:true,
-      fullscreen: useFullScreen,
-    });
+    if($scope.currentUser !== undefined) {
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+      $mdDialog.show({
+        templateUrl: '../views/modals/donate-now-modal.html',
+        controller: 'DonateNowController',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        fullscreen: useFullScreen,
+      });
+    } else {
+      $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+      $mdDialog.show(
+        $mdDialog.alert()
+          .parent(angular.element(document.querySelector('#popupContainer')))
+          .clickOutsideToClose(true)
+          .title('Log in')
+          .textContent('Please register or log in to donate.')
+          .ariaLabel('Please log in.')
+          .ok('OK')
+          .targetEvent(ev)
+      );
+    }
   };
-
 }]);

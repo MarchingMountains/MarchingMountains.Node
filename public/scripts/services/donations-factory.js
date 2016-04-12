@@ -1,8 +1,9 @@
-myApp.factory('DonationsFactory', ['$http', function($http) {
+myApp.factory('DonationsFactory', ['$http', '$window', '$localStorage', function($http, $window, $localStoage) {
 
   var selectedSchoolDonations = {};
   var currentUserDonations = {};
-  var allDonations = {};
+  var currentDonation;
+  var userID = false;
 
   var SelectedSchoolDonations = function(selectedSchoolId) {
     var promise = $http.get('/donations/school/' + selectedSchoolId).then(function(response) {
@@ -11,33 +12,63 @@ myApp.factory('DonationsFactory', ['$http', function($http) {
     return promise;
   };
 
-  var getCurrentUserDonations = function(currentUserId) {
-    var promise = $http.get('/donations/user/' + currentUserId).then(function(response) {
-      currentUserDonations.list = response.data;
+  var getCurrentUserDonations = function() {
+    userID = publicFunctions.userID;
+    var promise = $http.get('/donations/user/' + userID).then(function(response) {
+      if (response.data) {
+        currentUserDonations.list = response.data;
+      } else {
+        logInAlert();
+        delete $localStorage.CurrentUser;
+        $window.location.href = '/#/home';
+      }
     });
     return promise;
   };
 
-  var factoryGetAllDonations = function() {
-    var promise = $http.get('/donations/admin').then(function(response) {
-      allDonations.list = response.data;
+  var submitDonation = function(donationInfo) {
+    var promise = $http.post('/donations/school/' + donationInfo.school_id, donationInfo).then(function(){
+      getCurrentUserDonations();
     });
     return promise;
+  };
+
+  var setDonationReceived = function(donationInfo) {
+    var promise = $http.put('/donations/received/' + donationInfo.donation_id).then(function() {
+    });
+      return promise;
+  };
+
+  var logInAlert = function(ev) {
+    $mdDialog.show(
+      $mdDialog.alert()
+        .parent(angular.element(document.querySelector('#popupContainer')))
+        .clickOutsideToClose(true)
+        .title('Alert!')
+        .textContent('Please log in to continue.')
+        .ariaLabel('Alert please log in')
+        .ok('OK')
+        .targetEvent(ev)
+    );
   };
 
   var publicFunctions = {
     factoryGetSelectedSchoolDonations: function(selectedSchoolId) {
       return SelectedSchoolDonations(selectedSchoolId);
     },
-    factoryGetCurrentUserDonations: function(currentUserId) {
-      return getCurrentUserDonations(currentUserId);
+    factoryGetCurrentUserDonations: function() {
+      return getCurrentUserDonations();
     },
-    getAllDonations: function() {
-      return factoryGetAllDonations();
+    factorySubmitDonation: function(donationInfo) {
+      return submitDonation(donationInfo);
+    },
+    factorySetDonationReceived: function(donationInfo) {
+      return setDonationReceived(donationInfo);
     },
     selectedSchoolDonations: selectedSchoolDonations,
     currentUserDonations: currentUserDonations,
-    allDonations: allDonations
+    currentDonation: currentDonation,
+    userID: false
   };
 
   return publicFunctions;

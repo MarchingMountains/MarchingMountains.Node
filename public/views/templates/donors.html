@@ -1,33 +1,30 @@
 <div class="content-wrapper">
   <h3>What type of instrument would you like to donate?</h3>
-  <div class="autocompletedemoBasicUsage">
-    <md-content>
-      <form ng-submit="$event.preventDefault()">
-        <div layout-gt-sm="row" class="schoolSearch">
-          <md-autocomplete
-            md-selected-item="selectedItem"
-            md-search-text-change="searchTextChange(searchText)"
-            md-search-text="searchText"
-            md-selected-item-change="selectedItemChange(item.instrument)"
-            md-items="item in instruments | filter:searchText"
-            md-item-text="item.instrument"
-            md-min-length="0"
-            md-floating-label="Choose an instrument to donate"
-            class="md-block" flex-gt-sm>
-            <md-item-template>
-              <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.instrument}}</span>
-            </md-item-template>
-          </md-autocomplete>
-          <md-button ng-click="searchSchool(selectedItem.instrument, selectedItem.instrument_id)">Search for schools</md-button>
-        </div>
+  <div class="autocompletedemoBasicUsage center">
+    <md-content class="md-padding text-center">
+      <form ng-submit="$event.preventDefault()" class="search-form margin-top">
+        <md-autocomplete
+          md-selected-item="selectedItem"
+          md-search-text-change="searchTextChange(searchText)"
+          md-search-text="searchText"
+          md-selected-item-change="selectedItemChange(item.instrument)"
+          md-items="item in instruments | filter:searchText"
+          md-item-text="item.instrument"
+          md-min-length="0"
+          placeholder="Choose an instrument to donate">
+          <md-item-template>
+            <span md-highlight-text="searchText" md-highlight-flags="^i" class="text-center">{{item.instrument}}</span>
+          </md-item-template>
+        </md-autocomplete>
       </form>
+      <md-button ng-click="indexSearchSchool(selectedItem)" class="margin-top search-btn margin-left">Search for schools</md-button>
     </md-content>
   </div>
-  <md-divider></md-divider>
-  <div class="row">
+  <md-divider class="margin-top"></md-divider>
+  <div class="row margin-top">
     <div class="col-md-8">
-      <h4 ng-show="selectedInstrument">Schools in need of a {{selectedInstrument}}</h4>
-      <h5 ng-show="selectedInstrument && !schoolSearchResults[0].school_id">No schools are in need of a {{selectedInstrument}} at this time</h5>
+      <h4 ng-show="selectedInstrument"><strong>Search results for: </strong> {{selectedInstrument.instrument}}</h4>
+      <h5 ng-show="selectedInstrument && !schoolSearchResults[0].school_id">No schools are in need of a {{selectedInstrument.instrument}} at this time</h5>
       <ang-accordion one-at-a-time="true" ng-repeat="school in schoolSearchResults">
         <collapsible-item item-title="{{school.school_name}}">
           <div>
@@ -39,21 +36,34 @@
                 Website: <a href="{{school.website}}" target="_blank">{{school.website}}</a>
               </li>
               <li>
-                <md-button ng-click="goToSchoolPage(school)">More Info</md-button>
-                <md-button ng-click="donateNowModal(school, $event)">Donate Now</md-button>
+                <md-button ng-click="goToSchoolPage(school)" class="margin-top">More Info</md-button>
+                <md-button ng-click="donateNowModal(school, $event)" class="margin-top">Donate Now</md-button>
               </li>
             </ul>
           </div>
         </collapsible-item>
       </ang-accordion>
     </div>
-    <div class="col-md-4" ng-controller="DonorsController" ng-show="currentUserDonations[0]">
-      <h4>Your donations</h4>
-      <ul ng-repeat="donations in currentUserDonations">
-        <li ng-show="donations.donation_received">
-          {{donations.instrument}} to {{donations.school_name}} on {{donations.date | date:'M/d/yyyy'}}
-        </li>
-      </ul>
+    <div class="col-md-4" ng-controller="DonorsController" ng-show="currentUserDonations.list[0]">
+      <h4 class="donations-bottom-border">Your donations</h4>
+      <div class="donations-overflow">
+        <div ng-repeat="donations in currentUserDonations.list">
+          <p class="small-margin-top">
+            <strong>Instrument: </strong>{{donations.instrument}}
+          </p>
+          <p>
+            <strong>School: </strong>{{donations.school_name}}
+          </p>
+          <p>
+            <strong>Date: </strong>{{donations.date | date:'M/d/yyyy'}}
+          </p>
+          <p>
+            <span ng-show="donations.donation_received" class="donationReceived"><strong>Status: </strong>Received</span>
+            <span ng-show="!donations.donation_received" class="donationPending"><strong>Status: </strong>Pending</span>
+          </p>
+          <md-divider></md-divider>
+        </div>
+      </div>
     </div>
   </div>
 </div>

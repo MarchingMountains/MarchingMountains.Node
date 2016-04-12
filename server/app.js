@@ -7,20 +7,17 @@ var connection = require('./modules/connection');
 //var flash = require("connect-flash");
 
 var logout = require('./routes/logout');
-var account = require('./routes/account');
-var states = require('./routes/states');
 var schools = require('./routes/schools');
 var instruments = require('./routes/instruments');
 var donations = require('./routes/donations');
 var index = require('./routes/index');
 var user = require('./routes/user');
 var register = require('./routes/register');
-var account = require('./routes/account');
-var states = require('./routes/states');
 var passport = require('./strategies/user_sql.js');
 var session = require('express-session');
 var account = require('./routes/account');
 var states = require('./routes/states');
+var admin = require('./routes/admin');
 
 
 app.use(bodyParser.json());
@@ -31,7 +28,7 @@ app.use(session({
   key: 'user',
   resave: 'true',
   saveUninitialized: false,
-  cookie: {maxage: 60000, secure: false}
+  cookie: {maxage: 360000, secure: false}
 }));
 
 app.use(passport.initialize());
@@ -45,9 +42,8 @@ app.use('/instruments', instruments);
 app.use('/donations', donations);
 app.use('/register', register);
 app.use('/user', user);
-app.use('/account', account);
-app.use('/states', states);
 app.use('/logout', logout);
+app.use('/admin', admin);
 app.use('/', index);
 
 app.use(express.static('public'));

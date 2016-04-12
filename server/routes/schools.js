@@ -1,34 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var connection = require('../modules/connection');
+var api_key = 'key-9fad0a24dab479c9890b265c5c0495a3';
+var domain = 'sandboxf24cc5b071a54b549d355abfc18c80b3.mailgun.org';
+var Mailgun = require('mailgun-js');
 var pg = require('pg');
 
-router.get('/admin', function(req, res) {
-    var results = [];
-    pg.connect(connection, function(err, client, done) {
-        var query = client.query("SELECT schools.*, states.*, " +
-            "json_agg(json_build_object('instrument', instruments.instrument, 'instrument_id', instruments.instrument_id)) AS instruments " +
-            'FROM schools LEFT OUTER JOIN states ON schools.state_id = states.state_id ' +
-            'LEFT OUTER JOIN school_instruments ON schools.school_id = school_instruments.school_id ' +
-            'LEFT OUTER JOIN instruments ON instruments.instrument_id = school_instruments.instrument_id ' +
-            'GROUP BY schools.school_id, states.state_id ' +
-            'ORDER BY schools.school_name ASC');
-        query.on('row', function(row) {
-            results.push(row);
-        });
-        query.on('end', function() {
-            done();
-            return res.json(results);
-        });
-        if(err) {
-            console.log(err);
-        }
-    });
-});
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.send(false);
+}
 
-router.get('/:id', function(req, res) {
+router.get('/:id', isLoggedIn, function(req, res) {
     var results = [];
-    var directorID = req.params.id;
+    var directorID = [req.params.id];
 
     pg.connect(connection, function(err, client, done) {
         var query = client.query("SELECT schools.*, states.*, " +
@@ -42,8 +29,30 @@ router.get('/:id', function(req, res) {
             results.push(row);
         });
         query.on('end', function() {
-            done();
-            return res.json(results);
+          var query2 = client.query("SELECT schools.*, states.*, " +
+              "json_agg(json_build_object('date', donations.date, 'donation_id', " +
+              "donations.donation_id, 'school_id', donations.school_id, 'user_id', " +
+              "donations.user_id, 'donation_received', donations.donation_received, " +
+              "'instrument_id', donations.instrument_id, 'instrument', instruments.instrument, " +
+              "'user_email', users.email)) AS donations " +
+              'FROM schools JOIN states ON schools.state_id = states.state_id ' +
+              'JOIN donations on schools.school_id = donations.school_id ' +
+              'JOIN users on donations.user_id = users.user_id ' +
+              'LEFT OUTER JOIN instruments ON instruments.instrument_id = donations.instrument_id ' +
+              'WHERE schools.user_id = $1 GROUP BY schools.school_id, states.state_id ' +
+              'ORDER BY schools.school_name ASC', directorID);
+
+              query2.on('row', function(row) {
+                for(var i = 0; i < results.length; i++) {
+                  if (results[i].user_id == row.user_id && results[i].school_id == row.school_id) {
+                    results[i].donations = row.donations;
+                  }
+                }
+              });
+              query2.on('end', function() {
+                done();
+                return res.json(results);
+              });
         });
         if(err) {
             console.log(err);
@@ -51,8 +60,27 @@ router.get('/:id', function(req, res) {
     });
 });
 
-router.post('/:id', function(req, res) {
-    var results = [];
+router.post('/email', isLoggedIn, function(req, res) {
+    var mailgun = new Mailgun({apiKey: api_key, domain: domain});
+    var data = {
+        from: req.body.from,
+        to: req.body.to,
+        subject: req.body.subject,
+        text: req.body.text
+    };
+
+    mailgun.messages().send(data, function (err, body) {
+        if (err) {
+            console.log("Error inserting data: ", err);
+            res.send(false);
+        } else {
+            res.send(true);
+        }
+    });
+});
+
+router.post('/:id', isLoggedIn, function(req, res) {
+    var instruments = req.body.instruments;
     var newSchool = [
         req.body.name,
         req.body.website,
@@ -65,8 +93,6 @@ router.post('/:id', function(req, res) {
         req.body.instructions,
         req.params.id
     ];
-
-    var instruments = req.body.instruments;
 
     pg.connect(connection, function(err, client, done) {
         client.query('INSERT INTO schools ' +
@@ -86,16 +112,9 @@ router.post('/:id', function(req, res) {
     });
 });
 
-router.put('/verify/:id', function(req, res) {
-    console.log('req.body::', req.body);
-    pg.connect(connection, function(err, client, done) {
-        client.query('UPDATE schools SET (approved) = ($1) WHERE school_id = $2', [req.body.approved, req.params.id]);
-        client.end();
-        res.sendStatus(200);
-    })
-});
-
-router.put('/:id', function(req, res) {
+router.put('/:id', isLoggedIn, function(req, res) {
+    var instruments = req.body.instruments;
+    var school_id = req.body.school_id;
     var updateSchool = [
         req.body.name,
         req.body.website,
@@ -110,9 +129,6 @@ router.put('/:id', function(req, res) {
         req.body.approved,
         req.body.school_id
     ];
-
-    var instruments = req.body.instruments;
-    var school_id = req.body.school_id;
 
     pg.connect(connection, function(err, client, done) {
         client.query('UPDATE schools SET' +
@@ -137,11 +153,12 @@ router.put('/:id', function(req, res) {
 router.get('/instruments/:id', function(req, res){
   var results = [];
   pg.connect(connection, function(err, client, done) {
-    var query = client.query('SELECT * FROM schools ' +
+    var query = client.query('SELECT schools.*, users.email, users.first_name, users.last_name, states.state FROM schools ' +
+      'JOIN users ON schools.user_id = users.user_id ' +
       'JOIN school_instruments ON schools.school_id = school_instruments.school_id ' +
       'JOIN states ON schools.state_id = states.state_id ' +
-      'WHERE school_instruments.instrument_id = $1;',
-      req.params.id);
+      'WHERE school_instruments.instrument_id = $1 AND schools.approved = $2;',
+      [req.params.id, true]);
     query.on('row', function(row) {
       results.push(row);
     });
