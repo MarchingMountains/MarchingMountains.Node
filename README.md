@@ -13,11 +13,13 @@ npm install
 ```
 
 ##Running the app
-1. Create tables using queries listed in the database.txt file
-2. Postgres needs to be running prior to starting server in order for app to function
+1. Create tables using queries listed in the database.txt file.  The first list of tables is with all
+   all appropriate references and dependencies.
+2. Postgres server needs to be running prior to starting Node server in order for app to function.
 3. Admin privileges are hard coded to be user 1. (i.e., the first user listed in the users table)
-4. If you turn off your server while logged in, a user will receive a notification that they will have to log in again however,
-   the welcome message on the header will imply that a user is still logged in.  You must re login to continue.
+4. If you turn off your server while logged in, a user will receive a notification that they will
+   have to log in again however,the welcome message on the header will imply that a user is still
+   logged in.  You must re login to continue.
 
 ```
 npm start
@@ -26,7 +28,8 @@ npm start
 
 ##Marching Mountains' Goal
 
-The organization's goal is to create a network to supply public school band programs in distressed areas of Appalachia and Minnesota with donated new and used musical instruments.
+The organization's goal is to create a network to supply public school band programs in distressed
+areas of Appalachia and Minnesota with donated new and used musical instruments.
 About the Project
 
 ##This project is designed to accomplish several things:
