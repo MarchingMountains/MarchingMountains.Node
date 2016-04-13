@@ -1,10 +1,10 @@
 describe('Factory: adminFactory', function () {
-// '$http', '$window', '$localStorage', '$mdDialog'
 
   beforeEach(function() {
     module('myApp');
 
     //Use bard to inject the adminFactory and a mock $http service
+    //'$http', '$window', '$localStorage', '$mdDialog'
     bard.inject(
       'AdminFactory', 
       '$rootScope',
