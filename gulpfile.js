@@ -85,7 +85,8 @@ gulp.task('clean', function () {
   *    gulp test --startServers
   * @return {Stream}
   */
-gulp.task('test', ['vet'], function (done) {
+//gulp.task('test', ['vet'], function (done) {
+  gulp.task('test', [], function (done) {
   startTests(true /*singleRun*/, done);
 });
 

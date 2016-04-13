@@ -2,16 +2,30 @@
 // Generated on Fri Apr 01 2016 14:18:06 GMT-0500 (CDT)
 
 module.exports = function(config) {
+
+    var gulpConfig = require('./gulp.config')();
+    gulpConfig.karma = gulpConfig.karmaConfig();
+
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
+plugins: [
+            'karma-mocha',
+            'karma-chai',
+            'karma-sinon',
+            'karma-chai-sinon',
+            'karma-chrome-launcher',
+            'karma-firefox-launcher',
+            'karma-phantomjs-launcher',
+            'karma-coverage',
+            'karma-threshold-reporter'
+        ],
 
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
-
+        // frameworks to use
+        // some available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+        frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
 
     // list of files / patterns to load in the browser
 
@@ -34,7 +48,8 @@ module.exports = function(config) {
         'public/scripts/controllers/accountController.js',
         'http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js',
         'http://cdn.wijmo.com/5.20161.138/controls/wijmo.min.js',
-        'http://cdn.wijmo.com/5.20161.138/interop/angular/wijmo.angular.min.js'
+        'http://cdn.wijmo.com/5.20161.138/interop/angular/wijmo.angular.min.js',
+        'bower_components/bardjs/dist/bard.js'
     ],
 
     // list of files to exclude
@@ -45,20 +60,35 @@ module.exports = function(config) {
       'public/scripts/specs/schools-spec.js',
       'public/scripts/specs/test-spec.js',
       'public/scripts/specs/temp-test-controller.js',
-      // 'public/scripts/specs/donors-controller-spec.js',
+      'public/scripts/specs/donors-controller-spec.js',
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+        './public/scripts/services/*.js': 'coverage'
     },
 
 
     // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+        // possible values: 'dots', 'progress', 'coverage'
+        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+        reporters: ['progress', 'coverage', 'threshold'],
+
+        coverageReporter: {
+            dir: gulpConfig.karma.coverage.dir,
+            reporters: gulpConfig.karma.coverage.reporters
+        },
+
+        // the configure thresholds
+        // Please set to integer values
+        thresholdReporter: {
+            statements: 1,
+            branches: 1,
+            functions: 1,
+            lines: 1
+        },
 
 
     // web server port

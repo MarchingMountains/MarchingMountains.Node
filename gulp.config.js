@@ -1,7 +1,7 @@
 module.exports = function () {
-	var client = './src/client/';
-	var server = './src/server/';
-	var clientApp = client + 'app/';
+	var client = './public/scripts/';
+	var server = './server/';
+	var clientApp = client;
 	var report = './report/';
 	var root = './';
 	var specRunnerFile = 'specs.html';
@@ -20,7 +20,9 @@ module.exports = function () {
 			*/
 		// all javascript that we want to vet
 		alljs: [
-			'./src/**/*.js',
+			//Uncomment when ready to clean up code
+			'./public/scripts/**/*.js',
+			'./server/**/*.js',
 			'./*.js'
 		],
 		build: './build/',
