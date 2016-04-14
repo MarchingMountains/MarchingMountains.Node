@@ -32,14 +32,16 @@
                     </div>
                 </md-input-container>
             </div>
-            <div layout-lg="row">
-                <md-input-container class="md-block">
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
                     <label>Confirm Password</label>
-                    <input type="password" name="password_confirm" required ng-model="password_confirm" ng-model-options="{ debounce: 750 }"
-                           wj-validation-error="password != password_confirm ? 'Passwords don\'t match' : ''" />
-                    <div class="error-message"
-                            ng-if="registerForm.password_confirm.$invalid && !registerForm.password_confirm.$pristine">
-                        Sorry, the passwords don't match.
+                    <input type="password" name="confirmPassword" ng-model="passwordConfirm"
+                           match-password="password" id="confirmPassword" required="" />
+                    <div ng-messages="registerForm.confirmPassword.$error"
+                         ng-if="registerForm.$submitted || registerForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple"
+                         class="error-messages slide-right">
+                        <div ng-message="required" class="message">Please confirm your password</div>
+                        <div ng-message="passwordMatch" class="message"> Your passwords did not match</div>
                     </div>
                 </md-input-container>
             </div><br />
