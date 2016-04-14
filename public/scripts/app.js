@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage',
-'material.svgAssetsCache', 'angAccordion', 'ngPassword', 'smart-table', 'xeditable']);
+ 'angAccordion', 'ngPassword', 'smart-table', 'xeditable']);
 
 myApp.config(['$routeProvider', function($routeProvider) {
 
