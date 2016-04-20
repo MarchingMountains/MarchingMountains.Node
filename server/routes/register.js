@@ -20,7 +20,11 @@ router.post('/', function(req, res, next) {
         email: req.body.username,
         password: encryptLib.encryptPassword(req.body.password)
     };
+
         pg.connect(connection, function (err, client, done) {
+            if(err) {
+                return console.error('error fetching client from pool', err);
+            }
             client.query("INSERT INTO users (email, password) VALUES ($1, $2) RETURNING user_id, email",
                 [saveUser.email, saveUser.password],
                 function (err, result) {

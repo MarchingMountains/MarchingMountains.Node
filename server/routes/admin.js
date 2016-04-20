@@ -15,6 +15,9 @@ function isLoggedIn(req, res, next){
 router.get('/schools', isLoggedIn, function(req, res) {
     var results = [];
     pg.connect(connection, function(err, client, done) {
+        if(err) {
+            return console.error('error fetching client from pool', err);
+        }
         var query = client.query("SELECT schools.*, states.*, users.last_name, users.first_name, users.email, " +
             "json_agg(json_build_object('instrument', instruments.instrument, 'instrument_id', instruments.instrument_id)) AS instruments " +
             'FROM schools LEFT OUTER JOIN states ON schools.state_id = states.state_id ' +
@@ -38,6 +41,9 @@ router.get('/schools', isLoggedIn, function(req, res) {
 
 router.put('/verify-school/:id', isLoggedIn, function(req, res) {
     pg.connect(connection, function(err, client, done) {
+        if(err) {
+            return console.error('error fetching client from pool', err);
+        }
         client.query('UPDATE schools SET (approved) = ($1) WHERE school_id = $2', [req.body.approved, req.params.id], function(err) {
             client.end();
         });
@@ -47,8 +53,11 @@ router.put('/verify-school/:id', isLoggedIn, function(req, res) {
 
 router.get('/users', isLoggedIn, function(req, res) {
     var results = [];
-
+    
     pg.connect(connection, function(err, client, done) {
+        if(err) {
+            return console.error('error fetching client from pool', err);
+        }
         var query = client.query('SELECT users.email, users.first_name, users.last_name, users.address_line1, ' +
             'users.address_line2, users.city, states.state, users.zip, phone FROM users ' +
             'LEFT OUTER JOIN states ON users.state_id = states.state_id ORDER BY last_name ASC');
@@ -68,6 +77,9 @@ router.get('/users', isLoggedIn, function(req, res) {
 router.get('/donations', isLoggedIn, function(req, res){
     var results = [];
     pg.connect(connection, function(err, client, done) {
+        if(err) {
+            return console.error('error fetching client from pool', err);
+        }
         var query = client.query('SELECT school_name, instrument, date, donation_received, users.first_name, ' +
             'users.last_name, users.phone FROM donations ' +
             'JOIN instruments ON donations.instrument_id = instruments.instrument_id ' +

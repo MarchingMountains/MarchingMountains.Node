@@ -30,7 +30,7 @@ CREATE TABLE schools (
    zip integer,
    phone varchar(15),
    instructions varchar(8000),
-   user_id integer REFERENCES users(user_id)
+   user_id integer REFERENCES users(user_id),
    approved boolean DEFAULT NULL
 );
 CREATE TABLE instruments (
