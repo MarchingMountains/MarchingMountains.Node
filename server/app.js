@@ -4,7 +4,7 @@ var path = require('path');
 var expressJwt = require('express-jwt');
 var bodyParser = require('body-parser');
 var connection = require('./modules/connection');
-//var flash = require("connect-flash");
+var clientErrorHandler = require('./modules/clientErrorHandler');
 
 var logout = require('./routes/logout');
 var schools = require('./routes/schools');
@@ -18,7 +18,6 @@ var session = require('express-session');
 var account = require('./routes/account');
 var states = require('./routes/states');
 var admin = require('./routes/admin');
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -54,6 +53,8 @@ app.use(express.static('public/scripts/controllers'));
 app.use(express.static('public/scripts/factories'));
 app.use(express.static('public/styles'));
 app.use(express.static('public/vendors'));
+
+app.use(clientErrorHandler);
 
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), function() {

@@ -67,7 +67,7 @@ plugins: [
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        './public/scripts/services/*.js': 'coverage'
+        './public/scripts/**/*!(spec).js': 'coverage',
     },
 
 
@@ -84,10 +84,10 @@ plugins: [
         // the configure thresholds
         // Please set to integer values
         thresholdReporter: {
-            statements: 1,
-            branches: 1,
-            functions: 1,
-            lines: 1
+            statements: 10,
+            branches: 0,
+            functions: 5,
+            lines: 11
         },
 
 

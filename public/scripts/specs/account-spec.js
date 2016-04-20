@@ -12,28 +12,25 @@ describe('testing the Account controller', function() {
         }
     ));
 
-    it('showForm should be true', function(){
+    it('showForm should be true', function() {
         console.log('scope.showForm ', scope.showForm);
         expect(scope.showForm).toBe(true);
     });
 
-    it('showStates should return states', function(){
+    it('showStates should return states', function() {
         //ctrl.getStates();
         console.log('scope.states: ', scope.states);
         //expect(scope.states).toContain(true);
         //expect(scope.states).toContain(jasmine.objectContaining({state: 'AZ' }));
     });
 
-
 });
 
 // Testing our AJAX request
 describe('Account Server Call', function() {
 
-
     var cut; // will represent our controller
     var mockBackend; // will represent/mock our backend that returns our data
-
 
     beforeEach(module('myApp'));
 
@@ -47,10 +44,10 @@ describe('Account Server Call', function() {
                 get: function() {
                     console.log('hello');
                     return {
-                        then: function () {
+                        then: function() {
                             console.log('inside then of fake promise');
+                        }};
                 }}
-            }}
         });
 
         //console.log('before mockBackend');

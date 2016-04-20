@@ -10,30 +10,31 @@ var connection = require('../modules/connection');
 var pg = require('pg');
 
 // Handles request for HTML file
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
     res.sendFile(path.resolve(__dirname, '../public/views/register.html'));
 });
 
 // Handles POST request with new user data
 router.post('/', function(req, res, next) {
-    var saveUser = {
+    try {
+        var saveUser = {
         email: req.body.username,
         password: encryptLib.encryptPassword(req.body.password)
     };
 
-        pg.connect(connection, function (err, client, done) {
-            if(err) {
-                return console.error('error fetching client from pool', err);
+        pg.connect(connection, function(err, client) {
+            if (err) {
+                console.error('error fetching client from pool', err);
             }
-            client.query("INSERT INTO users (email, password) VALUES ($1, $2) RETURNING user_id, email",
+            client.query('INSERT INTO users (email, password) VALUES ($1, $2) RETURNING user_id, email',
                 [saveUser.email, saveUser.password],
-                function (err, result) {
+                function(err) {
                     client.end();
                     if (err) {
-                        console.log("Error inserting data: ", err);
+                        console.log('Error inserting data: ', err);
                         next(err);
                     } else {
-                        passport.authenticate('local', function(err, user, info) {
+                        passport.authenticate('local', function(err, user) {
                             if (err) {
                                 return next(err);
                             }
@@ -52,7 +53,10 @@ router.post('/', function(req, res, next) {
             );
         });
     }
+    catch (e) {
+        throw e;
+    }
+}
 );
-
 
 module.exports = router;
