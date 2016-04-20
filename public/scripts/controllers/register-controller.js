@@ -11,12 +11,13 @@ myApp.controller('RegisterController', ['$scope', 'UserService', '$mdDialog', '$
                 username: $scope.username,
                 password: $scope.password
             };
-            $scope.UserService.postRegister(newUser).then(function() {
+            $scope.UserService.postRegister(newUser)
+            .then(function() {
                 $mdDialog.hide();
             })
-      .catch(function() {
-          //Do something here. Dialog.
-      });
+            .catch(function() {
+                //Do something here. Dialog.
+            });
         }
     };
 }]);
