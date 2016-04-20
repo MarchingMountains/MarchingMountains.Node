@@ -11,22 +11,22 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-//TODO SQL query
-//    console.log('deserializeUser()', id);
-    pg.connect(connection, function (err, client) {
+    //TODO SQL query
+    //    console.log('deserializeUser()', id);
+    pg.connect(connection, function(err, client) {
 
         var user = {};
         //console.log('called deserializeUser - pg');
-        var query = client.query("SELECT * FROM users WHERE user_id = $1", [id.user_id]);
+        var query = client.query('SELECT * FROM users WHERE user_id = $1', [id.user_id]);
 
-        query.on('row', function (row) {
+        query.on('row', function(row) {
             //console.log('User row', row);
             user = row;
             done(null, user);
         });
 
         // After all data is returned, close connection and return results
-        query.on('end', function () {
+        query.on('end', function() {
             client.end();
         });
 
@@ -42,16 +42,19 @@ passport.use('local', new localStrategy({
         passReqToCallback: true,
         emailField: 'email'
     }, function(req, username, password, done) {
-
-        pg.connect(connection, function (err, client) {
-            //console.log('called local - pg');
+        pg.connect(connection, function(err, client) {
+            if (err) {
+                console.log('Postgress error', err);
+            }
             var user = {};
 
-            var query = client.query("SELECT * FROM users WHERE email = $1", [username], function (err, result) {
+            var query = client.query('SELECT * FROM users WHERE email = $1', [username], function(err, result) {
+                if (err) {
+                    return console.log('Postgress error', err);
+                }
                 if (result.rowCount === 0) {
                     done(null, false, {message: 'Incorrect credentials.'});
-                }
-                else {
+                } else {
                     user = result.rows[0];
                     // Hash and compare
                     if (encryptLib.comparePassword(password, user.password)) {
@@ -65,7 +68,7 @@ passport.use('local', new localStrategy({
                 }
 
                 // After all data is returned, close connection and return results
-                query.on('end', function () {
+                query.on('end', function() {
                     client.end();
                 });
 
@@ -74,7 +77,7 @@ passport.use('local', new localStrategy({
                     console.log(err);
                 }
             });
-        })
+        });
     }
 ));
 
