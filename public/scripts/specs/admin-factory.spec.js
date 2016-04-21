@@ -30,7 +30,7 @@ describe('Factory: adminFactory', function () {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
-    $httpBackend.when('GET', '/admin/schools').respond({data:{schools:[]}});
+    $httpBackend.when('GET', '/admin/schools').respond({schools:[]});
     //call the method we are testing
     AdminFactory.getAllSchools();
     //http://www.sitepoint.com/understanding-angulars-apply-digest/
