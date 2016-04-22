@@ -49,7 +49,7 @@ plugins: [
         'http://cdn.wijmo.com/5.20161.138/controls/wijmo.min.js',
         'http://cdn.wijmo.com/5.20161.138/interop/angular/wijmo.angular.min.js',
         'bower_components/bardjs/dist/bard.js',
-        'bower_components/sinon/index.js'
+        'bower_components/sinon/lib/sinon.js'
     ],
 
     // list of files to exclude
