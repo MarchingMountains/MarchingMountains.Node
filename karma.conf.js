@@ -39,7 +39,6 @@ plugins: [
         'public/vendors/angular-animate.min.js',
         'public/vendors/angular-aria.min.js',
         'public/vendors/ngStorage.min.js',
-        'public/vendors/sinon.js',
         'public/vendors/smart-table.min.js',
         'public/vendors/xeditable.min.js',
         'node_modules/angular-mocks/angular-mocks.js',
@@ -49,7 +48,8 @@ plugins: [
         'http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js',
         'http://cdn.wijmo.com/5.20161.138/controls/wijmo.min.js',
         'http://cdn.wijmo.com/5.20161.138/interop/angular/wijmo.angular.min.js',
-        'bower_components/bardjs/dist/bard.js'
+        'bower_components/bardjs/dist/bard.js',
+        'bower_components/sinon/index.js'
     ],
 
     // list of files to exclude
@@ -60,14 +60,14 @@ plugins: [
       'public/scripts/specs/schools-spec.js',
       'public/scripts/specs/test-spec.js',
       'public/scripts/specs/temp-test-controller.js',
-      'public/scripts/specs/donors-controller-spec.js',
+      'public/scripts/specs/donors-controller-spec.js'
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        './public/scripts/**/*!(spec).js': 'coverage',
+        './public/scripts/**/!(*spec).js': 'coverage'
     },
 
 
@@ -84,10 +84,10 @@ plugins: [
         // the configure thresholds
         // Please set to integer values
         thresholdReporter: {
-            statements: 15,
+            statements: 11,
             branches: 2,
-            functions: 10,
-            lines: 16
+            functions: 7,
+            lines: 11
         },
 
 
