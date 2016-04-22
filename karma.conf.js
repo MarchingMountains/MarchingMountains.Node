@@ -49,7 +49,7 @@ plugins: [
         'http://cdn.wijmo.com/5.20161.138/controls/wijmo.min.js',
         'http://cdn.wijmo.com/5.20161.138/interop/angular/wijmo.angular.min.js',
         'bower_components/bardjs/dist/bard.js',
-        'bower_components/sinon/index.js'
+        'bower_components/sinon/lib/sinon.js'
     ],
 
     // list of files to exclude
@@ -84,10 +84,10 @@ plugins: [
         // the configure thresholds
         // Please set to integer values
         thresholdReporter: {
-            statements: 11,
-            branches: 2,
-            functions: 7,
-            lines: 11
+            statements: 13,
+            branches: 5,
+            functions: 12,
+            lines: 13
         },
 
 
@@ -110,7 +110,7 @@ plugins: [
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
