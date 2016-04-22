@@ -4,7 +4,6 @@ var streamify = require('gulp-streamify');
 var coveralls = require('gulp-coveralls');
 var autoprefixer = require('gulp-autoprefixer');
 var cssmin = require('gulp-cssmin');
-var jshint = require('gulp-jshint');
 var less = require('gulp-less');
 var concat = require('gulp-concat');
 var plumber = require('gulp-plumber');
@@ -51,17 +50,6 @@ gulp.task('browserify-vendor', function() {
     .pipe(gulp.dest('public/js'));
 });
 
-
-
-// JSHint task
-gulp.task('lint', function() {
-  gulp.src(appPath)
-  .pipe(jshint())
-  // You can look into pretty reporters as well, but that's another story
-  .pipe(jshint.reporter('default'));
-});
-
-
 gulp.task('browserify', ['browserify-vendor'], function () {
   gulp.src(['./src/client/app/app.module.js', './src/client/app/core/core.module.js', './src/client/app/**/*.js', '!./src/client/app/**/*spec.js'])
     .pipe(concat('bundle.js'))
@@ -85,7 +73,6 @@ gulp.task('clean', function () {
   *    gulp test --startServers
   * @return {Stream}
   */
-//gulp.task('test', ['vet'], function (done) {
   gulp.task('test', [], function (done) {
   startTests(true /*singleRun*/, done);
 });
@@ -93,20 +80,6 @@ gulp.task('clean', function () {
 gulp.task('coveralls', function () {  
   return gulp.src('./report/coverage/report-lcov/lcov.info')
     .pipe(coveralls());
-});
-
-/**
-  * vet the code and create coverage report
-  * @return {Stream}
-  */
-gulp.task('vet', function () {
-  log('Analyzing source with JSHint and JSCS');
-
-  return gulp
-    .src(['gulpfile.js', 'karma.conf.js', 'server.js'].concat(config.alljs))
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
-    .pipe($.jshint.reporter('fail'));
 });
 
 /*
