@@ -63,6 +63,7 @@
     "karma-phantomjs-launcher": "1.0.0",
     "karma-sinon": "1.0.4",
     "karma-threshold-reporter": "0.1.15",
+    "mocha": "2.4.5",
     "nightwatch": "0.8.6",
     "wiredep": "4.0.0"
   }
