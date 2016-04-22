@@ -58,6 +58,7 @@
     "karma-firefox-launcher": "0.1.7",
     "karma-jasmine": "0.3.8",
     "karma-threshold-reporter": "0.1.15",
-    "nightwatch": "0.8.6"
+    "nightwatch": "0.8.6",
+    "wiredep": "4.0.0"
   }
 }

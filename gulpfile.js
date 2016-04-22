@@ -6,7 +6,6 @@ var dependencies = [
 ];
 var del = require('del');
 var config = require('./gulp.config')();
-var appPath = 'src/client/app/**/*.js';
 var $ = require('gulp-load-plugins')({lazy: true});
 
 /**

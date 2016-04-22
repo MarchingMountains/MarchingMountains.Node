@@ -130,17 +130,6 @@ module.exports = function () {
 		defaultPort: '9001'
 	};
 
-	/**
-		* wiredep and bower settings
-		*/
-	config.getWiredepDefaultOptions = function () {
-		var options = {
-			bowerJson: config.bower.json,
-			directory: config.bower.directory,
-			ignorePath: config.bower.ignorePath
-		};
-		return options;
-	};
 
 	/**
 		* karma settings
