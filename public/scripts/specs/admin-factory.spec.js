@@ -9,7 +9,7 @@ describe('Factory: adminFactory', function () {
       'AdminFactory', 
       '$rootScope',
       '$httpBackend',
-      '$location',
+      '$window',
       '$localStorage',
       '$mdDialog'
     );
