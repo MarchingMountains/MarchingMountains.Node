@@ -59,8 +59,7 @@ plugins: [
       'public/scripts/specs/modal-controller-spec.js',
       'public/scripts/specs/schools-spec.js',
       'public/scripts/specs/test-spec.js',
-      'public/scripts/specs/temp-test-controller.js',
-      'public/scripts/specs/donors-controller-spec.js'
+      'public/scripts/specs/temp-test-controller.js'
     ],
 
 

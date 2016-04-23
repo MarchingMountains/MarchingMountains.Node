@@ -1,28 +1,34 @@
 describe('Test for donor-controller', function() {
 
-  var scope;
-  var ctrl;
+beforeEach(function() {
+    module('myApp');
 
-  // beforeEach(module('myApp'));
-
-  beforeEach(angular.mock.module('myApp'));
-
-  beforeEach(angular.mock.inject(function(_$controller_) {
-    // scope = $rootScope.$new();
-    // ctrl = $controller('DonorsController', {$scope: scope});
-    $controller = _$controller_;
-  }));
+    //Use bard to inject the adminFactory and a mock $http service
+    //'$scope', 'DonationsFactory', 'UserService',
+    bard.inject(
+      'DonationsFactory', 
+      'UserService',
+      '$rootScope',
+      '$httpBackend',
+      '$controller'
+    );
+    $scope = $rootScope.$new();
+});
 
   it('Should equal a number', function() {
-    var $scope = {};
-    var mockService1 = function UserService() {
-      return 6;
-    };
-    var mockService2 = function DonationsFactory() {
-      return [{ name: 'Tea' }, { name: 'Syrup' }];
-    };
-    var controller = $controller('DonorsController', { $scope: $scope });
-    expect($scope.currentUser).toEqual(jasmine.any(Number));
+    var mockUserService = {
+      askForCurrentUser: function() {
+        return {email: 'hi@here.com', first_name: 'Bob', user_id: '1', factoryUserId:10 };
+      }
+    }
+    var mockDonationsFactory = {
+      factoryGetCurrentUserDonations : function() {
+        return; 
+      }
+    }
+    var controller = $controller('DonorsController', { $scope: $scope, UserService:mockUserService });
+    expect($scope.currentUser).to.not.be.undefined;
+    expect($scope.currentUser).to.equal(10);
   });
 });
 
