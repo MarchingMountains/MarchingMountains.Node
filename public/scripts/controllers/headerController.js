@@ -11,7 +11,7 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
         $scope.storage = $localStorage;
 
 
-        $scope.openModal = function(ev) {
+        $scope.openLoginModal = function(ev) {
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 
             $mdDialog.show({
@@ -22,6 +22,19 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
                 clickOutsideToClose: true,
                 fullscreen: useFullScreen
             });
+        };
+
+        $scope.openRegisterModal = function(ev) {
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+
+            $mdDialog.show({
+            templateUrl: '../views/templates/register.html',
+            controller: 'RegisterController',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            fullscreen: useFullScreen
+        });
         };
 
         $scope.logOut = function() {

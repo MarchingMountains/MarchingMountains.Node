@@ -4,7 +4,7 @@ var router = express.Router();
 var path = require('path');
 var pg = require('pg');
 var bodyParser = require('body-parser');
-var connection = require('../../modules/connection');
+var connection = require('../modules/connection');
 var encryptLib = require('../modules/encryption');
 
 app.use(bodyParser.json());

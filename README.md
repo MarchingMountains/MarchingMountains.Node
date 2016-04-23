@@ -1,7 +1,7 @@
 #Marching Mountains SEAN Stack app 
 
 [![Build Status](https://travis-ci.org/MarchingMountains/MarchingMountains.Node.svg?branch=prime-dev)](https://travis-ci.org/MarchingMountains/MarchingMountains.Node)
-[![Coverage Status](https://coveralls.io/repos/github/MarchingMountains/MarchingMountains.Node/badge.svg?branch=prime-dev)](https://coveralls.io/github/MarchingMountains/MarchingMountains.Node?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/MarchingMountains/MarchingMountains.Node/badge.svg?branch=prime-dev)](https://coveralls.io/github/MarchingMountains/MarchingMountains.Node?branch=prime-dev)
 
 
 ##Installation
@@ -54,7 +54,7 @@ In April 2016, a team from Prime Academy in Minneapolis, MN, took on creating th
 * Kailey Colestock
 * Luis De La Espriella
 
-We want this to be a fun project to work on and also one that's valuable for contributor's resumes. We want you to get something else out of it beyond just the meaningfulness of volunteering. The project is primarily built in Node.js and React. Along the way, other fun, new technologies will be used appropriately to solve problems.
+We want this to be a fun project to work on and also one that's valuable for contributor's resumes. We want you to get something else out of it beyond just the meaningfulness of volunteering. The project is primarily built in Node.js and AngularJS. Along the way, other fun, new technologies will be used appropriately to solve problems.
 How to contribute
 
 1. Check out the project on http://www.marchingmountains.org and https://github.com/MarchingMountains/MarchingMountains.Node

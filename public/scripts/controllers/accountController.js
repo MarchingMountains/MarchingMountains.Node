@@ -11,30 +11,6 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
 
     var id = $scope.loggedInUser.factoryUserId;
     console.log('id: ', id);
-    //var id = 1;
-
-    // antoinette's test code
-    //var self = this; // because 'this' could be changed by an outside caller
-    //self.data;
-
-    // some instance data that we can test
-    //self.testData = [
-    //    {message: 'I love unit testing', status: true},
-    //    {message: 'I will use this info for evil', status: false}
-    //];
-
-    // a function we can test
-    //self.uselessMethod = function() {
-    //    return 8;
-    //};
-
-    // an http request we can test via mocks
-    //$http.get('/datRoute').then(function(response){
-    //    self.data = response.data;
-    //});
-
-    //end of antoinette's test code
-
     retrieveUser(id);
     getStates();
 

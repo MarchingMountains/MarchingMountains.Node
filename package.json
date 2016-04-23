@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KaileyJo/marching_mountains.git"
+    "url": "git+https://github.com/MarchingMountains/MarchingMountains.Node"
   },
   "author": "Gwen Williams, Kat Traxler, Kailey Colestock, Luis De La Espriella",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/KaileyJo/marching_mountains/issues"
+    "url": "https://github.com/MarchingMountains/MarchingMountains.Node/issues"
   },
-  "homepage": "https://github.com/KaileyJo/marching_mountains#readme",
+  "homepage": "https://github.com/MarchingMountains/MarchingMountains.Node#readme",
   "dependencies": {
     "angular": "^1.5.3",
     "angular-animate": "^1.5.3",
