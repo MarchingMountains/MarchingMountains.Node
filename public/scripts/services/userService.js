@@ -45,14 +45,11 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
     }
 
     function logOut() {
-        CurrentUser = {
-            isLogged: false,
-            factoryUserName: undefined,
-            factoryFirstName: undefined,
-            factoryUserId: undefined
-        };
+        var promise = $http.get('/logout').then(function (response) {
+        CurrentUser = undefined;
         delete $localStorage.CurrentUser;
-        $window.location.href = '/#/home';
+       });
+        return promise; 
     }
 
     function persistSession() {
