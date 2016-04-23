@@ -6,16 +6,10 @@ var pg = require('pg');
 var bodyParser = require('body-parser');
 var connection = require('../modules/connection');
 var encryptLib = require('../modules/encryption');
+var isLoggedIn = require('../modules/authentication').isLoggedIn;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.send(false);
-}
 
 router.get('/*', isLoggedIn, function(req, res) {
     var id = req.params[0];

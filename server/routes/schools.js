@@ -6,12 +6,7 @@ var domain = 'sandboxf24cc5b071a54b549d355abfc18c80b3.mailgun.org';
 var Mailgun = require('mailgun-js');
 var pg = require('pg');
 
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.send(false);
-}
+var isLoggedIn = require('../modules/authentication').isLoggedIn;
 
 router.get('/:id', isLoggedIn, function(req, res) {
     var results = [];

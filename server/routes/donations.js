@@ -6,12 +6,7 @@ var api_key = 'key-9fad0a24dab479c9890b265c5c0495a3';
 var domain = 'sandboxf24cc5b071a54b549d355abfc18c80b3.mailgun.org';
 var Mailgun = require('mailgun-js');
 
-function isLoggedIn(req, res, next){
-  if(req.isAuthenticated()){
-    return next();
-  }
-  res.send(false);
-}
+var isLoggedIn = require('../modules/authentication').isLoggedIn;
 
 router.get('/school/:id', function(req, res){
   var results = [];

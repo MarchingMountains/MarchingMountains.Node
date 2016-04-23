@@ -87,10 +87,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
     .when('/reports', {
       templateUrl: '/views/templates/annual-reports.html'
     })
-    .when('/logout', {
-      templateUrl: '/views/templates/home.html',
-      controller: 'SchoolSearchController'
-    })
     .otherwise({
       redirectTo: '/home'
     });
