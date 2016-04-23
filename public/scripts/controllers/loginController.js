@@ -39,20 +39,4 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', '$mdM
             });
         }
     };
-
-    $scope.closeModal = function(ev) {
-        $mdDialog.hide();
-        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
-
-        $mdDialog.show({
-            templateUrl: '../views/templates/register.html',
-            controller: 'RegisterController',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose: true,
-            fullscreen: useFullScreen
-        });
-    };
-
-
 }]);

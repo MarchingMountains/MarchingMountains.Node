@@ -9,7 +9,7 @@
         <div>
           <md-menu-bar>
             <md-menu>
-              <button ng-click="$mdOpenMenu()">ABOUT</button>
+              <button ng-click="$mdOpenMenu()">EXPLORE</button>
               <md-menu-content>
                 <md-menu-item><md-button href="#home" class="nav">Home</md-button></md-menu-item>
 
@@ -61,7 +61,8 @@
   </div>
 
   <div class="col-md-3" ng-if="isLoggedIn === false">
-    <md-button ng-click="openModal($event)" class="login">Login / Register</md-button>
+    <md-button ng-click="openLoginModal($event)" class="login">Login</md-button>
+    <md-button ng-click="openRegisterModal($event)" class="login">Register</md-button>
   </div>
 
   <div class="col-md-3 login" ng-if="isLoggedIn === true" id="menubarContainer" layout="row" ng-cloak>
