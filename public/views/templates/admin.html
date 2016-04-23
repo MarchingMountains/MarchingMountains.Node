@@ -100,7 +100,6 @@
                 </tbody>
             </table>
         </md-tab>
-<<<<<<< HEAD
         <md-tab label="Instruments"><div class="admin-list-container">
           <div flex class="admin-instrument-list large-margin-top">
             <div class="small-margin-top" ng-repeat="instrument in instruments.list">
@@ -120,16 +119,5 @@
               <md-button ng-click="addInstrument()">Add Instrument</md-button>
             </form>
           </div></div>
-=======
-        <md-tab label="Instruments">
-            <md-list flex>
-                <md-list-item class="md-1-line" ng-repeat="instrument in instruments" ng-click="null">
-                    <div class="md-list-item-text" layout="column">
-                        <h5 editable-text="instrument.instrument"
-                            onaftersave="editInstrument(instrument)">{{instrument.instrument}}</h5>
-                    </div>
-                </md-list-item>
->>>>>>> 93787b0b9a92b96ee587f0480e19736c26783d57
-        </md-tab>
     </md-tabs>
 </md-content>

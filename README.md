@@ -54,7 +54,7 @@ In April 2016, a team from Prime Academy in Minneapolis, MN, took on creating th
 * Kailey Colestock
 * Luis De La Espriella
 
-We want this to be a fun project to work on and also one that's valuable for contributor's resumes. We want you to get something else out of it beyond just the meaningfulness of volunteering. The project is primarily built in Node.js and React. Along the way, other fun, new technologies will be used appropriately to solve problems.
+We want this to be a fun project to work on and also one that's valuable for contributor's resumes. We want you to get something else out of it beyond just the meaningfulness of volunteering. The project is primarily built in Node.js and AngularJS. Along the way, other fun, new technologies will be used appropriately to solve problems.
 How to contribute
 
 1. Check out the project on http://www.marchingmountains.org and https://github.com/MarchingMountains/MarchingMountains.Node
