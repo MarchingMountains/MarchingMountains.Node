@@ -1,7 +1,7 @@
 #Marching Mountains SEAN Stack app 
 
 [![Build Status](https://travis-ci.org/MarchingMountains/MarchingMountains.Node.svg?branch=prime-dev)](https://travis-ci.org/MarchingMountains/MarchingMountains.Node)
-[![Coverage Status](https://coveralls.io/repos/github/MarchingMountains/MarchingMountains.Node/badge.svg?branch=prime-dev)](https://coveralls.io/github/MarchingMountains/MarchingMountains.Node?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/MarchingMountains/MarchingMountains.Node/badge.svg?branch=prime-dev)](https://coveralls.io/github/MarchingMountains/MarchingMountains.Node?branch=prime-dev)
 
 
 ##Installation

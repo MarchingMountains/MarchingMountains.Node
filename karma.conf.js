@@ -49,7 +49,7 @@ plugins: [
         'http://cdn.wijmo.com/5.20161.138/controls/wijmo.min.js',
         'http://cdn.wijmo.com/5.20161.138/interop/angular/wijmo.angular.min.js',
         'bower_components/bardjs/dist/bard.js',
-        'bower_components/sinon/index.js'
+        'bower_components/sinon/lib/sinon.js'
     ],
 
     // list of files to exclude
@@ -110,8 +110,12 @@ plugins: [
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
+    phantomjsLauncher: {
+      // Have phantomjs exit if a ResourceError is encountered (useful if karma exits without killing phantom) 
+      exitOnResourceError: true
+    },
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
