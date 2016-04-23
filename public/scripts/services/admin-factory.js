@@ -7,12 +7,8 @@ myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', '$mdDialog',
     var factoryGetAllSchools = function() {
         var promise = $http.get('/admin/schools').then(function(response) {
             if (response.data) {
-            allSchools.list = response.data;
-            } else {
-                logInAlert();
-                delete $localStorage;
-                $window.location.href = '/#/home';
-            }
+                allSchools.list = response.data;
+            } 
         });
         return promise;
     };
@@ -20,12 +16,8 @@ myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', '$mdDialog',
     var factoryVerifySchool = function(schoolID, status) {
         var promise = $http.put('/admin/verify-school/' + schoolID, status).then(function(response) {
             if (response.data) {
-            factoryGetAllSchools();
-            } else {
-                logInAlert();
-                delete $localStorage;
-                $window.location.href = '/#/home';
-            }
+                factoryGetAllSchools();
+            } 
         });
         return promise;
     };
@@ -33,10 +25,8 @@ myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', '$mdDialog',
     var factoryGetAllDonations = function() {
         var promise = $http.get('/admin/donations').then(function(response) {
             if (response.data) {
-            allDonations.list = response.data;
-            } else {
-                delete $localStorage;
-            }
+                allDonations.list = response.data;
+            } 
         });
         return promise;
     };
@@ -44,25 +34,10 @@ myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', '$mdDialog',
     var factoryGetAllUsers = function() {
         var promise = $http.get('/admin/users').then(function(response) {
             if (response.data) {
-            allUsers.list = response.data;
-            } else {
-                delete $localStorage;
-            }
+                allUsers.list = response.data;
+            } 
         });
         return promise;
-    };
-
-    var logInAlert = function(ev) {
-      $mdDialog.show(
-        $mdDialog.alert()
-          .parent(angular.element(document.querySelector('#popupContainer')))
-          .clickOutsideToClose(true)
-          .title('Alert!')
-          .textContent('Please log in to continue.')
-          .ariaLabel('Alert please log in')
-          .ok('OK')
-          .targetEvent(ev)
-      );
     };
 
     var publicFunctions = {
