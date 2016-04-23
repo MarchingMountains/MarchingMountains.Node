@@ -6,9 +6,7 @@ myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', '$mdDialog',
 
     var factoryGetAllSchools = function() {
         var promise = $http.get('/admin/schools').then(function(response) {
-            if (response.data) {
-                allSchools.list = response.data;
-            } 
+                allSchools.list = (response.data) ? response.data : undefined;
         });
         return promise;
     };
@@ -18,24 +16,23 @@ myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', '$mdDialog',
             if (response.data) {
                 factoryGetAllSchools();
             } 
+            else {
+                allSchools.list = undefined;
+            }
         });
         return promise;
     };
 
     var factoryGetAllDonations = function() {
         var promise = $http.get('/admin/donations').then(function(response) {
-            if (response.data) {
-                allDonations.list = response.data;
-            } 
+                allDonations.list = (response.data) ? response.data : undefined;
         });
         return promise;
     };
 
     var factoryGetAllUsers = function() {
         var promise = $http.get('/admin/users').then(function(response) {
-            if (response.data) {
-                allUsers.list = response.data;
-            } 
+                allUsers.list = (response.data) ? response.data : undefined;
         });
         return promise;
     };

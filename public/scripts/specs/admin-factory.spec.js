@@ -17,7 +17,7 @@ describe('Factory: adminFactory', function () {
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
   });
 
-  it('should return value from mock http request', function (done) {
+  it('should return schools', function (done) {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/admin/schools').respond({schools:[]});
@@ -28,6 +28,21 @@ describe('Factory: adminFactory', function () {
     //flush the response from the fake http server
     $httpBackend.flush();
     expect(AdminFactory.allSchools.list).to.not.be.undefined;
+    //call done on the test
+    done();
+  });
+
+    it('should not have schools on fail', function (done) {
+    //object to store result of our call
+    //Setup $http backend to return mock results
+    $httpBackend.when('GET', '/admin/schools').respond(null);
+    //call the method we are testing
+    AdminFactory.getAllSchools();
+    //http://www.sitepoint.com/understanding-angulars-apply-digest/
+    $rootScope.$apply();
+    //flush the response from the fake http server
+    $httpBackend.flush();
+    expect(AdminFactory.allSchools.list).to.be.undefined;
     //call done on the test
     done();
   });
@@ -48,6 +63,22 @@ it('should set to verify the school', function (done) {
     done();
   });
 
+it('should not set school on fail', function (done) {
+    //object to store result of our call
+    //Setup $http backend to return mock results
+    $httpBackend.when('GET', '/admin/schools').respond(null);
+    $httpBackend.when('PUT', '/admin/verify-school/1').respond(null);
+    //call the method we are testing
+    AdminFactory.verifySchool(1,{});
+    //http://www.sitepoint.com/understanding-angulars-apply-digest/
+    $rootScope.$apply();
+    //flush the response from the fake http server
+    $httpBackend.flush();
+    expect(AdminFactory.allSchools.list).to.be.undefined;
+    //call done on the test
+    done();
+  });
+
 it('should get all donation', function (done) {
     //object to store result of our call
     //Setup $http backend to return mock results
@@ -63,7 +94,7 @@ it('should get all donation', function (done) {
     done();
   });
 
-it('should not set doantions on fail', function (done) {
+it('should not set donations on fail', function (done) {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/admin/donations').respond(null);
@@ -91,8 +122,9 @@ it('should get all Users', function (done) {
     expect(AdminFactory.allUsers.list).to.not.be.undefined;
     //call done on the test
     done();
+  });
 
-    it('should not set users on fail', function (done) {
+it('should not set users on fail', function (done) {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/admin/users').respond(null);
@@ -106,5 +138,5 @@ it('should get all Users', function (done) {
     //call done on the test
     done();
   });
-  });
+
 });
