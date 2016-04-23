@@ -63,6 +63,21 @@ it('should get all donation', function (done) {
     done();
   });
 
+it('should not set doantions on fail', function (done) {
+    //object to store result of our call
+    //Setup $http backend to return mock results
+    $httpBackend.when('GET', '/admin/donations').respond(null);
+    //call the method we are testing
+    AdminFactory.getAllDonations();
+    //http://www.sitepoint.com/understanding-angulars-apply-digest/
+    $rootScope.$apply();
+    //flush the response from the fake http server
+    $httpBackend.flush();
+    expect(AdminFactory.allDonations.list).to.be.undefined;
+    //call done on the test
+    done();
+  });
+
 it('should get all Users', function (done) {
     //object to store result of our call
     //Setup $http backend to return mock results
@@ -76,5 +91,20 @@ it('should get all Users', function (done) {
     expect(AdminFactory.allUsers.list).to.not.be.undefined;
     //call done on the test
     done();
+
+    it('should not set users on fail', function (done) {
+    //object to store result of our call
+    //Setup $http backend to return mock results
+    $httpBackend.when('GET', '/admin/users').respond(null);
+    //call the method we are testing
+    AdminFactory.getAllUsers();
+    //http://www.sitepoint.com/understanding-angulars-apply-digest/
+    $rootScope.$apply();
+    //flush the response from the fake http server
+    $httpBackend.flush();
+    expect(AdminFactory.allUsers.list).to.be.undefined;
+    //call done on the test
+    done();
+  });
   });
 });
