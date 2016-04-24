@@ -44,7 +44,6 @@ plugins: [
         'node_modules/angular-mocks/angular-mocks.js',
         'public/scripts/**/*.js',
         'public/scripts/app.js',
-        'public/scripts/controllers/accountController.js',
         'http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js',
         'http://cdn.wijmo.com/5.20161.138/controls/wijmo.min.js',
         'http://cdn.wijmo.com/5.20161.138/interop/angular/wijmo.angular.min.js',
@@ -54,12 +53,10 @@ plugins: [
 
     // list of files to exclude
     exclude: [
-      'public/scripts/specs/account-spec.js',
-      'public/scripts/specs/instruments-factory-spec.js',
-      'public/scripts/specs/modal-controller-spec.js',
-      'public/scripts/specs/schools-spec.js',
-      'public/scripts/specs/test-spec.js',
-      'public/scripts/specs/temp-test-controller.js'
+      'public/scripts/specs/account.controller.spec.js',
+      'public/scripts/specs/instruments.factory.spec.js',
+      'public/scripts/specs/modal.controller.spec.js',
+      'public/scripts/specs/schools.controller.spec.js'
     ],
 
 
@@ -83,10 +80,10 @@ plugins: [
         // the configure thresholds
         // Please set to integer values
         thresholdReporter: {
-            statements: 17,
-            branches: 11,
-            functions: 18,
-            lines: 17
+            statements: 19,
+            branches: 13,
+            functions: 20,
+            lines: 19
         },
 
 
