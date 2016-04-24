@@ -7,7 +7,8 @@
     "test": "gulp clean test",
     "uat": "nightwatch",
     "uat_prod": "nightwatch -e prod",
-    "start": "node server/app.js"
+    "start": "node server/app.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     "body-parser": "^1.15.0",
     "bootbox": "^4.4.0",
     "bootstrap": "^3.3.6",
+    "bower": "1.7.9",
     "connect-flash": "^0.1.1",
     "express": "^4.13.4",
     "express-jwt": "^3.3.0",
