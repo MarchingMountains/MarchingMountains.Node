@@ -18,7 +18,7 @@ beforeEach(function() {
 });
 
   it('Current donations should equal donation factory values', function() {
-    //setup $4 for testing promise in controller
+    //setup $q for testing promise in controller
     var deferred = $q.defer();
     //get a promise instance
     var promise = deferred.promise;
