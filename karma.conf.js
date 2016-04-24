@@ -39,7 +39,7 @@ plugins: [
         'public/vendors/angular-password/angular-password.min.js',
         'public/vendors/angular-animate/angular-animate.min.js',
         'public/vendors/angular-aria/angular-aria.min.js',
-        'public/vendors/ngStorage/ngStorage.min.js',
+        'public/vendors/ngstorage/ngStorage.min.js',
         'public/vendors/angular-smart-table/dist/smart-table.min.js',
         'public/vendors/angular-xeditable/dist/js/xeditable.min.js',
         'public/vendors/angular-mocks/angular-mocks.js',
