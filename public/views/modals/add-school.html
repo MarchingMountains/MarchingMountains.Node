@@ -1,6 +1,6 @@
 <div class="addSchool">
     <md-content>
-        <form>
+        <form name="schoolForm" novalidate ng-submit="save(schoolForm.$valid)">
             <md-input-container class="md-block">
                 <input type="text" ng-model="name" placeholder="School Name" value="name" />
             </md-input-container>
@@ -28,7 +28,15 @@
                 <br>
             </md-input-container>
             <md-input-container class="md-block">
-                <input type="text" ng-model="website" placeholder="School Website" value="website" />
+                <input ng-model="website" type="url" required placeholder="School Website" value="website" />
+                <div ng-messages="schoolForm.$error" role="alert">
+                <div ng-message="required">
+                            Please enter your school website.
+                        </div>
+                        <div ng-message="url">
+                            Please enter a valid url.
+                        </div>
+                    </div>
             </md-input-container>
             <md-input-container class="md-block">
                 <input type="text" ng-model="address_line1" placeholder="Address Line 1" value="address_line1" />
@@ -57,8 +65,7 @@
                 <textarea ng-model="instructions" placeholder="Additional Shipping Instructions"></textarea>
             </md-input-container>
             <br>
-            <md-button ng-if="currentSchool != true" ng-click="saveSchool(selectedState, $event)">Save School</md-button>
-            <md-button ng-if="currentSchool == true" ng-click="updateSchool(selectedState)">Update School</md-button>
+            <md-button type="submit" ng-disabled="schoolForm.$invalid">Save</md-button>
         </form>
     </md-content>
 </div>
