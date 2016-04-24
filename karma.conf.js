@@ -79,7 +79,7 @@ plugins: [
         // Please set to integer values
         thresholdReporter: {
             statements: 19,
-            branches: 13,
+            branches: 12,
             functions: 20,
             lines: 19
         },
