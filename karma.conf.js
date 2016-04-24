@@ -30,25 +30,23 @@ plugins: [
     // list of files / patterns to load in the browser
 
     files: [
-        'public/vendors/angular.min.js',
-        'public/vendors/angular-route.min.js',
-        'public/vendors/angular-material.min.js',
-        'public/vendors/ang-accordion.js',
-        'public/vendors/angular-messages.min.js',
-        'public/vendors/angular-password.min.js',
-        'public/vendors/angular-animate.min.js',
-        'public/vendors/angular-aria.min.js',
-        'public/vendors/ngStorage.min.js',
-        'public/vendors/smart-table.min.js',
-        'public/vendors/xeditable.min.js',
-        'node_modules/angular-mocks/angular-mocks.js',
+        'public/vendors/angular/angular.min.js',
+        'public/vendors/angular-route/angular-route.min.js',
+        'public/vendors/angular-material/angular-material.min.js',
+        'public/vendors/angular-material/angular-material-mocks.js',
+        'public/vendors/ang-accordion/js/ang-accordion.js',
+        'public/vendors/angular-messages/angular-messages.min.js',
+        'public/vendors/angular-password/angular-password.min.js',
+        'public/vendors/angular-animate/angular-animate.min.js',
+        'public/vendors/angular-aria/angular-aria.min.js',
+        'public/vendors/ngstorage/ngStorage.min.js',
+        'public/vendors/angular-smart-table/dist/smart-table.min.js',
+        'public/vendors/angular-xeditable/dist/js/xeditable.min.js',
+        'public/vendors/angular-mocks/angular-mocks.js',
         'public/scripts/**/*.js',
         'public/scripts/app.js',
-        'http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js',
-        'http://cdn.wijmo.com/5.20161.138/controls/wijmo.min.js',
-        'http://cdn.wijmo.com/5.20161.138/interop/angular/wijmo.angular.min.js',
-        'bower_components/bardjs/dist/bard.js',
-        'bower_components/sinon/lib/sinon.js'
+        'public/vendors/bardjs/dist/bard.js',
+        'public/vendors/sinon/lib/sinon.js'
     ],
 
     // list of files to exclude
