@@ -9,47 +9,47 @@
         <div>
           <md-menu-bar>
             <md-menu>
-              <button ng-click="$mdOpenMenu()">EXPLORE</button>
+              <button ng-click="$mdOpenMenu($event)">EXPLORE</button>
               <md-menu-content>
-                <md-menu-item><md-button href="#home" class="nav">Home</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#home" class="nav">Home</md-button></md-menu-item>
 
                 <md-menu-item>
                   <md-menu>
-                    <md-menu-item><md-button href="#about" class="nav" ng-click="$mdOpenMenu()">About Marching Mountains</md-button></md-menu-item>
+                    <md-menu-item><md-button href="#about" class="nav" ng-click="$mdOpenMenu($event)">About Marching Mountains</md-button></md-menu-item>
                     <md-menu-content width="3">
-                      <md-menu-item><md-button href="#discover-what" class="nav">What does Marching Mountains do?</md-button></md-menu-item>
-                      <md-menu-item><md-button href="#discover-who" class="nav">Who is involved?</md-button></md-menu-item>
-                      <md-menu-item><md-button href="#discover-how" class="nav">How does Marching Mountains help?</md-button></md-menu-item>
-                      <md-menu-item><md-button href="#discover-areas" class="nav">Where does Marching Mountains help?</md-button></md-menu-item>
+                      <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#discover-what" class="nav">What does Marching Mountains do?</md-button></md-menu-item>
+                      <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#discover-who" class="nav">Who is involved?</md-button></md-menu-item>
+                      <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#discover-how" class="nav">How does Marching Mountains help?</md-button></md-menu-item>
+                      <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#discover-areas" class="nav">Where does Marching Mountains help?</md-button></md-menu-item>
                     </md-menu-content>
                   </md-menu>
                 </md-menu-item>
 
-                <md-menu-item><md-button href="#faq" class="nav">FAQ</md-button></md-menu-item>
-                <md-menu-item><md-button href="#donate-instrument" class="nav">How To Donate</md-button></md-menu-item>
-                <md-menu-item><md-button href="#band-directors" class="nav">Band Director Info</md-button></md-menu-item>
-                <md-menu-item><md-button href="#press" class="nav">Press</md-button></md-menu-item>
-                <md-menu-item><md-button href="#stories" class="nav">Stories</md-button></md-menu-item>
-                <md-menu-item><md-button href="#contact" class="nav">Contact</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#faq" class="nav">FAQ</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#donate-instrument" class="nav">How To Donate</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#band-directors" class="nav">Band Director Info</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#press" class="nav">Press</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#stories" class="nav">Stories</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#contact" class="nav">Contact</md-button></md-menu-item>
               </md-menu-content>
             </md-menu>
 
             <md-menu>
-              <button ng-click="$mdOpenMenu()">INSTRUMENTS</button>
+              <button ng-click="$mdOpenMenu($event)">INSTRUMENTS</button>
               <md-menu-content>
 
-                <md-menu-item><md-button href="#donors" class="nav">Donate</md-button></md-menu-item>
-                <md-menu-item ng-if="isLoggedIn == false"><md-button href="#band-directors" class="nav">Request</md-button></md-menu-item>
-                <md-menu-item ng-if="isLoggedIn"><md-button href="#my-schools" class="nav">Request</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#donors" class="nav">Donate</md-button></md-menu-item>
+                <md-menu-item ng-if="isLoggedIn == false"><md-button ng-click="$mdCloseMenu($event)" href="#band-directors" class="nav">Request</md-button></md-menu-item>
+                <md-menu-item ng-if="isLoggedIn"><md-button ng-click="$mdCloseMenu($event)" href="#my-schools" class="nav">Request</md-button></md-menu-item>
 
               </md-menu-content>
             </md-menu>
 
             <md-menu>
-              <button ng-click="$mdOpenMenu()">SUPPORT</button>
+              <button ng-click="$mdOpenMenu($event)">SUPPORT</button>
               <md-menu-content>
 
-                <md-menu-item><md-button href="https://givemn.org/organization/Marching-Mountains" target="_blank" class="nav">Donate Funds</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="https://givemn.org/organization/Marching-Mountains" target="_blank" class="nav">Donate Funds</md-button></md-menu-item>
 
               </md-menu-content>
             </md-menu>
