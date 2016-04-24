@@ -43,75 +43,79 @@ myApp.controller('AddSchoolController', ['$scope', '$http', '$mdDialog', '$mdMed
             $scope.currentSchool = false;
         }
 
-        $scope.saveSchool = function(state, ev) {
-            var school = {
-                name: $scope.name,
-                website: $scope.website,
-                address_line1: $scope.address_line1,
-                address_line2: $scope.address_line2,
-                city: $scope.city,
-                state_id: state.state_id,
-                zip: $scope.zip,
-                phone: $scope.phone,
-                instructions: $scope.instructions,
-                instruments: InstrumentsFactory.currentInstruments
-            };
+        $scope.save = function(isValid) {
+            if (isValid)
+            {
+                var exists = (SchoolsFactory.currentSchool.school_name) ? true : false;
+                var school = {};
 
-            var emailMessage = {
-                from: 'mail@marchingmountains.org',
-                to: 'ian@gmail.com',
-                subject: 'New School Added: ' + $scope.name,
-                text: $scope.name + ' has been submitted for approval, please go to the admin dashboard to' +
-                ' approve this school. \n\nDo not reply to this e-mail. Mailbox is not monitored.'
-            };
+                if(exists){
+                    school = {
+                    school_id: SchoolsFactory.currentSchool.school_id,
+                    user_id: SchoolsFactory.currentSchool.user_id,
+                    name: $scope.name,
+                    website: $scope.website,
+                    address_line1: $scope.address_line1,
+                    address_line2: $scope.address_line2,
+                    city: $scope.city,
+                    state_id: $scope.selectedState.state_id,
+                    zip: $scope.zip,
+                    phone: $scope.phone,
+                    instructions: $scope.instructions,
+                    instruments: InstrumentsFactory.currentInstruments,
+                    approved: null
+                };
 
-            $http.post('/schools/email', emailMessage);
-
-            $scope.status = '  ';
-            $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-
-            $mdDialog.show(
-                $mdDialog.alert()
-                    .parent(angular.element(document.querySelector('#popupContainer')))
-                    .clickOutsideToClose(true)
-                    .title('Success!')
-                    .textContent('Your school has been submitted for approval. ' +
-                        'Once approved it will show in the instrument search!')
-                    .ariaLabel('Alert success')
-                    .ok('OK')
-                    .targetEvent(ev)
-            );
-
-            SchoolsFactory.postDirectorSchool(school).then(function() {
-                $scope.schools = SchoolsFactory.directorSchools;
-                InstrumentsFactory.currentInstruments = [];
-            });
-
-            $mdDialog.hide();
-        };
-
-        $scope.updateSchool = function(state) {
-            var school = {
-                school_id: SchoolsFactory.currentSchool.school_id,
-                user_id: SchoolsFactory.currentSchool.user_id,
-                name: $scope.name,
-                website: $scope.website,
-                address_line1: $scope.address_line1,
-                address_line2: $scope.address_line2,
-                city: $scope.city,
-                state_id: state.state_id,
-                zip: $scope.zip,
-                phone: $scope.phone,
-                instructions: $scope.instructions,
-                instruments: InstrumentsFactory.currentInstruments,
-                approved: null
-            };
-
-            SchoolsFactory.putDirectorSchool(school).then(function() {
+                SchoolsFactory.putDirectorSchool(school).then(function() {
                 $scope.schools = SchoolsFactory.schoolsList();
                 InstrumentsFactory.currentInstruments = [];
-            });
+                });
+            }
+                else{
+                    school = {
+                        name: $scope.name,
+                        website: $scope.website,
+                        address_line1: $scope.address_line1,
+                        address_line2: $scope.address_line2,
+                        city: $scope.city,
+                        state_id:  $scope.selectedState.state_id,
+                        zip: $scope.zip,
+                        phone: $scope.phone,
+                        instructions: $scope.instructions,
+                        instruments: InstrumentsFactory.currentInstruments
+                    };
+
+                    var emailMessage = {
+                        from: 'mail@marchingmountains.org',
+                        to: 'ianfelton@marchingmountains.org',
+                        subject: 'New School Added: ' + $scope.name,
+                        text: $scope.name + ' has been submitted for approval, please go to the admin dashboard to' +
+                        ' approve this school. \n\nDo not reply to this e-mail. Mailbox is not monitored.'
+                    };
+
+                    $http.post('/schools/email', emailMessage);
+
+                    $scope.status = '  ';
+                    $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('Success!')
+                            .textContent('Your school has been submitted for approval. ' +
+                                'Once approved it will show in the instrument search!')
+                            .ariaLabel('Alert success')
+                            .ok('OK')
+                    );
+
+                    SchoolsFactory.postDirectorSchool(school).then(function() {
+                        $scope.schools = SchoolsFactory.directorSchools;
+                        InstrumentsFactory.currentInstruments = [];
+                    });
+                }
             $mdDialog.hide();
+            }
         };
     }
 ]);
