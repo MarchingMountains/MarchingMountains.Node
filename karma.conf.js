@@ -59,8 +59,7 @@ plugins: [
       'public/scripts/specs/modal-controller-spec.js',
       'public/scripts/specs/schools-spec.js',
       'public/scripts/specs/test-spec.js',
-      'public/scripts/specs/temp-test-controller.js',
-      'public/scripts/specs/donors-controller-spec.js'
+      'public/scripts/specs/temp-test-controller.js'
     ],
 
 
@@ -84,10 +83,10 @@ plugins: [
         // the configure thresholds
         // Please set to integer values
         thresholdReporter: {
-            statements: 13,
-            branches: 5,
-            functions: 12,
-            lines: 13
+            statements: 17,
+            branches: 11,
+            functions: 18,
+            lines: 17
         },
 
 
