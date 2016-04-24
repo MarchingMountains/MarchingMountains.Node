@@ -33,7 +33,7 @@ plugins: [
         'public/vendors/angular/angular.min.js',
         'public/vendors/angular-route/angular-route.min.js',
         'public/vendors/angular-material/angular-material.min.js',
-        'public/vendors/angular-material/angular-material.mocks.js',
+        'public/vendors/angular-material/angular-material-mocks.js',
         'public/vendors/ang-accordion/js/ang-accordion.js',
         'public/vendors/angular-messages/angular-messages.min.js',
         'public/vendors/angular-password/angular-password.min.js',
