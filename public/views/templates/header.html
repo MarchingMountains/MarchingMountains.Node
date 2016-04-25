@@ -77,8 +77,8 @@
               </button>
 
               <md-menu-content>
-                <md-menu-item><md-button href="#account" class="nav">Edit Account Information</md-button></md-menu-item>
-                <md-menu-item ng-if="isLoggedIn === true && userID === 1"><md-button href="#admin" class="nav">Admin</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#account" class="nav">Edit Account Information</md-button></md-menu-item>
+                <md-menu-item  ng-if="isLoggedIn === true && userID === 1"><md-button ng-click="$mdCloseMenu($event)" href="#admin" class="nav">Admin</md-button></md-menu-item>
                 <md-menu-item><md-button ng-click=logOut() class="nav"><a href="/logout">Log Out</a></md-button></md-menu-item>
               </md-menu-content>
             </md-menu>
