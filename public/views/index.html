@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+      <meta charset="utf-8">
+      <!-- <title ng-bind="($title || 'Home') + ' - Marching Mountains'"></title> -->
+      <title>Marching Mountains</title>
+      <meta name="og:title" content="Marching Mountains" />
+      <meta name="fb:admins" content="100001106692168" />
+      <meta name="og:image" content="http://marchingmountains.org/images/MarchingMountainsNoBG.png" />
+      <meta name="og:type" content="non_profit" />
+      <meta name="og:url" content="http://marchingmountains.org" />
+      <meta name="og:site_name" content="Marching Mountains" />
+      <meta name="og:locality" content="Minneapolis" />
+      <meta name="og:region" content="MN" />
+      <meta name="og:postal-code" content="55403" />
+      <meta name="og:country-name" content="USA" />
+      <meta name="og:email" content="donate@marchingmountains.org" />
+      <meta name="og:phone_number" content="+1-612-232-9677" />
+      <meta name="google-site-verification" content="AeQ55zViroT-PDCy0NXhRIxCL8htQdhNG3n7tZgyy5Q" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <script type="text/javascript" src="/vendors/angular/angular.min.js"></script>
+      <script type="text/javascript" src="/vendors/angular-route/angular-route.min.js"></script>
+      <script type="text/javascript" src="/vendors/angular-animate/angular-animate.min.js"></script>
+      <script type="text/javascript" src="/vendors/angular-aria/angular-aria.min.js"></script>
+      <script type="text/javascript" src="/vendors/angular-messages/angular-messages.min.js"></script>
+      <script type="text/javascript" src="/vendors/angular-password/angular-password.min.js"></script>
+      <script type="text/javascript" src="/vendors/angular-material/angular-material.min.js"></script>
+      <script type="text/javascript" src="/vendors/ang-accordion/js/ang-accordion.js"></script>
+      <script type="text/javascript" src="/vendors/ngstorage/ngStorage.min.js"></script>
+      <script type="text/javascript" src="/vendors/angular-smart-table/dist/smart-table.min.js"></script>
+      <script type="text/javascript" src="/vendors/angular-xeditable/dist/js/xeditable.min.js"></script>
+
+
+      <script type="text/javascript" src="../app.js"></script>
+      <script type="text/javascript" src="/scripts/services/user.service.js"></script>
+      <script type="text/javascript" src="/scripts/services/instruments.factory.js"></script>
+      <script type="text/javascript" src="/scripts/services/schools.factory.js"></script>
+      <script type="text/javascript" src="/scripts/services/donations.factory.js"></script>
+      <script type="text/javascript" src="/scripts/services/admin.factory.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/school-search.controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/my-schools.controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/add-school.controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/school-info.controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/donate-now.controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/donate-received.controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/account.controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/login.controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/user.controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/phone-number.filter.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/school-donation.filter.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/header.controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/donors.controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/chip.controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/admin.controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/approve-school.controller.js"></script>
+      <script type="text/javascript" src="/scripts/controllers/register.controller.js"></script>
+
+      <link rel="stylesheet" type="text/css" href="/vendors/bootstrap/dist/css/bootstrap.min.css"/>
+      <link rel="stylesheet" type="text/css" href="/vendors/ang-accordion/css/ang-accordion.css"/>
+      <link rel="stylesheet" type="text/css" href="/vendors/angular-material/angular-material.min.css" />
+      <link rel="stylesheet" type="text/css" href="/vendors/angular-xeditable/dist/css/xeditable.min.css" />
+      <link rel="stylesheet" type="text/css" href="/styles/stylesheet.css"/>
+      <link href='https://fonts.googleapis.com/css?family=Abel|Open+Sans:400,600,700,800,300|Merriweather:400,300' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div id="wrap">
+        <div id="header">
+            <header class="container-fluid" ng-include="'/templates/header.html'"></header>
+        </div>
+        <main ng-view class="container"></main>
+    </div>
+    <div id="footer">
+        <footer class="container-fluid" ng-include="'/templates/footer.html'"></footer>
+    </div>
+  </body>
+</html>

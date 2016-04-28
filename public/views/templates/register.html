@@ -1,0 +1,54 @@
+<md-dialog class="md-padding">
+    <md-dialog-content class="loginModal">
+        <div ng-cloak class="md-inline-form">
+        <form name="registerForm" novalidate ng-submit="register(registerForm.$valid)">
+            <div layout-lg="row">
+                <md-input-container class="md-block">
+                    <label>Email</label>
+                    <input type="email" name="username" required ng-model="username"
+                           minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                    <div ng-messages="register.$error" role="alert">
+                        <div ng-message="required">
+                            Your email must be between 10 and 100 characters long and look like an e-mail address.
+                        </div>
+                        <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
+                            Your email must be between 10 and 100 characters long and look like an e-mail address.
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout-lg="row">
+                <md-input-container class="md-block">
+                    <label>Password</label>
+                    <input type="password" name="password" required ng-model="password"
+                           minlength="4" maxlength="50" />
+                    <div ng-messages="register.$error" role="alert">
+                        <div ng-message="required">
+                            Your password must be between 4 and 50 characters long.
+                        </div>
+                        <div ng-message-exp="['minlength', 'maxlength']">
+                            Your password must be between 4 and 50 characters long.
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Confirm Password</label>
+                    <input type="password" name="confirmPassword" ng-model="passwordConfirm"
+                           match-password="password" id="confirmPassword" required="" />
+                    <div ng-messages="registerForm.confirmPassword.$error"
+                         ng-if="registerForm.$submitted || registerForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple"
+                         class="error-messages slide-right">
+                        <div ng-message="required" class="message">Please confirm your password</div>
+                        <div ng-message="passwordMatch" class="message"> Your passwords did not match</div>
+                    </div>
+                </md-input-container>
+            </div><br />
+            <div layout-lg="row">
+                <p><md-button type="submit" class="md-raised md-primary" ng-disabled="registerForm.$invalid">Register</md-button></p>
+            </div>
+            </form>
+        </div>
+    </md-dialog-content>
+</md-dialog>

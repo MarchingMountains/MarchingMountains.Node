@@ -1,0 +1,71 @@
+<div class="addSchool">
+    <md-content>
+        <form name="schoolForm" novalidate ng-submit="save(schoolForm.$valid)">
+            <md-input-container class="md-block">
+                <input type="text" ng-model="name" placeholder="School Name" value="name" />
+            </md-input-container>
+            <!--Instruments-->
+            <md-input-container class="chipsdemoCustomInputs md-padding sillyChips">
+                <label>Instrument(s)</label>
+                <md-chips ng-model="selectedInstruments"
+                          md-transform-chip="transformChip($chip)"
+                          md-require-match="autocompleteDemoRequireMatch">
+                    <md-autocomplete md-selected-item="selectedItem"
+                                     md-search-text-change="searchTextChange(searchText)"
+                                     md-search-text="searchText"
+                                     md-selected-item-change="selectedItemChange(item)"
+                                     md-items="item in chipInstruments | filter:searchText"
+                                     md-item-text="item.instrument"
+                                     md-min-length="0">
+                        <span md-highlight-text="searchText">{{item.instrument}}</span>
+                    </md-autocomplete>
+                    <md-chip-template>
+                        <span>
+                          <strong>{{$chip.instrument}}</strong>
+                        </span>
+                    </md-chip-template>
+                </md-chips>
+                <br>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <input ng-model="website" type="url" required placeholder="School Website" value="website" />
+                <div ng-messages="schoolForm.$error" role="alert">
+                <div ng-message="required">
+                            Please enter your school website.
+                        </div>
+                        <div ng-message="url">
+                            Please enter a valid url.
+                        </div>
+                    </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <input type="text" ng-model="address_line1" placeholder="Address Line 1" value="address_line1" />
+            </md-input-container>
+            <md-input-container class="md-block">
+                <input type="text" ng-model="address_line2" placeholder="Address Line 2" value="address_line2" />
+            </md-input-container>
+            <md-input-container class="md-block">
+                <input type="text" ng-model="city" placeholder="City" value="city" />
+            </md-input-container>
+            <!--States-->
+            <md-select class="state-dropdown" ng-show="currentSchool != true" ng-model="selectedState"
+                       placeholder="State">
+                <md-option ng-value="state" ng-repeat="state in states.list">{{state.state}}</md-option>
+            </md-select>
+            <md-select class="state-dropdown" ng-show="currentSchool == true" ng-model="selectedState" placeholder="{{selectedState.state}}">
+                <md-option ng-value="state" ng-repeat="state in states.list">{{state.state}}</md-option>
+            </md-select>
+            <md-input-container class="md-block">
+                <input type="number" ng-model="zip" placeholder="Zip" />
+            </md-input-container>
+            <md-input-container class="md-block">
+                <input type="text" ng-model="phone" placeholder="phone" />
+            </md-input-container>
+            <md-input-container class="md-block">
+                <textarea ng-model="instructions" placeholder="Additional Shipping Instructions"></textarea>
+            </md-input-container>
+            <br>
+            <md-button type="submit" ng-disabled="schoolForm.$invalid">Save</md-button>
+        </form>
+    </md-content>
+</div>

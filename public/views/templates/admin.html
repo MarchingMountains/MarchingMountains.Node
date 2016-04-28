@@ -1,0 +1,123 @@
+<md-content>
+    <md-tabs md-dynamic-height="" md-border-bottom="">
+        <md-tab label="Users">
+            <table st-table="displayedUsers" st-safe-src="usersTable.list" class="table table-striped">
+                <thead>
+                <tr>
+                    <th colspan="6"><input st-search="" class="form-control" placeholder="Search Users..." type="text"/></th>
+                </tr>
+                <tr>
+                    <th st-sort="first_name">First Name</th>
+                    <th st-sort="last_name">Last Name</th>
+                    <th st-sort="email">Email</th>
+                    <th st-sort="phone">Phone #</th>
+                    <th st-sort="city">City</th>
+                    <th st-sort="state">State</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="user in displayedUsers">
+                    <td>{{user.first_name}}</td>
+                    <td>{{user.last_name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phone | tel}}</td>
+                    <td>{{user.city}}</td>
+                    <td>{{user.state}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </md-tab>
+        <md-tab label="Schools">
+            <table st-table="displayedSchools" st-safe-src="schoolsTable.list" class="table table-striped">
+                <thead>
+                <tr>
+                    <th colspan="10"><input st-search="" class="form-control" placeholder="Search Schools..." type="text"/></th>
+                </tr>
+                <tr>
+                    <th st-sort="school_name">School</th>
+                    <th st-sort="phone">School Phone #</th>
+                    <th st-sort="address_line1">Address</th>
+                    <th st-sort="city">City</th>
+                    <th st-sort="state">State</th>
+                    <th st-sort="zip">Zip</th>
+                    <th st-sort="user">Band Director</th>
+                    <th st-sort="approved">Verified?</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="school in displayedSchools">
+                    <!--<td>{{school.school_name}}</td>-->
+                    <td><a target="_blank" href="{{school.website}}">{{school.school_name}}</a></td>
+                    <td>{{school.phone | tel}}</td>
+                    <td>{{school.address_line1}} <br> {{school.address_line2}}</td>
+                    <!--<td></td>-->
+                    <td>{{school.city}}</td>
+                    <td>{{school.state}}</td>
+                    <td>{{school.zip}}</td>
+                    <td>{{school.first_name}} {{school.last_name}}</td>
+                    <td>
+                        <button class="btn btn-success" ng-if="school.approved == true"
+                                ng-click="approveSchoolModal(school, $event)">Verified
+                        </button>
+                        <button class="btn btn-primary" ng-if="school.approved == null"
+                                ng-click="approveSchoolModal(school, $event)">Pending
+                        </button>
+                        <button class="btn btn-danger" ng-if="school.approved == false"
+                                ng-click="approveSchoolModal(school, $event)">Denied
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </md-tab>
+        <md-tab label="Donations">
+            <table st-table="displayedDonations" st-safe-src="donationsTable.list" class="table table-striped">
+                <thead>
+                <tr>
+                    <th colspan="5"><input st-search="" class="form-control" placeholder="Search Donations..." type="text"/></th>
+                </tr>
+                <tr>
+                    <th st-sort="user">Donor Name</th>
+                    <th st-sort="instrument">Instrument</th>
+                    <th st-sort="school_name">School</th>
+                    <th st-sort="phone">Donor Phone #</th>
+                    <th st-sort="date">Date</th>
+                    <th st-sort="donation_received">Received?</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="donation in displayedDonations">
+                    <td>{{donation.first_name}} {{donation.last_name}}</td>
+                    <td>{{donation.instrument}}</td>
+                    <td>{{donation.school_name}}</td>
+                    <td>{{donation.phone | tel}}</td>
+                    <td>{{donation.date  | date:'M/d/yyyy'}}</td>
+                    <td>
+                        <p ng-if="donation.donation_received == true">Received</p>
+                        <p ng-if="donation.donation_received == false">In Transit</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </md-tab>
+        <md-tab label="Instruments"><div class="admin-list-container">
+          <div flex class="admin-instrument-list large-margin-top">
+            <div class="small-margin-top" ng-repeat="instrument in instruments.list">
+              <md-switch ng-model="instrument.active" aria-label="Instrument Activity Switch"
+                class="md-primary instrumentInline" ng-change="editInstrument(instrument)">
+              </md-switch>
+              <a href="#" editable-text="instrument.instrument"
+                onaftersave="editInstrument(instrument)">
+                {{instrument.instrument}}
+              </a>
+            </div>
+          </div>
+          <div class="md-1-line text-center large-margin-top">
+            <md-button ng-if="adding == false" ng-click="showAdd()">Add Instrument</md-button>
+            <form ng-show="adding == true">
+              <input type="text" ng-model="newInstrument" placeholder="New Instrument" />
+              <md-button ng-click="addInstrument()">Add Instrument</md-button>
+            </form>
+          </div></div>
+    </md-tabs>
+</md-content>

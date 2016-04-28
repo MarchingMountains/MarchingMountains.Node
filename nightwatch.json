@@ -1,0 +1,18 @@
+{
+  "src_folders": ["tests/uat/e2e"],
+  "page_objects_path" : "tests/uat/page_objects",
+  "output_folder": "reports",
+  "selenium": {
+    "start_process": true,
+    "server_path": "./tests/uat/bin/selenium-server-standalone-2.53.0.jar"
+  },
+  "test_runner" : "mocha",
+  "test_settings": {
+    "default": {
+      "launch_url": "http://localhost:3000"
+    },
+    "prod": {
+      "launch_url": "http://www.marchingmountains.org"
+    }
+  }
+}

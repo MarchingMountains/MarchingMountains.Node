@@ -1,0 +1,91 @@
+<div ng-controller="HeaderController">
+  <div class="col-md-2 col-md-offset-1 logotop">
+    <a href="/" title="home"><img src="/img/MarchingMountainsLogo2.png" alt="Marching Mountains Logo" class="logo"/></a>
+  </div>
+
+  <div class="col-md-6 navContainer" id="menubarContainer" layout="row" ng-cloak>
+    <md-toolbar class="md-menu-toolbar">
+      <div layout="row" class="navigation">
+        <div>
+          <md-menu-bar>
+            <md-menu>
+              <button ng-click="$mdOpenMenu($event)">EXPLORE</button>
+              <md-menu-content>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#home" class="nav">Home</md-button></md-menu-item>
+
+                <md-menu-item>
+                  <md-menu>
+                    <md-menu-item><md-button href="#about" class="nav" ng-click="$mdOpenMenu($event)">About Marching Mountains</md-button></md-menu-item>
+                    <md-menu-content width="3">
+                      <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#discover-what" class="nav">What does Marching Mountains do?</md-button></md-menu-item>
+                      <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#discover-who" class="nav">Who is involved?</md-button></md-menu-item>
+                      <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#discover-how" class="nav">How does Marching Mountains help?</md-button></md-menu-item>
+                      <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#discover-areas" class="nav">Where does Marching Mountains help?</md-button></md-menu-item>
+                    </md-menu-content>
+                  </md-menu>
+                </md-menu-item>
+
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#faq" class="nav">FAQ</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#donate-instrument" class="nav">How To Donate</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#band-directors" class="nav">Band Director Info</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#press" class="nav">Press</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#stories" class="nav">Stories</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#contact" class="nav">Contact</md-button></md-menu-item>
+              </md-menu-content>
+            </md-menu>
+
+            <md-menu>
+              <button ng-click="$mdOpenMenu($event)">INSTRUMENTS</button>
+              <md-menu-content>
+
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#donors" class="nav">Donate</md-button></md-menu-item>
+                <md-menu-item ng-if="isLoggedIn == false"><md-button ng-click="$mdCloseMenu($event)" href="#band-directors" class="nav">Request</md-button></md-menu-item>
+                <md-menu-item ng-if="isLoggedIn"><md-button ng-click="$mdCloseMenu($event)" href="#my-schools" class="nav">Request</md-button></md-menu-item>
+
+              </md-menu-content>
+            </md-menu>
+
+            <md-menu>
+              <button ng-click="$mdOpenMenu($event)">SUPPORT</button>
+              <md-menu-content>
+
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="https://givemn.org/organization/Marching-Mountains" target="_blank" class="nav">Donate Funds</md-button></md-menu-item>
+
+              </md-menu-content>
+            </md-menu>
+
+          </md-menu-bar>
+        </div>
+      </div>
+    </md-toolbar>
+  </div>
+
+  <div class="col-md-3" ng-if="isLoggedIn === false">
+    <md-button ng-click="openLoginModal($event)" class="login">Login</md-button>
+    <md-button ng-click="openRegisterModal($event)" class="login">Register</md-button>
+  </div>
+
+  <div class="col-md-3 login" ng-if="isLoggedIn === true" id="menubarContainer" layout="row" ng-cloak>
+    <md-toolbar class="md-menu-toolbar">
+      <div layout="row">
+        <div>
+          <md-menu-bar>
+            <md-menu>
+
+              <button ng-click="$mdOpenMenu()">Welcome,
+                <span>{{displayedUser}}</span>
+              </button>
+
+              <md-menu-content>
+                <md-menu-item><md-button ng-click="$mdCloseMenu($event)" href="#account" class="nav">Edit Account Information</md-button></md-menu-item>
+                <md-menu-item  ng-if="isLoggedIn === true && userID === 1"><md-button ng-click="$mdCloseMenu($event)" href="#admin" class="nav">Admin</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click=logOut() class="nav"><a href="/logout">Log Out</a></md-button></md-menu-item>
+              </md-menu-content>
+            </md-menu>
+          </md-menu-bar>
+        </div>
+      </div>
+    </md-toolbar>
+  </div>
+  <div class="col-md-1"></div>
+</div>
