@@ -1,4 +1,4 @@
-myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStorage', function($http, $window, $localStorage, $sessionStorage) {
+myApp.factory('UserService', ['$http', '$window', '$sessionStorage', function($http, $window, $sessionStorage) {
     var CurrentUser = {
         isLogged: false,
         factoryUserName: undefined,
@@ -25,7 +25,6 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
                 persistSession();
                 return response.data;
             }
-            console.log("CurrentUser inside Login:", CurrentUser);
         });
         return promise;
     }
@@ -46,21 +45,13 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
 
     function logOut() {
         CurrentUser = undefined;
-        delete $localStorage.CurrentUser;
+        delete $sessionStorage.CurrentUser;
         return $http.post('/logout');
     }
 
     function persistSession() {
-        $localStorage.CurrentUser = CurrentUser;
+        $sessionStorage.CurrentUser = CurrentUser;
     }
-
-    function restoreSession() {
-        if($localStorage.CurrentUser != undefined) {
-            CurrentUser = $localStorage.CurrentUser;
-        }
-    }
-
-    restoreSession();
 
     var publicFunctions = {
         askForCurrentUser: function() {
@@ -74,9 +65,6 @@ myApp.factory('UserService', ['$http', '$window', '$localStorage', '$sessionStor
         },
         logOutUser: function() {
             return logOut();
-        },
-        getUser: function() {
-            return getUserData();
         },
         watchCurrentUser: returnCurrentUser
     };
