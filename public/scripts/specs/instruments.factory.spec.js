@@ -1,44 +1,99 @@
 describe('Test for instruments factory', function() {
 
-    var sut;
-    var mockBackend;
+    beforeEach(function() {
+        module('myApp');
 
-    beforeEach(module('myApp'));
+        //Use bard to inject the adminFactory and a mock $http service
+        bard.inject(
+            '$rootScope',
+            '$httpBackend',
+            'InstrumentsFactory'
+        );
+    });
 
-    beforeEach(inject(function($rootScope, InstrumentsFactory, $httpBackend) {
-      scope = $rootScope.$new();
-
-      mockBackend = $httpBackend;
-
-      sut = InstrumentsFactory;
-
-      mockBackend.expectGET('/instruments')
-        .respond({instrument_id: 5, instrument: 'Clarinet'});
-
-      mockBackend.expectGET('/views/templates/home.html')
-        .respond('asds');
-    }));
-
-    it('should retrieve a instruments from the server', function() {
-    // when the controller first loads, this variable is undefined
-    console.log(sut.instruments);
-    expect(sut.instruments).toEqual({});
-
-    // we simulate a server response
-    mockBackend.flush();
-
-    // we check that our response is that same as that which we mocked
-    expect(sut.instruments.list).toEqual({instrument_id: jasmine.any(Number),
-      instrument: jasmine.any(String)});
-
+  it('should return instruments', function (done) {
+    //object to store result of our call
+    //Setup $http backend to return mock results
+    $httpBackend.when('GET', '/views/templates/home.html').respond({});
+    $httpBackend.when('GET', '/instruments').respond({'instruments':[{'instrument1':'flute'}]});
+    //call the method we are testing
+    InstrumentsFactory.factoryGetInstrumentsList();
+    //http://www.sitepoint.com/understanding-angulars-apply-digest/
+    $rootScope.$apply();
+    //flush the response from the fake http server
+    $httpBackend.flush();
+    expect(InstrumentsFactory.instruments.list).to.not.be.undefined;
+    //call done on the test
+    done();
   });
-  // actions that will performed after each test
+
+   it('should post instruments', function (done) {
+    //object to store result of our call
+    //Setup $http backend to return mock results
+    $httpBackend.when('GET', '/views/templates/home.html').respond({});
+    $httpBackend.when('GET', '/instruments').respond({'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('POST', '/instruments').respond({'instruments':[{'instrument1':'flute'}]});
+    //call the method we are testing
+    InstrumentsFactory.postInstrument({instrument_id:1});
+    //http://www.sitepoint.com/understanding-angulars-apply-digest/
+    $rootScope.$apply();
+    //flush the response from the fake http server
+    $httpBackend.flush();
+    expect(InstrumentsFactory.instruments.list).to.not.be.undefined;
+    //call done on the test
+    done();
+  });
+
+  it('should put instruments', function (done) {
+    //object to store result of our call
+    //Setup $http backend to return mock results
+    $httpBackend.when('GET', '/views/templates/home.html').respond({});
+    $httpBackend.when('GET', '/instruments').respond({'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('PUT', '/instruments/1').respond({'instruments':[{'instrument1':'flute'}]});
+    //call the method we are testing
+    InstrumentsFactory.putInstrument({instrument_id:1});
+    //http://www.sitepoint.com/understanding-angulars-apply-digest/
+    $rootScope.$apply();
+    //flush the response from the fake http server
+    $httpBackend.flush();
+    expect(InstrumentsFactory.instruments.list).to.not.be.undefined;
+    //call done on the test
+    done();
+  });
+
+  it('should delete instruments', function (done) {
+    //object to store result of our call
+    //Setup $http backend to return mock results
+    $httpBackend.when('GET', '/views/templates/home.html').respond({});
+    $httpBackend.when('GET', '/instruments').respond({'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('DELETE', '/instruments/1').respond({'instruments':[{'instrument1':'flute'}]});
+    //call the method we are testing
+    InstrumentsFactory.deleteInstrument(1);
+    //http://www.sitepoint.com/understanding-angulars-apply-digest/
+    $rootScope.$apply();
+    //flush the response from the fake http server
+    $httpBackend.flush();
+    expect(InstrumentsFactory.instruments.list).to.not.be.undefined;
+    //call done on the test
+    done();
+  });
+
+  it('should return states', function (done) {
+    //object to store result of our call
+    //Setup $http backend to return mock results
+    $httpBackend.when('GET', '/views/templates/home.html').respond({});
+    $httpBackend.when('GET', '/states').respond({'states':[{'state1':'wv'}]});
+    //call the method we are testing
+    InstrumentsFactory.getStates();
+    //http://www.sitepoint.com/understanding-angulars-apply-digest/
+    $rootScope.$apply();
+    //flush the response from the fake http server
+    $httpBackend.flush();
+    expect(InstrumentsFactory.statesList.list).to.not.be.undefined;
+    //call done on the test
+    done();
+  });
+
   afterEach(function() {
-    // ensure all expects set on the backend were actually called
-    mockBackend.verifyNoOutstandingExpectation();
-
-    // ensure all requests to the server have responded
-    mockBackend.verifyNoOutstandingRequest();
   });
-
 });
