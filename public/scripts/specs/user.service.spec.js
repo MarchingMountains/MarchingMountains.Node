@@ -48,6 +48,28 @@ describe('Service: userService', function() {
         done();
     });
 
+    it('should return false with bad credentials', function(done) {
+        //object to store test variables, same values as mock server
+        //Setup $http backend to return mock results
+        $httpBackend.when('GET', '/views/templates/home.html').respond({});
+        $httpBackend.when('POST', '/').respond(false);
+        //call the method we are testing
+        UserService.postLogin();
+        //http://www.sitepoint.com/understanding-angulars-apply-digest/
+        $rootScope.$apply();
+        //flush the response from the fake http server
+        $httpBackend.flush();
+        //Get the user from teh service
+        var currentUser = UserService.askForCurrentUser();
+        //Now write asserstions comparing what we expect the values to be against what is returned from the service
+        expect(currentUser.factoryUserName).to.equal(undefined);
+        expect(currentUser.isLogged).to.equal(false);
+        expect(currentUser.factoryFirstName).to.equal(undefined);
+        expect(currentUser.factoryUserId).to.equal(undefined);
+        //call done on the test
+        done();
+    });
+
     it('should register a user', function(done) {
         var mockUser = {
             isLogged: true,
