@@ -4,20 +4,18 @@ describe('Service: userService', function() {
         module('myApp');
 
         //Use bard to inject the adminFactory and a mock $http service
-        //$http', '$window', '$localStorage', '$sessionStorage
         bard.inject(
             'UserService',
             '$rootScope',
             '$httpBackend',
             '$window',
-            '$localStorage',
             '$sessionStorage'
         );
     });
 
     afterEach(function() {
         //Clear local storage after each test
-        $window.localStorage.clear();
+        $window.sessionStorage.clear();
     });
 
     it('should return the CurrentUser', function(done) {
@@ -88,10 +86,10 @@ describe('Service: userService', function() {
         expect(currentUser.factoryFirstName).to.equal(mockUser.factoryFirstName);
         expect(currentUser.factoryUserId).to.equal(mockUser.factoryUserId);
         function persistMockSession() {
-            $localStorage.CurrentUser = currentUser;
+            $sessionStorage.CurrentUser = currentUser;
         }
         persistMockSession();
-        expect($localStorage.CurrentUser).to.equal(currentUser);
+        expect($sessionStorage.CurrentUser).to.equal(currentUser);
         //call done on the test
         done();
     });
@@ -113,10 +111,10 @@ describe('Service: userService', function() {
         mockUser = currentUser;
         expect(mockUser).to.be.undefined;
         function persistMockSession() {
-            $localStorage.CurrentUser = currentUser;
+            $sessionStorage.CurrentUser = currentUser;
         }
         persistMockSession();
-        expect($localStorage.CurrentUser).to.equal(currentUser);
+        expect($sessionStorage.CurrentUser).to.equal(currentUser);
         //expect($window.$location.href).to.equal('/#/home');
         done();
     });
