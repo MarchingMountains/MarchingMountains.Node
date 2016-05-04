@@ -1,5 +1,5 @@
-myApp.factory('SchoolsFactory', ['$http', '$window', '$localStorage', '$mdDialog',
-  '$mdMedia', function($http, $window, $localStorage, $mdDialog, $mdMedia) {
+myApp.factory('SchoolsFactory', ['$http',   
+   function($http) {
 
   var factorySchoolsList = {};
   var schoolSearchResults = {};
