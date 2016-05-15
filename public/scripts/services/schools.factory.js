@@ -5,7 +5,6 @@ myApp.factory('SchoolsFactory', ['$http',
   var schoolSearchResults = {};
   var selectedInstrument = {};
   var selectedSchoolInfo = {};
-  var userID = false;
   var directorDonations = {};
 
   var getSchoolList = function(instrument) {
@@ -22,10 +21,10 @@ myApp.factory('SchoolsFactory', ['$http',
 
   var factoryGetDirectorSchools = function() {
     directorDonations.list = [];
-    userID = publicFunctions.userID;
-    var promise = $http.get('/schools/' + userID).then(function(response) {
+    var promise = $http.get('/schools/' + publicFunctions.userID).then(function(response) {
       if (response.data) {
         factorySchoolsList.list = response.data;
+        console.log("factorySchoolsList.list:"+factorySchoolsList.list);
         buildDonations(factorySchoolsList);
       } 
     });
@@ -33,7 +32,7 @@ myApp.factory('SchoolsFactory', ['$http',
   };
 
   var factoryPostDirectorSchools = function(school) {
-    var promise = $http.post('/schools/' + userID, school).then(function(response) {
+    var promise = $http.post('/schools/' + publicFunctions.userID, school).then(function(response) {
       if (response.data) {
       factoryGetDirectorSchools();
       } 
@@ -42,7 +41,7 @@ myApp.factory('SchoolsFactory', ['$http',
   };
 
   var factoryPutDirectorSchools = function(school) {
-    var promise = $http.put('/schools/' + userID, school).then(function(response) {
+    var promise = $http.put('/schools/' + publicFunctions.userID, school).then(function(response) {
       if (response.data) {
         factoryGetDirectorSchools();
       } 
