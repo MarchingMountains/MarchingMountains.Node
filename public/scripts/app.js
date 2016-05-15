@@ -93,6 +93,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
 
 }]);
 
+myApp.config(HttpProviderConfiguration);
+
+  HttpProviderConfiguration.$inject = ['$httpProvider'];
+
+  function HttpProviderConfiguration($httpProvider) {
+    $httpProvider.interceptors.push('UnauthorizedInterceptor');
+  }
+
 myApp.run(function(editableOptions) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 });
