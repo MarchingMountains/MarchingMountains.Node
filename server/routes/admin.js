@@ -9,7 +9,7 @@ function isLoggedIn(req, res, next){
             return next();
         }
     }
-    res.send(false);
+    res.sendStatus(401);
 }
 
 router.get('/schools', isLoggedIn, function(req, res) {
