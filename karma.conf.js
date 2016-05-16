@@ -51,7 +51,6 @@ plugins: [
 
     // list of files to exclude
     exclude: [
-      'public/scripts/specs/account.controller.spec.js',
       'public/scripts/specs/modal.controller.spec.js',
       'public/scripts/specs/schools.controller.spec.js'
     ],
@@ -77,10 +76,10 @@ plugins: [
         // the configure thresholds
         // Please set to integer values
         thresholdReporter: {
-            statements: 35,
-            branches: 22,
-            functions: 43,
-            lines: 35
+            statements: 44,
+            branches: 31,
+            functions: 50,
+            lines: 44
         },
 
 

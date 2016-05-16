@@ -1,4 +1,4 @@
-myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserService', function($scope, $http, $window, UserService) {
+myApp.controller('AccountController', ['$scope', '$http', 'UserService', function($scope, $http, UserService) {
 
     $scope.UserService = UserService;
     $scope.showForm = true;
@@ -10,7 +10,6 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
     $scope.loggedInUser = $scope.UserService.watchCurrentUser();
 
     var id = $scope.loggedInUser.factoryUserId;
-    console.log('id: ', id);
     retrieveUser(id);
     getStates();
 
@@ -19,8 +18,6 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
             if (response.data) {
                 $scope.states = response.data;
             } else {
-                console.log('failed to get state route');
-                $window.location.href = '/';
             }
         });
     }
@@ -32,12 +29,7 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
             if (response.data) {
                 $scope.user = response.data[0];
                 $scope.selectedState = response.data[0].state_id;
-            } else {
-                console.log('failed to get account route');
-                $window.location.href = '/';
             }
-        }, function(response) {
-            //$location.path('/unauthorized');
         });
     }
 
@@ -48,7 +40,6 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
 
             $scope.edited = false;
             $scope.showForm = true;
-            //var id = $scope.loggedInUser.factoryUserId;
 
             var data = {
                 email: $scope.user.email,
@@ -69,10 +60,7 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
                     $scope.showList = true;
                     $scope.showForm = false;
                     retrieveUser(id);
-                } else {
-                    console.log('failed to get account route');
-                    $window.location.href = '/';
-                }
+                } 
             });
         }
     };
@@ -100,9 +88,6 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
             $http.put('/account/password/' + id, data).then(function(response){
                 if (response.data) {
                     $scope.editedPassword = true;
-                } else {
-                console.log('failed to get account route');
-                $window.location.href = '/';
                 }
             });
         }
@@ -113,5 +98,4 @@ myApp.controller('AccountController', ['$scope', '$http', '$window', 'UserServic
         $scope.showForm = true;
         $scope.showList = false;
     };
-
 }]);
