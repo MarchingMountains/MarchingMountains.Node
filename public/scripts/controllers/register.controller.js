@@ -1,9 +1,6 @@
-myApp.controller('RegisterController', ['$scope', 'UserService', '$mdDialog', '$window',
-'$location', function($scope, UserService, $mdDialog) {
+myApp.controller('RegisterController', ['$scope', 'UserService', '$mdDialog', function($scope, UserService, $mdDialog) {
 
     $scope.UserService = UserService;
-    // $scope.loginErrorMessage;
-    // $scope.loggedInUser;
 
     $scope.register = function(isValid) {
         if (isValid) {
@@ -14,9 +11,7 @@ myApp.controller('RegisterController', ['$scope', 'UserService', '$mdDialog', '$
             $scope.UserService.postRegister(newUser)
             .then(function() {
                 $mdDialog.hide();
-            })
-            .catch(function() {
-                //Do something here. Dialog.
+            },function() {
             });
         }
     };
