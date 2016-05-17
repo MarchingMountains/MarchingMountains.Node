@@ -31,25 +31,23 @@ describe('testing the add school controller', function() {
 
         mockSchoolsFactory = 
          {
-            watchCurrentUser : function() {
-                return {
-                    factoryUserId:1
-                };
+            currentSchool : {
+                school_name:'testschool'
             }
         };
+
         mockInstrumentsFactory = 
          {
-            watchCurrentUser : function() {
-                return {
-                    factoryUserId:1
-                };
+            instruments :  {
+                  list:[{instrument:'Trumpet'}]
             }
         };
     });
 
     it('should load instrumets from the server', function(done) {
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        //var controller = $controller('AddSchoolController', { $scope: $scope });
+        var controller = $controller('AddSchoolController', { $scope: $scope, InstrumentsFactory:mockInstrumentsFactory, SchoolsFactory:mockSchoolsFactory });
+        expect(controller).to.not.be.undefined;
         done();
     });
 });
