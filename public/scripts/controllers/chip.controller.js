@@ -1,4 +1,4 @@
-myApp.controller('ChipController', ['InstrumentsFactory', 'SchoolsFactory', function(InstrumentsFactory, SchoolsFactory) {
+myApp.controller('ChipController', ['InstrumentsFactory', function(InstrumentsFactory) {
     var instrumentsList = InstrumentsFactory.instruments.list;
     var self = this;
 
