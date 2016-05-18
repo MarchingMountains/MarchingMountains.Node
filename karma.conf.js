@@ -76,10 +76,10 @@ plugins: [
         // the configure thresholds
         // Please set to integer values
         thresholdReporter: {
-            statements: 54,
-            branches: 43,
-            functions: 57,
-            lines: 54
+            statements: 62,
+            branches: 47,
+            functions: 68,
+            lines: 62
         },
 
 

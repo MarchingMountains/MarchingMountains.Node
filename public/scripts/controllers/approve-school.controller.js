@@ -11,13 +11,13 @@ myApp.controller('ApproveSchoolController', ['$scope', '$http', '$mdDialog', '$m
         $mdDialog.hide();
 
         if(status == true) {
-            approvalStatus = 'Approved. Congratulations! Your school will now show up in the donor search.';
+            approvalStatus = 'Congratulations! Your school has been approved with Marching Mountains. Your school will now show up in the donor search.';
         } else {
-            approvalStatus = 'Denied. Please contact Ian Felton with any questions.';
+            approvalStatus = 'We\'re sorry to say that after a review, we couldn\'t add your school to Marching Mountains. Please contact us with any questions.';
         }
 
         var emailMessage = {
-            from: 'mail@marchingmountains.org',
+            from: 'ianfelton@marchingmountains.org',
             to: AdminFactory.currentSchool.email,
             subject: 'School Status Update for: ' + AdminFactory.currentSchool.school_name,
             text: AdminFactory.currentSchool.school_name + ' status has been set to ' + approvalStatus +
