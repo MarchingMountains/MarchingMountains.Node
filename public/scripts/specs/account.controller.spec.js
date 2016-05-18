@@ -148,20 +148,6 @@ describe('testing the Account controller', function() {
         done();
     });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     it('should submit account form', function(done) {
        $httpBackend.when('GET', '/account/1').respond([{state_id:'2'}]);
         $httpBackend.when('GET', '/states/').respond({state:'state'});
