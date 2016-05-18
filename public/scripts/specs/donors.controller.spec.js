@@ -28,14 +28,14 @@ beforeEach(function() {
       askForCurrentUser: function() {
         return {email: 'hi@here.com', first_name: 'Bob', user_id: '1', factoryUserId:10 };
       }
-    }
+    };
     //set up mock donations factory with the promise we want it to resolve and a value for current user donations
     var mockDonationsFactory = {
       factoryGetCurrentUserDonations : function() {
         return promise; 
       },
       currentUserDonations: {donations: [{id:1}]}
-    }
+    };
     //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
     var controller = $controller('DonorsController', { $scope: $scope, UserService:mockUserService, DonationsFactory:mockDonationsFactory });
     // Propagate promise resolution to 'then' functions using $apply().
