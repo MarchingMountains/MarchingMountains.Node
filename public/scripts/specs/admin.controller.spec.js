@@ -52,7 +52,7 @@ describe('testing the Admin controller', function() {
             },
             currentSchool : function() {
                 return {};
-            },
+            }
         };
 
         mockInstrumentsFactory = 
