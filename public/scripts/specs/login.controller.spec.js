@@ -87,6 +87,20 @@ describe('testing the LoginController', function() {
       done();
     });
 
+      it('should login with false response', function(done) {
+             //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
+        var controller = $controller('LoginController', { $scope: $scope, UserService:mockUserService});
+        $scope.login(true);
+        //apply scope to resolve all the promises
+        deferred.resolve(false);
+        $rootScope.$apply();
+        $httpBackend.flush();
+        expect(controller).to.not.be.undefined;
+        expect($scope.loginErrorMessage).to.equal('Invalid Username or Password');
+      done();
+    });
+
+
     it('should not register', function(done) {
       var mockWindow = {
           location: { href:''}
