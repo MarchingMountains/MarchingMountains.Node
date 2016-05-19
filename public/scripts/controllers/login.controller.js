@@ -1,5 +1,5 @@
-myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog', '$mdMedia',
-'$window', '$location', function($scope, UserService, $mdDialog, $mdMedia, $window, $location) {
+myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog',
+'$window', function($scope, UserService, $mdDialog, $window) {
 
     $scope.UserService = UserService;
     $scope.loginErrorMessage;
