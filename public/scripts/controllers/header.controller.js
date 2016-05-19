@@ -1,12 +1,12 @@
-myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'UserService', '$localStorage', '$window',
-    function($scope, $http, $mdDialog, $mdMedia, UserService,  $localStorage, $window) {
+myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'UserService', '$sessionStorage', '$window',
+    function($scope, $http, $mdDialog, $mdMedia, UserService,  $sessionStorage, $window) {
 
         $scope.UserService = UserService;
         $scope.first_name;
         $scope.user_name;
         $scope.isLoggedIn = false;
         $scope.userID;
-        $scope.storage = $localStorage;
+        $scope.storage = $sessionStorage;
 
         $scope.openLoginModal = function(ev) {
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
@@ -45,7 +45,7 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
         };
 
         $scope.$watch($scope.UserService.watchCurrentUser, function(newValue, oldValue){
-            if ($scope.UserService.watchCurrentUser() != undefined) {
+            if (newValue != undefined) {
                 $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
                 $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
                 $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
