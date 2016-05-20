@@ -45,8 +45,7 @@ plugins: [
         'public/vendors/angular-mocks/angular-mocks.js',
         'public/scripts/**/*.js',
         'public/scripts/app.js',
-        'public/vendors/bardjs/dist/bard.js',
-        'public/vendors/sinon/lib/sinon.js'
+        'public/vendors/bardjs/dist/bard.js'
     ],
 
     // list of files to exclude
@@ -75,7 +74,7 @@ plugins: [
         // Please set to integer values
         thresholdReporter: {
             statements: 97,
-            branches: 86,
+            branches: 89,
             functions: 98,
             lines: 97
         },

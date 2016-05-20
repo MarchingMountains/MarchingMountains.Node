@@ -32,10 +32,10 @@ describe('testing the HeaderController', function() {
         //get a promise instance
         promise = deferred.promise;
         var CurrentUser = {
+          factoryFirstName: 'Ian',
           isLogged: false,
-          factoryUserName: undefined,
-          factoryFirstName: undefined,
-          factoryUserId: undefined
+          factoryUserName: 'ian@ian.com',
+          factoryUserId: 1
         };
         mockUserService = {
           askForCurrentUser: function() {
@@ -45,6 +45,7 @@ describe('testing the HeaderController', function() {
                 return CurrentUser;
             },
             logOutUser: function(){
+              CurrentUser = null;
               return promise;
             }
         };
@@ -58,6 +59,23 @@ describe('testing the HeaderController', function() {
         $rootScope.$apply();
         $httpBackend.flush();
         expect(controller).to.not.be.undefined;
+      done();
+    });
+
+    it('should display a username', function(done) {
+      var sample = {first_name: '', factoryUserName: 'ian@ian.com',}
+        mockUserService.watchCurrentUser = function() {
+          return sample;
+        };
+             //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
+        var controller = $controller('HeaderController', { $scope: $scope, UserService:mockUserService });
+        //apply scope to resolve all the promises
+        $rootScope.$apply();
+        sample.first_name = 'Ian';
+        $rootScope.$apply();
+        $httpBackend.flush();
+        expect(controller).to.not.be.undefined;
+        expect($scope.displayedUser).to.equal('ian@ian.com');
       done();
     });
 
