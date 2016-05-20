@@ -1,7 +1,7 @@
 myApp.controller('MySchoolsController',
 	['$scope', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory',
-	'DonationsFactory', 'UserService', function($scope, $mdDialog, $mdMedia,
-		SchoolsFactory, InstrumentsFactory,DonationsFactory, UserService, AddSchoolController, tel) {
+	'DonationsFactory', 'UserService',  function($scope, $mdDialog, $mdMedia,
+		SchoolsFactory, InstrumentsFactory,DonationsFactory, UserService, AddSchoolController) {
 
 	$scope.schools = [];
 	$scope.donations = [];
