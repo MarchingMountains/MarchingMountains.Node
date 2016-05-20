@@ -31,7 +31,7 @@ describe('testing the SchoolSearchController', function() {
         $httpBackend.when('GET', '/views/templates/donors.html').respond({});
         $httpBackend.when('GET', '../views/modals/donate-now-modal.html').respond({});
         $httpBackend.when('GET', '/views/templates/school-info.html').respond({});
-        
+        sinon.spy($mdDialog,'show');
          //setup $q for testing promise in controller
         deferred = $q.defer();
         //get a promise instance
@@ -51,7 +51,7 @@ describe('testing the SchoolSearchController', function() {
         mockInstrumentsFactory = 
          {
             instruments :  {
-                  list:[{instrument:'Trumpet'},{instrument:'Clarinet'}]
+                  list:[{instrument:'Trumpet', active:true},{instrument:'Clarinet'}]
             },
             factoryGetInstrumentsList: function() {
                return promise;
@@ -115,6 +115,18 @@ describe('testing the SchoolSearchController', function() {
       done();
     });
 
+    it('should have active instruments', function(done) {
+        //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
+        var controller = $controller('SchoolSearchController', { $scope: $scope, UserService:mockUserService, InstrumentsFactory:mockInstrumentsFactory, SchoolsFactory:mockSchoolsFactory });
+        //apply scope to resolve all the promises
+        deferred.resolve();
+        $rootScope.$apply();
+        $httpBackend.flush();
+        expect(controller).to.not.be.undefined;
+        expect($scope.instruments).to.not.be.empty;
+      done();
+    });
+
     it('should index search school', function(done) {
              //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
         var controller = $controller('SchoolSearchController', { $scope: $scope, UserService:mockUserService, InstrumentsFactory:mockInstrumentsFactory, SchoolsFactory:mockSchoolsFactory });
@@ -164,6 +176,44 @@ describe('testing the SchoolSearchController', function() {
         $httpBackend.flush();
         expect(controller).to.not.be.undefined;
         expect($location.path()).to.equal('/home');
+      done();
+    });
+
+    it('should redirect donate now when no user', function(done) {
+      mockUserService.askForCurrentUser= function() {
+        return {};
+      }
+        //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
+        var controller = $controller('SchoolSearchController', {$scope: $scope, UserService:mockUserService, InstrumentsFactory:mockInstrumentsFactory, SchoolsFactory:mockSchoolsFactory });
+        //apply scope to resolve all the promises
+        $scope.donateNowModal({});
+        deferred.resolve();
+        $rootScope.$apply();
+        $httpBackend.flush();
+        expect(controller).to.not.be.undefined;
+        expect($mdDialog.show).to.have.been.calledOnce;
+      done();
+    });
+
+    it('should redirect donate now when no user with other media option', function(done) {
+      mockUserService.askForCurrentUser= function() {
+        return {};
+      }
+      $mdMedia = function(x){
+          if (x==='sm')
+            return true;
+          if (x=='xs')
+            return false;
+        };
+        //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
+        var controller = $controller('SchoolSearchController', {$mdMedia:$mdMedia, $scope: $scope, UserService:mockUserService, InstrumentsFactory:mockInstrumentsFactory, SchoolsFactory:mockSchoolsFactory });
+        //apply scope to resolve all the promises
+        $scope.donateNowModal({});
+        deferred.resolve();
+        $rootScope.$apply();
+        $httpBackend.flush();
+        expect(controller).to.not.be.undefined;
+        expect($mdDialog.show).to.have.been.calledOnce;
       done();
     });
 });
