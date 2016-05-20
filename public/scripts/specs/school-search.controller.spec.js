@@ -28,6 +28,9 @@ describe('testing the SchoolSearchController', function() {
 
         $scope = $rootScope.$new();
         $httpBackend.when('GET', '/views/templates/home.html').respond({});
+        $httpBackend.when('GET', '/views/templates/donors.html').respond({});
+        $httpBackend.when('GET', '../views/modals/donate-now-modal.html').respond({});
+        $httpBackend.when('GET', '/views/templates/school-info.html').respond({});
         
          //setup $q for testing promise in controller
         deferred = $q.defer();
@@ -82,6 +85,13 @@ describe('testing the SchoolSearchController', function() {
             },
             schoolSearchResults: {
               list: [{school:'school'}]
+            },
+            factoryGetSchoolsList: function(school){
+              return promise;
+            },
+            factorySetSelectedSchoolInfo: function(selectedSchool)
+            {
+
             }
         };
       mockDonationsFactory = {
@@ -95,44 +105,65 @@ describe('testing the SchoolSearchController', function() {
       }
     });
 
-    it('should transform chips', function(done) {
+    it('should make a controller', function(done) {
              //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
         var controller = $controller('SchoolSearchController', { $scope: $scope, UserService:mockUserService, InstrumentsFactory:mockInstrumentsFactory, SchoolsFactory:mockSchoolsFactory });
         //apply scope to resolve all the promises
         $rootScope.$apply();
         $httpBackend.flush();
         expect(controller).to.not.be.undefined;
+      done();
+    });
+
+    it('should index search school', function(done) {
+             //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
+        var controller = $controller('SchoolSearchController', { $scope: $scope, UserService:mockUserService, InstrumentsFactory:mockInstrumentsFactory, SchoolsFactory:mockSchoolsFactory });
+        //apply scope to resolve all the promises
+        $scope.indexSearchSchool ({instrument:'trumpet'});
+        deferred.resolve();
+        $rootScope.$apply();
+        $httpBackend.flush();
+        expect(controller).to.not.be.undefined;
+        expect($location.path()).to.equal('/donors');
+      done();
+    });
+
+    it('should search school', function(done) {
+        //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
+        var controller = $controller('SchoolSearchController', {$scope: $scope, UserService:mockUserService, InstrumentsFactory:mockInstrumentsFactory, SchoolsFactory:mockSchoolsFactory });
+        //apply scope to resolve all the promises
+        $scope.searchSchool({});
+        deferred.resolve();
+        $rootScope.$apply();
+        $httpBackend.flush();
+        expect(controller).to.not.be.undefined;
+        expect($scope.schoolSearchResults[0].school).to.equal('school');
+      done();
+    });
+
+    it('should go to school page', function(done) {
+        //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
+        var controller = $controller('SchoolSearchController', {$scope: $scope, UserService:mockUserService, InstrumentsFactory:mockInstrumentsFactory, SchoolsFactory:mockSchoolsFactory });
+        //apply scope to resolve all the promises
+        $scope.goToSchoolPage({});
+        deferred.resolve();
+        $rootScope.$apply();
+        $httpBackend.flush();
+        expect(controller).to.not.be.undefined;
+        expect($location.path()).to.equal('/school-info');
       done();
     });
 
     it('should donate now', function(done) {
-      $httpBackend.when('POST', '/donations/email').respond({});
-             //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('SchoolSearchController', { $scope: $scope, UserService:mockUserService, InstrumentsFactory:mockInstrumentsFactory, SchoolsFactory:mockSchoolsFactory });
-        //apply scope to resolve all the promises
-  //      $scope.donateNow({});
-        deferred.resolve();
-        $rootScope.$apply();
-        $httpBackend.flush();
-        expect(controller).to.not.be.undefined;
-      done();
-    });
-
-    it('should flip some other switches', function(done) {
-        $mdMedia = function(x){
-          if (x==='xs')
-            return false;
-        };
-
         //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('SchoolSearchController', { $mdMedia:$mdMedia, $scope: $scope, UserService:mockUserService, InstrumentsFactory:mockInstrumentsFactory, SchoolsFactory:mockSchoolsFactory });
+        var controller = $controller('SchoolSearchController', {$scope: $scope, UserService:mockUserService, InstrumentsFactory:mockInstrumentsFactory, SchoolsFactory:mockSchoolsFactory });
         //apply scope to resolve all the promises
-//        $scope.donateNow({});
+        $scope.donateNowModal({});
         deferred.resolve();
         $rootScope.$apply();
         $httpBackend.flush();
         expect(controller).to.not.be.undefined;
+        expect($location.path()).to.equal('/home');
       done();
     });
 });
-
