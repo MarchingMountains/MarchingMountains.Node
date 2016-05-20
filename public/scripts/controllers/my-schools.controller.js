@@ -1,7 +1,7 @@
 myApp.controller('MySchoolsController',
 	['$scope', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory',
-	'DonationsFactory', 'UserService',  function($scope, $mdDialog, $mdMedia,
-		SchoolsFactory, InstrumentsFactory,DonationsFactory, UserService, AddSchoolController) {
+	'DonationsFactory', 'UserService', function($scope, $mdDialog, $mdMedia,
+		SchoolsFactory, InstrumentsFactory, DonationsFactory, UserService, AddSchoolController, DonationReceivedController) {
 
 	$scope.schools = [];
 	$scope.donations = [];
@@ -29,7 +29,7 @@ myApp.controller('MySchoolsController',
 		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 		$mdDialog.show({
 			templateUrl: '../views/modals/add-school.html',
-			controller: 'AddSchoolController',
+			controller: AddSchoolController,
 			parent: angular.element(document.body),
 			targetEvent: ev,
 			clickOutsideToClose: true,
@@ -41,7 +41,7 @@ myApp.controller('MySchoolsController',
 		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 		$mdDialog.show({
 			templateUrl: '../views/modals/add-school.html',
-			controller: 'AddSchoolController',
+			controller: AddSchoolController,
 			parent: angular.element(document.body),
 			targetEvent: ev,
 			clickOutsideToClose: true,
@@ -54,7 +54,7 @@ myApp.controller('MySchoolsController',
 		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 		$mdDialog.show({
 			templateUrl: '../views/modals/donate-received-modal.html',
-			controller: 'DonationReceivedController',
+			controller: DonationReceivedController,
 			parent: angular.element(document.body),
 			targetEvent: ev,
 			clickOutsideToClose: true,
