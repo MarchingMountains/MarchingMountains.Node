@@ -1,4 +1,4 @@
-describe('core filter', function() {
+describe('phone filter', function() {
     var $filter;
 
     beforeEach(module('myApp'));
