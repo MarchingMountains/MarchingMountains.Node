@@ -46,6 +46,7 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
 
         $scope.$watch($scope.UserService.watchCurrentUser, function(newValue, oldValue){
             if (newValue != undefined) {
+                console.log("newValue"+JSON.stringify(newValue));
                 $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
                 $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
                 $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
