@@ -1,4 +1,4 @@
-myApp.controller('SchoolSearchController', ['$scope', '$http', '$location',
+angular.module('myApp').controller('SchoolSearchController', ['$scope', '$http', '$location',
 '$mdDialog', '$mdMedia', 'InstrumentsFactory', 'SchoolsFactory', 'UserService',function($scope,
   $http, $location, $mdDialog, $mdMedia, InstrumentsFactory, SchoolsFactory, UserService) {
 
@@ -15,7 +15,7 @@ myApp.controller('SchoolSearchController', ['$scope', '$http', '$location',
         var instrumentsList = $scope.InstrumentsFactory.instruments.list;
         $scope.instruments = [];
         for (var i = 0; i < instrumentsList.length; i++) {
-            if (instrumentsList[i].active == true) {
+            if (instrumentsList[i].active === true) {
                 $scope.instruments.push(instrumentsList[i]);
             }
         }

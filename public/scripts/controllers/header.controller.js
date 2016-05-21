@@ -1,11 +1,11 @@
-myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'UserService', '$sessionStorage', '$window',
+angular.module('myApp').controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'UserService', '$sessionStorage', '$window',
     function($scope, $http, $mdDialog, $mdMedia, UserService, $sessionStorage, $window) {
 
         $scope.UserService = UserService;
-        $scope.first_name;
-        $scope.user_name;
+        $scope.first_name = '';
+        $scope.user_name = '';
         $scope.isLoggedIn = false;
-        $scope.userID;
+        $scope.userID = '';
         $scope.storage = $sessionStorage;
 
         $scope.openLoginModal = function(ev) {
@@ -55,7 +55,7 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
         });
 
         var welcomeText = function() {
-            if ($scope.first_name != undefined && $scope.first_name != '') {
+            if ($scope.first_name !== undefined && $scope.first_name !== '') {
                 $scope.displayedUser = $scope.first_name;
             } else {
                 $scope.displayedUser = $scope.user_name;

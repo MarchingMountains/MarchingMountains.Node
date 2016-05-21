@@ -1,4 +1,4 @@
-myApp.controller('AccountController', ['$scope', '$http', 'UserService', function($scope, $http, UserService) {
+angular.module('myApp').controller('AccountController', ['$scope', '$http', 'UserService', function($scope, $http, UserService) {
 
     $scope.UserService = UserService;
     $scope.showForm = true;

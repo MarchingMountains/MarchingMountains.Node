@@ -17,6 +17,7 @@ module.exports = function () {
 		build: './build/',
 		temp: temp,
 		report: report,
+		client:client
 	};
 
 	/**

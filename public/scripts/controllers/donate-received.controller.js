@@ -1,13 +1,8 @@
-myApp.controller('DonationReceivedController', ['$scope', '$http', '$mdDialog', '$mdMedia',
+angular.module('myApp').controller('DonationReceivedController', ['$scope', '$http', '$mdDialog', '$mdMedia',
 'SchoolsFactory', 'DonationsFactory', function($scope, $http, $mdDialog, $mdMedia,
   SchoolsFactory, DonationsFactory) {
 
     $scope.confirmReceived = function(ev) {
-
-        var donationReceived = {
-            donation_id: DonationsFactory.currentDonation.donation_id,
-            donation_received: true
-        };
 
         var emailMessage = {
             from: 'mail@marchingmountains.org',

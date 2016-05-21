@@ -1,4 +1,4 @@
-myApp.filter('tel', function() {
+angular.module('myApp').filter('tel', function() {
     return function(tel) {
         if (!tel) { return ''; }
 
@@ -33,7 +33,7 @@ myApp.filter('tel', function() {
                 return tel;
         }
 
-        if (country == 1) {
+        if (country === 1) {
             country = '';
         }
 

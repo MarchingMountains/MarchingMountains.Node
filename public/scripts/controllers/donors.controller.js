@@ -1,4 +1,4 @@
-myApp.controller('DonorsController', ['$scope', 'DonationsFactory', 'UserService',
+angular.module('myApp').controller('DonorsController', ['$scope', 'DonationsFactory', 'UserService',
   function($scope, DonationsFactory, UserService) {
 
       $scope.DonationsFactory = DonationsFactory;

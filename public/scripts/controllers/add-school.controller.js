@@ -1,4 +1,4 @@
-myApp.controller('AddSchoolController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory',
+angular.module('myApp').controller('AddSchoolController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory',
     function($scope, $http, $mdDialog, $mdMedia, SchoolsFactory, InstrumentsFactory) {
         var instrumentsList = InstrumentsFactory.instruments.list;
         var factoryCurrentSchool = SchoolsFactory.currentSchool.school_name;

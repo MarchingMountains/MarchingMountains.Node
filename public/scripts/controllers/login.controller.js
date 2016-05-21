@@ -1,10 +1,10 @@
-myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog',
+angular.module('myApp').controller('LoginController', ['$scope', 'UserService', '$mdDialog',
 '$window', function($scope, UserService, $mdDialog, $window) {
 
     $scope.UserService = UserService;
-    $scope.loginErrorMessage;
-    $scope.loggedInUser;
-    $scope.password_confirm;
+    $scope.loginErrorMessage = '';
+    $scope.loggedInUser = '';
+    $scope.password_confirm = '';
 
     $scope.login = function(isValid) {
         if (isValid) {

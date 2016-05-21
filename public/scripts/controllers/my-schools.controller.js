@@ -1,4 +1,4 @@
-myApp.controller('MySchoolsController',
+angular.module('myApp').controller('MySchoolsController',
 	['$scope', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory',
 	'DonationsFactory', 'UserService', function($scope, $mdDialog, $mdMedia,
 		SchoolsFactory, InstrumentsFactory, DonationsFactory, UserService, AddSchoolController, DonationReceivedController) {
