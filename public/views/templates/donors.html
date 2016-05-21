@@ -24,7 +24,11 @@
   <div class="row margin-top">
     <div class="col-md-8">
       <h4 ng-show="selectedInstrument"><strong>Search results for: </strong> {{selectedInstrument.instrument}}</h4>
-      <h5 ng-show="selectedInstrument && !schoolSearchResults[0].school_id">No schools are in need of a {{selectedInstrument.instrument}} at this time</h5>
+      <h5 ng-show="selectedInstrument && !schoolSearchResults[0].school_id"><p>Right now, none of the schools have said they are in need of a {{selectedInstrument.instrument}}. But this will change soon. Please ship your instrument to Marching Mountains and we'll get it to the next school that needs it.</p>
+      <p><b>Marching Mountains</b></p>
+      <p>1449 Andmore Ave.</p>
+      <p>Morgantown, WV 26505</p>
+      </h5>
       <ang-accordion one-at-a-time="true" ng-repeat="school in schoolSearchResults">
         <collapsible-item item-title="{{school.school_name}}">
           <div>
