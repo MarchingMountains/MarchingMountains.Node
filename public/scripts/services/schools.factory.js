@@ -1,4 +1,4 @@
-myApp.factory('SchoolsFactory', ['$http',   
+angular.module('myApp').factory('SchoolsFactory', ['$http',   
    function($http) {
 
   var factorySchoolsList = {};

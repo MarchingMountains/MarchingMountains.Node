@@ -1,4 +1,4 @@
-myApp.factory('InstrumentsFactory', ['$http', function($http) {
+angular.module('myApp').factory('InstrumentsFactory', ['$http', function($http) {
   var instruments = {};
   var factoryStatesList = {};
 
@@ -18,22 +18,22 @@ myApp.factory('InstrumentsFactory', ['$http', function($http) {
 
   var factoryPutInstrument = function(instrument) {
     var instrumentID = instrument.instrument_id;
-    var promise = $http.put('/instruments/' + instrumentID, instrument).then(function(response) {
+    var promise = $http.put('/instruments/' + instrumentID, instrument).then(function() {
       getInstrumentsList();
     });
     return promise;
   };
 
   var factoryPostInstrument = function(instrument) {
-    var instrument = {'instrument': instrument};
-    var promise = $http.post('/instruments', instrument).then(function(response) {
+    var mapInstrument = {'instrument': instrument};
+    var promise = $http.post('/instruments', mapInstrument).then(function() {
       getInstrumentsList();
     });
     return promise;
   };
 
   var factoryDeleteInstrument = function(instrumentID) {
-    var promise = $http.delete('/instruments/' + instrumentID).then(function(response) {
+    var promise = $http.delete('/instruments/' + instrumentID).then(function() {
       getInstrumentsList();
     });
     return promise;

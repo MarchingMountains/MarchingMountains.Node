@@ -1,4 +1,4 @@
-myApp.factory('UserService', ['$http', '$window', '$sessionStorage', function($http, $window, $sessionStorage) {
+angular.module('myApp').factory('UserService', ['$http', '$window', '$sessionStorage', function($http, $window, $sessionStorage) {
     var CurrentUser = {
         isLogged: false,
         factoryUserName: undefined,

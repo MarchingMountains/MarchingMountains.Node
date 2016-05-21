@@ -1,4 +1,4 @@
-myApp.controller('RegisterController', ['$scope', 'UserService', '$mdDialog', function($scope, UserService, $mdDialog) {
+angular.module('myApp').controller('RegisterController', ['$scope', 'UserService', '$mdDialog', function($scope, UserService, $mdDialog) {
 
     $scope.UserService = UserService;
 

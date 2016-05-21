@@ -10,7 +10,7 @@ describe('phone filter', function() {
             expect($filter('tel')(1111111111)).to.equal('(111) 111-1111');
         });
          it('should be able to format 11 phone numbers', function() {
-            expect($filter('tel')(11111111111)).to.equal('(111) 111-1111');
+            expect($filter('tel')(11111111111)).to.equal('1 (111) 111-1111');
         });
           it('should be able to format 12 phone numbers', function() {
             expect($filter('tel')(111111111111)).to.equal('111 (11) 111-1111');

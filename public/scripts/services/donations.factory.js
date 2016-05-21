@@ -1,4 +1,4 @@
-myApp.factory('DonationsFactory', ['$http', '$window', '$localStorage', function($http, $window, $localStoage) {
+angular.module('myApp').factory('DonationsFactory', ['$http',  function($http) {
 
   var selectedSchoolDonations = {};
   var currentUserDonations = {};
@@ -33,7 +33,7 @@ myApp.factory('DonationsFactory', ['$http', '$window', '$localStorage', function
 
   var publicFunctions = {
     factoryGetSelectedSchoolDonations: function(selectedSchoolId) {
-      return SelectedSchoolDonations(selectedSchoolId);
+      return new SelectedSchoolDonations(selectedSchoolId);
     },
     factoryGetCurrentUserDonations: function() {
       return getCurrentUserDonations();

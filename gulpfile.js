@@ -7,14 +7,27 @@ var dependencies = [
 var del = require('del');
 var config = require('./gulp.config')();
 var $ = require('gulp-load-plugins')({lazy: true});
+var jscs = require('gulp-jscs');
+var stylish = require('gulp-jscs-stylish');
+var jshint = require('gulp-jshint');
 
 /**
   * Remove all files from the build, temp, and reports folders
   * @param  {Function} done - callback when complete
   */
-gulp.task('clean', function () {
-  var delconfig = [].concat(config.build, config.temp, config.report);
-  return clean(delconfig);
+gulp.task('clean', function() {
+    var delconfig = [].concat(config.build, config.temp, config.report);
+    return clean(delconfig);
+});
+
+gulp.task('jscs', function () {
+  return gulp.src([ config.client + '**/!(*spec).js',  ])
+    .pipe(jshint())                           // hint (optional) 
+    .pipe(jshint.reporter('jshint-stylish')) // use any jshint reporter to log hint 
+    .pipe(jshint.reporter('fail'))
+    .pipe(jscs())                             // enforce style guide 
+    .pipe(jscs.reporter())
+    .pipe(jscs.reporter('fail'));                                          // and style guide errors 
 });
 
 /**
@@ -23,13 +36,13 @@ gulp.task('clean', function () {
   *    gulp test --startServers
   * @return {Stream}
   */
-  gulp.task('test', [], function (done) {
-  startTests(true /*singleRun*/, done);
+gulp.task('test', [], function(done) {
+    startTests(true /*singleRun*/, done);
 });
 
-gulp.task('coveralls', function () {  
-  return gulp.src('./report/coverage/report-lcov/lcov.info')
-    .pipe(coveralls());
+gulp.task('coveralls', function() {
+    return gulp.src('./report/coverage/report-lcov/lcov.info')
+      .pipe(coveralls());
 });
 
 /**
@@ -39,13 +52,13 @@ gulp.task('coveralls', function () {
   * @return {undefined}
   */
 function startTests(singleRun, done) {
-  var Server = require('karma').Server;
+    var Server = require('karma').Server;
 
-  var myKarma = new Server({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: !!singleRun
-  }, done);
-  myKarma.start();
+    var myKarma = new Server({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: !!singleRun
+    }, done);
+    myKarma.start();
 }
 
 /**
@@ -54,8 +67,8 @@ function startTests(singleRun, done) {
   * @return Promise that resolves into the files deleted.
   */
 function clean(path) {
-  log('Cleaning: ' + $.util.colors.blue(path));
-  return del(path);
+    log('Cleaning: ' + $.util.colors.blue(path));
+    return del(path);
 }
 
 /**
@@ -63,13 +76,13 @@ function clean(path) {
   * Can pass in a string, object or array.
   */
 function log(msg) {
-  if (typeof(msg) === 'object') {
-    for (var item in msg) {
-      if (msg.hasOwnProperty(item)) {
-        $.util.log($.util.colors.blue(msg[item]));
-      }
+    if (typeof(msg) === 'object') {
+        for (var item in msg) {
+            if (msg.hasOwnProperty(item)) {
+                $.util.log($.util.colors.blue(msg[item]));
+            }
+        }
+    } else {
+        $.util.log($.util.colors.blue(msg));
     }
-  } else {
-    $.util.log($.util.colors.blue(msg));
-  }
 }

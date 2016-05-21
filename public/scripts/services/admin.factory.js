@@ -1,5 +1,5 @@
-myApp.factory('AdminFactory', ['$http', '$window', '$localStorage', '$mdDialog',
- function($http, $window, $localStorage, $mdDialog) {
+angular.module('myApp').factory('AdminFactory', ['$http',
+ function($http) {
     var allSchools = {};
     var allDonations = {};
     var allUsers = {};

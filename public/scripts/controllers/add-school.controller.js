@@ -1,4 +1,4 @@
-myApp.controller('AddSchoolController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory',
+angular.module('myApp').controller('AddSchoolController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory',
     function($scope, $http, $mdDialog, $mdMedia, SchoolsFactory, InstrumentsFactory) {
         var instrumentsList = InstrumentsFactory.instruments.list;
         var factoryCurrentSchool = SchoolsFactory.currentSchool.school_name;
@@ -18,13 +18,13 @@ myApp.controller('AddSchoolController', ['$scope', '$http', '$mdDialog', '$mdMed
         };
 
         function loadInstruments() {
-            return instrumentsList.map(function (musicThing) {
+            return instrumentsList.map(function(musicThing) {
                 musicThing._lowername = musicThing.instrument.toLowerCase();
                 return musicThing;
             });
         }
 
-        if(factoryCurrentSchool !== undefined) {
+        if (factoryCurrentSchool !== undefined) {
             $scope.currentSchool = true;
             $scope.name = SchoolsFactory.currentSchool.school_name;
             $scope.website = SchoolsFactory.currentSchool.website;
@@ -43,12 +43,11 @@ myApp.controller('AddSchoolController', ['$scope', '$http', '$mdDialog', '$mdMed
         }
 
         $scope.save = function(isValid) {
-            if (isValid)
-            {
+            if (isValid) {
                 var exists = (SchoolsFactory.currentSchool.school_name) ? true : false;
                 var school = {};
 
-                if(exists){
+                if (exists) {
                     school = {
                     school_id: SchoolsFactory.currentSchool.school_id,
                     user_id: SchoolsFactory.currentSchool.user_id,
@@ -65,12 +64,11 @@ myApp.controller('AddSchoolController', ['$scope', '$http', '$mdDialog', '$mdMed
                     approved: null
                 };
 
-                SchoolsFactory.putDirectorSchool(school).then(function() {
-                $scope.schools = SchoolsFactory.schoolsList();
-                InstrumentsFactory.currentInstruments = [];
-                });
-            }
-                else{
+                    SchoolsFactory.putDirectorSchool(school).then(function() {
+                        $scope.schools = SchoolsFactory.schoolsList();
+                        InstrumentsFactory.currentInstruments = [];
+                    });
+                } else {
                     school = {
                         name: $scope.name,
                         website: $scope.website,
@@ -113,7 +111,7 @@ myApp.controller('AddSchoolController', ['$scope', '$http', '$mdDialog', '$mdMed
                         InstrumentsFactory.currentInstruments = [];
                     });
                 }
-            $mdDialog.hide();
+                $mdDialog.hide();
             }
         };
     }
