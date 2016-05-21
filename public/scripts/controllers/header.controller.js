@@ -46,7 +46,6 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
 
         $scope.$watch($scope.UserService.watchCurrentUser, function(newValue, oldValue){
             if (newValue != undefined) {
-                console.log("newValue"+JSON.stringify(newValue));
                 $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
                 $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
                 $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
@@ -68,7 +67,6 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
             $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
             $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
             $scope.userID = $scope.UserService.watchCurrentUser().factoryUserId;
-            console.log("On Load getCachedUser, Factory Logged In:", $scope.isLoggedIn);
         };
         
         getCachedUser();

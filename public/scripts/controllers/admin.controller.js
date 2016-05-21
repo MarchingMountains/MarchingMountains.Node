@@ -58,10 +58,7 @@ myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'AdminFa
 
     $scope.addInstrument = function() {
         var newInstrument = $scope.newInstrument;
-        console.log('newinstrument', $scope.newInstrument, $scope.adding);
         $scope.adding = false;
-        console.log('newinstrument', newInstrument, $scope.adding);
-
         InstrumentsFactory.postInstrument(newInstrument).then(function() {
             $scope.instruments = InstrumentsFactory.instruments;
         });
