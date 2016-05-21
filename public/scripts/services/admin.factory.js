@@ -1,3 +1,6 @@
+(function() {
+'use strict';
+
 angular.module('myApp').factory('AdminFactory', ['$http',
  function($http) {
     var allSchools = {};
@@ -15,7 +18,7 @@ angular.module('myApp').factory('AdminFactory', ['$http',
         var promise = $http.put('/admin/verify-school/' + schoolID, status).then(function(response) {
             if (response.data) {
                 factoryGetAllSchools();
-            } 
+            }
             else {
                 allSchools.list = undefined;
             }
@@ -58,3 +61,4 @@ angular.module('myApp').factory('AdminFactory', ['$http',
 
     return publicFunctions;
 }]);
+})();

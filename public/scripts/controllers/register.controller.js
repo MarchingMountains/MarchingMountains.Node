@@ -1,4 +1,8 @@
-angular.module('myApp').controller('RegisterController', ['$scope', 'UserService', '$mdDialog', function($scope, UserService, $mdDialog) {
+(function() {
+'use strict';
+
+angular.module('myApp').controller('RegisterController', 
+    ['$scope', 'UserService', '$mdDialog', function($scope, UserService, $mdDialog) {
 
     $scope.UserService = UserService;
 
@@ -16,3 +20,4 @@ angular.module('myApp').controller('RegisterController', ['$scope', 'UserService
         }
     };
 }]);
+})();

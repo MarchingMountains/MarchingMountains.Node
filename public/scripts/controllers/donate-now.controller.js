@@ -1,3 +1,6 @@
+(function() {
+'use strict';
+
 angular.module('myApp').controller('DonateNowController', ['$scope', '$http', '$mdDialog', '$mdMedia',
 'SchoolsFactory', 'DonationsFactory', 'UserService', function($scope, $http, $mdDialog, $mdMedia,
   SchoolsFactory, DonationsFactory, UserService) {
@@ -58,3 +61,4 @@ angular.module('myApp').controller('DonateNowController', ['$scope', '$http', '$
     };
 
 }]);
+})();

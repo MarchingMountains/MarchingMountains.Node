@@ -1,3 +1,6 @@
+(function() {
+'use strict';
+
 angular.module('myApp').controller('LoginController', ['$scope', 'UserService', '$mdDialog',
 '$window', function($scope, UserService, $mdDialog, $window) {
 
@@ -39,3 +42,4 @@ angular.module('myApp').controller('LoginController', ['$scope', 'UserService', 
         }
     };
 }]);
+})();

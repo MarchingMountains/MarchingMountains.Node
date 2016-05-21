@@ -1,23 +1,26 @@
+(function() {
+'use strict';
+
 angular.module('myApp').controller('ChipController', ['InstrumentsFactory', function(InstrumentsFactory) {
     var instrumentsList = InstrumentsFactory.instruments.list;
-    var self = this;
+    var _this = this;
 
-    self.readonly = false;
-    self.querySearch = querySearch;
-    self.instruments = loadInstruments();
-    self.selectedInstruments = [];
-    self.autocompleteDemoRequireMatch = true;
-    self.transformChip = transformChip;
+    _this.readonly = false;
+    _this.querySearch = querySearch;
+    _this.instruments = loadInstruments();
+    _this.selectedInstruments = [];
+    _this.autocompleteDemoRequireMatch = true;
+    _this.transformChip = transformChip;
 
     function transformChip(chip) {
-        InstrumentsFactory.currentInstruments = self.selectedInstruments;
+        InstrumentsFactory.currentInstruments = _this.selectedInstruments;
         if (angular.isObject(chip)) {
             return chip;
         }
     }
 
     function querySearch(query) {
-        var results = query ? self.instruments.filter(createFilterFor(query)) : [];
+        var results = query ? _this.instruments.filter(createFilterFor(query)) : [];
         return results;
     }
 
@@ -37,3 +40,4 @@ angular.module('myApp').controller('ChipController', ['InstrumentsFactory', func
         });
     }
 }]);
+})();

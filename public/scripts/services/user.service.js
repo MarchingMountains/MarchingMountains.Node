@@ -1,4 +1,8 @@
-angular.module('myApp').factory('UserService', ['$http', '$window', '$sessionStorage', function($http, $window, $sessionStorage) {
+(function() {
+'use strict';
+
+angular.module('myApp').factory('UserService', 
+    ['$http', '$window', '$sessionStorage', function($http, $window, $sessionStorage) {
     var CurrentUser = {
         isLogged: false,
         factoryUserName: undefined,
@@ -11,7 +15,7 @@ angular.module('myApp').factory('UserService', ['$http', '$window', '$sessionSto
     }
 
     function login(user) {
-        var promise = $http.post('/', user).then(function (response) {
+        var promise = $http.post('/', user).then(function(response) {
             if (response.data === false) {
                 return response.data;
             } else {
@@ -29,7 +33,7 @@ angular.module('myApp').factory('UserService', ['$http', '$window', '$sessionSto
     }
 
     function register(user) {
-        var promise = $http.post('/register', user).then(function (response) {
+        var promise = $http.post('/register', user).then(function(response) {
             CurrentUser = {
                 isLogged: true,
                 factoryUserName: response.data.email,
@@ -55,7 +59,7 @@ angular.module('myApp').factory('UserService', ['$http', '$window', '$sessionSto
         askForCurrentUser: function() {
             return CurrentUser;
         },
-        postLogin: function (user) {
+        postLogin: function(user) {
             return login(user);
         },
         postRegister: function(user) {
@@ -69,3 +73,4 @@ angular.module('myApp').factory('UserService', ['$http', '$window', '$sessionSto
 
     return publicFunctions;
 }]);
+})();

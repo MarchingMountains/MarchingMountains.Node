@@ -1,3 +1,6 @@
+(function() {
+'use strict';
+
 angular.module('myApp').controller('MySchoolsController',
 	['$scope', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory',
 	'DonationsFactory', 'UserService', function($scope, $mdDialog, $mdMedia,
@@ -66,3 +69,4 @@ angular.module('myApp').controller('MySchoolsController',
     getInstruments();
     getStates();
 }]);
+})();

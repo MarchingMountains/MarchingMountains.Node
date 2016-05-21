@@ -27,7 +27,7 @@ gulp.task('jscs', function () {
     .pipe(jshint.reporter('fail'))
     .pipe(jscs())                             // enforce style guide 
     .pipe(jscs.reporter())
-    .pipe(jscs.reporter('fail'));                                          // and style guide errors 
+   .pipe(jscs.reporter('fail'));                                          // and style guide errors 
 });
 
 /**
@@ -36,7 +36,7 @@ gulp.task('jscs', function () {
   *    gulp test --startServers
   * @return {Stream}
   */
-gulp.task('test', [], function(done) {
+gulp.task('test', ['jscs'], function(done) {
     startTests(true /*singleRun*/, done);
 });
 

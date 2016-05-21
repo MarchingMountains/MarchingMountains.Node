@@ -1,4 +1,8 @@
-angular.module('myApp').controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'UserService', '$sessionStorage', '$window',
+(function() {
+    'use strict';
+
+angular.module('myApp').controller('HeaderController', 
+    ['$scope', '$http', '$mdDialog', '$mdMedia', 'UserService', '$sessionStorage', '$window',
     function($scope, $http, $mdDialog, $mdMedia, UserService, $sessionStorage, $window) {
 
         $scope.UserService = UserService;
@@ -25,13 +29,13 @@ angular.module('myApp').controller('HeaderController', ['$scope', '$http', '$mdD
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 
             $mdDialog.show({
-            templateUrl: '../views/templates/register.html',
-            controller: 'RegisterController',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose: true,
-            fullscreen: useFullScreen
-        });
+                templateUrl: '../views/templates/register.html',
+                controller: 'RegisterController',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: useFullScreen
+            });
         };
 
         $scope.logOut = function() {
@@ -45,7 +49,7 @@ angular.module('myApp').controller('HeaderController', ['$scope', '$http', '$mdD
         };
 
         $scope.$watch($scope.UserService.watchCurrentUser, function(newValue) {
-            if (newValue != undefined) {
+            if (newValue !== undefined && newValue !== null) {
                 $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
                 $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
                 $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
@@ -72,3 +76,4 @@ angular.module('myApp').controller('HeaderController', ['$scope', '$http', '$mdD
         getCachedUser();
     }
 ]);
+})();

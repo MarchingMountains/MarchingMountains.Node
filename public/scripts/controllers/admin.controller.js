@@ -1,4 +1,8 @@
-angular.module('myApp').controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'AdminFactory', 'InstrumentsFactory',
+(function() {
+'use strict';
+
+angular.module('myApp').controller('AdminController', 
+    ['$scope', '$mdMedia', '$mdDialog', 'AdminFactory', 'InstrumentsFactory',
     function($scope, $mdMedia, $mdDialog, AdminFactory, InstrumentsFactory) {
     $scope.adding = false;
 
@@ -76,3 +80,4 @@ angular.module('myApp').controller('AdminController', ['$scope', '$mdMedia', '$m
     getUsers();
     getInstruments();
 }]);
+})();

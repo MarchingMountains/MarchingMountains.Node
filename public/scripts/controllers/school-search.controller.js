@@ -1,3 +1,6 @@
+(function() {
+'use strict';
+
 angular.module('myApp').controller('SchoolSearchController', ['$scope', '$http', '$location',
 '$mdDialog', '$mdMedia', 'InstrumentsFactory', 'SchoolsFactory', 'UserService',function($scope,
   $http, $location, $mdDialog, $mdMedia, InstrumentsFactory, SchoolsFactory, UserService) {
@@ -69,3 +72,4 @@ angular.module('myApp').controller('SchoolSearchController', ['$scope', '$http',
         }
     };
 }]);
+})();
