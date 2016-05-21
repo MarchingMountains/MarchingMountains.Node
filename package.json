@@ -60,6 +60,7 @@
     "gulp-load-plugins": "1.0.0-rc.1",
     "gulp-util": "3.0.6",
     "jscs": "3.0.3",
+    "jshint": "2.9.2",
     "karma": "0.13.22",
     "karma-chai": "0.1.0",
     "karma-chai-sinon": "0.1.5",
