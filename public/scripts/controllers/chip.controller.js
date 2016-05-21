@@ -16,7 +16,7 @@ myApp.controller('ChipController', ['InstrumentsFactory', function(InstrumentsFa
         }
     }
 
-    function querySearch (query) {
+    function querySearch(query) {
         var results = query ? self.instruments.filter(createFilterFor(query)) : [];
         return results;
     }
@@ -31,7 +31,7 @@ myApp.controller('ChipController', ['InstrumentsFactory', function(InstrumentsFa
 
     function loadInstruments() {
         var instrument = instrumentsList;
-        return instrument.map(function (musicThing) {
+        return instrument.map(function(musicThing) {
             musicThing._lowername = musicThing.instrument.toLowerCase();
             return musicThing;
         });

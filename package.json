@@ -54,6 +54,8 @@
     "del": "2.2.0",
     "gulp": "3.9.0",
     "gulp-coveralls": "0.1.4",
+    "gulp-jscs": "3.0.2",
+    "gulp-jscs-stylish": "1.4.0",
     "gulp-load-plugins": "1.0.0-rc.1",
     "gulp-util": "3.0.6",
     "karma": "0.13.22",

@@ -17,7 +17,6 @@ myApp.controller('AccountController', ['$scope', '$http', 'UserService', functio
         $http.get('/states/').then(function(response) {
             if (response.data) {
                 $scope.states = response.data;
-            } else {
             }
         });
     }
@@ -52,13 +51,13 @@ myApp.controller('AccountController', ['$scope', '$http', 'UserService', functio
                 phone: $scope.user.phone
             };
 
-            $http.put('/account/' + id, data).then(function(response){
+            $http.put('/account/' + id, data).then(function(response) {
                 if (response.data) {
                     $scope.edited = true;
                     $scope.showList = true;
                     $scope.showForm = false;
                     retrieveUser(id);
-                } 
+                }
             });
         }
     };
@@ -77,13 +76,13 @@ myApp.controller('AccountController', ['$scope', '$http', 'UserService', functio
 
     $scope.submitPasswordForm = function(isValid) {
 
-        if(isValid) {
+        if (isValid) {
 
             var data = {
                 password: $scope.password
             };
 
-            $http.put('/account/password/' + id, data).then(function(response){
+            $http.put('/account/password/' + id, data).then(function(response) {
                 if (response.data) {
                     $scope.editedPassword = true;
                 }

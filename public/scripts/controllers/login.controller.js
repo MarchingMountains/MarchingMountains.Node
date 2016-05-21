@@ -13,7 +13,7 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog',
                 password: $scope.password
             };
             $scope.UserService.postLogin(user).then(
-                function (response) {
+                function(response) {
                     if (response === false) {
                         $scope.loginErrorMessage = 'Invalid Username or Password';
                     } else {
@@ -32,7 +32,7 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog',
                 username: $scope.username,
                 password: $scope.password
             };
-            $scope.UserService.postRegister(newUser).then(function () {
+            $scope.UserService.postRegister(newUser).then(function() {
                 $mdDialog.hide();
                 $window.location.href = '/#/home';
             });

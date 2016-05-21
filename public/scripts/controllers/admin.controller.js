@@ -1,4 +1,4 @@
-myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'AdminFactory', 'InstrumentsFactory', 
+myApp.controller('AdminController', ['$scope', '$mdMedia', '$mdDialog', 'AdminFactory', 'InstrumentsFactory',
     function($scope, $mdMedia, $mdDialog, AdminFactory, InstrumentsFactory) {
     $scope.adding = false;
 

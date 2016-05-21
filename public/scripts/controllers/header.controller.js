@@ -1,5 +1,5 @@
 myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'UserService', '$sessionStorage', '$window',
-    function($scope, $http, $mdDialog, $mdMedia, UserService,  $sessionStorage, $window) {
+    function($scope, $http, $mdDialog, $mdMedia, UserService, $sessionStorage, $window) {
 
         $scope.UserService = UserService;
         $scope.first_name;
@@ -39,12 +39,12 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
             $scope.user_name = undefined;
             $scope.isLoggedIn = false;
             $scope.userID = undefined;
-            $scope.UserService.logOutUser().then(function(response){
-                $window.location.href=response.data.uri;
+            $scope.UserService.logOutUser().then(function(response) {
+                $window.location.href = response.data.uri;
             });
         };
 
-        $scope.$watch($scope.UserService.watchCurrentUser, function(newValue, oldValue){
+        $scope.$watch($scope.UserService.watchCurrentUser, function(newValue) {
             if (newValue != undefined) {
                 $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
                 $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
@@ -55,7 +55,7 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
         });
 
         var welcomeText = function() {
-            if($scope.first_name != undefined && $scope.first_name != '') {
+            if ($scope.first_name != undefined && $scope.first_name != '') {
                 $scope.displayedUser = $scope.first_name;
             } else {
                 $scope.displayedUser = $scope.user_name;
@@ -68,7 +68,7 @@ myApp.controller('HeaderController', ['$scope', '$http', '$mdDialog', '$mdMedia'
             $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
             $scope.userID = $scope.UserService.watchCurrentUser().factoryUserId;
         };
-        
+
         getCachedUser();
     }
 ]);
