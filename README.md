@@ -20,14 +20,18 @@ bower install
    all appropriate references and dependencies.
 2. Postgres server needs to be running prior to starting Node server in order for app to function.
 3. Admin privileges are hard coded to be user 1. (i.e., the first user listed in the users table)
-4. If you turn off your server while logged in, a user will receive a notification that they will
-   have to log in again however,the welcome message on the header will imply that a user is still
-   logged in.  You must re login to continue.
+
 
 ```
 npm start
 ```
 
+##Testing
+The app uses Karma to run the suite of unit tests. Coverage should remain at 100% on the client app. To run the tests type:
+```
+npm test
+```
+This will first clean-up test-related directories, run jshint and jscs against the files and then run the tests so long as there are no linting issues.
 
 ##Marching Mountains' Goal
 
