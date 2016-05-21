@@ -12,7 +12,6 @@ myApp.controller('SchoolInfoController', ['$scope', '$http', '$location', '$mdDi
   if($scope.selectedSchoolInfo !== undefined) {
     $scope.DonationsFactory.factoryGetSelectedSchoolDonations($scope.selectedSchoolInfo.school_id).then(function() {
       $scope.selectedSchoolDonations = $scope.DonationsFactory.selectedSchoolDonations.list;
-      console.log($scope.selectedSchoolDonations);
     });
   } else {
     $location.url('/home');

@@ -38,7 +38,6 @@ myApp.controller('AddSchoolController', ['$scope', '$http', '$mdDialog', '$mdMed
             $scope.instructions = SchoolsFactory.currentSchool.instructions;
             InstrumentsFactory.currentInstruments = SchoolsFactory.currentSchool.instruments;
             $scope.selectedInstruments = InstrumentsFactory.currentInstruments;
-            console.log('currentinstruments', SchoolsFactory.currentSchool.instruments);
         } else {
             $scope.currentSchool = false;
         }

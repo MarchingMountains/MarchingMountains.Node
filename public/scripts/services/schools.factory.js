@@ -24,7 +24,6 @@ myApp.factory('SchoolsFactory', ['$http',
     var promise = $http.get('/schools/' + publicFunctions.userID).then(function(response) {
       if (response.data) {
         factorySchoolsList.list = response.data;
-        console.log("factorySchoolsList.list:"+factorySchoolsList.list);
         buildDonations(factorySchoolsList);
       } 
     });

@@ -13,7 +13,6 @@ myApp.factory('UserService', ['$http', '$window', '$sessionStorage', function($h
     function login(user) {
         var promise = $http.post('/', user).then(function (response) {
             if (response.data === false) {
-                console.log("Incorrect email/password");
                 return response.data;
             } else {
                 CurrentUser = {
@@ -30,7 +29,6 @@ myApp.factory('UserService', ['$http', '$window', '$sessionStorage', function($h
     }
 
     function register(user) {
-        console.log(user);
         var promise = $http.post('/register', user).then(function (response) {
             CurrentUser = {
                 isLogged: true,

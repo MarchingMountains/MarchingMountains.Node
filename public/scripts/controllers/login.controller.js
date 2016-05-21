@@ -15,7 +15,6 @@ myApp.controller('LoginController', ['$scope', 'UserService', '$mdDialog',
             $scope.UserService.postLogin(user).then(
                 function (response) {
                     if (response === false) {
-                        console.log("bad login");
                         $scope.loginErrorMessage = 'Invalid Username or Password';
                     } else {
                         $mdDialog.hide();

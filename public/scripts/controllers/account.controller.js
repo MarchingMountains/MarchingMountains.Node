@@ -23,9 +23,7 @@ myApp.controller('AccountController', ['$scope', '$http', 'UserService', functio
     }
 
     function retrieveUser(id) {
-        //console.log('id: ', id);
         $http.get('/account/' + id).then(function(response) {
-            console.log(response.data);
             if (response.data) {
                 $scope.user = response.data[0];
                 $scope.selectedState = response.data[0].state_id;
