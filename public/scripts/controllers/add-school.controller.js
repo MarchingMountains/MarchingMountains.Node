@@ -1,4 +1,8 @@
-angular.module('myApp').controller('AddSchoolController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory',
+(function() {
+'use strict';
+
+angular.module('myApp').controller('AddSchoolController', 
+    ['$scope', '$http', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory',
     function($scope, $http, $mdDialog, $mdMedia, SchoolsFactory, InstrumentsFactory) {
         var instrumentsList = InstrumentsFactory.instruments.list;
         var factoryCurrentSchool = SchoolsFactory.currentSchool.school_name;
@@ -31,8 +35,12 @@ angular.module('myApp').controller('AddSchoolController', ['$scope', '$http', '$
             $scope.address_line1 = SchoolsFactory.currentSchool.address_line1;
             $scope.address_line2 = SchoolsFactory.currentSchool.address_line2;
             $scope.city = SchoolsFactory.currentSchool.city;
-            $scope.state = {state_id: SchoolsFactory.currentSchool.state_id, state: SchoolsFactory.currentSchool.state};
-            $scope.selectedState = {state_id: SchoolsFactory.currentSchool.state_id, state: SchoolsFactory.currentSchool.state};
+            $scope.state = {
+                state_id: SchoolsFactory.currentSchool.state_id, state: SchoolsFactory.currentSchool.state
+            };
+            $scope.selectedState = {
+                state_id: SchoolsFactory.currentSchool.state_id, state: SchoolsFactory.currentSchool.state
+            };
             $scope.zip = SchoolsFactory.currentSchool.zip;
             $scope.phone = SchoolsFactory.currentSchool.phone;
             $scope.instructions = SchoolsFactory.currentSchool.instructions;
@@ -49,20 +57,20 @@ angular.module('myApp').controller('AddSchoolController', ['$scope', '$http', '$
 
                 if (exists) {
                     school = {
-                    school_id: SchoolsFactory.currentSchool.school_id,
-                    user_id: SchoolsFactory.currentSchool.user_id,
-                    name: $scope.name,
-                    website: $scope.website,
-                    address_line1: $scope.address_line1,
-                    address_line2: $scope.address_line2,
-                    city: $scope.city,
-                    state_id: $scope.selectedState.state_id,
-                    zip: $scope.zip,
-                    phone: $scope.phone,
-                    instructions: $scope.instructions,
-                    instruments: InstrumentsFactory.currentInstruments,
-                    approved: null
-                };
+                        school_id: SchoolsFactory.currentSchool.school_id,
+                        user_id: SchoolsFactory.currentSchool.user_id,
+                        name: $scope.name,
+                        website: $scope.website,
+                        address_line1: $scope.address_line1,
+                        address_line2: $scope.address_line2,
+                        city: $scope.city,
+                        state_id: $scope.selectedState.state_id,
+                        zip: $scope.zip,
+                        phone: $scope.phone,
+                        instructions: $scope.instructions,
+                        instruments: InstrumentsFactory.currentInstruments,
+                        approved: null
+                    };
 
                     SchoolsFactory.putDirectorSchool(school).then(function() {
                         $scope.schools = SchoolsFactory.schoolsList();
@@ -116,3 +124,4 @@ angular.module('myApp').controller('AddSchoolController', ['$scope', '$http', '$
         };
     }
 ]);
+})();

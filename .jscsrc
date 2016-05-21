@@ -1,20 +1,14 @@
 {
-    "preset": "google",
     "fileExtensions": [".js", "jscs"],
-
     "requireSemicolons": true,
     "requireParenthesesAroundIIFE": true,
+    "requireCamelCaseOrUpperCaseIdentifiers": false,
     "maximumLineLength": 120,
-    "validateLineBreaks": "LF",
-    "validateIndentation": 4,
     "disallowTrailingComma": true,
     "disallowUnusedParams": true,
-
     "disallowSpacesInsideObjectBrackets": null,
     "disallowImplicitTypeConversion": ["string"],
-
     "safeContextKeyword": "_this",
-
     "jsDoc": {
         "checkAnnotations": "closurecompiler",
         "checkParamNames": true,
@@ -27,7 +21,6 @@
         "checkRedundantAccess": true,
         "requireNewlineAfterDescription": true
     },
-
     "excludeFiles": [
     ]
 }

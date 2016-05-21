@@ -1,4 +1,8 @@
-angular.module('myApp').controller('AccountController', ['$scope', '$http', 'UserService', function($scope, $http, UserService) {
+(function() {
+'use strict';
+
+angular.module('myApp').controller('AccountController', ['$scope', '$http', 'UserService',
+    function($scope, $http, UserService) {
 
     $scope.UserService = UserService;
     $scope.showForm = true;
@@ -96,3 +100,4 @@ angular.module('myApp').controller('AccountController', ['$scope', '$http', 'Use
         $scope.showList = false;
     };
 }]);
+})();

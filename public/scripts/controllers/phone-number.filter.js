@@ -1,3 +1,6 @@
+(function() {
+'use strict';
+
 angular.module('myApp').filter('tel', function() {
     return function(tel) {
         if (!tel) { return ''; }
@@ -42,3 +45,4 @@ angular.module('myApp').filter('tel', function() {
         return (country + ' (' + city + ') ' + number).trim();
     };
 });
+})();

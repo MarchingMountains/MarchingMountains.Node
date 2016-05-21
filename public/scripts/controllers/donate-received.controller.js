@@ -1,3 +1,6 @@
+(function() {
+'use strict';
+
 angular.module('myApp').controller('DonationReceivedController', ['$scope', '$http', '$mdDialog', '$mdMedia',
 'SchoolsFactory', 'DonationsFactory', function($scope, $http, $mdDialog, $mdMedia,
   SchoolsFactory, DonationsFactory) {
@@ -38,3 +41,4 @@ angular.module('myApp').controller('DonationReceivedController', ['$scope', '$ht
         $mdDialog.hide();
     };
 }]);
+})();

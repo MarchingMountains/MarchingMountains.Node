@@ -1,7 +1,9 @@
-angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage',
- 'angAccordion', 'ngPassword', 'smart-table', 'xeditable'])
-.config(['$routeProvider', function($routeProvider) {
+(function() {
+'use strict';
 
+angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage', 
+  'angAccordion', 'ngPassword', 'smart-table', 'xeditable'])
+.config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/home', {
         templateUrl: '/views/templates/home.html',
@@ -89,11 +91,9 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage',
       .otherwise({
         redirectTo: '/home'
     });
-
 }]);
 
 angular.module('myApp').config(HttpProviderConfiguration);
-
 HttpProviderConfiguration.$inject = ['$httpProvider'];
 
 function HttpProviderConfiguration($httpProvider) {
@@ -103,3 +103,4 @@ function HttpProviderConfiguration($httpProvider) {
 angular.module('myApp').run(function(editableOptions) {
     editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 });
+})();

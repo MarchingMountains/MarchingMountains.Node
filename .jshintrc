@@ -15,6 +15,7 @@
     "node" : true,
     "browser" : true,
     "boss" : false,
+    "camelcase" : false,
     "curly": false,
     "debug": false,
     "devel": false,
@@ -33,7 +34,7 @@
     "regexp": false,
     "undef": true,
     "sub": true,
-    "strict": false,
+    "strict": true,
     "white": true,
     "unused": true
 }
