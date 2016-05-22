@@ -4,7 +4,7 @@
             <form name="loginForm" novalidate ng-submit="login(loginForm.$valid)">
                 <md-input-container>
                     <label>Email</label>
-                    <input type="email" name="username" required ng-model="username" minlength="7" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                    <input type="email" id="emailLogin" name="username" required ng-model="username" minlength="7" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
                         <div ng-messages="loginForm.$error" role="alert">
                             <div ng-message="required">
                                 Please enter your e-mail address
@@ -17,7 +17,7 @@
 
                 <md-input-container>
                 <label>Password</label>
-                <input type="password" name="password" required ng-model="password" minlength="4" maxlength="50" />
+                <input type="password" id="passwordLogin" name="password" required ng-model="password" minlength="4" maxlength="50" />
                     <div ng-messages="loginForm.$error" ng-if="loginForm.$submitted || loginForm.password.$dirty" role="alert">
                         <div ng-message="required">
                             Please enter your password
@@ -28,7 +28,7 @@
                     </div>
                 </md-input-container>
                 <div layout="row">
-                    <md-button type="submit" class="md-raised md-primary" ng-disabled="loginForm.$invalid">Login</md-button>
+                    <md-button type="submit" id="loginModalBtn" class="md-raised md-primary" ng-disabled="loginForm.$invalid">Login</md-button>
                 </div>
                 <div ng-show="loginErrorMessage">
                     <p>{{loginErrorMessage}}</p>

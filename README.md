@@ -33,6 +33,13 @@ npm test
 ```
 This will first clean-up test-related directories, run jshint and jscs against the files and then run the tests so long as there are no linting issues.
 
+###End-to-end tests
+The app uses Nightwatch for end-to-end-testing.
+```
+npm run uat
+npm run uat-dev
+```
+
 ##Marching Mountains' Goal
 
 The organization's goal is to create a network to supply public school band programs in distressed

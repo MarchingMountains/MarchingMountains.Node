@@ -2,14 +2,17 @@
     "globals": {
         "jasmine": false,
         "spyOn": false,
-        "it": false,
+        "it": true,
         "console": false,
         "describe": false,
-        "expect": false,
-        "beforeEach": false,
+        "expect": true,
+        "beforeEach": true,
         "waits": false,
         "waitsFor": false,
-        "runs": false
+        "runs": false,
+        "before" : "true",
+        "after": "true",
+        "afterEach": "true"
     },
     "predef": ["angular"],
     "node" : true,
