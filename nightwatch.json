@@ -11,7 +11,10 @@
     "default": {
       "launch_url": "http://localhost:3000"
     },
-    "prod": {
+    "dev": {
+      "launch_url": "http://marchingmountainsdev.herokuapp.com"
+    },
+    "prd": {
       "launch_url": "http://www.marchingmountains.org"
     }
   }
