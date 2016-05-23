@@ -9,13 +9,13 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage',
         templateUrl: '/views/templates/home.html',
         controller: 'SchoolSearchController'
     })
-      .when('/about', {
+      .when('/project', {
         templateUrl: '/views/templates/about.html'
     })
       .when('/faq', {
         templateUrl: '/views/templates/faq.html'
     })
-      .when('/donate-instrument', {
+      .when('/donate-a-musical-instrument', {
         templateUrl: '/views/templates/donate-instrument.html'
     })
       .when('/donors', {
@@ -76,16 +76,16 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage',
       .when('/discover-who', {
         templateUrl: '/views/templates/discover-who.html'
     })
-      .when('/success-stories', {
+      .when('/instrument-donation-success-stories', {
         templateUrl: '/views/templates/success-stories.html'
     })
-      .when('/videos', {
+      .when('/video', {
         templateUrl: '/views/templates/videos.html'
     })
       .when('/volunteer', {
         templateUrl: '/views/templates/volunteer.html'
     })
-      .when('/reports', {
+      .when('/annual-reports', {
         templateUrl: '/views/templates/annual-reports.html'
     })
       .otherwise({

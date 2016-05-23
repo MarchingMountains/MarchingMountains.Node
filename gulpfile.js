@@ -1,14 +1,10 @@
+'use strict';
 var gulp = require('gulp');
 var coveralls = require('gulp-coveralls');
-var production = process.env.NODE_ENV === 'production';
-var dependencies = [
-  'underscore'
-];
 var del = require('del');
 var config = require('./gulp.config')();
 var $ = require('gulp-load-plugins')({lazy: true});
 var jscs = require('gulp-jscs');
-var stylish = require('gulp-jscs-stylish');
 var jshint = require('gulp-jshint');
 
 /**
@@ -21,13 +17,13 @@ gulp.task('clean', function() {
 });
 
 gulp.task('jscs', function () {
-  return gulp.src([ config.client + '**/!(*spec).js',  ])
-    .pipe(jshint())                           // hint (optional) 
+  return gulp.src([ config.client + '**/!(*spec).js'  ])
+    .pipe(jshint())                          // hint (optional) 
     .pipe(jshint.reporter('jshint-stylish')) // use any jshint reporter to log hint 
     .pipe(jshint.reporter('fail'))
-    .pipe(jscs())                             // enforce style guide 
+    .pipe(jscs())                            // enforce style guide 
     .pipe(jscs.reporter())
-   .pipe(jscs.reporter('fail'));                                          // and style guide errors 
+    .pipe(jscs.reporter('fail'));            // and style guide errors 
 });
 
 /**
