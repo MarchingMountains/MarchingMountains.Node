@@ -1,7 +1,5 @@
 'use strict';
 describe('Marching Mountains homepage test', function() {
-  describe('with Nightwatch', function() {
-
   	before(function(client, done) {
       done();
     });
@@ -21,14 +19,22 @@ describe('Marching Mountains homepage test', function() {
     });
 
     it('Test 1 - As a user, I can go to the home page and the pages in the main section', function (browser) {
-       // browser
-       // .page.home().setBase(browser.launch_url)
-       // .page.home().goHome()
-       // .page.home().goSuccessStories()
-       // .page.home().goHome()
-       // .page.home().goAnnualReports()
-       // .page.home().goHome()
-       // .page.home().goVolunteer();
+        browser
+        .page.home().setBase(browser.launch_url)
+        .page.home().goHome()
+        .page.home().goHomeSuccessStories()
+        .page.home().goHome()
+        .page.home().goHomeAnnualReports()
+        .page.home().goHome()
+        .page.home().goHomeVolunteer()
+        .page.home().goHome()
+        .page.home().goHomeDonate()
+        .page.home().goHome()
+        .page.home().goHomeProject()
+        .page.home().goHome()
+        .page.home().goHomeDirectors()
+        .page.home().goHome()
+        .page.home().goHomeVideos();
        browser.end();
   	});
 
@@ -44,5 +50,4 @@ describe('Marching Mountains homepage test', function() {
        // .end();
        browser.end();
   	});
-  });
 });

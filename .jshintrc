@@ -12,7 +12,9 @@
         "runs": false,
         "before" : "true",
         "after": "true",
-        "afterEach": "true"
+        "afterEach": "true",
+        "bard":true
+
     },
     "predef": ["angular"],
     "node" : true,

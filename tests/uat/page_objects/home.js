@@ -18,6 +18,12 @@ module.exports = function (client) {
             .waitForElementVisible('body', 1000)
             .assert.containsText('h1', 'Donate Musical Instruments');
         },
+        goHomeDonate: function() {
+          return client
+            .click('#homeDonateInstruments')
+            .waitForElementVisible('body', 1000)
+            .assert.containsText('h1', 'Donate Musical Instruments');
+        },
         goFaq: function() {
         	return client
         	 .url(Page.Urls.faq())
@@ -29,6 +35,12 @@ module.exports = function (client) {
            .url(Page.Urls.about())
             .waitForElementVisible('body', 1000)
             .assert.containsText('h2', 'Vision');
+        },
+         goHomeProject: function() {
+          return client
+           .click('#homeProject')
+           .waitForElementVisible('body', 1000)
+           .assert.containsText('h2', 'Vision');
         },
         goContact: function() {
           return client
@@ -42,27 +54,33 @@ module.exports = function (client) {
             .waitForElementVisible('body', 1000)
             .assert.containsText('h1', 'Welcome Band Directors');
         },
-        goVideos: function() {
+        goHomeDirectors: function() {
           return client
-           .click('div.col-lg-6:nth-child(2) > p:nth-child(4) > a:nth-child(2)')
-            .waitForElementVisible('body', 10000)
-            .assert.containsText('h1', 'Marching Mountains Musical Instrument Distributions in Appalachia');
+           .click('#homeBandDirectors')
+            .waitForElementVisible('body', 1000)
+            .assert.containsText('h1', 'Welcome Band Directors');
         },
-        goSuccessStories: function() {
+        goHomeSuccessStories: function() {
           return client
-          .click('div.col-lg-6:nth-child(1) > p:nth-child(6) > a:nth-child(2)')
+          .click('#homeSuccessStories')
             .waitForElementVisible('body', 1000)
             .assert.containsText('h1', 'Sucess Stories');
         },
-        goAnnualReports: function() {
+        goHomeAnnualReports: function() {
           return client
-           .click('div.col-lg-6:nth-child(2) > p:nth-child(8) > a:nth-child(2)')
+           .click('#homeAnnualReports')
             .waitForElementVisible('body', 1000)
             .assert.containsText('h1', 'Marching Mountains Annual Reports and Needs Assessment');
         },
-        goVolunteer: function() {
+        goHomeVideos: function() {
           return client
-           .click('div.col-lg-6:nth-child(2) > p:nth-child(6) > a:nth-child(2)')
+           .click('#homeVideo')
+            .waitForElementVisible('body', 1000)
+            .assert.containsText('h2', 'Marching Mountains Musical Instrument Distributions in Appalachia');
+        },
+        goHomeVolunteer: function() {
+          return client
+           .click('#homeVolunteer')
             .waitForElementVisible('body', 1000)
             .assert.containsText('h1', 'Volunteer with Marching Mountains');
         },

@@ -1,6 +1,5 @@
 'use strict';
 describe('Marching Mountains account test', function() {
-  describe('with Nightwatch', function() {
 
     before(function(client, done) {
       done();
@@ -25,5 +24,4 @@ describe('Marching Mountains account test', function() {
        .setBase(browser.launch_url)
        .page.account().login();
      });
-  });
 });
