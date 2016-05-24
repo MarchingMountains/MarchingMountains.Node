@@ -2,19 +2,19 @@ var Page = require('../constants');
 
 module.exports = function (client) {
     return {
-  		setBase: function(url) {
-  			Page.setBaseUrl(url);
-  			return client;
-  		},
+      setBase: function(url) {
+        Page.setBaseUrl(url);
+        return client;
+      },
         goHome: function () {
             return client
             .url(Page.Urls.home())
-      			.waitForElementVisible('body', 1000)
-      			.assert.containsText('h1', 'Helping band programs in Appalachia and Minnesota');
+            .waitForElementVisible('body', 100000)
+            .assert.containsText('h1', 'Helping band programs in Appalachia and Minnesota');
         },
         goDonate: function() {
-        	return client
-			       .url(Page.Urls.donate())
+          return client
+             .url(Page.Urls.donate())
             .waitForElementVisible('body', 1000)
             .assert.containsText('h1', 'Donate Musical Instruments');
         },
@@ -24,9 +24,15 @@ module.exports = function (client) {
             .waitForElementVisible('body', 1000)
             .assert.containsText('h1', 'Donate Musical Instruments');
         },
+        goHomeDonateFunds: function() {
+          return client
+            .click('#homeDonateFunds')
+            .waitForElementVisible('#orgProfile', 100000)
+            .assert.containsText('body', 'MARCHING MOUNTAINS');
+        },
         goFaq: function() {
-        	return client
-        	 .url(Page.Urls.faq())
+          return client
+           .url(Page.Urls.faq())
             .waitForElementVisible('body', 1000)
             .assert.containsText('h1', 'FAQ');
         },
@@ -97,4 +103,4 @@ module.exports = function (client) {
             .assert.containsText('h1', 'School Kids in Distressed Appalachian Counties Receive Donated Band Instruments');
         }
     };
-}
+};

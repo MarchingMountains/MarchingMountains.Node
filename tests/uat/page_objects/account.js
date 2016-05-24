@@ -5,7 +5,7 @@ module.exports = function (client) {
     var _this = this;
     _this.elements = {
       login : {
-        'selector':'#loginBtn'
+        'selector':'#headerLogin'
       },
       emailLogin : {
         'selector':'#emailLogin'

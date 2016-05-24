@@ -2,7 +2,7 @@
   <h3>What type of instrument would you like to donate?</h3>
   <div class="autocompletedemoBasicUsage center">
     <md-content class="md-padding text-center">
-      <form ng-submit="$event.preventDefault()" class="search-form margin-top">
+      <form id="donateForm" ng-submit="$event.preventDefault()" class="search-form margin-top">
         <md-autocomplete
           md-selected-item="selectedItem"
           md-search-text-change="searchTextChange(searchText)"
