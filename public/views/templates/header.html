@@ -34,7 +34,7 @@
               </md-menu-content>
             </md-menu>
 
-            <md-menu>
+           <!-- <md-menu>
               <button id="headerInstruments" ng-click="$mdOpenMenu($event)">INSTRUMENTS</button>
               <md-menu-content>
 
@@ -42,7 +42,7 @@
                 <md-menu-item ng-if="isLoggedIn == false"><md-button id="headerRequest" ng-click="$mdCloseMenu($event)" href="#band-directors" class="nav">Request</md-button></md-menu-item>
                 <md-menu-item ng-if="isLoggedIn"><md-button id="headerMySchools" ng-click="$mdCloseMenu($event)" href="#my-schools" class="nav">Request</md-button></md-menu-item>
               </md-menu-content>
-            </md-menu>
+            </md-menu> -->
 
             <md-menu>
               <button id="headerSupport" ng-click="$mdOpenMenu($event)">SUPPORT</button>
@@ -58,7 +58,7 @@
     </md-toolbar>
   </div>
 
-  <div class="col-md-3" ng-if="isLoggedIn === false">
+ <!--  <div class="col-md-3" ng-if="isLoggedIn === false">
     <md-button id="headerLogin" ng-click="openLoginModal($event)" class="login">Login</md-button>
     <md-button id="headerRegister" ng-click="openRegisterModal($event)" class="login" id="registerBtn">Register</md-button>
   </div>
@@ -84,6 +84,6 @@
         </div>
       </div>
     </md-toolbar>
-  </div>
+  </div> -->
   <div class="col-md-1"></div>
 </div>
