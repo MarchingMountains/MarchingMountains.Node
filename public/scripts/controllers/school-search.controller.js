@@ -2,17 +2,16 @@
 'use strict';
 
 angular.module('myApp').controller('SchoolSearchController', ['$scope', '$http', '$location',
-'$mdDialog', '$mdMedia', 'InstrumentsFactory', 'SchoolsFactory', 'UserService',function($scope,
-  $http, $location, $mdDialog, $mdMedia, InstrumentsFactory, SchoolsFactory, UserService) {
+'$mdDialog', '$mdMedia', 'InstrumentsFactory', 'SchoolsFactory', '$sessionStorage',function($scope,
+  $http, $location, $mdDialog, $mdMedia, InstrumentsFactory, SchoolsFactory, $sessionStorage) {
 
     $scope.InstrumentsFactory = InstrumentsFactory;
     $scope.SchoolsFactory = SchoolsFactory;
-    $scope.UserService = UserService;
 
     $scope.schoolSearchResults = $scope.SchoolsFactory.schoolSearchResults.list;
     $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrument.list;
 
-    $scope.currentUser = $scope.UserService.watchCurrentUser.factoryUserId;
+    $scope.currentUser = $sessionStorage.CurrentUser;
 
     $scope.InstrumentsFactory.factoryGetInstrumentsList().then(function() {
         var instrumentsList = $scope.InstrumentsFactory.instruments.list;
@@ -45,7 +44,6 @@ angular.module('myApp').controller('SchoolSearchController', ['$scope', '$http',
     };
 
     $scope.donateNowModal = function(selectedSchool, ev) {
-        $scope.currentUser = $scope.UserService.askForCurrentUser().factoryUserId;
         $scope.SchoolsFactory.factorySetSelectedSchoolInfo(selectedSchool);
         if ($scope.currentUser !== undefined) {
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;

@@ -1,21 +1,24 @@
 (function() {
 'use strict';
 
-angular.module('myApp').controller('AccountController', ['$scope', '$http', 'UserService',
-    function($scope, $http, UserService) {
+angular.module('myApp').controller('AccountController', ['$scope', '$http', '$sessionStorage', '$location',
+    function($scope, $http, $sessionStorage, $location) {
 
-    $scope.UserService = UserService;
     $scope.showForm = true;
     $scope.showList = false;
     $scope.showChangePassword = false;
     $scope.editedPassword = false;
     $scope.states = [];
     $scope.selectedState = '';
-    $scope.loggedInUser = $scope.UserService.watchCurrentUser();
 
-    var id = $scope.loggedInUser.factoryUserId;
-    retrieveUser(id);
-    getStates();
+    try {
+        var id = $sessionStorage.CurrentUser.factoryUserId;
+        retrieveUser(id);
+        getStates();
+    }
+    catch(e) {
+        $location.path("/home");
+    }
 
     function getStates() {
         $http.get('/states/').then(function(response) {

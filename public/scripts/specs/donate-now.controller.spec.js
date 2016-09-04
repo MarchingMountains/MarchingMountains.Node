@@ -5,7 +5,7 @@ describe('testing the DonateNowController', function() {
     var mockInstrumentsFactory;
     var mockSchoolsFactory;
     var mockDonationsFactory;
-    var mockUserService; 
+    var session;
     
     beforeEach(function() {
         //'$scope', '$http',  'UserService'
@@ -16,7 +16,7 @@ describe('testing the DonateNowController', function() {
         bard.inject(
           'SchoolsFactory',
           'DonationsFactory',
-          'UserService',
+          '$sessionStorage',
           '$rootScope',
           '$httpBackend',
           '$controller',
@@ -27,16 +27,13 @@ describe('testing the DonateNowController', function() {
 
         $scope = $rootScope.$new();
         $httpBackend.when('GET', '/views/templates/home.html').respond({});
-        
+        session = $sessionStorage;
+        session.CurrentUser = {email: 'hi@here.com', first_name: 'Bob', user_id: '1', factoryUserId:10 };
+          
          //setup $q for testing promise in controller
         deferred = $q.defer();
         //get a promise instance
         promise = deferred.promise;
-        mockUserService = {
-          askForCurrentUser: function() {
-            return {email: 'hi@here.com', first_name: 'Bob', user_id: '1', factoryUserId:10 };
-          }
-        };
 
         mockInstrumentsFactory = 
          {
@@ -87,7 +84,7 @@ describe('testing the DonateNowController', function() {
 
     it('should transform chips', function(done) {
              //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('DonateNowController', { $scope: $scope, UserService:mockUserService, DonationsFactory:mockDonationsFactory, SchoolsFactory:mockSchoolsFactory });
+        var controller = $controller('DonateNowController', { $scope: $scope, $sessionStorage:session, DonationsFactory:mockDonationsFactory, SchoolsFactory:mockSchoolsFactory });
         //apply scope to resolve all the promises
         $rootScope.$apply();
         $httpBackend.flush();
@@ -100,7 +97,7 @@ describe('testing the DonateNowController', function() {
     it('should donate now', function(done) {
       $httpBackend.when('POST', '/donations/email').respond({});
              //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('DonateNowController', { $scope: $scope, UserService:mockUserService, DonationsFactory:mockDonationsFactory, SchoolsFactory:mockSchoolsFactory });
+        var controller = $controller('DonateNowController', { $scope: $scope, $sessionStorage:session, DonationsFactory:mockDonationsFactory, SchoolsFactory:mockSchoolsFactory });
         //apply scope to resolve all the promises
         $scope.donateNow({});
         deferred.resolve();
@@ -119,7 +116,7 @@ describe('testing the DonateNowController', function() {
 
         $httpBackend.when('POST', '/donations/email').respond({});
              //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('DonateNowController', { $mdMedia:$mdMedia, $scope: $scope, UserService:mockUserService, DonationsFactory:mockDonationsFactory, SchoolsFactory:mockSchoolsFactory });
+        var controller = $controller('DonateNowController', { $mdMedia:$mdMedia, $scope: $scope, $sessionStorage:session, DonationsFactory:mockDonationsFactory, SchoolsFactory:mockSchoolsFactory });
         //apply scope to resolve all the promises
         $scope.donateNow({});
         $scope.cancelDonation();

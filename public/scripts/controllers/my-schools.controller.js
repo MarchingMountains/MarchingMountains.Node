@@ -3,13 +3,15 @@
 
 angular.module('myApp').controller('MySchoolsController',
 	['$scope', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory',
-	'DonationsFactory', 'UserService', function($scope, $mdDialog, $mdMedia,
-		SchoolsFactory, InstrumentsFactory, DonationsFactory, UserService, AddSchoolController, DonationReceivedController) {
+	'DonationsFactory', 'UserService', '$sessionStorage', 
+    function($scope, $mdDialog, $mdMedia,
+		SchoolsFactory, InstrumentsFactory, DonationsFactory, UserService,
+        $sessionStorage, AddSchoolController, DonationReceivedController) {
 
     $scope.schools = [];
     $scope.donations = [];
 
-    SchoolsFactory.userID = UserService.askForCurrentUser().factoryUserId;
+    SchoolsFactory.userID = $sessionStorage.CurrentUser.factoryUserId;
 
     var getInstruments = function() {
         InstrumentsFactory.factoryGetInstrumentsList().then(function() {});
