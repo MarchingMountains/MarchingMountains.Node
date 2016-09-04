@@ -7,16 +7,16 @@ var bodyParser = require('body-parser');
 var clientErrorHandler = require('./modules/clientErrorHandler');
 
 //var logout = require('./routes/logout');
-var schools = require('./routes/schools');
-var instruments = require('./routes/instruments');
-var donations = require('./routes/donations');
-var index = require('./routes/index');
+//var schools = require('./routes/schools');
+//var instruments = require('./routes/instruments');
+//var donations = require('./routes/donations');
+//var index = require('./routes/index');
 //var user = require('./routes/user');
 //var register = require('./routes/register');
 //var passport = require('./strategies/user_sql.js');
 //var session = require('express-session');
 //var account = require('./routes/account');
-var states = require('./routes/states');
+//var states = require('./routes/states');
 //var admin = require('./routes/admin');
 
 app.use(bodyParser.json());
