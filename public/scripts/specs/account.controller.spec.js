@@ -2,7 +2,7 @@ describe('testing the Account controller', function() {
 
     var deferred;
     var promise;   
-    var mockUserService;
+    var session;
     
     beforeEach(function() {
         //'$scope', '$http',  'UserService'
@@ -11,12 +11,16 @@ describe('testing the Account controller', function() {
         //Use bard to inject the adminFactory and a mock $http service
         //'$scope', 'DonationsFactory', 'UserService',
         bard.inject(
-          'UserService',
+          '$sessionStorage',
           '$rootScope',
           '$httpBackend',
           '$controller',
-          '$q'
+          '$q',
+          '$location'
         );
+
+        session = $sessionStorage;
+        session.CurrentUser = {email: 'hi@here.com', first_name: 'Bob', user_id: '1', factoryUserId:1 };
 
         $scope = $rootScope.$new();
         $httpBackend.when('GET', '/views/templates/home.html').respond({});
@@ -26,14 +30,6 @@ describe('testing the Account controller', function() {
         //get a promise instance
         promise = deferred.promise;
 
-        mockUserService = 
-         {
-            watchCurrentUser : function() {
-                return {
-                    factoryUserId:1
-                };
-            }
-        };
     });
 
     it('should retrieve a user from the server', function(done) {
@@ -41,7 +37,7 @@ describe('testing the Account controller', function() {
         $httpBackend.when('GET', '/states/').respond({state:'state'});
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('AccountController', { $scope: $scope, UserService:mockUserService });
+        var controller = $controller('AccountController', { $scope: $scope, $sessionStorage:session });
         //apply scope to resolve all the promises
         $rootScope.$apply();
         $httpBackend.flush();
@@ -58,7 +54,7 @@ describe('testing the Account controller', function() {
         
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('AccountController', { $scope: $scope, UserService:mockUserService });
+        var controller = $controller('AccountController', { $scope: $scope, $sessionStorage:session});
         //apply scope to resolve all the promises
         $rootScope.$apply();
         $httpBackend.flush();
@@ -73,7 +69,7 @@ describe('testing the Account controller', function() {
         $httpBackend.when('GET', '/account/1').respond([{state_id:'2'}]);
         $httpBackend.when('GET', '/states/').respond({state:'state'});
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('AccountController', { $scope: $scope, UserService:mockUserService });
+        var controller = $controller('AccountController', { $scope: $scope,  $sessionStorage:session});
         $rootScope.$apply();
         $httpBackend.flush();
         $scope.changePassword();
@@ -101,7 +97,7 @@ describe('testing the Account controller', function() {
         
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('AccountController', { $scope: $scope, UserService:mockUserService });
+        var controller = $controller('AccountController', { $scope: $scope, $sessionStorage:session });
         //apply scope to resolve all the promises
         
         $scope.password = '123';
@@ -112,6 +108,19 @@ describe('testing the Account controller', function() {
         done();
     });
 
+
+     it('should go home when no user loggedin', function(done) {
+
+        session.CurrentUser = null;
+         //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
+        var controller = $controller('AccountController', { $scope: $scope, $sessionStorage:session });
+        //apply scope to resolve all the promises
+        
+        $rootScope.$apply();
+        expect($location.path()).to.equal("/home");
+        done();
+    });
+
      it('should not show as edited when submit password form fails', function(done) {
        $httpBackend.when('GET', '/account/1').respond([{state_id:'2'}]);
         $httpBackend.when('GET', '/states/').respond({state:'state'});
@@ -119,7 +128,7 @@ describe('testing the Account controller', function() {
         
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('AccountController', { $scope: $scope, UserService:mockUserService });
+        var controller = $controller('AccountController', { $scope: $scope, $sessionStorage:session });
         //apply scope to resolve all the promises
         
         $scope.password = '123';
@@ -137,7 +146,7 @@ describe('testing the Account controller', function() {
         
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('AccountController', { $scope: $scope, UserService:mockUserService });
+        var controller = $controller('AccountController', { $scope: $scope,$sessionStorage:session });
         //apply scope to resolve all the promises
         
         $scope.password = '123';
@@ -155,7 +164,7 @@ describe('testing the Account controller', function() {
         
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('AccountController', { $scope: $scope, UserService:mockUserService });
+        var controller = $controller('AccountController', { $scope: $scope, $sessionStorage:session });
         //apply scope to resolve all the promises
         $scope.user = {};
         $scope.user.email = 'email',
@@ -183,7 +192,7 @@ describe('testing the Account controller', function() {
         
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('AccountController', { $scope: $scope, UserService:mockUserService });
+        var controller = $controller('AccountController', { $scope: $scope, $sessionStorage:session });
         //apply scope to resolve all the promises
         $scope.user = {};
         $scope.user.email = 'email',
@@ -209,7 +218,7 @@ describe('testing the Account controller', function() {
         $httpBackend.when('PUT', '/account/1').respond(null);
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('AccountController', { $scope: $scope, UserService:mockUserService });
+        var controller = $controller('AccountController', { $scope: $scope, $sessionStorage:session });
         //apply scope to resolve all the promises
         
         $scope.submitAccountForm (false);

@@ -6,6 +6,7 @@ describe('testing the MySchoolsController', function() {
     var mockSchoolsFactory;
     var mockDonationsFactory;
     var mockUserService; 
+    var session;
     
     beforeEach(function() {
         //'$scope', '$http',  'UserService'
@@ -23,10 +24,14 @@ describe('testing the MySchoolsController', function() {
           '$controller',
           '$q',
           '$mdMedia',
-          '$mdDialog'
+          '$mdDialog',
+          '$sessionStorage'
         );
         sinon.spy($mdDialog, 'show');
         $scope = $rootScope.$new();
+        session = $sessionStorage;
+        session.CurrentUser = {email: 'hi@here.com', first_name: 'Bob', user_id: '1', factoryUserId:1 };
+
         $httpBackend.when('GET', '/views/templates/home.html').respond({});
         $httpBackend.when('GET', '../views/modals/add-school.html').respond({});
         $httpBackend.when('GET', '../views/modals/donate-received-modal.html').respond({});
@@ -36,12 +41,6 @@ describe('testing the MySchoolsController', function() {
         //get a promise instance
         promise = deferred.promise;
         mockUserService = {
-          askForCurrentUser: function() {
-            return {email: 'hi@here.com', first_name: 'Bob', user_id: '1', factoryUserId:10 };
-          },
-           watchCurrentUser : function() {
-                return CurrentUser;
-            },
             logOutUser: function(){
               return promise;
             }
@@ -103,7 +102,8 @@ describe('testing the MySchoolsController', function() {
 
     it('should create my schools controller', function(done) {
              //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('MySchoolsController', { $scope: $scope, UserService:mockUserService, DonationsFactory:mockDonationsFactory, SchoolsFactory:mockSchoolsFactory, InstrumentsFactory:mockInstrumentsFactory });
+        var controller = $controller('MySchoolsController', { $scope: $scope, UserService:mockUserService, DonationsFactory:mockDonationsFactory, 
+          SchoolsFactory:mockSchoolsFactory, InstrumentsFactory:mockInstrumentsFactory, $sessionStorage:session });
         //apply scope to resolve all the promises
         deferred.resolve();
         $rootScope.$apply();
@@ -116,7 +116,8 @@ describe('testing the MySchoolsController', function() {
         var $addScope = $rootScope.$new();
         var addSchoolController = $controller('AddSchoolController', { $scope: $addScope, SchoolsFactory:mockSchoolsFactory, InstrumentsFactory:mockInstrumentsFactory });
         //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('MySchoolsController', { AddSchoolController:addSchoolController, $scope: $scope, UserService:mockUserService, DonationsFactory:mockDonationsFactory, SchoolsFactory:mockSchoolsFactory, InstrumentsFactory:mockInstrumentsFactory });
+        var controller = $controller('MySchoolsController', { AddSchoolController:addSchoolController, $scope: $scope, UserService:mockUserService, 
+          DonationsFactory:mockDonationsFactory, SchoolsFactory:mockSchoolsFactory, InstrumentsFactory:mockInstrumentsFactory, $sessionStorage:session });
         $scope.addSchool({});
         //apply scope to resolve all the promises
         deferred.resolve();
@@ -131,7 +132,8 @@ describe('testing the MySchoolsController', function() {
         var $addScope = $rootScope.$new();
         var addSchoolController = $controller('AddSchoolController', { $scope: $addScope, SchoolsFactory:mockSchoolsFactory, InstrumentsFactory:mockInstrumentsFactory });
         //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('MySchoolsController', { AddSchoolController:addSchoolController, $scope: $scope, UserService:mockUserService, DonationsFactory:mockDonationsFactory, SchoolsFactory:mockSchoolsFactory, InstrumentsFactory:mockInstrumentsFactory });
+        var controller = $controller('MySchoolsController', { AddSchoolController:addSchoolController, $scope: $scope, 
+          UserService:mockUserService, DonationsFactory:mockDonationsFactory, SchoolsFactory:mockSchoolsFactory, InstrumentsFactory:mockInstrumentsFactory, $sessionStorage:session });
         $scope.editSchool({},{school:'school'});
         //apply scope to resolve all the promises
         deferred.resolve();

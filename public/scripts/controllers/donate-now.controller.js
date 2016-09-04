@@ -2,18 +2,16 @@
 'use strict';
 
 angular.module('myApp').controller('DonateNowController', ['$scope', '$http', '$mdDialog', '$mdMedia',
-'SchoolsFactory', 'DonationsFactory', 'UserService', function($scope, $http, $mdDialog, $mdMedia,
-  SchoolsFactory, DonationsFactory, UserService) {
+'SchoolsFactory', 'DonationsFactory', '$sessionStorage', function($scope, $http, $mdDialog, $mdMedia,
+  SchoolsFactory, DonationsFactory, $sessionStorage) {
 
     $scope.SchoolsFactory = SchoolsFactory;
     $scope.DonationsFactory = DonationsFactory;
-    $scope.UserService = UserService;
 
     $scope.selectedSchoolInfo = $scope.SchoolsFactory.selectedSchoolInfo.list;
     $scope.selectedInstrument = $scope.SchoolsFactory.selectedInstrument.list;
 
-    DonationsFactory.userID = UserService.askForCurrentUser().factoryUserId;
-    $scope.currentUser = DonationsFactory.userID;
+    $scope.currentUser = $sessionStorage.CurrentUser.factoryUserId;
 
     $scope.donateNow = function(ev) {
 

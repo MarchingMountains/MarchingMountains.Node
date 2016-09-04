@@ -1,14 +1,11 @@
 (function() {
 'use strict';
 
-angular.module('myApp').controller('DonorsController', ['$scope', 'DonationsFactory', 'UserService',
-  function($scope, DonationsFactory, UserService) {
+angular.module('myApp').controller('DonorsController', ['$scope', 'DonationsFactory', '$sessionStorage',
+  function($scope, DonationsFactory, $sessionStorage) {
 
     $scope.DonationsFactory = DonationsFactory;
-    $scope.UserService = UserService;
-
-    DonationsFactory.userID = UserService.askForCurrentUser().factoryUserId;
-    $scope.currentUser = DonationsFactory.userID;
+    $scope.currentUser = $sessionStorage.CurrentUser;
 
     if ($scope.currentUser !== undefined) {
         $scope.DonationsFactory.factoryGetCurrentUserDonations().then(function() {

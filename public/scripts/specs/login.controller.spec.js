@@ -30,12 +30,6 @@ describe('testing the LoginController', function() {
         //get a promise instance
         promise = deferred.promise;
         mockUserService = {
-          askForCurrentUser: function() {
-            return {email: 'hi@here.com', first_name: 'Bob', user_id: '1', factoryUserId:10 };
-          },
-           watchCurrentUser : function() {
-                return CurrentUser;
-            },
             logOutUser: function(){
               return promise;
             },

@@ -36,7 +36,7 @@ describe('Service: userService', function() {
         //flush the response from the fake http server
         $httpBackend.flush();
         //Get the user from teh service
-        var currentUser = UserService.askForCurrentUser();
+        var currentUser = $sessionStorage.CurrentUser;
         //Now write asserstions comparing what we expect the values to be against what is returned from the service
         expect(currentUser.factoryUserName).to.equal(mockUser.factoryUserName);
         expect(currentUser.isLogged).to.equal(mockUser.isLogged);
@@ -58,12 +58,9 @@ describe('Service: userService', function() {
         //flush the response from the fake http server
         $httpBackend.flush();
         //Get the user from teh service
-        var currentUser = UserService.askForCurrentUser();
+        var currentUser = $sessionStorage.CurrentUser;
         //Now write asserstions comparing what we expect the values to be against what is returned from the service
-        expect(currentUser.factoryUserName).to.equal(undefined);
-        expect(currentUser.isLogged).to.equal(false);
-        expect(currentUser.factoryFirstName).to.equal(undefined);
-        expect(currentUser.factoryUserId).to.equal(undefined);
+        expect(currentUser).to.equal(undefined);
         //call done on the test
         done();
     });
@@ -80,7 +77,7 @@ describe('Service: userService', function() {
         UserService.postRegister();
         $rootScope.$apply();
         $httpBackend.flush();
-        var currentUser = UserService.askForCurrentUser();
+        var currentUser = $sessionStorage.CurrentUser;
         expect(currentUser.factoryUserName).to.equal(mockUser.factoryUserName);
         expect(currentUser.isLogged).to.equal(mockUser.isLogged);
         expect(currentUser.factoryFirstName).to.equal(mockUser.factoryFirstName);
@@ -107,7 +104,7 @@ describe('Service: userService', function() {
         UserService.logOutUser();
         $rootScope.$apply();
         $httpBackend.flush();
-        var currentUser = UserService.askForCurrentUser();
+        var currentUser = $sessionStorage.CurrentUser;
         mockUser = currentUser;
         expect(mockUser).to.be.undefined;
         function persistMockSession() {
@@ -118,13 +115,5 @@ describe('Service: userService', function() {
         //expect($window.$location.href).to.equal('/#/home');
         done();
     });
-
-    it('should equal the current user',  function(done) {
-        var currentUser = UserService.askForCurrentUser();
-        expect(UserService.watchCurrentUser()).to.equal(currentUser);
-        done();
-
-    })
-
 });
 

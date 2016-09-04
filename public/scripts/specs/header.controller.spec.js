@@ -3,6 +3,7 @@ describe('testing the HeaderController', function() {
     var deferred;
     var promise;   
     var mockUserService; 
+    var session;
     
     beforeEach(function() {
         //'$scope', '$http',  'UserService'
@@ -27,6 +28,8 @@ describe('testing the HeaderController', function() {
         $httpBackend.when('GET', '../views/templates/register.html').respond({});
         $httpBackend.when('GET', '../views/templates/login.html').respond({});
         
+        session = $sessionStorage;
+
          //setup $q for testing promise in controller
         deferred = $q.defer();
         //get a promise instance
@@ -37,15 +40,10 @@ describe('testing the HeaderController', function() {
           factoryUserName: 'ian@ian.com',
           factoryUserId: 1
         };
+        session.CurrentUser = CurrentUser;
         mockUserService = {
-          askForCurrentUser: function() {
-            return {email: 'hi@here.com', first_name: 'Bob', user_id: '1', factoryUserId:10 };
-          },
-           watchCurrentUser : function() {
-                return CurrentUser;
-            },
             logOutUser: function(){
-              CurrentUser = null;
+              session.CurrentUser = null;
               return promise;
             }
         };
@@ -64,18 +62,29 @@ describe('testing the HeaderController', function() {
 
     it('should display a username', function(done) {
       var sample = {first_name: '', factoryUserName: 'ian@ian.com',}
-        mockUserService.watchCurrentUser = function() {
-          return sample;
-        };
+      session.CurrentUser = sample;
              //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('HeaderController', { $scope: $scope, UserService:mockUserService });
+        var controller = $controller('HeaderController', { $scope: $scope, $sessionStorage:session });
         //apply scope to resolve all the promises
         $rootScope.$apply();
-        sample.first_name = 'Ian';
+        session.CurrentUser.first_name = 'Ian';
         $rootScope.$apply();
         $httpBackend.flush();
         expect(controller).to.not.be.undefined;
         expect($scope.displayedUser).to.equal('ian@ian.com');
+      done();
+    });
+
+    it('should not display a username', function(done) {
+      session.CurrentUser = undefined;
+             //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
+        var controller = $controller('HeaderController', { $scope: $scope, $sessionStorage:session });
+        //apply scope to resolve all the promises
+        $rootScope.$apply();
+        $rootScope.$apply();
+        $httpBackend.flush();
+        expect(controller).to.not.be.undefined;
+        expect($scope.displayedUser).to.equal(undefined);
       done();
     });
 
@@ -106,7 +115,7 @@ describe('testing the HeaderController', function() {
           location: { href:''}
         };
              //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
-        var controller = $controller('HeaderController', {$window:mockWindow, $scope: $scope, UserService:mockUserService });
+        var controller = $controller('HeaderController', {$window:mockWindow, $scope: $scope, UserService:mockUserService, $sessionStorage:session });
         //apply scope to resolve all the promises
         $scope.logOut();
         deferred.resolve({data:{uri:'hi'}});

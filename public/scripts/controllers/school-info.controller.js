@@ -2,13 +2,11 @@
 'use strict';
 
 angular.module('myApp').controller('SchoolInfoController', ['$scope', '$http', '$location', '$mdDialog',
-  '$mdMedia', 'SchoolsFactory', 'DonationsFactory', 'UserService', function($scope, $http, $location,
-    $mdDialog, $mdMedia, SchoolsFactory, DonationsFactory, UserService) {
+  '$mdMedia', 'SchoolsFactory', 'DonationsFactory', '$sessionStorage', function($scope, $http, $location,
+    $mdDialog, $mdMedia, SchoolsFactory, DonationsFactory, $sessionStorage) {
 
     $scope.SchoolsFactory = SchoolsFactory;
     $scope.DonationsFactory = DonationsFactory;
-
-    $scope.currentUser = UserService.watchCurrentUser.factoryUserId;
 
     $scope.selectedSchoolInfo = $scope.SchoolsFactory.selectedSchoolInfo.list;
     if ($scope.selectedSchoolInfo !== undefined) {
@@ -25,9 +23,7 @@ angular.module('myApp').controller('SchoolInfoController', ['$scope', '$http', '
 
     $scope.donateNowModal = function(ev) {
 
-        $scope.currentUser = UserService.askForCurrentUser().factoryUserId;
-
-        if ($scope.currentUser !== undefined) {
+        if ($sessionStorage.CurrentUser !== undefined) {
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
             $mdDialog.show({
                 templateUrl: '../views/modals/donate-now-modal.html',
