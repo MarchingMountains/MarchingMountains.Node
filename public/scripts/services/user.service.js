@@ -10,10 +10,6 @@ angular.module('myApp').factory('UserService',
         factoryUserId: undefined
     };
 
-    function returnCurrentUser() {
-        return CurrentUser;
-    }
-
     function login(user) {
         var promise = $http.post('/', user).then(function(response) {
             if (response.data === false) {
@@ -56,9 +52,6 @@ angular.module('myApp').factory('UserService',
     }
 
     var publicFunctions = {
-        askForCurrentUser: function() {
-            return CurrentUser;
-        },
         postLogin: function(user) {
             return login(user);
         },
@@ -67,8 +60,7 @@ angular.module('myApp').factory('UserService',
         },
         logOutUser: function() {
             return logOut();
-        },
-        watchCurrentUser: returnCurrentUser
+        }
     };
 
     return publicFunctions;

@@ -2,15 +2,26 @@
     'use strict';
 
 angular.module('myApp').controller('HeaderController', 
-    ['$scope', '$http', '$mdDialog', '$mdMedia', 'UserService', '$sessionStorage', '$window',
-    function($scope, $http, $mdDialog, $mdMedia, UserService, $sessionStorage, $window) {
+    ['$scope', '$http', '$mdDialog', '$mdMedia', '$sessionStorage', 'UserService', '$window',
+    function($scope, $http, $mdDialog, $mdMedia, $sessionStorage, UserService, $window) {
 
-        $scope.UserService = UserService;
-        $scope.first_name = '';
-        $scope.user_name = '';
-        $scope.isLoggedIn = false;
-        $scope.userID = '';
-        $scope.storage = $sessionStorage;
+
+        if ($sessionStorage.CurrentUser) {
+                $scope.first_name = $sessionStorage.CurrentUser.factoryFirstName;
+                $scope.user_name = $sessionStorage.CurrentUser.factoryUserName;
+                $scope.isLoggedIn = $sessionStorage.CurrentUser.isLogged;
+                $scope.userID = $sessionStorage.CurrentUser.factoryUserId;
+            }
+            else {
+                $scope.first_name = '';
+                $scope.user_name = '';
+                $scope.isLoggedIn = false;
+                $scope.userID = -1;
+            }
+
+            $scope.user = function() {
+                return $sessionStorage.CurrentUser;
+            };
 
         $scope.openLoginModal = function(ev) {
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
@@ -43,17 +54,17 @@ angular.module('myApp').controller('HeaderController',
             $scope.user_name = undefined;
             $scope.isLoggedIn = false;
             $scope.userID = undefined;
-            $scope.UserService.logOutUser().then(function(response) {
+            UserService.logOutUser().then(function(response) {
                 $window.location.href = response.data.uri;
             });
         };
 
-        $scope.$watch($scope.UserService.watchCurrentUser, function(newValue) {
+        $scope.$watch($scope.user, function(newValue) {
             if (newValue !== undefined && newValue !== null) {
-                $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
-                $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
-                $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
-                $scope.userID = $scope.UserService.watchCurrentUser().factoryUserId;
+                $scope.first_name = $sessionStorage.CurrentUser.factoryFirstName;
+                $scope.user_name = $sessionStorage.CurrentUser.factoryUserName;
+                $scope.isLoggedIn = $sessionStorage.CurrentUser.isLogged;
+                $scope.userID = $sessionStorage.CurrentUser.factoryUserId;
                 welcomeText();
             }
         });
@@ -65,15 +76,6 @@ angular.module('myApp').controller('HeaderController',
                 $scope.displayedUser = $scope.user_name;
             }
         };
-
-        var getCachedUser = function() {
-            $scope.first_name = $scope.UserService.watchCurrentUser().factoryFirstName;
-            $scope.user_name = $scope.UserService.watchCurrentUser().factoryUserName;
-            $scope.isLoggedIn = $scope.UserService.watchCurrentUser().isLogged;
-            $scope.userID = $scope.UserService.watchCurrentUser().factoryUserId;
-        };
-
-        getCachedUser();
     }
 ]);
 })();
