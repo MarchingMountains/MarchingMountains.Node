@@ -6,7 +6,7 @@ angular.module('myApp').controller('MySchoolsController',
 	'DonationsFactory', 'UserService', '$sessionStorage', 
     function($scope, $mdDialog, $mdMedia,
 		SchoolsFactory, InstrumentsFactory, DonationsFactory, UserService,
-        $sessionStorage, AddSchoolController, DonationReceivedController) {
+        $sessionStorage) {
 
     $scope.schools = [];
     $scope.donations = [];
