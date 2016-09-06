@@ -76,7 +76,8 @@
 
               <md-menu-content>
                 <md-menu-item><md-button id="headerAccount" ng-click="$mdCloseMenu($event)" href="#account" class="nav">Edit Account Information</md-button></md-menu-item>
-                <md-menu-item  ng-if="isLoggedIn === true && userID === 1"><md-button id="headerAdmin" ng-click="$mdCloseMenu($event)" href="#admin" class="nav">Admin</md-button></md-menu-item>
+                <md-menu-item ng-if="isLoggedIn"><md-button id="headerMySchools" ng-click="$mdCloseMenu($event)" href="#my-schools" class="nav">Band Directors Only</md-button></md-menu-item>
+                <md-menu-item  ng-if="isLoggedIn && userID === 1"><md-button id="headerAdmin" ng-click="$mdCloseMenu($event)" href="#admin" class="nav">Admin</md-button></md-menu-item>
                 <md-menu-item><md-button id="headerLogout" ng-click=logOut() class="nav"><a href="/logout">Log Out</a></md-button></md-menu-item>
               </md-menu-content>
             </md-menu>

@@ -6,7 +6,7 @@ angular.module('myApp').controller('MySchoolsController',
 	'DonationsFactory', 'UserService', '$sessionStorage', 
     function($scope, $mdDialog, $mdMedia,
 		SchoolsFactory, InstrumentsFactory, DonationsFactory, UserService,
-        $sessionStorage, AddSchoolController, DonationReceivedController) {
+        $sessionStorage) {
 
     $scope.schools = [];
     $scope.donations = [];
@@ -33,7 +33,7 @@ angular.module('myApp').controller('MySchoolsController',
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
             templateUrl: '../views/modals/add-school.html',
-            controller: AddSchoolController,
+            controller: "AddSchoolController",
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose: true,
@@ -45,7 +45,7 @@ angular.module('myApp').controller('MySchoolsController',
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
             templateUrl: '../views/modals/add-school.html',
-            controller: AddSchoolController,
+            controller: "AddSchoolController",
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose: true,
@@ -58,7 +58,7 @@ angular.module('myApp').controller('MySchoolsController',
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
             templateUrl: '../views/modals/donate-received-modal.html',
-            controller: DonationReceivedController,
+            controller: "DonationReceivedController",
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose: true,

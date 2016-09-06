@@ -5,6 +5,9 @@ var expressJwt = require('express-jwt');
 var bodyParser = require('body-parser');
 var connection = require('./modules/connection');
 var clientErrorHandler = require('./modules/clientErrorHandler');
+var helmet = require('helmet');
+var express_enforces_ssl = require('express-enforces-ssl');
+
 
 var logout = require('./routes/logout');
 var schools = require('./routes/schools');
@@ -18,6 +21,27 @@ var session = require('express-session');
 var account = require('./routes/account');
 var states = require('./routes/states');
 var admin = require('./routes/admin');
+
+console.log(process.env.NODE_ENV);
+
+if(process.env.NODE_ENV!== undefined){
+	app.enable('trust proxy');
+	app.use(express_enforces_ssl());
+}
+
+var ninetyDaysInMilliseconds = 7776000000;
+app.use(helmet.hsts(
+	{ 
+		maxAge: ninetyDaysInMilliseconds, 
+		setIf: function(req, res) {
+    		return (process.env.NODE_ENV);  
+    	} 
+    }));
+
+// Don't allow me to be in ANY frames:
+app.use(helmet.frameguard({ action: 'deny' }));
+app.use(helmet.xssFilter());
+app.use(helmet.hidePoweredBy());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
