@@ -63,6 +63,7 @@ angular.module('myApp').controller('AccountController', ['$scope', '$http', '$se
                     $scope.edited = true;
                     $scope.showList = true;
                     $scope.showForm = false;
+                    $sessionStorage.CurrentUser.first_name = $scope.user.first_name;
                     retrieveUser(id);
                 }
             });
