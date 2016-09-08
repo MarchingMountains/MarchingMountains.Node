@@ -33,8 +33,8 @@ describe('testing the Account controller', function() {
     });
 
     it('should retrieve a user from the server', function(done) {
-        $httpBackend.when('GET', '/account/1').respond([{state_id:'2'}]);
-        $httpBackend.when('GET', '/states/').respond({state:'state'});
+        $httpBackend.when('GET', '/api/account/1').respond([{state_id:'2'}]);
+        $httpBackend.when('GET', '/api/states/').respond({state:'state'});
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
         var controller = $controller('AccountController', { $scope: $scope, $sessionStorage:session });
@@ -49,8 +49,8 @@ describe('testing the Account controller', function() {
     });
    
     it('should do nothing when calls fail', function(done) {
-        $httpBackend.when('GET', '/account/1').respond(null);
-        $httpBackend.when('GET', '/states/').respond(null);
+        $httpBackend.when('GET', '/api/account/1').respond(null);
+        $httpBackend.when('GET', '/api/states/').respond(null);
         
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
@@ -66,8 +66,8 @@ describe('testing the Account controller', function() {
     });
 
      it('should flip switches', function(done) {
-        $httpBackend.when('GET', '/account/1').respond([{state_id:'2'}]);
-        $httpBackend.when('GET', '/states/').respond({state:'state'});
+        $httpBackend.when('GET', '/api/account/1').respond([{state_id:'2'}]);
+        $httpBackend.when('GET', '/api/states/').respond({state:'state'});
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
         var controller = $controller('AccountController', { $scope: $scope,  $sessionStorage:session});
         $rootScope.$apply();
@@ -91,9 +91,9 @@ describe('testing the Account controller', function() {
      });
 
      it('should submit password form', function(done) {
-       $httpBackend.when('GET', '/account/1').respond([{state_id:'2'}]);
-        $httpBackend.when('GET', '/states/').respond({state:'state'});
-        $httpBackend.when('PUT', '/account/password/1').respond({});
+       $httpBackend.when('GET', '/api/account/1').respond([{state_id:'2'}]);
+        $httpBackend.when('GET', '/api/states/').respond({state:'state'});
+        $httpBackend.when('PUT', '/api/account/password/1').respond({});
         
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
@@ -122,9 +122,9 @@ describe('testing the Account controller', function() {
     });
 
      it('should not show as edited when submit password form fails', function(done) {
-       $httpBackend.when('GET', '/account/1').respond([{state_id:'2'}]);
-        $httpBackend.when('GET', '/states/').respond({state:'state'});
-        $httpBackend.when('PUT', '/account/password/1').respond(null);
+       $httpBackend.when('GET', '/api/account/1').respond([{state_id:'2'}]);
+        $httpBackend.when('GET', '/api/states/').respond({state:'state'});
+        $httpBackend.when('PUT', '/api/account/password/1').respond(null);
         
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
@@ -140,9 +140,9 @@ describe('testing the Account controller', function() {
     });
 
           it('should do nothin if not valid', function(done) {
-       $httpBackend.when('GET', '/account/1').respond([{state_id:'2'}]);
-        $httpBackend.when('GET', '/states/').respond({state:'state'});
-        $httpBackend.when('PUT', '/account/password/1').respond(null);
+       $httpBackend.when('GET', '/api/account/1').respond([{state_id:'2'}]);
+        $httpBackend.when('GET', '/api/states/').respond({state:'state'});
+        $httpBackend.when('PUT', '/api/account/password/1').respond(null);
         
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
@@ -158,9 +158,9 @@ describe('testing the Account controller', function() {
     });
 
     it('should submit account form', function(done) {
-       $httpBackend.when('GET', '/account/1').respond([{state_id:'2'}]);
-        $httpBackend.when('GET', '/states/').respond({state:'state'});
-        $httpBackend.when('PUT', '/account/1').respond({});
+       $httpBackend.when('GET', '/api/account/1').respond([{state_id:'2'}]);
+        $httpBackend.when('GET', '/api/states/').respond({state:'state'});
+        $httpBackend.when('PUT', '/api/account/1').respond({});
         
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
@@ -186,9 +186,9 @@ describe('testing the Account controller', function() {
     });
 
      it('should not show as edited when submit account form fails', function(done) {
-       $httpBackend.when('GET', '/account/1').respond([{state_id:'2'}]);
-        $httpBackend.when('GET', '/states/').respond({state:'state'});
-        $httpBackend.when('PUT', '/account/1').respond(null);
+       $httpBackend.when('GET', '/api/account/1').respond([{state_id:'2'}]);
+        $httpBackend.when('GET', '/api/states/').respond({state:'state'});
+        $httpBackend.when('PUT', '/api/account/1').respond(null);
         
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
@@ -213,9 +213,9 @@ describe('testing the Account controller', function() {
     });
 
     it('should do nothin if account form not valid', function(done) {
-       $httpBackend.when('GET', '/account/1').respond([{state_id:'2'}]);
-        $httpBackend.when('GET', '/states/').respond({state:'state'});
-        $httpBackend.when('PUT', '/account/1').respond(null);
+       $httpBackend.when('GET', '/api/account/1').respond([{state_id:'2'}]);
+        $httpBackend.when('GET', '/api/states/').respond({state:'state'});
+        $httpBackend.when('PUT', '/api/account/1').respond(null);
 
          //get an instance of donors controller and inject our mock services (we test services separately, so we don't care about testing services here, mocks are fine)
         var controller = $controller('AccountController', { $scope: $scope, $sessionStorage:session });

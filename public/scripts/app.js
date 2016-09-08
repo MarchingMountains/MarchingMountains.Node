@@ -22,7 +22,7 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage',
         url: 'project',
         views: {
           'main@' : {
-        templateUrl: '/views/templates/about.html'
+          templateUrl: '/views/templates/about.html'
       }
     }
     })
@@ -38,7 +38,7 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage',
         url:'donate-a-musical-instrument',
         views: {
           'main@' : {
-        templateUrl: '/views/templates/donate-instrument.html'
+          templateUrl: '/views/templates/donate-instrument.html'
       }
     }
     })
@@ -46,16 +46,16 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage',
         url:'donors',
         views: {
           'main@' : {
-        templateUrl: '/views/templates/donors.html'
+            templateUrl: '/views/templates/donors.html',
+            controller: 'SchoolSearchController'
       }
-    },
-        controller: 'SchoolSearchController'
+    }
     })
       .state('app.contact', {
         url:'contact',
         views: {
           'main@' : {
-        templateUrl: '/views/templates/contact.html'
+            templateUrl: '/views/templates/contact.html'
       }
     }
     })
@@ -71,24 +71,24 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage',
         url:'account',
         views: {
           'main@' : {
-        templateUrl: '/views/templates/account.html'
+          templateUrl: '/views/templates/account.html',
+          controller: 'AccountController'
       }
-    },
-        controller: 'AccountController'
+    }
     })
       .state('app.my-schools', {
         url:'my-schools',
         views: {
           'main@' : {
-        templateUrl: '/views/templates/my-schools.html'}},
-        controller: 'MySchoolsController'
+          templateUrl: '/views/templates/my-schools.html'}},
+          controller: 'MySchoolsController'
     })
       .state('app.school-info', {
         url:'school-info',
         views: {
           'main@' : {
-        templateUrl: '/views/templates/school-info.html'}},
-        controller: 'SchoolInfoController'
+          templateUrl: '/views/templates/school-info.html'}},
+          controller: 'SchoolInfoController'
     })
       .state('login', {
         templateUrl: '/views/templates/login.html',
@@ -102,8 +102,8 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage',
         url:'admin',
         views: {
           'main@' : {
-        templateUrl: '/views/templates/admin.html'}},
-        controller: 'AdminController'
+          templateUrl: '/views/templates/admin.html'}},
+          controller: 'AdminController'
     })
       .state('app.press', {
         url:'press',
