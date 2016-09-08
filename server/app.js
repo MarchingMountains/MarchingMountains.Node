@@ -31,7 +31,7 @@ var ninetyDaysInMilliseconds = 7776000000;
 app.use(helmet.hsts(
 	{ 
 		maxAge: ninetyDaysInMilliseconds, 
-		setIf: function(req, res) {
+		setIf: function() {
     		return (process.env.NODE_ENV);  
     	} 
     }));
@@ -56,15 +56,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //incoming routes
-app.use('api/account', account);
-app.use('api/states', states);
-app.use('api/schools', schools);
-app.use('api/instruments', instruments);
-app.use('api/donations', donations);
-app.use('api/register', register);
-app.use('api/user', user);
-app.use('api/logout', logout);
-app.use('api/admin', admin);
+app.use('/api/account', account);
+app.use('/api/states', states);
+app.use('/api/schools', schools);
+app.use('/api/instruments', instruments);
+app.use('/api/donations', donations);
+app.use('/api/register', register);
+app.use('/api/user', user);
+app.use('/api/logout', logout);
+app.use('/api/admin', admin);
 app.use('/', index);
 
 
@@ -76,7 +76,7 @@ app.use(express.static('public/scripts/controllers'));
 app.use(express.static('public/scripts/factories'));
 app.use(express.static('public/styles'));
 app.use(express.static('public/vendors'));
-app.get('*', function (req, res, next) {
+app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname+'/index.html'));
   });
 app.use(clientErrorHandler);
@@ -84,5 +84,4 @@ app.use(clientErrorHandler);
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), function() {
   console.log('Listening on port: ', app.get('port'));
-
 });

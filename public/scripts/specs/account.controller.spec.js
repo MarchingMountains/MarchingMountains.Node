@@ -117,7 +117,7 @@ describe('testing the Account controller', function() {
         //apply scope to resolve all the promises
         
         $rootScope.$apply();
-        expect($location.path()).to.equal("/home");
+        expect($location.path()).to.equal("/");
         done();
     });
 

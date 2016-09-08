@@ -91,7 +91,6 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage',
         controller: 'SchoolInfoController'
     })
       .state('login', {
-
         templateUrl: '/views/templates/login.html',
         controller: 'LoginController'
     })
@@ -136,26 +135,48 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage',
           'main@' : {
         templateUrl: '/views/templates/discover-areas.html'}}
     })
-      .state('discover-how', {
-        templateUrl: '/views/templates/discover-how.html'
+      .state('app.discover-how', {
+        url:'discover-how',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/discover-how.html'}}
     })
-      .state('discover-what', {
-        templateUrl: '/views/templates/discover-what.html'
+      .state('app.discover-what', {
+        url:'discover-what',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/discover-what.html'}}
     })
-      .state('discover-who', {
-        templateUrl: '/views/templates/discover-who.html'
+      .state('app.discover-who', {
+        url:'discover-who',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/discover-who.html'}}
     })
-      .state('instrument-donation-success-stories', {
-        templateUrl: '/views/templates/success-stories.html'
+      .state('app.success', {
+        url:'instrument-donation-success-stories',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/success-stories.html'}}
     })
-      .state('video', {
-        templateUrl: '/views/templates/videos.html'
+      .state('app.video', {
+        url:'video',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/videos.html'}}
     })
-      .state('volunteer', {
-        templateUrl: '/views/templates/volunteer.html'
+      .state('app.volunteer', {
+        url:'volunteer',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/volunteer.html'}}
     })
-      .state('annual-reports', {
+      .state('app.annual-reports', {
+        url:'annual-reports',
+        views: {
+          'main@' : {
         templateUrl: '/views/templates/annual-reports.html'
+      }}
     });
 }]);
 
