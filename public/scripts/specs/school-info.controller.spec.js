@@ -127,7 +127,7 @@ describe('testing the SchoolInfoController', function() {
         $rootScope.$apply();
         $httpBackend.flush();
         expect(controller).to.not.be.undefined;
-        expect($location.path()).to.equal('/home');
+        expect($location.path()).to.equal('/');
       done();
     });
 

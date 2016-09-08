@@ -112,7 +112,6 @@ describe('Service: userService', function() {
         }
         persistMockSession();
         expect($sessionStorage.CurrentUser).to.equal(currentUser);
-        //expect($window.$location.href).to.equal('/#/home');
         done();
     });
 });
