@@ -15,7 +15,7 @@ describe('Test for instruments factory', function() {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
-    $httpBackend.when('GET', '/instruments').respond({'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('GET', '/api/instruments').respond({'instruments':[{'instrument1':'flute'}]});
     //call the method we are testing
     InstrumentsFactory.factoryGetInstrumentsList();
     //http://www.sitepoint.com/understanding-angulars-apply-digest/
@@ -31,8 +31,8 @@ describe('Test for instruments factory', function() {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
-    $httpBackend.when('GET', '/instruments').respond({'instruments':[{'instrument1':'flute'}]});
-    $httpBackend.when('POST', '/instruments').respond({'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('GET', '/api/instruments').respond({'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('POST', '/api/instruments').respond({'instruments':[{'instrument1':'flute'}]});
     //call the method we are testing
     InstrumentsFactory.postInstrument({instrument_id:1});
     //http://www.sitepoint.com/understanding-angulars-apply-digest/
@@ -48,8 +48,8 @@ describe('Test for instruments factory', function() {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
-    $httpBackend.when('GET', '/instruments').respond({'instruments':[{'instrument1':'flute'}]});
-    $httpBackend.when('PUT', '/instruments/1').respond({'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('GET', '/api/instruments').respond({'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('PUT', '/api/instruments/1').respond({'instruments':[{'instrument1':'flute'}]});
     //call the method we are testing
     InstrumentsFactory.putInstrument({instrument_id:1});
     //http://www.sitepoint.com/understanding-angulars-apply-digest/
@@ -65,8 +65,8 @@ describe('Test for instruments factory', function() {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
-    $httpBackend.when('GET', '/instruments').respond({'instruments':[{'instrument1':'flute'}]});
-    $httpBackend.when('DELETE', '/instruments/1').respond({'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('GET', '/api/instruments').respond({'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('DELETE', '/api/instruments/1').respond({'instruments':[{'instrument1':'flute'}]});
     //call the method we are testing
     InstrumentsFactory.deleteInstrument(1);
     //http://www.sitepoint.com/understanding-angulars-apply-digest/
@@ -82,7 +82,7 @@ describe('Test for instruments factory', function() {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
-    $httpBackend.when('GET', '/states').respond({'states':[{'state1':'wv'}]});
+    $httpBackend.when('GET', '/api/states').respond({'states':[{'state1':'wv'}]});
     //call the method we are testing
     InstrumentsFactory.getStates();
     //http://www.sitepoint.com/understanding-angulars-apply-digest/
