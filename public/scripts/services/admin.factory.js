@@ -8,14 +8,14 @@ angular.module('myApp').factory('AdminFactory', ['$http',
     var allUsers = {};
 
     var factoryGetAllSchools = function() {
-        var promise = $http.get('/admin/schools').then(function(response) {
+        var promise = $http.get('/api/admin/schools').then(function(response) {
                 allSchools.list = (response.data) ? response.data : undefined;
         });
         return promise;
     };
 
     var factoryVerifySchool = function(schoolID, status) {
-        var promise = $http.put('/admin/verify-school/' + schoolID, status).then(function(response) {
+        var promise = $http.put('/api/admin/verify-school/' + schoolID, status).then(function(response) {
             if (response.data) {
                 factoryGetAllSchools();
             }
@@ -27,14 +27,14 @@ angular.module('myApp').factory('AdminFactory', ['$http',
     };
 
     var factoryGetAllDonations = function() {
-        var promise = $http.get('/admin/donations').then(function(response) {
+        var promise = $http.get('/api/admin/donations').then(function(response) {
                 allDonations.list = (response.data) ? response.data : undefined;
         });
         return promise;
     };
 
     var factoryGetAllUsers = function() {
-        var promise = $http.get('/admin/users').then(function(response) {
+        var promise = $http.get('/api/admin/users').then(function(response) {
                 allUsers.list = (response.data) ? response.data : undefined;
         });
         return promise;

@@ -25,7 +25,7 @@ describe('AuthenticationService', function () {
 			var rejection = {status: 401};
 			UnauthorizedInterceptor.responseError(rejection);
 			$timeout.flush();
-			expect($location.path()).to.equal('/home');
+			expect($location.path()).to.equal('/');
 		});
 
 		it('responseError ignores 200 response', function () {

@@ -15,7 +15,7 @@ describe('Test for schools factory', function() {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
-    $httpBackend.when('GET', '/schools/instruments/1').respond({'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('GET', '/api/schools/instruments/1').respond({'instruments':[{'instrument1':'flute'}]});
     //call the method we are testing
     SchoolsFactory.factoryGetSchoolsList({instrument_id:1});
     //http://www.sitepoint.com/understanding-angulars-apply-digest/
@@ -32,7 +32,7 @@ describe('Test for schools factory', function() {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
-    $httpBackend.when('GET', '/schools/1').respond({'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('GET', '/api/schools/1').respond({'instruments':[{'instrument1':'flute'}]});
     SchoolsFactory.userID = 1;
     //call the method we are testing
     SchoolsFactory.getDirectorSchools();
@@ -49,7 +49,7 @@ describe('Test for schools factory', function() {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
-    $httpBackend.when('GET', '/schools/1').respond(null);
+    $httpBackend.when('GET', '/api/schools/1').respond(null);
     SchoolsFactory.userID = 1;
     //call the method we are testing
     SchoolsFactory.getDirectorSchools();
@@ -83,7 +83,7 @@ describe('Test for schools factory', function() {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
-    $httpBackend.when('GET', '/schools/1').respond({'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('GET', '/api/schools/1').respond({'instruments':[{'instrument1':'flute'}]});
     //call the method we are testing
     SchoolsFactory.userID = 1;
     SchoolsFactory.getDirectorSchools();
@@ -104,8 +104,8 @@ describe('Test for schools factory', function() {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
-    $httpBackend.when('POST', '/schools/1').respond({'name':'testSchool', 'instruments':[{'instrument1':'flute'}]});
-    $httpBackend.when('GET', '/schools/1').respond([{'school_name':'testSchool', 'instruments':[{'instrument1':'flute'}], 
+    $httpBackend.when('POST', '/api/schools/1').respond({'name':'testSchool', 'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('GET', '/api/schools/1').respond([{'school_name':'testSchool', 'instruments':[{'instrument1':'flute'}], 
         'donations':[
         {'instrument':'instrument', 'date': 'date', 'donation_id': 'donation_id', 'donation_received': 'donation_received', 'user_email':'user_email' }
         ]}]);
@@ -128,8 +128,8 @@ describe('Test for schools factory', function() {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
-    $httpBackend.when('PUT', '/schools/1').respond({'name':'testSchool', 'instruments':[{'instrument1':'flute'}]});
-    $httpBackend.when('GET', '/schools/1').respond([{'school_name':'testSchool', 'instruments':[{'instrument1':'flute'}], 
+    $httpBackend.when('PUT', '/api/schools/1').respond({'name':'testSchool', 'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('GET', '/api/schools/1').respond([{'school_name':'testSchool', 'instruments':[{'instrument1':'flute'}], 
         'donations':[
         {'instrument':'instrument', 'date': 'date', 'donation_id': 'donation_id', 'donation_received': 'donation_received', 'user_email':'user_email' }
         ]}]);
@@ -153,7 +153,7 @@ describe('Test for schools factory', function() {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
-    $httpBackend.when('POST', '/schools/1').respond(null);
+    $httpBackend.when('POST', '/api/schools/1').respond(null);
     //call the method we are testing
     SchoolsFactory.userID = 1;
     SchoolsFactory.postDirectorSchool({'name':'testSchool'});
@@ -172,7 +172,7 @@ describe('Test for schools factory', function() {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
-    $httpBackend.when('PUT', '/schools/1').respond(null);
+    $httpBackend.when('PUT', '/api/schools/1').respond(null);
     //call the method we are testing
     SchoolsFactory.userID = 1;
     SchoolsFactory.putDirectorSchool({'name':'testSchool'});
@@ -191,8 +191,8 @@ describe('Test for schools factory', function() {
     //object to store result of our call
     //Setup $http backend to return mock results
     $httpBackend.when('GET', '/views/templates/home.html').respond({});
-    $httpBackend.when('PUT', '/schools/1').respond({'name':'testSchool', 'instruments':[{'instrument1':'flute'}]});
-    $httpBackend.when('GET', '/schools/1').respond([{'school_name':'testSchool', 'instruments':[{'instrument1':'flute'}]}]);
+    $httpBackend.when('PUT', '/api/schools/1').respond({'name':'testSchool', 'instruments':[{'instrument1':'flute'}]});
+    $httpBackend.when('GET', '/api/schools/1').respond([{'school_name':'testSchool', 'instruments':[{'instrument1':'flute'}]}]);
     //call the method we are testing
     SchoolsFactory.userID = 1;
     SchoolsFactory.putDirectorSchool({'name':'testSchool'});

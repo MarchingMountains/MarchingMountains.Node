@@ -29,7 +29,7 @@ angular.module('myApp').factory('UserService',
     }
 
     function register(user) {
-        var promise = $http.post('/register', user).then(function(response) {
+        var promise = $http.post('/api/register', user).then(function(response) {
             CurrentUser = {
                 isLogged: true,
                 factoryUserName: response.data.email,
@@ -44,7 +44,7 @@ angular.module('myApp').factory('UserService',
     function logOut() {
         CurrentUser = undefined;
         delete $sessionStorage.CurrentUser;
-        return $http.post('/logout');
+        return $http.post('/api/logout');
     }
 
     function persistSession() {

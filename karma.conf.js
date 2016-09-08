@@ -43,6 +43,8 @@ plugins: [
         'public/vendors/angular-smart-table/dist/smart-table.min.js',
         'public/vendors/angular-xeditable/dist/js/xeditable.min.js',
         'public/vendors/angular-mocks/angular-mocks.js',
+        'public/vendors/angular-ui-router/release/angular-ui-router.min.js',
+        'public/vendors/angular-ui-router-title/angular-ui-router-title.js',
         'public/scripts/**/*.js',
         'public/scripts/app.js',
         'public/vendors/bardjs/dist/bard.js'

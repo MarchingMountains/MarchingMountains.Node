@@ -11,26 +11,26 @@
             <md-menu>
               <button id="headerExplore" ng-click="$mdOpenMenu($event)">EXPLORE</button>
               <md-menu-content>
-                <md-menu-item><md-button id="headerHome" ng-click="$mdCloseMenu($event)" href="#home" class="nav">Home</md-button></md-menu-item>
+                <md-menu-item><md-button id="headerHome" ng-click="$mdCloseMenu($event)" ui-sref="app" class="nav">Home</md-button></md-menu-item>
 
                 <md-menu-item>
                   <md-menu>
-                    <md-menu-item><md-button id="headerDiscover" href="#project" class="nav" ng-click="$mdOpenMenu($event)">Discover Marching Mountains</md-button></md-menu-item>
+                    <md-menu-item><md-button id="headerDiscover" href="project" class="nav" ng-click="$mdOpenMenu($event)">Discover Marching Mountains</md-button></md-menu-item>
                     <md-menu-content width="3">
-                      <md-menu-item><md-button id="headerDiscoverWhat" ng-click="$mdCloseMenu($event)" href="#discover-what" class="nav">What does Marching Mountains do?</md-button></md-menu-item>
-                      <md-menu-item><md-button id="headerDiscoverWho" ng-click="$mdCloseMenu($event)" href="#discover-who" class="nav">Who is involved?</md-button></md-menu-item>
-                      <md-menu-item><md-button id="headerDiscoverHow" ng-click="$mdCloseMenu($event)" href="#discover-how" class="nav">How does Marching Mountains help?</md-button></md-menu-item>
-                      <md-menu-item><md-button id="headerDiscoverWhere" ng-click="$mdCloseMenu($event)" href="#discover-areas" class="nav">Where does Marching Mountains help?</md-button></md-menu-item>
+                      <md-menu-item><md-button id="headerDiscoverWhat" ng-click="$mdCloseMenu($event)" href="discover-what" class="nav">What does Marching Mountains do?</md-button></md-menu-item>
+                      <md-menu-item><md-button id="headerDiscoverWho" ng-click="$mdCloseMenu($event)" href="discover-who" class="nav">Who is involved?</md-button></md-menu-item>
+                      <md-menu-item><md-button id="headerDiscoverHow" ng-click="$mdCloseMenu($event)" href="discover-how" class="nav">How does Marching Mountains help?</md-button></md-menu-item>
+                      <md-menu-item><md-button id="headerDiscoverWhere" ng-click="$mdCloseMenu($event)" href="discover-areas" class="nav">Where does Marching Mountains help?</md-button></md-menu-item>
                     </md-menu-content>
                   </md-menu>
                 </md-menu-item>
 
-                <md-menu-item><md-button id="headerFaq" ng-click="$mdCloseMenu($event)" href="#faq" class="nav">FAQ</md-button></md-menu-item>
-                <md-menu-item><md-button id="headerDonateInstrument" ng-click="$mdCloseMenu($event)" href="#donate-a-musical-instrument" class="nav">How To Donate</md-button></md-menu-item>
-                <md-menu-item><md-button id="headerBandDirectors" ng-click="$mdCloseMenu($event)" href="#band-directors" class="nav">Band Director Info</md-button></md-menu-item>
-                <md-menu-item><md-button id="headerPress" ng-click="$mdCloseMenu($event)" href="#press" class="nav">Press</md-button></md-menu-item>
-                <md-menu-item><md-button id="headerStories" ng-click="$mdCloseMenu($event)" href="#stories" class="nav">Stories</md-button></md-menu-item>
-                <md-menu-item><md-button id="headerContact" ng-click="$mdCloseMenu($event)" href="#contact" class="nav">Contact</md-button></md-menu-item>
+                <md-menu-item><md-button id="headerFaq" ui-sref="app.faq" class="nav">FAQ</md-button></md-menu-item>
+                <md-menu-item><md-button id="headerDonateInstrument" ng-click="$mdCloseMenu($event)" href=#donate-a-musical-instrument" class="nav">How To Donate</md-button></md-menu-item>
+                <md-menu-item><md-button id="headerBandDirectors" ng-click="$mdCloseMenu($event)" href="band-directors" class="nav">Band Director Info</md-button></md-menu-item>
+                <md-menu-item><md-button id="headerPress" ng-click="$mdCloseMenu($event)" href="#ress" class="nav">Press</md-button></md-menu-item>
+                <md-menu-item><md-button id="headerStories" ng-click="$mdCloseMenu($event)" href="stories" class="nav">Stories</md-button></md-menu-item>
+                <md-menu-item><md-button id="headerContact" ng-click="$mdCloseMenu($event)" href="contact" class="nav">Contact</md-button></md-menu-item>
               </md-menu-content>
             </md-menu>
 
@@ -48,7 +48,7 @@
               <button id="headerSupport" ng-click="$mdOpenMenu($event)">SUPPORT</button>
               <md-menu-content>
                 <md-menu-item><md-button id="headerDonateFunds" ng-click="$mdCloseMenu($event)" href="https://givemn.org/organization/Marching-Mountains" class="nav">Donate Funds</md-button></md-menu-item>
-                <md-menu-item><md-button id="headerVolunteer" ng-click="$mdCloseMenu($event)"  href="#volunteer" class="nav">Volunteer</md-button></md-menu-item>
+                <md-menu-item><md-button id="headerVolunteer" ng-click="$mdCloseMenu($event)"  href="volunteer" class="nav">Volunteer</md-button></md-menu-item>
               </md-menu-content>
             </md-menu>
 
@@ -75,9 +75,9 @@
               </button>
 
               <md-menu-content>
-                <md-menu-item><md-button id="headerAccount" ng-click="$mdCloseMenu($event)" href="#account" class="nav">Edit Account Information</md-button></md-menu-item>
-                <md-menu-item ng-if="isLoggedIn"><md-button id="headerMySchools" ng-click="$mdCloseMenu($event)" href="#my-schools" class="nav">Band Directors Only</md-button></md-menu-item>
-                <md-menu-item  ng-if="isLoggedIn && userID === 1"><md-button id="headerAdmin" ng-click="$mdCloseMenu($event)" href="#admin" class="nav">Admin</md-button></md-menu-item>
+                <md-menu-item><md-button id="headerAccount" ng-click="$mdCloseMenu($event)" href="account" class="nav">Edit Account Information</md-button></md-menu-item>
+                <md-menu-item ng-if="isLoggedIn"><md-button id="headerMySchools" ng-click="$mdCloseMenu($event)" href="my-schools" class="nav">Band Directors Only</md-button></md-menu-item>
+                <md-menu-item  ng-if="isLoggedIn && userID === 1"><md-button id="headerAdmin" ng-click="$mdCloseMenu($event)" href="admin" class="nav">Admin</md-button></md-menu-item>
                 <md-menu-item><md-button id="headerLogout" ng-click=logOut() class="nav"><a href="/logout">Log Out</a></md-button></md-menu-item>
               </md-menu-content>
             </md-menu>

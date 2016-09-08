@@ -9,7 +9,7 @@ angular.module('myApp').factory('DonationsFactory', ['$http',  function($http) {
     var userID = false;
 
     var SelectedSchoolDonations = function(selectedSchoolId) {
-        var promise = $http.get('/donations/school/' + selectedSchoolId).then(function(response) {
+        var promise = $http.get('/api/donations/school/' + selectedSchoolId).then(function(response) {
             selectedSchoolDonations.list = (response.data) ? response.data : undefined;
         });
         return promise;
@@ -17,21 +17,21 @@ angular.module('myApp').factory('DonationsFactory', ['$http',  function($http) {
 
     var getCurrentUserDonations = function() {
         userID = publicFunctions.userID;
-        var promise = $http.get('/donations/user/' + userID).then(function(response) {
+        var promise = $http.get('/api/donations/user/' + userID).then(function(response) {
             currentUserDonations.list = (response.data) ? response.data : undefined;
         });
         return promise;
     };
 
     var submitDonation = function(donationInfo) {
-        var promise = $http.post('/donations/school/' + donationInfo.school_id, donationInfo).then(function() {
+        var promise = $http.post('/api/donations/school/' + donationInfo.school_id, donationInfo).then(function() {
             getCurrentUserDonations();
         });
         return promise;
     };
 
     var setDonationReceived = function(donationInfo) {
-        return $http.put('/donations/received/' + donationInfo.donation_id);
+        return $http.put('/api/donations/received/' + donationInfo.donation_id);
     };
 
     var publicFunctions = {

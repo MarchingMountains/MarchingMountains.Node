@@ -73,7 +73,7 @@ describe('Service: userService', function() {
             factoryUserId: '1'
         };
         $httpBackend.when('GET', '/views/templates/home.html').respond({});
-        $httpBackend.when('POST', '/register').respond({email: 'hi@here.com', first_name: 'Bob', user_id: '1' });
+        $httpBackend.when('POST', '/api/register').respond({email: 'hi@here.com', first_name: 'Bob', user_id: '1' });
         UserService.postRegister();
         $rootScope.$apply();
         $httpBackend.flush();
@@ -100,7 +100,7 @@ describe('Service: userService', function() {
             factoryUserId: '1'
         };
         $httpBackend.when('GET', '/views/templates/home.html').respond({});
-        $httpBackend.when('POST', '/logout').respond({uri:'/#/home'});
+        $httpBackend.when('POST', '/api/logout').respond({uri:'/#/home'});
         UserService.logOutUser();
         $rootScope.$apply();
         $httpBackend.flush();
@@ -112,7 +112,6 @@ describe('Service: userService', function() {
         }
         persistMockSession();
         expect($sessionStorage.CurrentUser).to.equal(currentUser);
-        //expect($window.$location.href).to.equal('/#/home');
         done();
     });
 });
