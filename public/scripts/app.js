@@ -2,99 +2,170 @@
 'use strict';
 
 angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngStorage', 
-  'angAccordion', 'ngPassword', 'smart-table', 'xeditable'])
-.config(['$routeProvider', function($routeProvider) {
-    $routeProvider
-      .when('/home', {
-        templateUrl: '/views/templates/home.html',
+  'angAccordion', 'ngPassword', 'smart-table', 'xeditable','ui.router',
+        'ui.router.title'])
+.config([
+            '$stateProvider', '$urlRouterProvider',
+            function ($stateProvider, $urlRouterProvider) {
+                $urlRouterProvider.otherwise('/');
+                $stateProvider
+      .state('app', {
+        url: '/',
+        views: {
+          'main' : {
+            templateUrl: '/views/templates/home.html'
+          }
+      },
         controller: 'SchoolSearchController'
     })
-      .when('/project', {
+      .state('app.project', {
+        url: 'project',
+        views: {
+          'main@' : {
         templateUrl: '/views/templates/about.html'
+      }
+    }
     })
-      .when('/faq', {
+      .state('app.faq', {
+        url: 'faq',
+        views: {
+          'main@' : {
         templateUrl: '/views/templates/faq.html'
+      }
+    }
     })
-      .when('/donate-a-musical-instrument', {
+      .state('app.donate', {
+        url:'donate-a-musical-instrument',
+        views: {
+          'main@' : {
         templateUrl: '/views/templates/donate-instrument.html'
+      }
+    }
     })
-      .when('/donors', {
-        templateUrl: '/views/templates/donors.html',
+      .state('app.donors', {
+        url:'donors',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/donors.html'
+      }
+    },
         controller: 'SchoolSearchController'
     })
-      .when('/contact', {
+      .state('app.contact', {
+        url:'contact',
+        views: {
+          'main@' : {
         templateUrl: '/views/templates/contact.html'
+      }
+    }
     })
-      .when('/band-directors', {
+      .state('app.band-directors', {
+        url:'band-directors',
+        views: {
+          'main@' : {
         templateUrl: '/views/templates/band-directors.html'
+      }
+    }
     })
-      .when('/account', {
-        templateUrl: '/views/templates/account.html',
+      .state('app.account', {
+        url:'account',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/account.html'
+      }
+    },
         controller: 'AccountController'
     })
-      .when('/my-schools', {
-        templateUrl: '/views/templates/my-schools.html',
+      .state('app.my-schools', {
+        url:'my-schools',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/my-schools.html'}},
         controller: 'MySchoolsController'
     })
-      .when('/school-info', {
-        templateUrl: '/views/templates/school-info.html',
+      .state('app.school-info', {
+        url:'school-info',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/school-info.html'}},
         controller: 'SchoolInfoController'
     })
-      .when('/login', {
+      .state('login', {
+
         templateUrl: '/views/templates/login.html',
         controller: 'LoginController'
     })
-      .when('/register', {
+      .state('register', {
         templateUrl: '/views/templates/register.html',
         controller: 'LoginController'
     })
-      .when('/admin', {
-        templateUrl: '/views/templates/admin.html',
+      .state('app.admin', {
+        url:'admin',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/admin.html'}},
         controller: 'AdminController'
     })
-      .when('/press', {
-        templateUrl: '/views/templates/press.html'
+      .state('app.press', {
+        url:'press',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/press.html'}}
     })
-      .when('/press1', {
-        templateUrl: '/views/templates/press-1.html'
+      .state('app.press1', {
+        url:'press1',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/press-1.html'}}
     })
-      .when('/press2', {
-        templateUrl: '/views/templates/press-2.html'
+      .state('app.press2', {
+        url:'press2',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/press-2.html'}}
     })
-      .when('/stories', {
-        templateUrl: '/views/templates/stories.html'
+      .state('app.stories', {
+        url:'band-directors',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/stories.html'}}
     })
-      .when('/discover-areas', {
-        templateUrl: '/views/templates/discover-areas.html'
+      .state('app.discover-areas', {
+        url:'discover-areas',
+        views: {
+          'main@' : {
+        templateUrl: '/views/templates/discover-areas.html'}}
     })
-      .when('/discover-how', {
+      .state('discover-how', {
         templateUrl: '/views/templates/discover-how.html'
     })
-      .when('/discover-what', {
+      .state('discover-what', {
         templateUrl: '/views/templates/discover-what.html'
     })
-      .when('/discover-who', {
+      .state('discover-who', {
         templateUrl: '/views/templates/discover-who.html'
     })
-      .when('/instrument-donation-success-stories', {
+      .state('instrument-donation-success-stories', {
         templateUrl: '/views/templates/success-stories.html'
     })
-      .when('/video', {
+      .state('video', {
         templateUrl: '/views/templates/videos.html'
     })
-      .when('/volunteer', {
+      .state('volunteer', {
         templateUrl: '/views/templates/volunteer.html'
     })
-      .when('/annual-reports', {
+      .state('annual-reports', {
         templateUrl: '/views/templates/annual-reports.html'
-    })
-      .otherwise({
-        redirectTo: '/home'
     });
 }]);
 
 angular.module('myApp').config(HttpProviderConfiguration);
 HttpProviderConfiguration.$inject = ['$httpProvider'];
+
+
+angular.module('myApp').config(function($locationProvider){
+  $locationProvider.html5Mode(true);
+});
 
 function HttpProviderConfiguration($httpProvider) {
     $httpProvider.interceptors.push('UnauthorizedInterceptor');
