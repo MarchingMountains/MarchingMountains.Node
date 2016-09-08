@@ -10,7 +10,7 @@ angular.module('myApp').factory('SchoolsFactory', ['$http',
     var directorDonations = {};
 
     var getSchoolList = function(instrument) {
-        var promise = $http.get('/schools/instruments/' + instrument.instrument_id).then(function(response) {
+        var promise = $http.get('/api/schools/instruments/' + instrument.instrument_id).then(function(response) {
             schoolSearchResults.list = response.data;
             selectedInstrument.list = instrument;
         });
@@ -23,7 +23,7 @@ angular.module('myApp').factory('SchoolsFactory', ['$http',
 
     var factoryGetDirectorSchools = function() {
         directorDonations.list = [];
-        var promise = $http.get('/schools/' + publicFunctions.userID).then(function(response) {
+        var promise = $http.get('/api/schools/' + publicFunctions.userID).then(function(response) {
             if (response.data) {
                 factorySchoolsList.list = response.data;
                 buildDonations(factorySchoolsList);
@@ -33,7 +33,7 @@ angular.module('myApp').factory('SchoolsFactory', ['$http',
     };
 
     var factoryPostDirectorSchools = function(school) {
-        var promise = $http.post('/schools/' + publicFunctions.userID, school).then(function(response) {
+        var promise = $http.post('/api/schools/' + publicFunctions.userID, school).then(function(response) {
             if (response.data) {
                 factoryGetDirectorSchools();
             }
@@ -42,7 +42,7 @@ angular.module('myApp').factory('SchoolsFactory', ['$http',
     };
 
     var factoryPutDirectorSchools = function(school) {
-        var promise = $http.put('/schools/' + publicFunctions.userID, school).then(function(response) {
+        var promise = $http.put('/api/schools/' + publicFunctions.userID, school).then(function(response) {
             if (response.data) {
                 factoryGetDirectorSchools();
             }

@@ -17,11 +17,11 @@ angular.module('myApp').controller('AccountController', ['$scope', '$http', '$se
         getStates();
     }
     catch(e) {
-        $location.path("/home");
+        $location.path("/");
     }
 
     function getStates() {
-        $http.get('/states/').then(function(response) {
+        $http.get('/api/states/').then(function(response) {
             if (response.data) {
                 $scope.states = response.data;
             }
@@ -29,7 +29,7 @@ angular.module('myApp').controller('AccountController', ['$scope', '$http', '$se
     }
 
     function retrieveUser(id) {
-        $http.get('/account/' + id).then(function(response) {
+        $http.get('/api/account/' + id).then(function(response) {
             if (response.data) {
                 $scope.user = response.data[0];
                 $scope.selectedState = response.data[0].state_id;
@@ -58,7 +58,7 @@ angular.module('myApp').controller('AccountController', ['$scope', '$http', '$se
                 phone: $scope.user.phone
             };
 
-            $http.put('/account/' + id, data).then(function(response) {
+            $http.put('/api/account/' + id, data).then(function(response) {
                 if (response.data) {
                     $scope.edited = true;
                     $scope.showList = true;
@@ -90,7 +90,7 @@ angular.module('myApp').controller('AccountController', ['$scope', '$http', '$se
                 password: $scope.password
             };
 
-            $http.put('/account/password/' + id, data).then(function(response) {
+            $http.put('/api/account/password/' + id, data).then(function(response) {
                 if (response.data) {
                     $scope.editedPassword = true;
                 }
