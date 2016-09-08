@@ -5,7 +5,7 @@ angular.module('myApp').controller('MySchoolsController',
 	['$scope', '$mdDialog', '$mdMedia', 'SchoolsFactory', 'InstrumentsFactory',
 	'DonationsFactory', 'UserService', '$sessionStorage', 
     function($scope, $mdDialog, $mdMedia,
-		SchoolsFactory, InstrumentsFactory, DonationsFactory, UserService,
+		SchoolsFactory, InstrumentsFactory, DonationsFactory, UserService, 
         $sessionStorage) {
 
     $scope.schools = [];
