@@ -71,6 +71,7 @@ app.use('/', index);
 app.use(express.static('public'));
 app.use(express.static('public/views'));
 app.use(express.static('public/views/templates'));
+app.use(express.static('public/views/reports'));
 app.use(express.static('public/scripts'));
 app.use(express.static('public/scripts/controllers'));
 app.use(express.static('public/scripts/factories'));
